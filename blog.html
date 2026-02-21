@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Gold Lion Mortgages Inc.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white:        #FAFAF8;
+    --off-white:    #F4F3F0;
+    --purple:       #2B1B72;
+    --purple-mid:   #3B2A8A;
+    --purple-light: #EEE9FF;
+    --purple-line:  rgba(43,27,114,0.12);
+    --gold:         #C9A84C;
+    --gold-light:   #E8CB7A;
+    --text:         #181524;
+    --muted:        #6B6785;
+    --border:       rgba(43,27,114,0.1);
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 56px;
+    background: rgba(250,250,248,0.94);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 11px;
+    text-decoration: none;
+  }
+  .logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--purple); letter-spacing: 0.01em; line-height: 1.15;
+  }
+  .logo-name span { color: var(--gold); }
+  .logo-powered {
+    font-family: 'Outfit', sans-serif;
+    font-size: 9.5px; font-weight: 400; color: var(--muted);
+    letter-spacing: 0.04em; line-height: 1.4; margin-top: 2px;
+    border-left: 2px solid var(--border); padding-left: 8px;
+  }
+  .logo-powered strong { display: block; color: var(--purple); font-weight: 600; }
+  .nav-links {
+    display: flex; align-items: center; gap: 32px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 14px; font-weight: 400; color: var(--text);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--purple); }
+  .nav-links a.active { color: var(--purple); font-weight: 600; }
+  .nav-cta {
+    background: var(--purple); color: #fff !important;
+    padding: 10px 22px; border-radius: 7px;
+    font-weight: 500 !important; transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--purple-mid) !important; }
+
+  /* ─── HAMBURGER ─── */
+  .hamburger {
+    display: none;
+    flex-direction: column; justify-content: center; gap: 5px;
+    width: 36px; height: 36px;
+    background: none; border: none; cursor: pointer; padding: 4px; flex-shrink: 0;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--purple); border-radius: 2px; transition: all 0.25s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ─── MOBILE MENU ─── */
+  .mobile-menu {
+    display: none; position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--white); z-index: 210;
+    flex-direction: column; padding: 100px 32px 40px; overflow-y: auto;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    display: block; font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700; color: var(--text);
+    text-decoration: none; padding: 14px 0;
+    border-bottom: 1px solid var(--border); transition: color 0.2s;
+  }
+  .mobile-menu a:hover, .mobile-menu a.active { color: var(--purple); }
+  .mobile-menu-cta {
+    margin-top: 32px; background: var(--purple) !important;
+    color: #fff !important; text-align: center;
+    padding: 18px 32px !important; border-radius: 10px;
+    font-family: 'Outfit', sans-serif !important; font-size: 16px !important;
+    font-weight: 600 !important; border-bottom: none !important;
+  }
+
+  /* ─── PAGE HERO ─── */
+  .page-hero {
+    padding: 160px 56px 80px;
+    background: linear-gradient(135deg, var(--purple) 0%, #1a0f55 100%);
+    position: relative; overflow: hidden; text-align: center;
+  }
+  .page-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(201,168,76,0.15), transparent);
+    pointer-events: none;
+  }
+  .page-hero-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold);
+    background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3);
+    padding: 6px 16px; border-radius: 20px; margin-bottom: 24px;
+  }
+  .page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px; font-weight: 700; color: #fff;
+    line-height: 1.15; margin-bottom: 20px;
+  }
+  .page-hero h1 em { color: var(--gold); font-style: italic; }
+  .page-hero p {
+    font-size: 18px; color: rgba(255,255,255,0.75);
+    max-width: 580px; margin: 0 auto; line-height: 1.7;
+  }
+
+  /* ─── CATEGORIES BAR ─── */
+  .categories-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 56px;
+    position: sticky; top: 65px; z-index: 100;
+  }
+  .categories-inner {
+    max-width: 1160px; margin: 0 auto;
+    display: flex; gap: 0; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .categories-inner::-webkit-scrollbar { display: none; }
+  .cat-tab {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 16px 20px;
+    font-size: 13px; font-weight: 500; color: var(--muted);
+    text-decoration: none; white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: pointer; background: none; border-top: none;
+    border-left: none; border-right: none; font-family: 'Outfit', sans-serif;
+  }
+  .cat-tab:hover { color: var(--purple); }
+  .cat-tab.active { color: var(--purple); font-weight: 600; border-bottom-color: var(--purple); }
+  .cat-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: currentColor; opacity: 0.5; flex-shrink: 0;
+  }
+
+  /* ─── MAIN CONTENT WRAP ─── */
+  .blog-wrap {
+    max-width: 1160px; margin: 0 auto; padding: 72px 56px 80px;
+  }
+
+  /* ─── COMING SOON HERO CARD ─── */
+  .coming-soon-card {
+    background: linear-gradient(135deg, var(--purple) 0%, #1a0f55 100%);
+    border-radius: 24px;
+    padding: 72px 56px;
+    text-align: center;
+    position: relative; overflow: hidden;
+    margin-bottom: 64px;
+  }
+  .coming-soon-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 70% at 50% 110%, rgba(201,168,76,0.2), transparent);
+    pointer-events: none;
+  }
+  .coming-soon-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold);
+    background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3);
+    padding: 6px 16px; border-radius: 20px; margin-bottom: 28px;
+  }
+  .coming-soon-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+  .coming-soon-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px; font-weight: 700; color: #fff;
+    line-height: 1.2; margin-bottom: 18px;
+    position: relative; z-index: 1;
+  }
+  .coming-soon-card h2 em { color: var(--gold); font-style: italic; }
+  .coming-soon-card > p {
+    font-size: 17px; color: rgba(255,255,255,0.75);
+    max-width: 520px; margin: 0 auto 40px;
+    line-height: 1.75; position: relative; z-index: 1;
+  }
+  .coming-soon-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold); color: var(--purple);
+    padding: 15px 32px; border-radius: 10px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    position: relative; z-index: 1;
+  }
+  .coming-soon-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* ─── CONTENT PREVIEW CARDS GRID ─── */
+  .preview-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+  }
+  .preview-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; font-weight: 700; color: var(--text);
+    margin-bottom: 8px;
+  }
+  .preview-sub {
+    font-size: 16px; color: var(--muted); margin-bottom: 40px; line-height: 1.6;
+  }
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  /* ─── POST CARD ─── */
+  .post-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .post-card:hover {
+    border-color: var(--purple);
+    box-shadow: 0 8px 32px rgba(43,27,114,0.1);
+    transform: translateY(-3px);
+  }
+  .post-card-thumb {
+    height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 52px;
+    position: relative; overflow: hidden;
+  }
+  .post-card-thumb.purple { background: linear-gradient(135deg, var(--purple), #1a0f55); }
+  .post-card-thumb.gold   { background: linear-gradient(135deg, #7a5c1a, var(--gold)); }
+  .post-card-thumb.slate  { background: linear-gradient(135deg, #1e2a3a, #2d4060); }
+  .post-card-thumb.teal   { background: linear-gradient(135deg, #0f3a3a, #1a5c5c); }
+  .post-thumb-label {
+    position: absolute; bottom: 12px; left: 14px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.7);
+    background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 20px;
+  }
+  .post-card-body {
+    padding: 22px 24px 24px;
+    display: flex; flex-direction: column; flex: 1;
+  }
+  .post-category {
+    display: inline-block;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--purple);
+    background: var(--purple-light);
+    padding: 4px 10px; border-radius: 20px;
+    margin-bottom: 12px; align-self: flex-start;
+  }
+  .post-card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700; color: var(--text);
+    line-height: 1.4; margin-bottom: 10px;
+  }
+  .post-card-body p {
+    font-size: 13px; color: var(--muted); line-height: 1.65;
+    margin-bottom: 18px; flex: 1;
+  }
+  .post-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 14px; border-top: 1px solid var(--border);
+  }
+  .post-read-time { font-size: 12px; color: var(--muted); }
+  .post-coming-tag {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    padding: 4px 10px; border-radius: 20px;
+  }
+
+  /* ─── FEATURED TOPIC STRIPS ─── */
+  .topics-section { margin-top: 72px; }
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .topic-card {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+  .topic-card:hover {
+    border-color: var(--purple);
+    background: var(--purple-light);
+  }
+  .topic-icon { font-size: 32px; margin-bottom: 12px; }
+  .topic-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px;
+  }
+  .topic-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ─── NEWSLETTER SECTION ─── */
+  .newsletter-section {
+    background: var(--off-white);
+    padding: 80px 56px;
+  }
+  .newsletter-inner {
+    max-width: 700px; margin: 0 auto; text-align: center;
+  }
+  .newsletter-icon { font-size: 44px; margin-bottom: 20px; }
+  .newsletter-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 700; color: var(--text);
+    line-height: 1.2; margin-bottom: 14px;
+  }
+  .newsletter-inner h2 em { color: var(--purple); font-style: italic; }
+  .newsletter-inner > p {
+    font-size: 16px; color: var(--muted);
+    line-height: 1.75; margin-bottom: 36px;
+  }
+  .newsletter-form {
+    display: flex; gap: 12px; max-width: 480px; margin: 0 auto 16px;
+  }
+  .newsletter-form input {
+    flex: 1; padding: 14px 18px;
+    border: 1px solid var(--border); border-radius: 10px;
+    font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--text);
+    background: var(--white); outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .newsletter-form input:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(43,27,114,0.08);
+  }
+  .newsletter-form button {
+    padding: 14px 28px;
+    background: var(--purple); color: #fff;
+    border: none; border-radius: 10px;
+    font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600;
+    cursor: pointer; white-space: nowrap;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .newsletter-form button:hover { background: var(--purple-mid); transform: translateY(-1px); }
+  .newsletter-disclaimer {
+    font-size: 12px; color: var(--muted); line-height: 1.5;
+  }
+  .newsletter-success {
+    display: none;
+    background: var(--purple-light); border: 1px solid var(--purple-line);
+    border-radius: 12px; padding: 24px 28px; margin-top: 8px;
+  }
+  .newsletter-success p {
+    font-size: 15px; color: var(--purple); font-weight: 500; margin: 0;
+  }
+  .newsletter-perks {
+    display: flex; justify-content: center; gap: 32px;
+    margin-top: 36px; flex-wrap: wrap;
+  }
+  .newsletter-perk {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--muted);
+  }
+  .newsletter-perk span { font-size: 16px; }
+
+  /* ─── PIPEDRIVE CALENDAR MODAL ─── */
+  .pipedrive-overlay {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(24,21,36,0.7); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center;
+  }
+  .pipedrive-overlay.active { display: flex; }
+  .pipedrive-modal {
+    background: var(--white); border-radius: 16px;
+    width: 90%; max-width: 700px; max-height: 90vh;
+    overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+  }
+  .pipedrive-modal-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    padding: 24px 28px 20px; border-bottom: 1px solid var(--border);
+  }
+  .pipedrive-modal-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 4px;
+  }
+  .pipedrive-modal-header p { font-size: 13px; color: var(--muted); }
+  .modal-close {
+    background: none; border: none; cursor: pointer;
+    font-size: 20px; color: var(--muted); padding: 4px; line-height: 1; transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--text); }
+  #pipedriveFrame { border: none; width: 100%; height: 560px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #120D3A; padding: 52px 56px 28px; color: rgba(255,255,255,0.55);
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px; margin-bottom: 44px; padding-bottom: 44px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .footer-desc {
+    font-size: 13px; line-height: 1.7;
+    color: rgba(255,255,255,0.45); margin: 16px 0 20px; max-width: 280px;
+  }
+  .footer-social { display: flex; gap: 8px; }
+  .social-btn {
+    width: 34px; height: 34px; background: rgba(255,255,255,0.07);
+    border-radius: 7px; display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 15px; transition: background 0.2s;
+  }
+  .social-btn:hover { background: rgba(255,255,255,0.14); }
+  .footer-col h4 {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    font-size: 13px; color: rgba(255,255,255,0.55);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: #fff; }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px; font-size: 12px;
+  }
+  .license-tag {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: rgba(255,255,255,0.3);
+  }
+  .license-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+  /* ─── REVEAL ─── */
+  .reveal {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 960px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none !important; }
+    .logo-powered { display: none; }
+    .hamburger { display: flex; }
+    .page-hero { padding: 120px 24px 60px; }
+    .categories-bar { padding: 0 20px; }
+    .blog-wrap { padding: 48px 24px 60px; }
+    .coming-soon-card { padding: 48px 28px; }
+    .coming-soon-card h2 { font-size: 30px; }
+    .posts-grid { grid-template-columns: 1fr 1fr; }
+    .topics-grid { grid-template-columns: 1fr 1fr; }
+    .newsletter-section { padding: 60px 24px; }
+    .newsletter-form { flex-direction: column; }
+    footer { padding: 40px 24px 24px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 480px) {
+    .page-hero h1 { font-size: 36px; }
+    .posts-grid { grid-template-columns: 1fr; }
+    .topics-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .newsletter-perks { flex-direction: column; gap: 12px; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="main-nav">
+  <a href="index.html" class="logo">
+    <div>
+      <div class="logo-name">Gold <span>Lion</span><br>Mortgages Inc.</div>
+    </div>
+    <div class="logo-powered">
+      Powered by<br>
+      <strong>Mortgage Centre<br>Elevo Mortgages</strong>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="partners.html">Partners</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un" target="_blank" class="nav-cta">Apply for a Mortgage</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="partners.html">Partners</a>
+  <a href="blog.html" class="active">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un" target="_blank" class="mobile-menu-cta">Apply for a Mortgage</a>
+</div>
+
+<!-- ═══ PAGE HERO ═══ -->
+<section class="page-hero">
+  <div class="page-hero-label">Insights & Advice</div>
+  <h1>Mortgage Knowledge,<br><em>Plain and Simple</em></h1>
+  <p>Real talk on rates, approvals, self-employment, and building wealth through real estate — from a broker who's seen it all.</p>
+</section>
+
+<!-- ═══ PIPEDRIVE CALENDAR MODAL ═══ -->
+<div class="pipedrive-overlay" id="calendarOverlay" onclick="closeCalendarOutside(event)">
+  <div class="pipedrive-modal">
+    <div class="pipedrive-modal-header">
+      <div>
+        <h3>Book a Free Consultation</h3>
+        <p>Pick a time that works for you — no obligation</p>
+      </div>
+      <button class="modal-close" onclick="closeCalendar()">✕</button>
+    </div>
+    <iframe id="pipedriveFrame" src="" title="Book a Consultation"></iframe>
+  </div>
+</div>
+
+<!-- ═══ CATEGORIES BAR ═══ -->
+<div class="categories-bar">
+  <div class="categories-inner">
+    <button class="cat-tab active" onclick="filterPosts('all', this)">
+      <span class="cat-dot"></span> All Posts
+    </button>
+    <button class="cat-tab" onclick="filterPosts('tips', this)">
+      <span class="cat-dot"></span> Mortgage Tips
+    </button>
+    <button class="cat-tab" onclick="filterPosts('market', this)">
+      <span class="cat-dot"></span> Market Updates
+    </button>
+    <button class="cat-tab" onclick="filterPosts('selfemployed', this)">
+      <span class="cat-dot"></span> Self-Employed & Investors
+    </button>
+    <button class="cat-tab" onclick="filterPosts('stories', this)">
+      <span class="cat-dot"></span> Success Stories
+    </button>
+  </div>
+</div>
+
+<!-- ═══ MAIN BLOG CONTENT ═══ -->
+<div class="blog-wrap">
+
+  <!-- COMING SOON CARD -->
+  <div class="coming-soon-card reveal">
+    <div class="coming-soon-badge">
+      <div class="coming-soon-dot"></div>
+      Posts Coming Soon
+    </div>
+    <h2>Good Things Take<br><em>a Little Time</em></h2>
+    <p>The blog is being built out with real content — mortgage tips, market updates, investor guides, and client stories. Sign up below to be the first to know when new posts go live.</p>
+    <a href="#newsletter" class="coming-soon-cta">
+      📬 Notify Me When Posts Go Live
+    </a>
+  </div>
+
+  <!-- PREVIEW CARDS: UPCOMING CONTENT -->
+  <div class="reveal">
+    <div class="preview-label">What's Coming</div>
+    <h2 class="preview-heading">Topics We're Writing About</h2>
+    <p class="preview-sub">Here's a preview of the content Surinderpal is working on — practical, no-fluff articles built for Calgary homeowners, buyers, and investors.</p>
+  </div>
+
+  <div class="posts-grid">
+
+    <div class="post-card reveal">
+      <div class="post-card-thumb purple">
+        🏦
+        <span class="post-thumb-label">Mortgage Tips</span>
+      </div>
+      <div class="post-card-body">
+        <span class="post-category">Mortgage Tips</span>
+        <h3>Why the Bank Said No — and What to Do Next</h3>
+        <p>A bank rejection isn't the end of the road. Here's exactly why lenders decline applications and the five paths most people never hear about.</p>
+        <div class="post-footer">
+          <span class="post-read-time">~5 min read</span>
+          <span class="post-coming-tag">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-card reveal">
+      <div class="post-card-thumb gold">
+        📈
+        <span class="post-thumb-label">Market Update</span>
+      </div>
+      <div class="post-card-body">
+        <span class="post-category">Market Updates</span>
+        <h3>Calgary Real Estate in 2025: What the Rate Cuts Actually Mean for Buyers</h3>
+        <p>The Bank of Canada has been cutting. But does that mean now is the right time to buy or refinance? Breaking it down for Calgary specifically.</p>
+        <div class="post-footer">
+          <span class="post-read-time">~6 min read</span>
+          <span class="post-coming-tag">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-card reveal">
+      <div class="post-card-thumb slate">
+        💼
+        <span class="post-thumb-label">Self-Employed</span>
+      </div>
+      <div class="post-card-body">
+        <span class="post-category">Self-Employed & Investors</span>
+        <h3>Getting a Mortgage When You're Self-Employed: The Complete Guide</h3>
+        <p>You write off everything — which is smart for taxes but makes banks nervous. Here's how to get approved without sacrificing your write-offs.</p>
+        <div class="post-footer">
+          <span class="post-read-time">~8 min read</span>
+          <span class="post-coming-tag">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-card reveal">
+      <div class="post-card-thumb teal">
+        🏡
+        <span class="post-thumb-label">Success Story</span>
+      </div>
+      <div class="post-card-body">
+        <span class="post-category">Success Stories</span>
+        <h3>From Rejected to Approved: How a Self-Employed Contractor Got His Dream Home</h3>
+        <p>Two bank rejections, a complicated income history, and a tight closing timeline. Here's how we made it work in under three weeks.</p>
+        <div class="post-footer">
+          <span class="post-read-time">~4 min read</span>
+          <span class="post-coming-tag">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-card reveal">
+      <div class="post-card-thumb purple">
+        🔑
+        <span class="post-thumb-label">Mortgage Tips</span>
+      </div>
+      <div class="post-card-body">
+        <span class="post-category">Mortgage Tips</span>
+        <h3>Renewing Your Mortgage? Don't Just Accept Your Bank's Offer</h3>
+        <p>Your lender is counting on you to renew without shopping around. Here's what they don't tell you — and how much it could cost you over five years.</p>
+        <div class="post-footer">
+          <span class="post-read-time">~5 min read</span>
+          <span class="post-coming-tag">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-card reveal">
+      <div class="post-card-thumb gold">
+        🏗️
+        <span class="post-thumb-label">Investors</span>
+      </div>
+      <div class="post-card-body">
+        <span class="post-category">Self-Employed & Investors</span>
+        <h3>Your First Rental Property in Calgary: How to Finance It the Right Way</h3>
+        <p>Investment property financing plays by different rules. Down payment, stress test, rental income — here's everything first-time investors need to know.</p>
+        <div class="post-footer">
+          <span class="post-read-time">~7 min read</span>
+          <span class="post-coming-tag">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /posts-grid -->
+
+  <!-- TOPIC CATEGORIES -->
+  <div class="topics-section">
+    <div class="preview-label reveal">Browse by Topic</div>
+    <h2 class="preview-heading reveal">Find What Matters to You</h2>
+    <div class="topics-grid">
+      <div class="topic-card reveal">
+        <div class="topic-icon">💡</div>
+        <h4>Mortgage Tips & Education</h4>
+        <p>Plain-language guides on how mortgages actually work — no jargon.</p>
+      </div>
+      <div class="topic-card reveal">
+        <div class="topic-icon">📊</div>
+        <h4>Market Updates & Rates</h4>
+        <p>What's happening with rates, policy changes, and Calgary's market.</p>
+      </div>
+      <div class="topic-card reveal">
+        <div class="topic-icon">💼</div>
+        <h4>Self-Employed & Investors</h4>
+        <p>Strategies for business owners, contractors, and real estate investors.</p>
+      </div>
+      <div class="topic-card reveal">
+        <div class="topic-icon">🏆</div>
+        <h4>Client Success Stories</h4>
+        <p>Real situations, real approvals — and what made the difference.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /blog-wrap -->
+
+<!-- ═══ NEWSLETTER ═══ -->
+<section class="newsletter-section" id="newsletter">
+  <div class="newsletter-inner">
+    <div class="newsletter-icon reveal">📬</div>
+    <h2 class="reveal">Be the First to<br><em>Read New Posts</em></h2>
+    <p class="reveal">Get notified when new articles go live — plus occasional rate updates and mortgage tips sent directly to your inbox. No spam, unsubscribe anytime.</p>
+
+    <div id="newsletter-form-wrap">
+      <div class="newsletter-form">
+        <input type="email" id="nl-email" placeholder="your@email.com">
+        <button onclick="submitNewsletter()">Subscribe →</button>
+      </div>
+      <p class="newsletter-disclaimer">No spam. No selling your info. Just useful mortgage content.</p>
+    </div>
+
+    <div class="newsletter-success" id="newsletter-success">
+      <p>🎉 You're on the list! You'll hear from us when new posts go live.</p>
+    </div>
+
+    <div class="newsletter-perks reveal">
+      <div class="newsletter-perk"><span>📰</span> New posts straight to your inbox</div>
+      <div class="newsletter-perk"><span>📉</span> Rate change alerts</div>
+      <div class="newsletter-perk"><span>🔒</span> No spam, ever</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo" style="align-items:flex-start">
+        <div>
+          <div class="logo-name" style="color:#fff; font-size:16px">Gold <span>Lion</span><br>Mortgages Inc.</div>
+          <div class="logo-powered" style="color:rgba(255,255,255,0.4); border-color:rgba(255,255,255,0.15); margin-top:4px">
+            Powered by<br>
+            <strong style="color:rgba(255,255,255,0.65)">Mortgage Centre<br>Elevo Mortgages</strong>
+          </div>
+        </div>
+      </a>
+      <p class="footer-desc">Turning bank rejections into approved mortgages. Specializing in self-employed Canadians, first-time buyers, investors, and renewals across Alberta.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/sp_maan_mortgages/" target="_blank" class="social-btn" title="Instagram">📸</a>
+        <a href="https://www.linkedin.com/in/surinderpal-singh-a49163187/" target="_blank" class="social-btn" title="LinkedIn">💼</a>
+        <a href="#" onclick="openCalendar(); return false;" class="social-btn" title="Book a Call">📅</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="calculator.html">Tools</a></li>
+    <li><a href="calculator.html">Tools</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Actions</h4>
+      <ul>
+        <li><a href="https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un" target="_blank">Apply for a Mortgage</a></li>
+        <li><a href="#" onclick="openCalendar(); return false;">Book a Consultation</a></li>
+        <li><a href="https://share.google/vskJwXGE6z2dewv8M" target="_blank">Google Reviews</a></li>
+        <li><a href="services.html">Our Services</a></li>
+        <li><a href="about.html">About Surinderpal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:4034040048">📞 (403) 404-0048</a></li>
+        <li><a href="mailto:Surinder@goldlionmortgages.com">✉️ Surinder@goldlionmortgages.com</a></li>
+        <li><a href="https://www.instagram.com/sp_maan_mortgages/" target="_blank">📸 @sp_maan_mortgages</a></li>
+        <li><a href="https://www.linkedin.com/in/surinderpal-singh-a49163187/" target="_blank">💼 LinkedIn</a></li>
+        <li><a href="#">📍 Calgary, Alberta</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Gold Lion Mortgages Inc. All rights reserved.</span>
+    <div class="license-tag">
+      <div class="license-dot"></div>
+      Powered by Mortgage Centre Elevo Mortgages · Member of DLCG · Alberta
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── PIPEDRIVE CALENDAR ──
+const PIPEDRIVE_URL = 'https://goldlionmortgagesinc.pipedrive.com/scheduler/Lzrkrzf4/call-appointment';
+function openCalendar() {
+  const overlay = document.getElementById('calendarOverlay');
+  const frame = document.getElementById('pipedriveFrame');
+  if (!frame.src || frame.src === window.location.href) { frame.src = PIPEDRIVE_URL; }
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeCalendar() {
+  document.getElementById('calendarOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function closeCalendarOutside(e) {
+  if (e.target === document.getElementById('calendarOverlay')) closeCalendar();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCalendar(); });
+
+// ── NAV SHADOW ──
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').style.boxShadow =
+    window.scrollY > 20 ? '0 2px 24px rgba(43,27,114,0.09)' : 'none';
+});
+
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.reveal');
+revealEls.forEach(el => {
+  if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+});
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.01 });
+revealEls.forEach(el => revealObs.observe(el));
+
+// ── CATEGORY FILTER (visual only — all cards show "Coming Soon") ──
+function filterPosts(cat, btn) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  // When real posts exist, filter .post-card elements by data-cat here
+}
+
+// ── NEWSLETTER ──
+function submitNewsletter() {
+  const email = document.getElementById('nl-email').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('nl-email').style.borderColor = 'crimson';
+    document.getElementById('nl-email').focus();
+    return;
+  }
+  document.getElementById('newsletter-form-wrap').style.display = 'none';
+  document.getElementById('newsletter-success').style.display = 'block';
+}
+
+// ── HAMBURGER ──
+(function(){
+  var btn  = document.getElementById('hamburger');
+  var menu = document.getElementById('mobile-menu');
+  if (!btn) return;
+  btn.addEventListener('click', function(){
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services | Gold Lion Mortgages Inc.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white:        #FAFAF8;
+    --off-white:    #F4F3F0;
+    --purple:       #2B1B72;
+    --purple-mid:   #3B2A8A;
+    --purple-light: #EEE9FF;
+    --gold:         #C9A84C;
+    --gold-light:   #E8CB7A;
+    --text:         #181524;
+    --muted:        #6B6785;
+    --border:       rgba(43,27,114,0.1);
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { }
+  body { font-family: 'Outfit', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 56px;
+    background: rgba(250,250,248,0.94);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  .logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .logo-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--purple); line-height: 1.15; }
+  .logo-name span { color: var(--gold); }
+  .logo-powered { font-size: 9.5px; font-weight: 400; color: var(--muted); line-height: 1.4; margin-top: 2px; border-left: 2px solid var(--border); padding-left: 8px; }
+  .logo-powered strong { display: block; color: var(--purple); font-weight: 600; font-size: 10px; }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 14px; font-weight: 400; color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--purple); }
+  .nav-links a.active { color: var(--purple); font-weight: 500; }
+  .nav-cta { background: var(--purple); color: #fff !important; padding: 10px 22px; border-radius: 7px; font-weight: 500 !important; transition: background 0.2s, transform 0.15s !important; }
+  .nav-cta:hover { background: var(--purple-mid) !important; transform: translateY(-1px); }
+
+  /* ─── PAGE HERO ─── */
+  .page-hero {
+    background: var(--purple); padding: 160px 56px 100px;
+    position: relative; overflow: hidden;
+  }
+  .page-hero::before { content: ''; position: absolute; top: -150px; right: -100px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events: none; }
+  .dot-grid { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 36px 36px; mask-image: radial-gradient(ellipse 80% 80% at 85% 20%, black 0%, transparent 80%); pointer-events: none; }
+  .page-hero-inner { max-width: 700px; position: relative; z-index: 1; }
+  .page-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px; animation: riseIn 0.6s ease both; }
+  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(38px, 5vw, 62px); font-weight: 700; line-height: 1.08; color: #fff; margin-bottom: 22px; letter-spacing: -0.02em; animation: riseIn 0.7s ease both 0.1s; }
+  .page-hero h1 em { font-style: italic; color: var(--gold-light); }
+  .page-hero-sub { font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.65); line-height: 1.75; max-width: 560px; animation: riseIn 0.7s ease both 0.2s; }
+
+  /* ─── SERVICE NAV PILLS ─── */
+  .service-nav {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 0 56px;
+    position: sticky; top: 72px; z-index: 100;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .service-nav::-webkit-scrollbar { display: none; }
+  .service-nav-inner {
+    display: flex; gap: 0;
+    white-space: nowrap;
+    min-width: max-content;
+  }
+  .service-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 16px 20px;
+    font-size: 13px; font-weight: 400;
+    font-family: 'Outfit', sans-serif;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .service-pill:hover { color: var(--purple); border-bottom-color: var(--purple-light); }
+  .service-pill.active { color: var(--purple); font-weight: 500; border-bottom-color: var(--purple); }
+  .service-pill-icon { font-size: 15px; }
+
+  /* ─── SERVICE SECTIONS ─── */
+  .service-section {
+    padding: 96px 56px;
+    scroll-margin-top: 0;
+  }
+  .service-section:nth-child(even) { background: var(--off-white); }
+
+  .service-inner {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 72px;
+    align-items: start;
+  }
+
+  .service-inner.flip { grid-template-columns: 420px 1fr; }
+  .service-inner.flip .service-body { order: 2; }
+  .service-inner.flip .service-sidebar { order: 1; }
+
+  /* ─── SERVICE BODY ─── */
+  .service-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--purple-light);
+    color: var(--purple);
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .service-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 700; line-height: 1.15;
+    color: var(--text); margin-bottom: 16px;
+  }
+  .service-body h2 em { font-style: italic; color: var(--purple); }
+
+  .service-intro {
+    font-size: 16px; font-weight: 300;
+    color: var(--muted); line-height: 1.85;
+    margin-bottom: 28px;
+  }
+  .service-intro strong { color: var(--text); font-weight: 500; }
+
+  /* Benefits list */
+  .service-benefits { list-style: none; margin-bottom: 32px; display: flex; flex-direction: column; gap: 12px; }
+  .service-benefits li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.6;
+  }
+  .service-benefits li::before {
+    content: '';
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--purple-light);
+    border: 2px solid var(--purple);
+    flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%232B1B72' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: center;
+  }
+  .service-benefits li strong { color: var(--text); font-weight: 500; }
+
+  /* Steps */
+  .service-steps { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+  .service-step {
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--purple); color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-content h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .step-content p { font-size: 13.5px; font-weight: 300; color: var(--muted); line-height: 1.6; }
+
+  .service-cta-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: var(--purple); color: #fff;
+    padding: 14px 28px; border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 500;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .service-cta-btn:hover { background: var(--purple-mid); transform: translateY(-1px); }
+
+  /* ─── SERVICE SIDEBAR ─── */
+  .service-sidebar {
+    background: var(--purple);
+    border-radius: 16px;
+    padding: 36px 32px;
+    position: sticky; top: 150px;
+  }
+
+  .sidebar-icon { font-size: 36px; margin-bottom: 18px; display: block; }
+
+  .sidebar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: #fff; margin-bottom: 10px; line-height: 1.3;
+  }
+
+  .sidebar-desc {
+    font-size: 14px; font-weight: 300;
+    color: rgba(255,255,255,0.6); line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .sidebar-stats { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+
+  .sidebar-stat {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+  }
+  .sidebar-stat-icon { font-size: 20px; flex-shrink: 0; }
+  .sidebar-stat-text { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.5; }
+  .sidebar-stat-text strong { color: #fff; font-weight: 600; display: block; }
+
+  .sidebar-btn {
+    display: flex; align-items: center; justify-content: center; gap: 9px;
+    width: 100%;
+    background: var(--gold); color: var(--purple);
+    padding: 15px; border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 600;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .sidebar-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ─── CTA SECTION ─── */
+  .cta-section {
+    background: var(--purple); padding: 80px 56px;
+    text-align: center;
+  }
+  .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px,3vw,42px); font-weight: 700; color: #fff; margin-bottom: 14px; }
+  .cta-section h2 em { font-style: italic; color: var(--gold-light); }
+  .cta-section p { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.6); margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.75; }
+  .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-gold { display: inline-flex; align-items: center; gap: 9px; background: var(--gold); color: var(--purple); padding: 15px 32px; border-radius: 8px; font-family: 'Outfit', sans-serif; text-decoration: none; font-size: 15px; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s; }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline-white { display: inline-flex; align-items: center; gap: 9px; background: transparent; color: #fff; padding: 15px 32px; border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: 500; border: 2px solid rgba(255,255,255,0.2); transition: all 0.2s; }
+  .btn-outline-white:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.06); }
+
+  /* ─── FOOTER ─── */
+  footer { background: #120D3A; padding: 52px 56px 28px; color: rgba(255,255,255,0.55); }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 44px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .footer-desc { font-size: 13.5px; font-weight: 300; line-height: 1.7; margin-top: 14px; color: rgba(255,255,255,0.4); max-width: 260px; }
+  .footer-col h4 { font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 14px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .footer-col ul a { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 13.5px; font-weight: 300; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--gold-light); }
+  .footer-social { display: flex; gap: 10px; margin-top: 18px; }
+  .social-btn { width: 34px; height: 34px; background: rgba(255,255,255,0.07); border-radius: 7px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 15px; transition: background 0.2s; }
+  .social-btn:hover { background: rgba(201,168,76,0.2); }
+  .footer-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 12px; flex-wrap: wrap; gap: 10px; }
+  .license-tag { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.3); }
+  .license-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
+
+  /* ─── PIPEDRIVE MODAL ─── */
+  .pipedrive-overlay { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(24,21,36,0.7); backdrop-filter: blur(6px); align-items: center; justify-content: center; }
+  .pipedrive-overlay.active { display: flex; }
+  .pipedrive-modal { background: #fff; border-radius: 16px; width: min(780px, 95vw); height: min(680px, 90vh); overflow: hidden; box-shadow: 0 32px 80px rgba(43,27,114,0.25); display: flex; flex-direction: column; }
+  .pipedrive-modal-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .pipedrive-modal-header h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--purple); }
+  .pipedrive-modal-header p { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .modal-close { width: 32px; height: 32px; border-radius: 50%; background: var(--off-white); border: none; cursor: pointer; font-size: 18px; color: var(--muted); display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .modal-close:hover { background: var(--purple); color: #fff; }
+  .pipedrive-modal iframe { flex: 1; border: none; width: 100%; }
+
+  /* ─── REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.12s; }
+  .reveal-delay-2 { transition-delay: 0.22s; }
+
+  @keyframes riseIn { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ─── MOBILE ─── */
+  /* ─── HAMBURGER ─── */
+  .hamburger {
+    display: none; /* shown via media query */
+    flex-direction: column; justify-content: center; gap: 5px;
+    width: 36px; height: 36px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+    flex-shrink: 0;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--purple); border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--white); z-index: 210;
+    flex-direction: column;
+    padding: 100px 32px 40px;
+    overflow-y: auto;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700;
+    color: var(--text); text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--purple); }
+  .mobile-menu a.active { color: var(--purple); }
+  .mobile-menu-cta {
+    margin-top: 32px;
+    background: var(--purple) !important;
+    color: #fff !important;
+    text-align: center;
+    padding: 18px 32px !important;
+    border-radius: 10px;
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border-bottom: none !important;
+  }
+
+  @media (max-width: 960px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none !important; }
+    .logo-powered { display: none; }
+    .hamburger { display: flex; }
+    .page-hero { padding: 110px 20px 56px; }
+    .service-nav { padding: 0 16px; top: 61px; }
+    .service-pill { padding: 13px 14px; font-size: 12px; gap: 5px; }
+    .service-pill-icon { font-size: 13px; }
+    .service-section { padding: 52px 20px; }
+    .service-inner, .service-inner.flip { grid-template-columns: 1fr; gap: 36px; }
+    .service-inner.flip .service-body { order: 1; }
+    .service-inner.flip .service-sidebar { order: 2; }
+    .service-sidebar { position: static; }
+    .service-tag { font-size: 11px; padding: 5px 12px; }
+    .service-intro { font-size: 15px; }
+    .service-benefits li { font-size: 14px; }
+    .step-content h4 { font-size: 13px; }
+    .step-content p { font-size: 13px; }
+    .sidebar-title { font-size: 18px; }
+    .sidebar-desc { font-size: 13px; }
+    .cta-section { padding: 56px 20px; }
+    .cta-btns { flex-direction: column; align-items: center; }
+    .btn-gold, .btn-outline-white { width: 100%; justify-content: center; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    footer { padding: 40px 20px 24px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+
+  @media (max-width: 480px) {
+    .logo-name { font-size: 14px; }
+    .logo-powered { font-size: 8.5px; }
+    .page-hero h1 { font-size: 32px; }
+    .page-hero-sub { font-size: 15px; }
+    .service-body h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="main-nav">
+  <a href="index.html" class="logo">
+    <div>
+      <div class="logo-name">Gold <span>Lion</span><br>Mortgages Inc.</div>
+    </div>
+    <div class="logo-powered">
+      Powered by<br>
+      <strong>Mortgage Centre<br>Elevo Mortgages</strong>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="partners.html">Partners</a></li>
+    <li><a href="calculator.html">Tools</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un" target="_blank" class="nav-cta">Apply for a Mortgage</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html" class="active">Services</a>
+  <a href="partners.html">Partners</a>
+  <a href="calculator.html">Tools</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un" target="_blank" class="mobile-menu-cta">Apply for a Mortgage</a>
+</div>
+
+
+<!-- ═══ PAGE HERO ═══ -->
+<div class="page-hero">
+  <div class="dot-grid"></div>
+  <div class="page-hero-inner">
+    <div class="page-label">Our Services</div>
+    <h1>The Right Mortgage<br>for <em>Your Situation.</em></h1>
+    <p class="page-hero-sub">Every client comes to us with a different story. We have the experience, the lender network, and the strategies to find a mortgage that works — whatever your situation looks like.</p>
+  </div>
+</div>
+
+
+<!-- ═══ STICKY SERVICE NAV ═══ -->
+<nav class="service-nav" aria-label="Services">
+  <div class="service-nav-inner">
+    <button class="service-pill" data-target="self-employed"><span class="service-pill-icon">💼</span> Self-Employed</button>
+    <button class="service-pill" data-target="first-time"><span class="service-pill-icon">🏠</span> First-Time Buyers</button>
+    <button class="service-pill" data-target="investors"><span class="service-pill-icon">📈</span> Investors</button>
+    <button class="service-pill" data-target="flippers"><span class="service-pill-icon">🔨</span> Flippers</button>
+    <button class="service-pill" data-target="rental"><span class="service-pill-icon">🔑</span> Rental Properties</button>
+    <button class="service-pill" data-target="new-to-canada"><span class="service-pill-icon">🌍</span> New to Canada</button>
+    <button class="service-pill" data-target="bad-credit"><span class="service-pill-icon">📊</span> Bruised Credit</button>
+    <button class="service-pill" data-target="debt"><span class="service-pill-icon">💳</span> Debt Consolidation</button>
+    <button class="service-pill" data-target="renewals"><span class="service-pill-icon">🔄</span> Renewals</button>
+  </div>
+</nav>
+
+
+<!-- ═══ 1. SELF-EMPLOYED ═══ -->
+<section class="service-section" id="self-employed">
+  <div class="service-inner reveal">
+    <div class="service-body">
+      <div class="service-tag">💼 Self-Employed Mortgages</div>
+      <h2>Your Business Is Growing.<br>Your Mortgage Should <em>Reflect That.</em></h2>
+      <p class="service-intro">Being self-employed doesn't mean you can't qualify for a great mortgage — it means you need a broker who knows how to present your income the right way. Traditional income verification doesn't capture the full picture of what a business owner earns. <strong>We do.</strong></p>
+
+      <ul class="service-benefits">
+        <li><strong>Stated income programs</strong> for those who write off significant business expenses</li>
+        <li><strong>Bank statement qualifying</strong> — we use your actual cash flow, not just your NOA</li>
+        <li><strong>Access to B-lenders and private lenders</strong> who understand self-employed income</li>
+        <li><strong>Strategies to protect your tax efficiency</strong> while still qualifying for the mortgage you need</li>
+        <li><strong>Competitive rates</strong> — self-employed doesn't mean you pay a penalty</li>
+      </ul>
+
+      <div class="service-steps">
+        <div class="service-step">
+          <div class="step-num">1</div>
+          <div class="step-content"><h4>Share Your Financial Picture</h4><p>We look at your NOAs, bank statements, and business structure to understand how your income flows.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">2</div>
+          <div class="step-content"><h4>We Choose the Right Strategy</h4><p>Depending on your situation, we select the qualifying method — traditional, stated income, or bank statement — that gets you the best result.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">3</div>
+          <div class="step-content"><h4>Pre-Approval in 24 Business Hours</h4><p>We submit to the right lender and have a pre-approval ready so you can make confident offers.</p></div>
+        </div>
+      </div>
+
+      <button class="service-cta-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+
+    <div class="service-sidebar">
+      <span class="sidebar-icon">💼</span>
+      <div class="sidebar-title">Self-Employed Mortgage</div>
+      <p class="sidebar-desc">For business owners, contractors, freelancers, and incorporated professionals whose income doesn't fit a standard T4.</p>
+      <div class="sidebar-stats">
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🏦</span>
+          <div class="sidebar-stat-text"><strong>200+ Lenders</strong>Including those who specialize in self-employed clients</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">⚡</span>
+          <div class="sidebar-stat-text"><strong>24-hr Pre-Approval</strong>Fast turnaround so you never miss a deal</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">✅</span>
+          <div class="sidebar-stat-text"><strong>Multiple Qualifying Methods</strong>We find the one that works best for you</div>
+        </div>
+      </div>
+      <button class="sidebar-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 2. FIRST-TIME BUYERS ═══ -->
+<section class="service-section" id="first-time">
+  <div class="service-inner flip reveal">
+    <div class="service-body">
+      <div class="service-tag">🏠 First-Time Buyers</div>
+      <h2>Your First Home Is Your<br><em>First Wealth-Building Asset.</em></h2>
+      <p class="service-intro">Buying your first home is one of the most important financial decisions of your life — and it can feel overwhelming. We take the confusion out of the process, walk you through every step, and make sure you're taking full advantage of every program and incentive available to you.</p>
+
+      <ul class="service-benefits">
+        <li><strong>First Home Savings Account (FHSA)</strong> — we help you maximize this powerful tax-free tool</li>
+        <li><strong>RRSP Home Buyers' Plan</strong> — access up to $60,000 tax-free for your down payment</li>
+        <li><strong>First-Time Home Buyer Incentive</strong> programs explained clearly</li>
+        <li><strong>Stress test navigation</strong> — we help you qualify at the right amount</li>
+        <li><strong>Amortization strategies</strong> designed to build equity faster from day one</li>
+      </ul>
+
+      <div class="service-steps">
+        <div class="service-step">
+          <div class="step-num">1</div>
+          <div class="step-content"><h4>Free Consultation</h4><p>We review your finances, explain all available programs, and set a realistic budget before you start searching.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">2</div>
+          <div class="step-content"><h4>Pre-Approval Letter</h4><p>We secure a pre-approval so you can shop with confidence and make offers that sellers take seriously.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">3</div>
+          <div class="step-content"><h4>Close with Confidence</h4><p>We stay with you through conditions, inspections, and closing day — no surprises.</p></div>
+        </div>
+      </div>
+
+      <button class="service-cta-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+
+    <div class="service-sidebar">
+      <span class="sidebar-icon">🏠</span>
+      <div class="sidebar-title">First-Time Buyer Mortgage</div>
+      <p class="sidebar-desc">For Canadians buying their first home — we make the process simple, transparent, and set up for long-term financial growth.</p>
+      <div class="sidebar-stats">
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">💰</span>
+          <div class="sidebar-stat-text"><strong>FHSA + RRSP Access</strong>Up to $60,000 tax-free toward your down payment</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">📋</span>
+          <div class="sidebar-stat-text"><strong>Step-by-Step Guidance</strong>We explain everything in plain language</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🏆</span>
+          <div class="sidebar-stat-text"><strong>Best Rate Available</strong>Shopped across 200+ lenders for you</div>
+        </div>
+      </div>
+      <button class="sidebar-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 3. INVESTORS ═══ -->
+<section class="service-section" id="investors">
+  <div class="service-inner reveal">
+    <div class="service-body">
+      <div class="service-tag">📈 Real Estate Investors</div>
+      <h2>Build Your Portfolio.<br><em>We'll Handle the Financing.</em></h2>
+      <p class="service-intro">Real estate is one of Canada's most proven wealth-building strategies — but scaling a portfolio requires more than just finding good deals. You need a mortgage partner who understands investor financing, debt serviceability across multiple properties, and how to structure deals for maximum long-term return.</p>
+
+      <ul class="service-benefits">
+        <li><strong>Multi-property financing strategies</strong> that keep your debt ratios manageable as you scale</li>
+        <li><strong>BRRRR strategy support</strong> — Buy, Renovate, Rent, Refinance, Repeat</li>
+        <li><strong>Rental income qualification</strong> to maximize your borrowing power</li>
+        <li><strong>Portfolio lenders</strong> who see beyond individual property metrics</li>
+        <li><strong>Equity unlock strategies</strong> to finance your next purchase without fresh capital</li>
+      </ul>
+
+      <div class="service-steps">
+        <div class="service-step">
+          <div class="step-num">1</div>
+          <div class="step-content"><h4>Portfolio Review</h4><p>We assess your current holdings, equity position, and debt ratios to understand your financing capacity.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">2</div>
+          <div class="step-content"><h4>Structure the Deal</h4><p>We identify the optimal financing structure — conventional, HELOC, or portfolio lender — to maximize your returns.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">3</div>
+          <div class="step-content"><h4>Scale With Confidence</h4><p>We keep your financing strategy aligned with your long-term portfolio goals, not just the next deal.</p></div>
+        </div>
+      </div>
+
+      <button class="service-cta-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+
+    <div class="service-sidebar">
+      <span class="sidebar-icon">📈</span>
+      <div class="sidebar-title">Investor Mortgage</div>
+      <p class="sidebar-desc">For real estate investors looking to acquire, refinance, or scale their portfolio with smart, long-term financing.</p>
+      <div class="sidebar-stats">
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🏗️</span>
+          <div class="sidebar-stat-text"><strong>BRRRR Strategy Support</strong>Financing built for active investors</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">📊</span>
+          <div class="sidebar-stat-text"><strong>Rental Income Qualifying</strong>We count your rental income the right way</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🔓</span>
+          <div class="sidebar-stat-text"><strong>Equity Unlock</strong>Finance your next deal using existing equity</div>
+        </div>
+      </div>
+      <button class="sidebar-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 4. FLIPPERS ═══ -->
+<section class="service-section" id="flippers">
+  <div class="service-inner flip reveal">
+    <div class="service-body">
+      <div class="service-tag">🔨 Property Flippers</div>
+      <h2>Speed and Flexibility<br>for <em>Time-Sensitive Deals.</em></h2>
+      <p class="service-intro">When you're buying to flip, timing is everything. You need fast approvals, flexible financing terms, and a broker who understands renovation-based deals. We work with lenders who are comfortable with short hold periods and properties that need work — so you can move when the opportunity is there.</p>
+
+      <ul class="service-benefits">
+        <li><strong>Fast pre-approvals</strong> so you can act quickly on deals before they're gone</li>
+        <li><strong>Private and alternative lenders</strong> comfortable with value-add and renovation projects</li>
+        <li><strong>Short-term mortgage options</strong> aligned with your flip timeline</li>
+        <li><strong>Bridge financing</strong> to cover the gap between purchase and resale</li>
+        <li><strong>Experienced guidance</strong> on structuring each deal for maximum profit margin</li>
+      </ul>
+
+      <div class="service-steps">
+        <div class="service-step">
+          <div class="step-num">1</div>
+          <div class="step-content"><h4>Assess the Deal</h4><p>We review the property, your renovation plan, and your exit timeline to find the right financing structure.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">2</div>
+          <div class="step-content"><h4>Fast Approval</h4><p>We move quickly — connecting you with lenders set up for short-term, project-based financing.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">3</div>
+          <div class="step-content"><h4>Exit Clean</h4><p>We help you plan the refinance or sale exit strategy so nothing catches you off guard at the end.</p></div>
+        </div>
+      </div>
+
+      <button class="service-cta-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+
+    <div class="service-sidebar">
+      <span class="sidebar-icon">🔨</span>
+      <div class="sidebar-title">Flip Financing</div>
+      <p class="sidebar-desc">For property flippers who need fast, flexible financing from lenders who understand renovation projects and short timelines.</p>
+      <div class="sidebar-stats">
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">⚡</span>
+          <div class="sidebar-stat-text"><strong>Fast Approvals</strong>Move quickly on time-sensitive deals</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🔧</span>
+          <div class="sidebar-stat-text"><strong>Renovation-Friendly Lenders</strong>No penalty for value-add properties</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🌉</span>
+          <div class="sidebar-stat-text"><strong>Bridge Financing Available</strong>Cover the gap between buy and sell</div>
+        </div>
+      </div>
+      <button class="sidebar-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 5. RENTAL PROPERTIES ═══ -->
+<section class="service-section" id="rental">
+  <div class="service-inner reveal">
+    <div class="service-body">
+      <div class="service-tag">🔑 Rental Property Holders</div>
+      <h2>Strong Cash Flow Today.<br><em>Lasting Wealth Tomorrow.</em></h2>
+      <p class="service-intro">A rental property isn't just income — it's a long-term wealth engine. Whether you're acquiring your first rental or refinancing an existing portfolio, the way your mortgage is structured directly impacts your monthly cash flow, tax position, and ability to grow. We make sure you're structured for success.</p>
+
+      <ul class="service-benefits">
+        <li><strong>Rental income offset strategies</strong> to maximize what you can borrow</li>
+        <li><strong>Refinancing to pull equity</strong> and fund your next acquisition without selling</li>
+        <li><strong>Amortization and payment structures</strong> optimized for cash flow</li>
+        <li><strong>Multi-unit financing</strong> for duplexes, triplexes, and small apartment buildings</li>
+        <li><strong>Long-term portfolio planning</strong> — we think beyond the immediate deal</li>
+      </ul>
+
+      <div class="service-steps">
+        <div class="service-step">
+          <div class="step-num">1</div>
+          <div class="step-content"><h4>Cash Flow Analysis</h4><p>We look at your rental income, expenses, and current mortgage to find opportunities to improve your position.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">2</div>
+          <div class="step-content"><h4>Optimal Structure</h4><p>We select the lender and product that maximizes your monthly cash flow while keeping your long-term options open.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">3</div>
+          <div class="step-content"><h4>Plan for Growth</h4><p>We build your financing with your next acquisition in mind — so every deal sets you up for the one after it.</p></div>
+        </div>
+      </div>
+
+      <button class="service-cta-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+
+    <div class="service-sidebar">
+      <span class="sidebar-icon">🔑</span>
+      <div class="sidebar-title">Rental Property Mortgage</div>
+      <p class="sidebar-desc">For landlords acquiring, refinancing, or restructuring rental properties for stronger cash flow and long-term returns.</p>
+      <div class="sidebar-stats">
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">💵</span>
+          <div class="sidebar-stat-text"><strong>Cash Flow Optimization</strong>Structured for maximum monthly income</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🏘️</span>
+          <div class="sidebar-stat-text"><strong>Multi-Unit Financing</strong>Duplex, triplex, and small apartment buildings</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">📈</span>
+          <div class="sidebar-stat-text"><strong>Equity Recycling</strong>Grow your portfolio using what you already own</div>
+        </div>
+      </div>
+      <button class="sidebar-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 6. NEW TO CANADA ═══ -->
+<section class="service-section" id="new-to-canada">
+  <div class="service-inner flip reveal">
+    <div class="service-body">
+      <div class="service-tag">🌍 New to Canada</div>
+      <h2>Building Your Future Here<br>Starts with the <em>Right Foundation.</em></h2>
+      <p class="service-intro">Canada is home — and homeownership is one of the most powerful ways to put down roots and start building wealth. A limited Canadian credit history doesn't have to stand in the way. We work with lenders who have programs specifically designed for newcomers, permanent residents, and recent immigrants ready to buy their first Canadian home.</p>
+
+      <ul class="service-benefits">
+        <li><strong>Newcomer mortgage programs</strong> that don't require years of Canadian credit history</li>
+        <li><strong>Foreign income considered</strong> for recent arrivals still establishing Canadian income</li>
+        <li><strong>Work permit holders and PRs</strong> — we know which lenders welcome your profile</li>
+        <li><strong>Multilingual support</strong> — we communicate clearly regardless of language background</li>
+        <li><strong>Long-term financial planning</strong> from your very first Canadian home purchase</li>
+      </ul>
+
+      <div class="service-steps">
+        <div class="service-step">
+          <div class="step-num">1</div>
+          <div class="step-content"><h4>Understand Your Profile</h4><p>We review your residency status, income sources, credit history, and down payment to identify the right approach.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">2</div>
+          <div class="step-content"><h4>Match to the Right Lender</h4><p>We connect you with lenders who have specific newcomer programs — not just standard qualification criteria.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">3</div>
+          <div class="step-content"><h4>Build From Here</h4><p>Your first home is the foundation of your Canadian financial future. We help you start it the right way.</p></div>
+        </div>
+      </div>
+
+      <button class="service-cta-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+
+    <div class="service-sidebar">
+      <span class="sidebar-icon">🌍</span>
+      <div class="sidebar-title">New to Canada Mortgage</div>
+      <p class="sidebar-desc">For newcomers, permanent residents, and recent immigrants ready to buy their first home in Canada.</p>
+      <div class="sidebar-stats">
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">📄</span>
+          <div class="sidebar-stat-text"><strong>Newcomer Programs</strong>Lenders that don't require years of Canadian credit</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">💼</span>
+          <div class="sidebar-stat-text"><strong>Work Permits & PRs Welcome</strong>We know which lenders work with your status</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🤝</span>
+          <div class="sidebar-stat-text"><strong>Personal Guidance</strong>We understand the newcomer journey firsthand</div>
+        </div>
+      </div>
+      <button class="sidebar-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 7. BRUISED CREDIT ═══ -->
+<section class="service-section" id="bad-credit">
+  <div class="service-inner reveal">
+    <div class="service-body">
+      <div class="service-tag">📊 Bruised or Bad Credit</div>
+      <h2>Your Past Doesn't Define<br><em>Your Financial Future.</em></h2>
+      <p class="service-intro">A difficult financial period — job loss, divorce, medical emergency, business setback — can leave marks on your credit. But your credit score is a snapshot in time, not a life sentence. We work with lenders who look at the full picture and believe in second chances — so you can get back on track and start building wealth again.</p>
+
+      <ul class="service-benefits">
+        <li><strong>B-lender and private lender access</strong> for clients who don't qualify with A-lenders</li>
+        <li><strong>Credit rebuilding strategy</strong> — we don't just get you a mortgage, we help you improve your position over time</li>
+        <li><strong>Debt consolidation through refinancing</strong> to reduce monthly obligations and improve your score</li>
+        <li><strong>Path to A-lender rates</strong> — we plan your route back to the best rates available</li>
+        <li><strong>No judgment, just solutions</strong> — we focus on where you're going, not where you've been</li>
+      </ul>
+
+      <div class="service-steps">
+        <div class="service-step">
+          <div class="step-num">1</div>
+          <div class="step-content"><h4>Review Your Credit Picture</h4><p>We look at your full credit profile, income, and assets to understand what's available to you right now.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">2</div>
+          <div class="step-content"><h4>Find the Right Lender</h4><p>We match you with a lender whose criteria fits your current profile — not the ideal profile you don't have yet.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">3</div>
+          <div class="step-content"><h4>Plan the Path Forward</h4><p>We map out a clear strategy to improve your credit and qualify for better rates at your next renewal.</p></div>
+        </div>
+      </div>
+
+      <button class="service-cta-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+
+    <div class="service-sidebar">
+      <span class="sidebar-icon">📊</span>
+      <div class="sidebar-title">Bruised Credit Mortgage</div>
+      <p class="sidebar-desc">For clients rebuilding their financial footing — we find the right lender for where you are today and plan the path to where you want to be.</p>
+      <div class="sidebar-stats">
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🏦</span>
+          <div class="sidebar-stat-text"><strong>B & Private Lenders</strong>Options beyond standard A-lender criteria</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">📈</span>
+          <div class="sidebar-stat-text"><strong>Credit Rebuilding Plan</strong>A clear strategy back to better rates</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🤝</span>
+          <div class="sidebar-stat-text"><strong>No Judgment</strong>We focus on solutions, not your history</div>
+        </div>
+      </div>
+      <button class="sidebar-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 8. DEBT CONSOLIDATION ═══ -->
+<section class="service-section" id="debt">
+  <div class="service-inner flip reveal">
+    <div class="service-body">
+      <div class="service-tag">💳 Debt Consolidation</div>
+      <h2>Free Up Your Cash Flow.<br><em>Redirect It Toward Wealth.</em></h2>
+      <p class="service-intro">High-interest debt — credit cards, car loans, lines of credit — can quietly drain your financial future. By consolidating that debt into your mortgage at a significantly lower interest rate, you can dramatically reduce your monthly payments, eliminate high-interest obligations, and redirect that cash toward savings, investment, or retirement.</p>
+
+      <ul class="service-benefits">
+        <li><strong>Dramatically lower interest rates</strong> — mortgage rates vs. credit card rates can save thousands annually</li>
+        <li><strong>Single monthly payment</strong> instead of juggling multiple obligations</li>
+        <li><strong>Improved monthly cash flow</strong> that can be redirected toward investments or retirement savings</li>
+        <li><strong>Credit score improvement</strong> as high-utilization debts are paid off</li>
+        <li><strong>Structured path to debt-free homeownership</strong> with a clear timeline</li>
+      </ul>
+
+      <div class="service-steps">
+        <div class="service-step">
+          <div class="step-num">1</div>
+          <div class="step-content"><h4>Debt & Equity Review</h4><p>We calculate your existing equity and current debts to determine how much can be consolidated into your mortgage.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">2</div>
+          <div class="step-content"><h4>Refinance Strategy</h4><p>We structure a refinance that pays off your high-interest debts and reduces your total monthly obligations.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">3</div>
+          <div class="step-content"><h4>Build a Better Future</h4><p>With improved cash flow, we help you redirect savings toward investments, retirement, or your next property.</p></div>
+        </div>
+      </div>
+
+      <button class="service-cta-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+
+    <div class="service-sidebar">
+      <span class="sidebar-icon">💳</span>
+      <div class="sidebar-title">Debt Consolidation</div>
+      <p class="sidebar-desc">For homeowners with existing equity who want to eliminate high-interest debt, free up cash flow, and get back on track financially.</p>
+      <div class="sidebar-stats">
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">💰</span>
+          <div class="sidebar-stat-text"><strong>Lower Interest Rate</strong>Mortgage rates are far below credit card rates</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">📉</span>
+          <div class="sidebar-stat-text"><strong>Reduced Monthly Payments</strong>One payment, significantly lower total outflow</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🎯</span>
+          <div class="sidebar-stat-text"><strong>Wealth Redirect Strategy</strong>Turn saved interest into investment growth</div>
+        </div>
+      </div>
+      <button class="sidebar-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 9. RENEWALS & REFINANCING ═══ -->
+<section class="service-section" id="renewals">
+  <div class="service-inner reveal">
+    <div class="service-body">
+      <div class="service-tag">🔄 Renewals & Refinancing</div>
+      <h2>Don't Just Renew.<br><em>Renegotiate Your Future.</em></h2>
+      <p class="service-intro">Your mortgage renewal is one of the most important financial opportunities you'll have — and most Canadians give it away by simply signing what their lender sends them. We shop across 200+ lenders to make sure you're getting the best rate and terms available, and use your renewal as an opportunity to reassess your entire financial strategy.</p>
+
+      <ul class="service-benefits">
+        <li><strong>Full market rate comparison</strong> — we shop 200+ lenders, not just your current one</li>
+        <li><strong>Equity access strategies</strong> — your home has grown in value, let's put that to work</li>
+        <li><strong>Amortization restructuring</strong> to align with your retirement timeline</li>
+        <li><strong>Early renewal analysis</strong> — sometimes breaking your mortgage early saves money</li>
+        <li><strong>Strategic refinancing</strong> to fund investments, home improvements, or education</li>
+      </ul>
+
+      <div class="service-steps">
+        <div class="service-step">
+          <div class="step-num">1</div>
+          <div class="step-content"><h4>Review Your Current Position</h4><p>We look at your existing mortgage, current equity, and financial goals to find the best renewal or refinance strategy.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">2</div>
+          <div class="step-content"><h4>Shop the Market</h4><p>We compare rates and terms across 200+ lenders — with full negotiating power your bank doesn't want you to have.</p></div>
+        </div>
+        <div class="service-step">
+          <div class="step-num">3</div>
+          <div class="step-content"><h4>Align With Your Future</h4><p>We structure your renewed mortgage to support your next financial milestone — investment, retirement, or property expansion.</p></div>
+        </div>
+      </div>
+
+      <button class="service-cta-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+
+    <div class="service-sidebar">
+      <span class="sidebar-icon">🔄</span>
+      <div class="sidebar-title">Renewal & Refinancing</div>
+      <p class="sidebar-desc">For homeowners coming up for renewal or looking to refinance — we turn your renewal into a strategic financial opportunity.</p>
+      <div class="sidebar-stats">
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🏦</span>
+          <div class="sidebar-stat-text"><strong>200+ Lenders Compared</strong>We negotiate, not just accept</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🔓</span>
+          <div class="sidebar-stat-text"><strong>Equity Access</strong>Put your home's growth to work</div>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-icon">🎯</span>
+          <div class="sidebar-stat-text"><strong>Retirement-Aligned</strong>Restructured for your long-term goals</div>
+        </div>
+      </div>
+      <button class="sidebar-btn" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section">
+  <h2>Not Sure Which Service<br><em>Is Right for You?</em></h2>
+  <p>That's exactly what the free consultation is for. Tell us your situation and we'll point you in the right direction — no pressure, no obligation.</p>
+  <div class="cta-btns">
+    <button class="btn-gold" onclick="openCalendar()">📅 Book a Free Consultation</button>
+    <a href="https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un" target="_blank" class="btn-outline-white">Apply for a Mortgage →</a>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo" style="align-items:flex-start">
+        <div>
+          <div class="logo-name" style="color:#fff; font-size:16px">Gold <span>Lion</span><br>Mortgages Inc.</div>
+          <div class="logo-powered" style="color:rgba(255,255,255,0.4); border-color:rgba(255,255,255,0.15); margin-top:4px">
+            Powered by<br><strong style="color:rgba(255,255,255,0.65)">Mortgage Centre<br>Elevo Mortgages</strong>
+          </div>
+        </div>
+      </a>
+      <p class="footer-desc">Turning mortgage challenges into financial opportunities. Serving self-employed Canadians, investors, first-time buyers, and everyone in between.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/sp_maan_mortgages/" target="_blank" class="social-btn">📸</a>
+        <a href="https://www.linkedin.com/in/surinderpal-singh-a49163187/" target="_blank" class="social-btn">💼</a>
+        <a href="#" onclick="openCalendar(); return false;" class="social-btn">📅</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="calculator.html">Tools</a></li>
+    <li><a href="calculator.html">Tools</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#self-employed">Self-Employed</a></li>
+        <li><a href="#first-time">First-Time Buyers</a></li>
+        <li><a href="#investors">Investors</a></li>
+        <li><a href="#flippers">Flippers</a></li>
+        <li><a href="#rental">Rental Properties</a></li>
+        <li><a href="#new-to-canada">New to Canada</a></li>
+        <li><a href="#bad-credit">Bruised Credit</a></li>
+        <li><a href="#debt">Debt Consolidation</a></li>
+        <li><a href="#renewals">Renewals</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:4034040048">📞 (403) 404-0048</a></li>
+        <li><a href="mailto:Surinder@goldlionmortgages.com">✉️ Surinder@goldlionmortgages.com</a></li>
+        <li><a href="https://www.instagram.com/sp_maan_mortgages/" target="_blank">📸 @sp_maan_mortgages</a></li>
+        <li><a href="https://www.linkedin.com/in/surinderpal-singh-a49163187/" target="_blank">💼 LinkedIn</a></li>
+        <li><a href="#">📍 Calgary, Alberta</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Gold Lion Mortgages Inc. All rights reserved.</span>
+    <div class="license-tag">
+      <div class="license-dot"></div>
+      Powered by Mortgage Centre Elevo Mortgages · Member of DLCG · Alberta
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══ PIPEDRIVE MODAL ═══ -->
+<div class="pipedrive-overlay" id="calendarOverlay" onclick="closeCalendarOutside(event)">
+  <div class="pipedrive-modal">
+    <div class="pipedrive-modal-header">
+      <div>
+        <h3>Book a Free Consultation</h3>
+        <p>Pick a time that works for you — no obligation</p>
+      </div>
+      <button class="modal-close" onclick="closeCalendar()">✕</button>
+    </div>
+    <iframe id="pipedriveFrame" src="" title="Book a Consultation"></iframe>
+  </div>
+</div>
+
+
+<script>
+// ── NAV SCROLL ──
+// ── HAMBURGER MENU ──
+var hamburger = document.getElementById('hamburger');
+var mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', function() {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// ── NAV SCROLL SHADOW ──
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').style.boxShadow =
+    window.scrollY > 20 ? '0 2px 24px rgba(43,27,114,0.09)' : 'none';
+});
+
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.06 });
+revealEls.forEach(el => revealObs.observe(el));
+
+// ── SERVICE NAV: SCROLL + ACTIVE PILL ──
+(function() {
+  var pills  = document.querySelectorAll('.service-pill');
+  var sects  = document.querySelectorAll('.service-section');
+
+  function navOffset() {
+    // measure both bars live
+    var mainH    = document.getElementById('main-nav').offsetHeight;
+    var serviceH = document.querySelector('.service-nav').offsetHeight;
+    return mainH + serviceH + 4;
+  }
+
+  // click → scroll
+  pills.forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      var id     = this.getAttribute('data-target');
+      var sect   = document.getElementById(id);
+      if (!sect) return;
+      var y = sect.getBoundingClientRect().top + window.pageYOffset - navOffset();
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  });
+
+  // scroll → highlight active pill
+  function highlight() {
+    var offset  = navOffset() + 20;
+    var current = '';
+    sects.forEach(function(s) {
+      if (window.pageYOffset + offset >= s.offsetTop) current = s.id;
+    });
+    pills.forEach(function(p) {
+      var active = p.getAttribute('data-target') === current;
+      p.classList.toggle('active', active);
+      if (active) p.scrollIntoView({ block: 'nearest', inline: 'center' });
+    });
+  }
+
+  window.addEventListener('scroll', highlight, { passive: true });
+  highlight();
+})();
+
+// ── PIPEDRIVE CALENDAR ──
+const PIPEDRIVE_URL = 'https://goldlionmortgagesinc.pipedrive.com/scheduler/Lzrkrzf4/call-appointment';
+
+function openCalendar() {
+  const frame = document.getElementById('pipedriveFrame');
+  if (!frame.src || frame.src === window.location.href) frame.src = PIPEDRIVE_URL;
+  document.getElementById('calendarOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCalendar() {
+  document.getElementById('calendarOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closeCalendarOutside(e) {
+  if (e.target === document.getElementById('calendarOverlay')) closeCalendar();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCalendar(); });
+</script>
+
+</body>
+</html>

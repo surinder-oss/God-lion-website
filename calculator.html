@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mortgage Tools & App | Gold Lion Mortgages Inc.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white:        #FAFAF8;
+    --off-white:    #F4F3F0;
+    --purple:       #2B1B72;
+    --purple-mid:   #3B2A8A;
+    --purple-light: #EEE9FF;
+    --purple-line:  rgba(43,27,114,0.12);
+    --gold:         #C9A84C;
+    --gold-light:   #E8CB7A;
+    --text:         #181524;
+    --muted:        #6B6785;
+    --border:       rgba(43,27,114,0.1);
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Outfit', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+  /* ─── NAV ─── */
+  nav { position: fixed; top:0; left:0; right:0; z-index:200; display: flex; align-items: center; justify-content: space-between; padding: 18px 56px; background: rgba(250,250,248,0.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s; }
+  .logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .logo-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--purple); letter-spacing: 0.01em; line-height: 1.15; }
+  .logo-name span { color: var(--gold); }
+  .logo-powered { font-family: 'Outfit', sans-serif; font-size: 9.5px; font-weight: 400; color: var(--muted); letter-spacing: 0.04em; line-height: 1.4; margin-top: 2px; border-left: 2px solid var(--border); padding-left: 8px; }
+  .logo-powered strong { display: block; color: var(--purple); font-weight: 600; }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 14px; font-weight: 400; color: var(--text); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--purple); }
+  .nav-links a.active { color: var(--purple); font-weight: 600; }
+  .nav-cta { background: var(--purple); color: #fff !important; padding: 10px 22px; border-radius: 7px; font-weight: 500 !important; transition: background 0.2s !important; }
+  .nav-cta:hover { background: var(--purple-mid) !important; }
+
+  /* ─── HAMBURGER ─── */
+  .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px; flex-shrink: 0; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--purple); border-radius: 2px; transition: all 0.25s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ─── MOBILE MENU ─── */
+  .mobile-menu { display: none; position: fixed; top:0; left:0; right:0; bottom:0; background: var(--white); z-index: 210; flex-direction: column; padding: 100px 32px 40px; overflow-y: auto; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { display: block; font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--text); text-decoration: none; padding: 14px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+  .mobile-menu a:hover, .mobile-menu a.active { color: var(--purple); }
+  .mobile-menu-cta { margin-top: 32px; background: var(--purple) !important; color: #fff !important; text-align: center; padding: 18px 32px !important; border-radius: 10px; font-family: 'Outfit', sans-serif !important; font-size: 16px !important; font-weight: 600 !important; border-bottom: none !important; }
+
+  /* ─── PAGE HERO ─── */
+  .page-hero { padding: 160px 56px 80px; background: linear-gradient(135deg, var(--purple) 0%, #1a0f55 100%); position: relative; overflow: hidden; text-align: center; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(201,168,76,0.15), transparent); pointer-events: none; }
+  .page-hero-label { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); padding: 6px 16px; border-radius: 20px; margin-bottom: 24px; }
+  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 20px; }
+  .page-hero h1 em { color: var(--gold); font-style: italic; }
+  .page-hero p { font-size: 18px; color: rgba(255,255,255,0.75); max-width: 580px; margin: 0 auto 36px; line-height: 1.7; }
+  .hero-download-btn { display: inline-flex; align-items: center; gap: 12px; background: var(--gold); color: var(--purple); padding: 16px 36px; border-radius: 12px; font-size: 16px; font-weight: 700; text-decoration: none; transition: background 0.2s, transform 0.15s; position: relative; z-index: 1; }
+  .hero-download-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .hero-sub-note { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 14px; position: relative; z-index: 1; }
+
+  /* ─── SECTION HELPERS ─── */
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .section-heading { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 16px; }
+  .section-heading em { color: var(--purple); font-style: italic; }
+  .section-sub { font-size: 17px; color: var(--muted); line-height: 1.75; max-width: 600px; }
+
+  /* ─── APP HERO SECTION ─── */
+  .app-hero { background: var(--white); padding: 80px 56px; }
+  .app-hero-inner { max-width: 1160px; margin: 0 auto; }
+  .app-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .app-hero-left p { font-size: 17px; color: var(--muted); line-height: 1.8; margin-bottom: 32px; }
+  .download-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+  .dl-btn { display: inline-flex; align-items: center; gap: 12px; padding: 14px 24px; border-radius: 12px; text-decoration: none; transition: transform 0.15s, box-shadow 0.2s; font-family: 'Outfit', sans-serif; min-width: 176px; }
+  .dl-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(43,27,114,0.2); }
+  .dl-btn.purple { background: var(--purple); color: #fff; }
+  .dl-btn.dark   { background: #1a1a2e; color: #fff; }
+  .dl-btn.outline { background: var(--white); color: var(--text); border: 1.5px solid var(--border); }
+  .dl-btn.outline:hover { border-color: var(--purple); }
+  .dl-btn-icon { font-size: 24px; flex-shrink: 0; }
+  .dl-btn-text { display: flex; flex-direction: column; }
+  .dl-btn-sub { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.65; }
+  .dl-btn-main { font-size: 15px; font-weight: 700; margin-top: 1px; }
+  .app-trust-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .trust-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); }
+  .trust-icon { font-size: 16px; }
+
+  /* App visual card */
+  .app-card-main { background: linear-gradient(145deg, var(--purple) 0%, #1a0f55 100%); border-radius: 24px; padding: 36px 32px; position: relative; overflow: hidden; }
+  .app-card-main::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 80% 110%, rgba(201,168,76,0.2), transparent); pointer-events: none; }
+  .app-card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; position: relative; z-index: 1; }
+  .app-card-logo { width: 52px; height: 52px; background: rgba(255,255,255,0.12); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
+  .app-card-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #fff; line-height: 1.2; }
+  .app-card-subtitle { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .app-tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: relative; z-index: 1; }
+  .app-tool { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 14px 14px 12px; }
+  .app-tool-emoji { font-size: 20px; margin-bottom: 8px; display: block; }
+  .app-tool-name { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.35; }
+  .app-tool-desc { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 3px; line-height: 1.4; }
+  .app-card-footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
+  .app-card-powered { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+  .app-card-powered strong { color: var(--gold); display: block; }
+  .app-card-stars { font-size: 14px; color: var(--gold); letter-spacing: 1px; }
+  .app-card-rating-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; text-align: right; }
+
+  /* ─── TOOL-BY-TOOL ─── */
+  .tools-section { background: var(--off-white); padding: 80px 56px; }
+  .tools-inner { max-width: 1160px; margin: 0 auto; }
+  .tools-list { margin-top: 56px; }
+  .tool-row { display: grid; grid-template-columns: 80px 1fr 1fr; gap: 32px; align-items: center; padding: 36px 0; border-bottom: 1px solid var(--border); }
+  .tool-row:first-child { border-top: 1px solid var(--border); }
+  .tool-row-num { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 700; color: var(--purple-light); line-height: 1; text-align: center; }
+  .tool-row-tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); background: var(--purple-light); padding: 4px 10px; border-radius: 20px; margin-bottom: 10px; }
+  .tool-row-left h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .tool-row-left p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+  .tool-detail-items { display: flex; flex-direction: column; gap: 10px; }
+  .tool-detail-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--muted); line-height: 1.5; }
+  .tool-detail-item::before { content: '✓'; color: var(--purple); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  /* ─── WHY THIS APP ─── */
+  .why-section { background: var(--white); padding: 80px 56px; }
+  .why-inner { max-width: 1160px; margin: 0 auto; }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  .why-card { background: var(--white); border: 1px solid var(--border); border-radius: 18px; padding: 32px 28px; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+  .why-card:hover { border-color: var(--purple); box-shadow: 0 8px 32px rgba(43,27,114,0.09); transform: translateY(-3px); }
+  .why-card-icon { font-size: 36px; margin-bottom: 16px; }
+  .why-card h4 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .why-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* ─── HOW TO DOWNLOAD ─── */
+  .how-section { background: var(--off-white); padding: 80px 56px; }
+  .how-inner { max-width: 1160px; margin: 0 auto; }
+  .how-steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; position: relative; }
+  .how-steps-grid::before { content: ''; position: absolute; top: 28px; left: 12%; right: 12%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent); }
+  .how-step { text-align: center; position: relative; }
+  .how-step-circle { width: 56px; height: 56px; background: var(--purple); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 22px; position: relative; z-index: 1; }
+  .how-step h4 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .how-step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+  .how-step .step-note { display: inline-block; margin-top: 12px; font-size: 12px; color: var(--purple); font-weight: 600; background: var(--purple-light); padding: 4px 12px; border-radius: 20px; }
+
+  /* ─── LANGUAGES & ACCESS ─── */
+  .access-section { background: var(--white); padding: 64px 56px; }
+  .access-inner { max-width: 1160px; margin: 0 auto; }
+  .access-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; }
+  .access-card { background: var(--off-white); border-radius: 18px; padding: 32px 28px; }
+  .access-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .access-card p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+  .language-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lang-pill { padding: 6px 16px; background: var(--white); border: 1px solid var(--border); border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--text); }
+  .access-features { display: flex; flex-direction: column; gap: 12px; }
+  .access-feat { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); }
+  .access-feat-icon { font-size: 20px; }
+
+  /* ─── DOWNLOAD CTA ─── */
+  .download-cta-section { background: linear-gradient(135deg, var(--purple) 0%, #1a0f55 100%); padding: 88px 56px; text-align: center; position: relative; overflow: hidden; }
+  .download-cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 110%, rgba(201,168,76,0.18), transparent); pointer-events: none; }
+  .download-cta-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+  .download-cta-inner .section-label { color: var(--gold-light); }
+  .download-cta-inner .section-heading { color: #fff; font-size: 44px; margin-bottom: 16px; }
+  .download-cta-inner .section-sub { color: rgba(255,255,255,0.75); max-width: 100%; margin: 0 auto 44px; }
+  .cta-download-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .cta-dl-btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; border-radius: 12px; text-decoration: none; font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700; transition: transform 0.15s, box-shadow 0.2s; min-width: 190px; border: none; cursor: pointer; }
+  .cta-dl-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(0,0,0,0.3); }
+  .cta-dl-btn.gold { background: var(--gold); color: var(--purple); }
+  .cta-dl-btn.gold:hover { background: var(--gold-light); }
+  .cta-dl-btn.ghost { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+  .cta-dl-btn.ghost:hover { background: rgba(255,255,255,0.18); }
+  .cta-dl-icon { font-size: 22px; }
+  .cta-dl-text { text-align: left; }
+  .cta-dl-sub { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.7; display: block; }
+  .cta-dl-main { font-size: 16px; }
+  .cta-disclaimer { margin-top: 20px; font-size: 12px; color: rgba(255,255,255,0.35); }
+
+  /* ─── PIPEDRIVE MODAL ─── */
+  .pipedrive-overlay { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(24,21,36,0.7); backdrop-filter: blur(6px); align-items: center; justify-content: center; }
+  .pipedrive-overlay.active { display: flex; }
+  .pipedrive-modal { background: var(--white); border-radius: 16px; width: 90%; max-width: 700px; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 32px 80px rgba(0,0,0,0.3); }
+  .pipedrive-modal-header { display: flex; align-items: flex-start; justify-content: space-between; padding: 24px 28px 20px; border-bottom: 1px solid var(--border); }
+  .pipedrive-modal-header h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .pipedrive-modal-header p { font-size: 13px; color: var(--muted); }
+  .modal-close { background: none; border: none; cursor: pointer; font-size: 20px; color: var(--muted); padding: 4px; line-height: 1; transition: color 0.2s; }
+  .modal-close:hover { color: var(--text); }
+  #pipedriveFrame { border: none; width: 100%; height: 560px; }
+
+  /* ─── FOOTER ─── */
+  footer { background: #120D3A; padding: 52px 56px 28px; color: rgba(255,255,255,0.55); }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 44px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .footer-desc { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.45); margin: 16px 0 20px; max-width: 280px; }
+  .footer-social { display: flex; gap: 8px; }
+  .social-btn { width: 34px; height: 34px; background: rgba(255,255,255,0.07); border-radius: 7px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 15px; transition: background 0.2s; }
+  .social-btn:hover { background: rgba(255,255,255,0.14); }
+  .footer-col h4 { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: #fff; }
+  .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12px; }
+  .license-tag { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.3); }
+  .license-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+  /* ─── REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 960px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none !important; }
+    .logo-powered { display: none; }
+    .hamburger { display: flex; }
+    .page-hero { padding: 120px 24px 60px; }
+    .app-hero { padding: 60px 24px; }
+    .app-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .tools-section { padding: 60px 24px; }
+    .tool-row { grid-template-columns: 48px 1fr; gap: 20px; }
+    .tool-row-right { grid-column: 2; }
+    .why-section { padding: 60px 24px; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .how-section { padding: 60px 24px; }
+    .how-steps-grid { grid-template-columns: 1fr 1fr; }
+    .how-steps-grid::before { display: none; }
+    .access-section { padding: 48px 24px; }
+    .access-grid { grid-template-columns: 1fr; }
+    .download-cta-section { padding: 60px 24px; }
+    footer { padding: 40px 24px 24px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 480px) {
+    .page-hero h1 { font-size: 36px; }
+    .app-tools-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .how-steps-grid { grid-template-columns: 1fr; }
+    .download-btns { flex-direction: column; }
+    .cta-download-btns { flex-direction: column; align-items: center; }
+    .footer-top { grid-template-columns: 1fr; }
+    .tool-row { grid-template-columns: 1fr; }
+    .tool-row-num { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="main-nav">
+  <a href="index.html" class="logo">
+    <div>
+      <div class="logo-name">Gold <span>Lion</span><br>Mortgages Inc.</div>
+    </div>
+    <div class="logo-powered">
+      Powered by<br>
+      <strong>Mortgage Centre<br>Elevo Mortgages</strong>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="partners.html">Partners</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un" target="_blank" class="nav-cta">Apply for a Mortgage</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="partners.html">Partners</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un" target="_blank" class="mobile-menu-cta">Apply for a Mortgage</a>
+</div>
+
+<!-- ═══ PAGE HERO ═══ -->
+<section class="page-hero">
+  <div class="page-hero-label">Free Mortgage Tools</div>
+  <h1>Plan Your Mortgage<br><em>Before You Apply</em></h1>
+  <p>Download Surinderpal's free MCC Home Centre App — and get instant access to 8 professional mortgage tools that most clients never know exist.</p>
+  <a href="https://www.mccapp.ca/app/surinderpal-singh?_branch_referrer=H4sIAAAAAAAAA2WMQQvCMAyFf81608nUi1BEBMWbB+8ja+Na7LKStlQv/nazs5CEl8d7n8s5pkPbTsYYILAeaMojxLheNnh6teem20Go8Em9RYyLpzMXVOJbTK88x75w0G5BNdtT011kaq1rgS4UA/KLkJsKe7LIEcIqeRpd022Tm+sD3/lGsWRlYIrgR9JS6P/iyjggwqArDsqUlOcJ+Wb1/mqG57C5b4r6Mj6RpTf2A881IeuzY8n9APJCg67rAAAA#showTextInput" target="_blank" class="hero-download-btn">
+    📱 Download the Free App
+  </a>
+  <p class="hero-sub-note">Free on iOS, Android &amp; Web · No credit check required</p>
+</section>
+
+<!-- ═══ PIPEDRIVE MODAL ═══ -->
+<div class="pipedrive-overlay" id="calendarOverlay" onclick="closeCalendarOutside(event)">
+  <div class="pipedrive-modal">
+    <div class="pipedrive-modal-header">
+      <div>
+        <h3>Book a Free Consultation</h3>
+        <p>Pick a time that works for you — no obligation</p>
+      </div>
+      <button class="modal-close" onclick="closeCalendar()">✕</button>
+    </div>
+    <iframe id="pipedriveFrame" src="" title="Book a Consultation"></iframe>
+  </div>
+</div>
+
+<!-- ═══ APP OVERVIEW ═══ -->
+<section class="app-hero">
+  <div class="app-hero-inner">
+    <div class="app-hero-grid">
+
+      <div class="app-hero-left reveal">
+        <div class="section-label">MCC Home Centre App</div>
+        <h2 class="section-heading">One App. Every<br>Mortgage Tool You <em>Need.</em></h2>
+        <p>Most buyers walk into a bank with no idea what they can afford, how much they need for a down payment, or whether they'll pass the stress test. This app changes that. It puts professional-grade mortgage tools in your pocket — free — through Surinderpal's personal link.</p>
+
+        <div class="download-btns">
+          <a href="https://www.mccapp.ca/app/surinderpal-singh?_branch_referrer=H4sIAAAAAAAAA2WMQQvCMAyFf81608nUi1BEBMWbB+8ja+Na7LKStlQv/nazs5CEl8d7n8s5pkPbTsYYILAeaMojxLheNnh6teem20Go8Em9RYyLpzMXVOJbTK88x75w0G5BNdtT011kaq1rgS4UA/KLkJsKe7LIEcIqeRpd022Tm+sD3/lGsWRlYIrgR9JS6P/iyjggwqArDsqUlOcJ+Wb1/mqG57C5b4r6Mj6RpTf2A881IeuzY8n9APJCg67rAAAA#showTextInput" target="_blank" class="dl-btn purple">
+            <span class="dl-btn-icon">🍎</span>
+            <span class="dl-btn-text">
+              <span class="dl-btn-sub">Download on the</span>
+              <span class="dl-btn-main">App Store</span>
+            </span>
+          </a>
+          <a href="https://www.mccapp.ca/app/surinderpal-singh?_branch_referrer=H4sIAAAAAAAAA2WMQQvCMAyFf81608nUi1BEBMWbB+8ja+Na7LKStlQv/nazs5CEl8d7n8s5pkPbTsYYILAeaMojxLheNnh6teem20Go8Em9RYyLpzMXVOJbTK88x75w0G5BNdtT011kaq1rgS4UA/KLkJsKe7LIEcIqeRpd022Tm+sD3/lGsWRlYIrgR9JS6P/iyjggwqArDsqUlOcJ+Wb1/mqG57C5b4r6Mj6RpTf2A881IeuzY8n9APJCg67rAAAA#showTextInput" target="_blank" class="dl-btn dark">
+            <span class="dl-btn-icon">🤖</span>
+            <span class="dl-btn-text">
+              <span class="dl-btn-sub">Get it on</span>
+              <span class="dl-btn-main">Google Play</span>
+            </span>
+          </a>
+          <a href="https://www.mccapp.ca/app/surinderpal-singh?_branch_referrer=H4sIAAAAAAAAA2WMQQvCMAyFf81608nUi1BEBMWbB+8ja+Na7LKStlQv/nazs5CEl8d7n8s5pkPbTsYYILAeaMojxLheNnh6teem20Go8Em9RYyLpzMXVOJbTK88x75w0G5BNdtT011kaq1rgS4UA/KLkJsKe7LIEcIqeRpd022Tm+sD3/lGsWRlYIrgR9JS6P/iyjggwqArDsqUlOcJ+Wb1/mqG57C5b4r6Mj6RpTf2A881IeuzY8n9APJCg67rAAAA#showTextInput" target="_blank" class="dl-btn outline">
+            <span class="dl-btn-icon">🌐</span>
+            <span class="dl-btn-text">
+              <span class="dl-btn-sub">Open in</span>
+              <span class="dl-btn-main">Web Browser</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="app-trust-row">
+          <div class="trust-item"><span class="trust-icon">🆓</span> 100% Free</div>
+          <div class="trust-item"><span class="trust-icon">🔒</span> No credit check</div>
+          <div class="trust-item"><span class="trust-icon">🇨🇦</span> Built for Canadians</div>
+          <div class="trust-item"><span class="trust-icon">🏦</span> 100+ lenders</div>
+        </div>
+      </div>
+
+      <div class="app-hero-right reveal">
+        <div class="app-card-main">
+          <div class="app-card-header">
+            <div class="app-card-logo">🏠</div>
+            <div>
+              <div class="app-card-title">MCC Home Centre App</div>
+              <div class="app-card-subtitle">Powered by Mortgage Centre Canada · Est. 1989</div>
+            </div>
+          </div>
+          <div class="app-tools-grid">
+            <div class="app-tool">
+              <span class="app-tool-emoji">🔍</span>
+              <div class="app-tool-name">Pre-Qualification</div>
+              <div class="app-tool-desc">No credit check required</div>
+            </div>
+            <div class="app-tool">
+              <span class="app-tool-emoji">💰</span>
+              <div class="app-tool-name">Affordability</div>
+              <div class="app-tool-desc">Max mortgage in seconds</div>
+            </div>
+            <div class="app-tool">
+              <span class="app-tool-emoji">🧾</span>
+              <div class="app-tool-name">Closing Costs</div>
+              <div class="app-tool-desc">Alberta-specific estimates</div>
+            </div>
+            <div class="app-tool">
+              <span class="app-tool-emoji">📉</span>
+              <div class="app-tool-name">Stress Test</div>
+              <div class="app-tool-desc">Pass before you apply</div>
+            </div>
+            <div class="app-tool">
+              <span class="app-tool-emoji">🏦</span>
+              <div class="app-tool-name">Rate Comparison</div>
+              <div class="app-tool-desc">100+ lenders side by side</div>
+            </div>
+            <div class="app-tool">
+              <span class="app-tool-emoji">📄</span>
+              <div class="app-tool-name">PDF Reports</div>
+              <div class="app-tool-desc">Email your results instantly</div>
+            </div>
+          </div>
+          <div class="app-card-footer">
+            <div class="app-card-powered">
+              <strong>Surinderpal Singh</strong>
+              Gold Lion Mortgages Inc.
+            </div>
+            <div>
+              <div class="app-card-stars">★★★★★</div>
+              <div class="app-card-rating-label">MCC Network · Since 1989</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TOOL-BY-TOOL BREAKDOWN ═══ -->
+<section class="tools-section">
+  <div class="tools-inner">
+    <div class="section-label reveal">What's Inside</div>
+    <h2 class="section-heading reveal">Every Tool, <em>Explained</em></h2>
+    <p class="section-sub reveal">Here's exactly what each tool does — and why it matters before you apply.</p>
+
+    <div class="tools-list">
+
+      <div class="tool-row reveal">
+        <div class="tool-row-num">01</div>
+        <div class="tool-row-left">
+          <div class="tool-row-tag">Pre-Qualification</div>
+          <h3>Find Out If You Qualify — Before Applying</h3>
+          <p>Get pre-qualified in minutes without triggering a hard credit inquiry. See your estimated mortgage amount based on your income, debts, and down payment.</p>
+        </div>
+        <div class="tool-row-right">
+          <div class="tool-detail-items">
+            <div class="tool-detail-item">No credit check — your score stays untouched</div>
+            <div class="tool-detail-item">Enter income and debt details manually</div>
+            <div class="tool-detail-item">Get an estimated approval range instantly</div>
+            <div class="tool-detail-item">Share results with your realtor or advisor</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-row reveal">
+        <div class="tool-row-num">02</div>
+        <div class="tool-row-left">
+          <div class="tool-row-tag">Affordability Calculator</div>
+          <h3>Know Your Maximum Purchase Price</h3>
+          <p>Enter your household income, monthly debts, and available down payment — the app calculates the maximum home price and mortgage you qualify for.</p>
+        </div>
+        <div class="tool-row-right">
+          <div class="tool-detail-items">
+            <div class="tool-detail-item">Uses current GDS/TDS ratios used by lenders</div>
+            <div class="tool-detail-item">Adjusts automatically for CMHC insurance thresholds</div>
+            <div class="tool-detail-item">Generates a report you can bring to showings</div>
+            <div class="tool-detail-item">Works for single or joint incomes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-row reveal">
+        <div class="tool-row-num">03</div>
+        <div class="tool-row-left">
+          <div class="tool-row-tag">Closing Cost Estimator</div>
+          <h3>No Surprises on Closing Day</h3>
+          <p>Closing costs catch a lot of first-time buyers off guard. This tool estimates every cost upfront — specific to Alberta — so you know exactly how much cash you need.</p>
+        </div>
+        <div class="tool-row-right">
+          <div class="tool-detail-items">
+            <div class="tool-detail-item">Land title transfer fees (Alberta-specific)</div>
+            <div class="tool-detail-item">Legal fees and disbursements</div>
+            <div class="tool-detail-item">Home inspection, appraisal, and title insurance estimates</div>
+            <div class="tool-detail-item">Available rebates and first-time buyer credits applied</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-row reveal">
+        <div class="tool-row-num">04</div>
+        <div class="tool-row-left">
+          <div class="tool-row-tag">Mortgage Stress Test</div>
+          <h3>See If You Pass Before the Bank Checks</h3>
+          <p>Canada's federal stress test requires you to qualify at a higher rate than you'll actually pay. Run the test yourself before any lender does — no surprises.</p>
+        </div>
+        <div class="tool-row-right">
+          <div class="tool-detail-items">
+            <div class="tool-detail-item">Uses the current federal qualifying rate (5.25% or contract + 2%)</div>
+            <div class="tool-detail-item">Shows your maximum borrowing power under stress test rules</div>
+            <div class="tool-detail-item">Compares qualifying rate vs your actual payment</div>
+            <div class="tool-detail-item">Identifies the gap if you don't currently qualify</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-row reveal">
+        <div class="tool-row-num">05</div>
+        <div class="tool-row-left">
+          <div class="tool-row-tag">Rate Comparison</div>
+          <h3>Compare 100+ Lenders Side by Side</h3>
+          <p>Don't settle for your bank's posted rate. Search and compare live mortgage rates from banks, credit unions, monolines, and alternative lenders — all in one place.</p>
+        </div>
+        <div class="tool-row-right">
+          <div class="tool-detail-items">
+            <div class="tool-detail-item">Real rates from 100+ Canadian lenders</div>
+            <div class="tool-detail-item">Filter by fixed vs variable, term length, and type</div>
+            <div class="tool-detail-item">See payment impact side by side for each rate</div>
+            <div class="tool-detail-item">One tap to connect with Surinderpal for any rate</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-row reveal">
+        <div class="tool-row-num">06</div>
+        <div class="tool-row-left">
+          <div class="tool-row-tag">Renewal & Refinance</div>
+          <h3>See What You Could Save at Renewal</h3>
+          <p>Mortgage coming up for renewal? Compare what your bank is offering against what the market has available. The savings often surprise people.</p>
+        </div>
+        <div class="tool-row-right">
+          <div class="tool-detail-items">
+            <div class="tool-detail-item">Enter your current mortgage balance and rate</div>
+            <div class="tool-detail-item">Compare against current best available rates</div>
+            <div class="tool-detail-item">See monthly and total savings over the new term</div>
+            <div class="tool-detail-item">Includes penalty estimates for early switch scenarios</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-row reveal">
+        <div class="tool-row-num">07</div>
+        <div class="tool-row-left">
+          <div class="tool-row-tag">Down Payment Calculator</div>
+          <h3>Know the Minimum Before You Start Saving</h3>
+          <p>Canadian down payment rules are more nuanced than most people think. This tool calculates the exact minimum based on the purchase price — and when CMHC insurance kicks in.</p>
+        </div>
+        <div class="tool-row-right">
+          <div class="tool-detail-items">
+            <div class="tool-detail-item">5% minimum for homes under $500K</div>
+            <div class="tool-detail-item">Graduated rules for the $500K–$999K range</div>
+            <div class="tool-detail-item">20% threshold to avoid CMHC insurance</div>
+            <div class="tool-detail-item">Shows CMHC premium added to mortgage if applicable</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-row reveal">
+        <div class="tool-row-num">08</div>
+        <div class="tool-row-left">
+          <div class="tool-row-tag">PDF Summary Reports</div>
+          <h3>Email Your Results as a Professional PDF</h3>
+          <p>Every calculation in the app can be exported as a clean, formatted PDF summary — ready to share with your realtor, accountant, or financial advisor.</p>
+        </div>
+        <div class="tool-row-right">
+          <div class="tool-detail-items">
+            <div class="tool-detail-item">One tap to email any calculation as a PDF</div>
+            <div class="tool-detail-item">Includes Surinderpal's contact info on every report</div>
+            <div class="tool-detail-item">Clean, professional format — ready to share</div>
+            <div class="tool-detail-item">Useful for pre-offer conversations with realtors</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY THIS APP ═══ -->
+<section class="why-section">
+  <div class="why-inner">
+    <div class="section-label reveal">Why Download Through Surinderpal</div>
+    <h2 class="section-heading reveal">This Isn't Just<br>Any Mortgage App</h2>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-card-icon">🔓</div>
+        <h4>Unlock Premium Features Free</h4>
+        <p>Downloading through Surinderpal's personal link unlocks all premium features at no cost. These are the same tools mortgage professionals use — available to you for free.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-card-icon">🇨🇦</div>
+        <h4>Built for Canadian Rules</h4>
+        <p>Every calculation reflects Canadian mortgage rules — GDS/TDS limits, CMHC thresholds, the federal stress test, and province-specific closing costs for Alberta.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-card-icon">🏦</div>
+        <h4>Backed by MCC — Since 1989</h4>
+        <p>Mortgage Centre Canada has been operating since 1989. The rate data and lender connections in the app draw from a network that funds over $200 billion in mortgages annually.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-card-icon">📞</div>
+        <h4>Direct Line to Surinderpal</h4>
+        <p>When your numbers are ready, Surinderpal is one tap away. Every result in the app can turn into a real conversation — and a real pre-approval — within 24 hours.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-card-icon">🔒</div>
+        <h4>No Credit Check, No Commitment</h4>
+        <p>Every tool in the app runs without touching your credit score. Explore your options, run the numbers, and only move forward when you're ready.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-card-icon">🌐</div>
+        <h4>Available Everywhere</h4>
+        <p>Download on iOS or Android, or open it directly in any web browser. No device restrictions — use it on your phone, tablet, or desktop from anywhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW TO DOWNLOAD ═══ -->
+<section class="how-section">
+  <div class="how-inner">
+    <div class="section-label reveal">Getting Started</div>
+    <h2 class="section-heading reveal">Download in 4 Steps</h2>
+
+    <div class="how-steps-grid">
+      <div class="how-step reveal">
+        <div class="how-step-circle">📱</div>
+        <h4>Tap the Download Link</h4>
+        <p>Click any download button on this page. Surinderpal's personal link ensures you get access to all premium features.</p>
+        <span class="step-note">Takes 10 seconds</span>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-circle">📲</div>
+        <h4>Choose iOS, Android, or Web</h4>
+        <p>The link detects your device and directs you to the right app store — or opens the web version if you prefer no download.</p>
+        <span class="step-note">Works on any device</span>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-circle">🔓</div>
+        <h4>Unlock All Premium Tools</h4>
+        <p>Because you downloaded through Surinderpal's link, every premium feature is unlocked automatically — no subscription required.</p>
+        <span class="step-note">100% free</span>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-circle">📊</div>
+        <h4>Start Running Your Numbers</h4>
+        <p>Start with the affordability calculator or pre-qualification — then reach out to Surinderpal when you're ready to move forward.</p>
+        <span class="step-note">Results in minutes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LANGUAGES & ACCESS ═══ -->
+<section class="access-section">
+  <div class="access-inner">
+    <div class="section-label reveal">Accessibility</div>
+    <h2 class="section-heading reveal">Built for <em>Every</em> Canadian</h2>
+
+    <div class="access-grid">
+      <div class="access-card reveal">
+        <h3>🌍 Available in 5 Languages</h3>
+        <p>The MCC Home Centre App is fully available in five languages — making mortgage tools accessible to Calgary's diverse communities.</p>
+        <div class="language-pills">
+          <span class="lang-pill">🇨🇦 English</span>
+          <span class="lang-pill">🇫🇷 French</span>
+          <span class="lang-pill">🇪🇸 Spanish</span>
+          <span class="lang-pill">🇮🇳 Hindi</span>
+          <span class="lang-pill">🇨🇳 Chinese</span>
+        </div>
+      </div>
+      <div class="access-card reveal">
+        <h3>📱 Works on Every Platform</h3>
+        <p>No matter what device or operating system you use — the app has you covered. Download it, or use it directly in your browser with no installation required.</p>
+        <div class="access-features">
+          <div class="access-feat"><span class="access-feat-icon">🍎</span> iOS (iPhone &amp; iPad) — App Store</div>
+          <div class="access-feat"><span class="access-feat-icon">🤖</span> Android — Google Play Store</div>
+          <div class="access-feat"><span class="access-feat-icon">💻</span> Web Browser — no download needed</div>
+          <div class="access-feat"><span class="access-feat-icon">📧</span> Export results by email as PDF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DOWNLOAD CTA ═══ -->
+<section class="download-cta-section">
+  <div class="download-cta-inner">
+    <div class="section-label reveal">Get Started Free</div>
+    <h2 class="section-heading reveal">Know Your Numbers.<br><em>Before the Bank Does.</em></h2>
+    <p class="section-sub reveal">Download the MCC Home Centre App through Surinderpal's personal link — unlock all 8 premium mortgage tools completely free. No credit check, no commitment, no catch.</p>
+
+    <div class="cta-download-btns reveal">
+      <a href="https://www.mccapp.ca/app/surinderpal-singh?_branch_referrer=H4sIAAAAAAAAA2WMQQvCMAyFf81608nUi1BEBMWbB+8ja+Na7LKStlQv/nazs5CEl8d7n8s5pkPbTsYYILAeaMojxLheNnh6teem20Go8Em9RYyLpzMXVOJbTK88x75w0G5BNdtT011kaq1rgS4UA/KLkJsKe7LIEcIqeRpd022Tm+sD3/lGsWRlYIrgR9JS6P/iyjggwqArDsqUlOcJ+Wb1/mqG57C5b4r6Mj6RpTf2A881IeuzY8n9APJCg67rAAAA#showTextInput" target="_blank" class="cta-dl-btn gold">
+        <span class="cta-dl-icon">📱</span>
+        <span class="cta-dl-text">
+          <span class="cta-dl-sub">Download Free on</span>
+          <span class="cta-dl-main">iOS &amp; Android</span>
+        </span>
+      </a>
+      <a href="https://www.mccapp.ca/app/surinderpal-singh?_branch_referrer=H4sIAAAAAAAAA2WMQQvCMAyFf81608nUi1BEBMWbB+8ja+Na7LKStlQv/nazs5CEl8d7n8s5pkPbTsYYILAeaMojxLheNnh6teem20Go8Em9RYyLpzMXVOJbTK88x75w0G5BNdtT011kaq1rgS4UA/KLkJsKe7LIEcIqeRpd022Tm+sD3/lGsWRlYIrgR9JS6P/iyjggwqArDsqUlOcJ+Wb1/mqG57C5b4r6Mj6RpTf2A881IeuzY8n9APJCg67rAAAA#showTextInput" target="_blank" class="cta-dl-btn ghost">
+        <span class="cta-dl-icon">🌐</span>
+        <span class="cta-dl-text">
+          <span class="cta-dl-sub">Use in</span>
+          <span class="cta-dl-main">Web Browser</span>
+        </span>
+      </a>
+      <button class="cta-dl-btn ghost" onclick="openCalendar()">
+        <span class="cta-dl-icon">📅</span>
+        <span class="cta-dl-text">
+          <span class="cta-dl-sub">Prefer to talk?</span>
+          <span class="cta-dl-main">Book a Free Call</span>
+        </span>
+      </button>
+    </div>
+    <p class="cta-disclaimer reveal">Free on iOS, Android &amp; Web · No credit check required · Powered by Mortgage Centre Canada · Est. 1989</p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo" style="align-items:flex-start">
+        <div>
+          <div class="logo-name" style="color:#fff; font-size:16px">Gold <span>Lion</span><br>Mortgages Inc.</div>
+          <div class="logo-powered" style="color:rgba(255,255,255,0.4); border-color:rgba(255,255,255,0.15); margin-top:4px">
+            Powered by<br>
+            <strong style="color:rgba(255,255,255,0.65)">Mortgage Centre<br>Elevo Mortgages</strong>
+          </div>
+        </div>
+      </a>
+      <p class="footer-desc">Turning bank rejections into approved mortgages. Specializing in self-employed Canadians, first-time buyers, investors, and renewals across Alberta.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/sp_maan_mortgages/" target="_blank" class="social-btn" title="Instagram">📸</a>
+        <a href="https://www.linkedin.com/in/surinderpal-singh-a49163187/" target="_blank" class="social-btn" title="LinkedIn">💼</a>
+        <a href="#" onclick="openCalendar(); return false;" class="social-btn" title="Book a Call">📅</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Actions</h4>
+      <ul>
+        <li><a href="https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un" target="_blank">Apply for a Mortgage</a></li>
+        <li><a href="#" onclick="openCalendar(); return false;">Book a Consultation</a></li>
+        <li><a href="https://share.google/vskJwXGE6z2dewv8M" target="_blank">Google Reviews</a></li>
+        <li><a href="calculator.html">Mortgage Tools</a></li>
+        <li><a href="about.html">About Surinderpal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:4034040048">📞 (403) 404-0048</a></li>
+        <li><a href="mailto:Surinder@goldlionmortgages.com">✉️ Surinder@goldlionmortgages.com</a></li>
+        <li><a href="https://www.instagram.com/sp_maan_mortgages/" target="_blank">📸 @sp_maan_mortgages</a></li>
+        <li><a href="https://www.linkedin.com/in/surinderpal-singh-a49163187/" target="_blank">💼 LinkedIn</a></li>
+        <li><a href="#">📍 Calgary, Alberta</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Gold Lion Mortgages Inc. All rights reserved.</span>
+    <div class="license-tag">
+      <div class="license-dot"></div>
+      Powered by Mortgage Centre Elevo Mortgages · Member of DLCG · Alberta
+    </div>
+  </div>
+</footer>
+
+<script>
+const PIPEDRIVE_URL = 'https://goldlionmortgagesinc.pipedrive.com/scheduler/Lzrkrzf4/call-appointment';
+function openCalendar() {
+  const overlay = document.getElementById('calendarOverlay');
+  const frame   = document.getElementById('pipedriveFrame');
+  if (!frame.src || frame.src === window.location.href) { frame.src = PIPEDRIVE_URL; }
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeCalendar() {
+  document.getElementById('calendarOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function closeCalendarOutside(e) {
+  if (e.target === document.getElementById('calendarOverlay')) closeCalendar();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCalendar(); });
+
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').style.boxShadow =
+    window.scrollY > 20 ? '0 2px 24px rgba(43,27,114,0.09)' : 'none';
+});
+
+const revealEls = document.querySelectorAll('.reveal');
+revealEls.forEach(el => {
+  if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+});
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.01 });
+revealEls.forEach(el => revealObs.observe(el));
+
+(function(){
+  var btn  = document.getElementById('hamburger');
+  var menu = document.getElementById('mobile-menu');
+  if (!btn) return;
+  btn.addEventListener('click', function(){
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+</script>
+</body>
+</html>
