@@ -1349,7 +1349,7 @@
     display: none;
     flex-direction: column; justify-content: center; gap: 5px;
     width: 36px; height: 36px;
-    background: none; border: none; cursor: pointer; padding: 4px;
+    background: none; border: none; cursor: pointer; padding: 4px; flex-shrink: 0;
   }
   .hamburger span {
     display: block; width: 22px; height: 2px;
@@ -1382,10 +1382,10 @@
   }
 
   @media (max-width: 960px) {
-    .hamburger { display: flex; }
+    .hamburger { display: flex; flex-shrink: 0; }
     .logo-powered { display: none; }
     nav { padding: 14px 24px; }
-    nav ul { display: none; }
+    .nav-links { display: none !important; }
     .hero::before, .dot-grid { display: none; }
     .section { padding: 64px 24px; }
     .client-grid { grid-template-columns: 1fr 1fr; }
@@ -2170,6 +2170,13 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCalenda
     btn.classList.toggle('open');
     menu.classList.toggle('open');
     document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
   });
 })();
 </script>
