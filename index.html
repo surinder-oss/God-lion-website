@@ -969,9 +969,11 @@
     background: var(--purple);
     padding: 72px 56px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 60px;
     align-items: center;
+    max-width: 700px;
+    margin: 0 auto;
   }
 
   .contact-left h2 {
@@ -1831,48 +1833,7 @@
     </div>
   </div>
 
-  <div class="contact-right reveal reveal-delay-1">
-    <h3>Send a Message</h3>
-    <p>We reply within 2 business hours.</p>
-
-    <div id="contact-form-2">
-      <div class="form-row">
-        <div class="form-group">
-          <label>First Name</label>
-          <input type="text" placeholder="First name">
-        </div>
-        <div class="form-group">
-          <label>Last Name</label>
-          <input type="text" placeholder="Last name">
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Phone</label>
-        <input type="tel" placeholder="(403) 000-0000">
-      </div>
-      <div class="form-group">
-        <label>What are you looking for?</label>
-        <select>
-          <option>Self-employed mortgage</option>
-          <option>First-time purchase</option>
-          <option>Renewal or refinancing</option>
-          <option>Investment property</option>
-          <option>Just exploring</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Message</label>
-        <textarea placeholder="Tell us about your situation..."></textarea>
-      </div>
-      <button class="btn-gold" onclick="submitForm2()">Send Message →</button>
-    </div>
-
-    <div class="form-success" id="form-success-2">
-      <div class="form-success-icon">🦁</div>
-      <h3 style="color:#fff">Message received!</h3>
-      <p style="color:rgba(255,255,255,0.6)">Surinderpal will be in touch within 2 hours.</p>
-    </div>
-  </div>
+</div>
 </div>
 
 
@@ -2114,28 +2075,7 @@ const revealObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.08 });
 revealEls.forEach(el => revealObs.observe(el));
 
-// ── FORM SUBMIT (HERO) ──
-function submitForm() {
-  const fname = document.getElementById('fname').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const type  = document.getElementById('mortgage-type').value;
 
-  if (!fname || (!phone && !email)) {
-    alert('Please fill in your name and at least one contact method.');
-    return;
-  }
-
-  // In production: send to your backend / Formspree / Make.com
-  document.getElementById('contact-form').style.display = 'none';
-  document.getElementById('form-success').style.display = 'block';
-}
-
-// ── FORM SUBMIT (CONTACT STRIP) ──
-function submitForm2() {
-  document.getElementById('contact-form-2').style.display = 'none';
-  document.getElementById('form-success-2').style.display = 'block';
-}
 
 // ── PIPEDRIVE CALENDAR MODAL ──
 const PIPEDRIVE_URL = 'https://goldlionmortgagesinc.pipedrive.com/scheduler/Lzrkrzf4/call-appointment';
