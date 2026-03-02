@@ -964,8 +964,6 @@
     grid-template-columns: 1fr;
     gap: 60px;
     align-items: center;
-    max-width: 700px;
-    margin: 0 auto;
   }
 
   .contact-left h2 {
