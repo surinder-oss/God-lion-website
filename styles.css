@@ -1375,7 +1375,7 @@
 
   @media (max-width: 960px) {
     .hamburger { display: flex; flex-shrink: 0; }
-    .logo-powered { display: none; }
+    .logo-powered { font-size: 8px; } .logo-powered strong { font-size: 8.5px; }
     nav { padding: 14px 24px; }
     .nav-links { display: none !important; }
     .hero::before, .dot-grid { display: none; }
@@ -1691,7 +1691,7 @@
   @media (max-width: 960px) {
     nav { padding: 14px 20px; }
     .nav-links { display: none !important; }
-    .logo-powered { display: none; }
+    .logo-powered { font-size: 8px; } .logo-powered strong { font-size: 8.5px; }
     .hamburger { display: flex; }
     .page-hero { padding: 110px 20px 56px; }
     .service-nav { padding: 0 16px; top: 61px; }
@@ -1746,7 +1746,7 @@
   @media (max-width: 960px) {
     nav { padding: 14px 20px; }
     .nav-links { display: none !important; }
-    .logo-powered { display: none; }
+    .logo-powered { font-size: 8px; } .logo-powered strong { font-size: 8.5px; }
     .hamburger { display: flex; }
     .page-hero { padding: 120px 24px 60px; }
     .contact-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -2283,7 +2283,7 @@
   @media (max-width: 960px) {
     nav { padding: 14px 20px; }
     .nav-links { display: none !important; }
-    .logo-powered { display: none; }
+    .logo-powered { font-size: 8px; } .logo-powered strong { font-size: 8.5px; }
     .hamburger { display: flex; }
     .page-hero { padding: 120px 24px 60px; }
     .categories-bar { padding: 0 20px; }
@@ -2444,7 +2444,7 @@
   @media (max-width: 960px) {
     nav { padding: 14px 20px; }
     .nav-links { display: none !important; }
-    .logo-powered { display: none; }
+    .logo-powered { font-size: 8px; } .logo-powered strong { font-size: 8.5px; }
     .hamburger { display: flex; }
     .page-hero { padding: 120px 24px 60px; }
     .app-hero { padding: 60px 24px; }
@@ -2774,7 +2774,7 @@
   @media (max-width: 960px) {
     nav { padding: 14px 20px; }
     .nav-links { display: none !important; }
-    .logo-powered { display: none; }
+    .logo-powered { font-size: 8px; } .logo-powered strong { font-size: 8.5px; }
     .hamburger { display: flex; }
     .page-hero { padding: 120px 24px 60px; }
     .section-wrap { padding: 60px 24px; }
@@ -3095,7 +3095,7 @@
   @media (max-width: 960px) {
     nav { padding: 14px 20px; }
     .nav-links { display: none !important; }
-    .logo-powered { display: none; }
+    .logo-powered { font-size: 8px; } .logo-powered strong { font-size: 8.5px; }
     .hamburger { display: flex; }
     .article-hero { padding: 120px 24px 50px; }
     .article-hero h1 { font-size: 36px; }
