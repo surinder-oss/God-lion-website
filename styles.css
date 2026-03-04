@@ -1485,7 +1485,9 @@
   /* ─── MOBILE ─── */
   @media (max-width: 960px) {
     nav { padding: 14px 24px; }
-    nav ul { display: none; }
+    .nav-links { display: none !important; }
+    .hamburger { display: flex; }
+    .logo-powered { font-size: 8px; } .logo-powered strong { font-size: 8.5px; }
     .section { padding: 60px 24px; }
     .page-hero { padding: 120px 24px 64px; }
     .origin-grid { grid-template-columns: 1fr; gap: 40px; }
