@@ -1527,6 +1527,113 @@
   .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(38px, 5vw, 62px); font-weight: 700; line-height: 1.08; color: #fff; margin-bottom: 22px; letter-spacing: -0.02em; animation: riseIn 0.7s ease both 0.1s; }
   .page-hero h1 em { font-style: italic; color: var(--gold-light); }
   .page-hero-sub { font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.65); line-height: 1.75; max-width: 560px; animation: riseIn 0.7s ease both 0.2s; }
+  /* ─── SERVICE DIRECTORY ─── */
+  .service-directory {
+    padding: 80px 56px 64px;
+    background: var(--white);
+  }
+  .service-directory-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .service-directory-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .directory-desc {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .service-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    text-align: left;
+  }
+  .service-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 20px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--purple-light), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .service-card:hover {
+    border-color: var(--purple);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(43,27,114,0.1);
+  }
+  .service-card:hover::before { opacity: 1; }
+  .service-card-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .service-card-content {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .service-card-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .service-card-content p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .service-card-arrow {
+    font-size: 18px;
+    color: var(--purple);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: all 0.25s;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .service-card:hover .service-card-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  @media (max-width: 960px) {
+    .service-directory { padding: 56px 20px 40px; }
+    .service-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  }
+  @media (max-width: 480px) {
+    .service-cards-grid { grid-template-columns: 1fr; }
+    .service-card { padding: 18px 16px; }
+  }
+
   /* ─── SERVICE NAV PILLS ─── */
   .service-nav {
     background: #fff;
