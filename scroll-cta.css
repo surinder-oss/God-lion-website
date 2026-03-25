@@ -1,0 +1,96 @@
+/* Scroll-Triggered CTA Bar — Blog Posts Only */
+.scroll-cta-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 8000;
+  background: var(--white, #FFFFFF);
+  border-top: 2px solid var(--purple-line, #E7DDF5);
+  box-shadow: 0 -4px 24px rgba(43, 27, 114, 0.1);
+  padding: 20px 32px;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+  font-family: 'Outfit', sans-serif;
+}
+.scroll-cta-bar.visible { transform: translateY(0); }
+.scroll-cta-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.scroll-cta-text h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--purple, #2B1B72);
+  margin: 0 0 4px;
+  font-weight: 700;
+}
+.scroll-cta-text p {
+  font-size: 14px;
+  color: var(--muted, #999999);
+  margin: 0;
+}
+.scroll-cta-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.scroll-cta-book {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--gold, #D4A574);
+  color: var(--white, #FFFFFF);
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.scroll-cta-book:hover { background: var(--purple, #2B1B72); }
+.scroll-cta-call {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--purple, #2B1B72);
+  border: 2px solid var(--purple, #2B1B72);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.scroll-cta-call:hover { background: var(--purple, #2B1B72); color: var(--white, #FFFFFF); }
+.scroll-cta-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--off-white, #F5F3F8);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--muted, #999999);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+.scroll-cta-close:hover { background: var(--purple, #2B1B72); color: var(--white, #FFFFFF); }
+@media (max-width: 960px) {
+  .scroll-cta-inner { flex-direction: column; text-align: center; gap: 16px; }
+  .scroll-cta-actions { width: 100%; justify-content: center; }
+  .scroll-cta-bar { padding: 16px 20px; bottom: 80px; }
+}
