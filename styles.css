@@ -3289,3 +3289,57 @@
     .article-body { max-width: 100%; }
     .footer-top { grid-template-columns: 1fr; }
   }
+
+/* ===== Floating Call Button — Mobile Only ===== */
+.floating-call {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9000;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.floating-call-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(43, 27, 114, 0.2);
+  transition: all 0.3s ease;
+  animation: callPulse 3s ease-in-out infinite;
+}
+.floating-call-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 24px rgba(43, 27, 114, 0.3);
+}
+.floating-call-btn svg { width: 24px; height: 24px; fill: var(--white); }
+.floating-call-label {
+  position: absolute;
+  right: 64px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--purple);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.floating-call-label.hidden { opacity: 0; pointer-events: none; }
+.floating-call.at-footer { opacity: 0; pointer-events: none; }
+@keyframes callPulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(43, 27, 114, 0.2); }
+  50% { box-shadow: 0 4px 24px rgba(212, 165, 116, 0.5); }
+}
+@media (max-width: 960px) {
+  .floating-call { display: block; }
+}
