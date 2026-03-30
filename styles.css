@@ -298,7 +298,7 @@
 
   .mission-who-item span {
     font-size: 12.5px; font-weight: 300;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.75);
     line-height: 1.5;
   }
 
@@ -428,7 +428,7 @@
 
   .cc-top > p {
     font-size: 12.5px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.75);
     font-weight: 300;
     line-height: 1.55;
     position: relative;
@@ -1020,7 +1020,7 @@
   }
 
   .contact-right > p {
-    font-size: 13px; color: rgba(255,255,255,0.5);
+    font-size: 13px; color: rgba(255,255,255,0.75);
     margin-bottom: 22px;
   }
 
@@ -1068,7 +1068,7 @@
   footer {
     background: #120D3A;
     padding: 52px 56px 28px;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.75);
   }
 
   .footer-top {
@@ -1101,7 +1101,7 @@
 
   .footer-col ul a {
     text-decoration: none;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.75);
     font-size: 13.5px; font-weight: 300;
     transition: color 0.2s;
   }
@@ -1458,7 +1458,7 @@
   .serve-card:hover { background: rgba(255,255,255,0.09); }
   .serve-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
   .serve-card h4 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
-  .serve-card p { font-size: 12.5px; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.55; }
+  .serve-card p { font-size: 12.5px; font-weight: 300; color: rgba(255,255,255,0.75); line-height: 1.55; }
   /* ─── CREDENTIALS ─── */
   .creds-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 52px; }
   .cred-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 30px 24px; text-align: center; transition: all 0.2s; }
@@ -1476,9 +1476,9 @@
   /* ─── CTA ─── */
   .cta-strip { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
   .cta-strip-text h3 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-  .cta-strip-text p { font-size: 15px; color: rgba(255,255,255,0.5); }
+  .cta-strip-text p { font-size: 15px; color: rgba(255,255,255,0.75); }
   .btn-outline-white { display: inline-flex; align-items: center; gap: 9px; background: transparent; color: #fff; padding: 15px 32px; border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: 500; border: 2px solid rgba(255,255,255,0.2); white-space: nowrap; transition: all 0.2s; flex-shrink: 0; }
-  .btn-outline-white:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.06); }
+  .btn-outline-white:hover { border-color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.06); }
   /* ─── FOOTER ─── */
   /* ─── PIPEDRIVE MODAL ─── */
   /* ─── REVEAL ─── */
@@ -1789,7 +1789,7 @@
   .cta-section p { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.6); margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.75; }
   .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .btn-outline-white { display: inline-flex; align-items: center; gap: 9px; background: transparent; color: #fff; padding: 15px 32px; border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: 500; border: 2px solid rgba(255,255,255,0.2); transition: all 0.2s; }
-  .btn-outline-white:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.06); }
+  .btn-outline-white:hover { border-color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.06); }
   /* ─── FOOTER ─── */
   /* ─── PIPEDRIVE MODAL ─── */
   /* ─── REVEAL ─── */
@@ -1985,7 +1985,7 @@
   }
   .consult-arrow {
     margin-left: auto;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.75);
     font-size: 20px;
   }
   /* ─── SOCIAL LINKS ─── */
@@ -2074,7 +2074,7 @@
   .footer-brand {}
   .footer-col ul li { margin-bottom: 10px; }
   .footer-col ul li a {
-    font-size: 13px; color: rgba(255,255,255,0.55);
+    font-size: 13px; color: rgba(255,255,255,0.75);
     text-decoration: none; transition: color 0.2s;
   }
   .footer-col ul li a:hover { color: #fff; }
@@ -2383,7 +2383,7 @@
   /* ─── FOOTER ─── */
   .footer-col ul li { margin-bottom: 10px; }
   .footer-col ul li a {
-    font-size: 13px; color: rgba(255,255,255,0.55);
+    font-size: 13px; color: rgba(255,255,255,0.75);
     text-decoration: none; transition: color 0.2s;
   }
   .footer-col ul li a:hover { color: #fff; }
@@ -2468,7 +2468,7 @@
   .app-card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; position: relative; z-index: 1; }
   .app-card-logo { width: 52px; height: 52px; background: rgba(255,255,255,0.12); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
   .app-card-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #fff; line-height: 1.2; }
-  .app-card-subtitle { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .app-card-subtitle { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 2px; }
   .app-tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: relative; z-index: 1; }
   .app-tool { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 14px 14px 12px; }
   .app-tool-emoji { font-size: 20px; margin-bottom: 8px; display: block; }
@@ -2546,7 +2546,7 @@
   #pipedriveFrame { border: none; width: 100%; height: 560px; }
   /* ─── FOOTER ─── */
   .footer-col ul li { margin-bottom: 10px; }
-  .footer-col ul li a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  .footer-col ul li a { font-size: 13px; color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s; }
   .footer-col ul li a:hover { color: #fff; }
   /* ─── REVEAL ─── */
   /* ─── MOBILE ─── */
@@ -2874,7 +2874,7 @@
   /* ─── FOOTER ─── */
   .footer-col ul li { margin-bottom: 10px; }
   .footer-col ul li a {
-    font-size: 13px; color: rgba(255,255,255,0.55);
+    font-size: 13px; color: rgba(255,255,255,0.75);
     text-decoration: none; transition: color 0.2s;
   }
   .footer-col ul li a:hover { color: #fff; }
@@ -3254,7 +3254,7 @@
   /* ─── FOOTER ─── */
   .footer-col ul li { margin-bottom: 10px; }
   .footer-col ul li a {
-    font-size: 13px; color: rgba(255,255,255,0.55);
+    font-size: 13px; color: rgba(255,255,255,0.75);
     text-decoration: none; transition: color 0.2s;
   }
   .footer-col ul li a:hover { color: #fff; }
