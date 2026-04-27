@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spousal Buyout Calculator — Estimate Your Buyout in 60 Seconds | Gold Lion Mortgages</title>
+  <link rel="canonical" href="https://www.goldlionmortgages.com/spousal-buyout-calculator.html">
+  <meta name="description" content="Free spousal buyout calculator for Alberta. Estimate the equity payout, new mortgage amount, and monthly payment in 60 seconds. No credit check, no contact info required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=3">
+
+  <meta property="og:url" content="https://www.goldlionmortgages.com/spousal-buyout-calculator.html">
+  <meta property="og:site_name" content="Gold Lion Mortgages">
+  <meta property="og:title" content="Spousal Buyout Calculator | Gold Lion Mortgages">
+  <meta property="og:description" content="Estimate the equity payout, new mortgage amount, and monthly payment in 60 seconds. No credit check, no contact info required.">
+  <meta property="og:type" content="website">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Spousal Buyout Mortgage Calculator",
+    "url": "https://www.goldlionmortgages.com/spousal-buyout-calculator.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "description": "Free calculator that estimates the equity payout owed to a spouse, the new mortgage amount required, and the monthly payment under the Canadian spousal buyout program.",
+    "offers": {"@type": "Offer", "price": "0"},
+    "provider": {
+      "@type": "MortgageBroker",
+      "name": "Gold Lion Mortgages",
+      "url": "https://www.goldlionmortgages.com"
+    }
+  }
+  </script>
+
+<link rel="stylesheet" href="whatsapp.css">
+
+<style>
+/* ── Calculator-specific styles ── */
+.calc-wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+@media (max-width: 880px) {
+  .calc-grid { grid-template-columns: 1fr; }
+}
+.calc-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: 0 8px 40px rgba(43, 27, 114, 0.08);
+  border: 1px solid rgba(43, 27, 114, 0.08);
+}
+.calc-card h2 {
+  font-family: 'Playfair Display', serif;
+  color: #2b1b72;
+  font-size: 1.5rem;
+  margin: 0 0 1.5rem;
+}
+.calc-field {
+  margin-bottom: 1.25rem;
+}
+.calc-field label {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.01em;
+}
+.calc-field .calc-help {
+  font-size: 0.78rem;
+  color: #888;
+  font-weight: 400;
+  display: block;
+  margin-top: 0.25rem;
+}
+.calc-field input[type="text"],
+.calc-field input[type="number"],
+.calc-field select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  border: 1.5px solid #e1deec;
+  border-radius: 10px;
+  background: #fafaff;
+  color: #2b1b72;
+  transition: border-color 0.2s, background 0.2s;
+  box-sizing: border-box;
+}
+.calc-field input:focus,
+.calc-field select:focus {
+  outline: none;
+  border-color: #2b1b72;
+  background: #fff;
+}
+.calc-field .calc-prefix {
+  position: relative;
+}
+.calc-field .calc-prefix::before {
+  content: "$";
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-family: 'Outfit', sans-serif;
+  z-index: 1;
+}
+.calc-field .calc-prefix input {
+  padding-left: 1.8rem;
+}
+.calc-field .calc-suffix {
+  position: relative;
+}
+.calc-field .calc-suffix::after {
+  content: "%";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-family: 'Outfit', sans-serif;
+}
+.calc-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ece9f5;
+}
+.calc-result-row:last-child {
+  border-bottom: none;
+}
+.calc-result-label {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  color: #555;
+  font-size: 0.95rem;
+}
+.calc-result-value {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  color: #2b1b72;
+  font-size: 1.4rem;
+}
+.calc-result-row.highlight {
+  background: linear-gradient(135deg, #f7f4ff 0%, #fff 100%);
+  margin: 1rem -2rem;
+  padding: 1.25rem 2rem;
+  border-radius: 0;
+  border-bottom: 1px solid #ece9f5;
+}
+.calc-result-row.highlight .calc-result-value {
+  font-size: 1.7rem;
+  color: #2b1b72;
+}
+.calc-result-row.alert {
+  background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+}
+.calc-result-row.alert .calc-result-value {
+  color: #b32d2d;
+}
+.calc-flag {
+  display: inline-block;
+  font-size: 0.78rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  margin-left: 0.5rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+}
+.calc-flag.ok { background: #e7f7ec; color: #1f7a3a; }
+.calc-flag.warn { background: #fff4e0; color: #a8650b; }
+.calc-flag.alert { background: #ffe5e5; color: #b32d2d; }
+.calc-explainer {
+  background: #fafaff;
+  border-left: 3px solid #2b1b72;
+  padding: 1rem 1.25rem;
+  margin-top: 1.5rem;
+  border-radius: 0 10px 10px 0;
+}
+.calc-explainer p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #555;
+  margin: 0 0 0.5rem;
+}
+.calc-explainer p:last-child { margin-bottom: 0; }
+.calc-empty {
+  text-align: center;
+  color: #888;
+  padding: 2rem 1rem;
+  font-style: italic;
+}
+.calc-share-row {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ece9f5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+.calc-share-btn {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  font-size: 0.92rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 999px;
+  border: 1.5px solid #2b1b72;
+  background: #fff;
+  color: #2b1b72;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.calc-share-btn:hover {
+  background: #2b1b72;
+  color: #fff;
+}
+.calc-disclaimer {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 1.5rem;
+  line-height: 1.5;
+}
+</style>
+
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="main-nav">
+  <a href="index.html" class="logo">
+    <div>
+      <div class="logo-name">Gold <span>Lion</span><br>Mortgages Inc.</div>
+    </div>
+    <div class="logo-powered">
+      Powered by<br>
+      <strong>Mortgage Centre<br>Elevo Mortgages</strong>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="partners.html">Partners</a></li>
+    <li><a href="calculator.html">Tools</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un" target="_blank" class="nav-cta">Apply for a Mortgage</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="partners.html">Partners</a>
+  <a href="calculator.html">Tools</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un" target="_blank" class="mobile-menu-cta">Apply for a Mortgage</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="page-hero">
+  <div class="page-hero-label">Spousal Buyout Calculator</div>
+  <h1>Estimate the Buyout<br><em>In 60 Seconds.</em></h1>
+  <p>No credit check. No contact info required to see your numbers. Just the math: how much your spouse is owed, how much you'd need to refinance, and what the monthly payment would look like under the Canadian spousal buyout program.</p>
+</section>
+
+<!-- ═══ CALCULATOR ═══ -->
+<div class="calc-wrap">
+  <div class="calc-grid">
+
+    <!-- LEFT — INPUTS -->
+    <div class="calc-card">
+      <h2>Your Numbers</h2>
+
+      <div class="calc-field">
+        <label for="homeValue">Home's current market value
+          <span class="calc-help">Use a recent appraisal, or your best estimate. The official number comes from a lender-ordered appraisal.</span>
+        </label>
+        <div class="calc-prefix">
+          <input type="text" id="homeValue" inputmode="numeric" placeholder="600,000">
+        </div>
+      </div>
+
+      <div class="calc-field">
+        <label for="mortgageBalance">Current mortgage balance
+          <span class="calc-help">What's still owed on the existing mortgage today.</span>
+        </label>
+        <div class="calc-prefix">
+          <input type="text" id="mortgageBalance" inputmode="numeric" placeholder="350,000">
+        </div>
+      </div>
+
+      <div class="calc-field">
+        <label for="equitySplit">Equity split with spouse
+          <span class="calc-help">Most matrimonial property is split 50/50 in Alberta. Your separation agreement may specify a different ratio.</span>
+        </label>
+        <div class="calc-suffix">
+          <input type="number" id="equitySplit" min="1" max="99" value="50">
+        </div>
+      </div>
+
+      <div class="calc-field">
+        <label for="otherAdjustments">Other agreed adjustments (optional)
+          <span class="calc-help">Add or subtract any items the agreement explicitly settles through the buyout — RRSP equalization, vehicle equity offsets, joint debt being paid off, etc. Leave blank if not applicable.</span>
+        </label>
+        <div class="calc-prefix">
+          <input type="text" id="otherAdjustments" inputmode="numeric" placeholder="0">
+        </div>
+      </div>
+
+      <div class="calc-field">
+        <label for="rate">Estimated mortgage rate
+          <span class="calc-help">Roughly today's 5-year insured rate in Alberta. We'll quote your actual rate during consultation.</span>
+        </label>
+        <div class="calc-suffix">
+          <input type="number" id="rate" step="0.05" min="0" max="20" value="4.59">
+        </div>
+      </div>
+
+      <div class="calc-field">
+        <label for="amortization">Amortization
+        </label>
+        <select id="amortization">
+          <option value="25" selected>25 years</option>
+          <option value="20">20 years</option>
+          <option value="30">30 years</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- RIGHT — RESULTS -->
+    <div class="calc-card">
+      <h2>Your Buyout Estimate</h2>
+
+      <div id="calcResults">
+        <div class="calc-empty">Enter your home value and mortgage balance on the left to see your numbers.</div>
+      </div>
+
+      <div class="calc-disclaimer">
+        Estimates only. Actual amounts depend on the appraised value, the lender, default insurer rules, your credit and income, and the exact terms in your separation agreement. The CMHC, Sagen, and Canada Guaranty spousal buyout programs allow up to 95% loan-to-value, but qualifying is subject to the federal stress test and lender debt service ratios.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Soft capture / next-step block -->
+  <div class="calc-card" style="margin-top:2rem;text-align:center;">
+    <h2 style="text-align:center">Ready for the Real Numbers?</h2>
+    <p style="font-family:'Outfit',sans-serif;color:#555;line-height:1.6;max-width:680px;margin:0 auto 1.25rem;">
+      A 30-minute confidential consultation will give you the exact buyout amount you can fund, the rate you actually qualify for, and a written game plan you can take to your lawyer. We don't contact your spouse, your existing lender, or anyone else without your permission.
+    </p>
+    <button class="consult-cta" onclick="openCalendar()" style="margin:0.5rem auto;">
+      <div class="consult-icon">📅</div>
+      <div class="consult-text">
+        <div class="consult-title">Book a Confidential Consultation</div>
+        <div class="consult-sub">30 min — phone, video, WhatsApp, or in person</div>
+      </div>
+      <div class="consult-arrow">→</div>
+    </button>
+
+    <div class="calc-share-row">
+      <a href="tel:4034040048" class="calc-share-btn">📞 Call (403) 404-0048</a>
+      <a href="https://wa.me/14034040048?text=Hi%20Surinderpal%2C%20I%20just%20used%20the%20spousal%20buyout%20calculator%20and%20would%20like%20to%20talk%20confidentially." target="_blank" class="calc-share-btn">💬 WhatsApp</a>
+      <button class="calc-share-btn" onclick="copyResults()" id="copyBtn">📋 Copy Results for My Lawyer</button>
+    </div>
+  </div>
+
+  <!-- Related guides -->
+  <div style="max-width:780px;margin:3rem auto 0;text-align:center;">
+    <p style="font-family:'Outfit',sans-serif;color:#666;font-size:0.95rem;">
+      Related: <a href="spousal-buyout-mortgage.html" style="color:#2b1b72;">Spousal Buyout Mortgage Service</a> ·
+      <a href="blog/divorce-mortgage-calgary.html" style="color:#2b1b72;">Divorce Mortgage in Calgary</a> ·
+      <a href="blog/separated-still-on-mortgage.html" style="color:#2b1b72;">Separated &amp; Still on the Mortgage</a>
+    </p>
+  </div>
+</div>
+
+<!-- ═══ Pipedrive Modal ═══ -->
+<div class="pipedrive-overlay" id="calendarOverlay" onclick="closeCalendarOutside(event)">
+  <div class="pipedrive-modal">
+    <div class="pipedrive-modal-header">
+      <div>
+        <h3>Book a Confidential Consultation</h3>
+        <p>Pick a time that works for you — no obligation</p>
+      </div>
+      <button class="modal-close" onclick="closeCalendar()">&#x2715;</button>
+    </div>
+    <iframe id="pipedriveFrame" src="" title="Book a Consultation"></iframe>
+  </div>
+</div>
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo" style="align-items:flex-start">
+        <div>
+          <div class="logo-name" style="color:#fff; font-size:16px">Gold <span>Lion</span><br>Mortgages Inc.</div>
+          <div class="logo-powered" style="color:rgba(255,255,255,0.4); border-color:rgba(255,255,255,0.15); margin-top:4px">
+            Powered by<br>
+            <strong style="color:rgba(255,255,255,0.65)">Mortgage Centre<br>Elevo Mortgages</strong>
+          </div>
+        </div>
+      </a>
+      <p class="footer-desc">Turning bank rejections into approved mortgages. Specializing in self-employed Canadians, first-time buyers, investors, separations, and renewals across Alberta.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/sp_maan_mortgages/" target="_blank" class="social-btn" title="Instagram">📸</a>
+        <a href="https://www.linkedin.com/in/surinderpal-singh-a49163187/" target="_blank" class="social-btn" title="LinkedIn">💼</a>
+        <a href="#" onclick="openCalendar(); return false;" class="social-btn" title="Book a Call">📅</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="calculator.html">Tools</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Actions</h4>
+      <ul>
+        <li><a href="https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un" target="_blank">Apply for a Mortgage</a></li>
+        <li><a href="#" onclick="openCalendar(); return false;">Book a Consultation</a></li>
+        <li><a href="https://share.google/vskJwXGE6z2dewv8M" target="_blank">Google Reviews</a></li>
+        <li><a href="services.html">Our Services</a></li>
+        <li><a href="about.html">About Surinderpal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:4034040048">📞 (403) 404-0048</a></li>
+        <li><a href="mailto:Surinder@goldlionmortgages.com">✉️ Surinder@goldlionmortgages.com</a></li>
+        <li><a href="https://www.instagram.com/sp_maan_mortgages/" target="_blank">📸 @sp_maan_mortgages</a></li>
+        <li><a href="https://www.linkedin.com/in/surinderpal-singh-a49163187/" target="_blank">💼 LinkedIn</a></li>
+        <li><a href="#"> 📍 Calgary, Alberta</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Gold Lion Mortgages Inc. All rights reserved.</span>
+    <div class="license-tag">
+      <div class="license-dot"></div>
+      Powered by Mortgage Centre Elevo Mortgages · Member of DLCG · Alberta
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── PIPEDRIVE CALENDAR ──
+const PIPEDRIVE_URL = 'https://goldlionmortgagesinc.pipedrive.com/scheduler/Lzrkrzf4/call-appointment';
+function openCalendar() {
+  const overlay = document.getElementById('calendarOverlay');
+  if (!overlay) return;
+  const frame = document.getElementById('pipedriveFrame');
+  if (frame && (!frame.src || frame.src === window.location.href)) frame.src = PIPEDRIVE_URL;
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeCalendar() {
+  const overlay = document.getElementById('calendarOverlay');
+  if (overlay) overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+function closeCalendarOutside(e) {
+  if (e.target === document.getElementById('calendarOverlay')) closeCalendar();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCalendar(); });
+
+// ── HAMBURGER ──
+(function(){
+  var btn  = document.getElementById('hamburger');
+  var menu = document.getElementById('mobile-menu');
+  if (!btn) return;
+  btn.addEventListener('click', function(){
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+
+// ── NAV SHADOW ──
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').style.boxShadow =
+    window.scrollY > 20 ? '0 2px 24px rgba(43,27,114,0.09)' : 'none';
+});
+
+// ═══════════════ CALCULATOR LOGIC ═══════════════
+const fmt = new Intl.NumberFormat('en-CA', {style:'currency', currency:'CAD', maximumFractionDigits: 0});
+const fmtPct = (n) => (n*100).toFixed(1) + '%';
+
+function parseNum(v) {
+  if (!v) return 0;
+  const cleaned = String(v).replace(/[^0-9.\-]/g, '');
+  const n = parseFloat(cleaned);
+  return isNaN(n) ? 0 : n;
+}
+
+// Format number inputs with commas as the user types
+['homeValue','mortgageBalance','otherAdjustments'].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('input', () => {
+    const raw = el.value.replace(/,/g, '');
+    if (raw === '' || raw === '-') { calc(); return; }
+    const num = parseNum(raw);
+    const cursorPos = el.selectionStart;
+    const oldLen = el.value.length;
+    el.value = num.toLocaleString('en-CA');
+    const newLen = el.value.length;
+    el.setSelectionRange(cursorPos + (newLen - oldLen), cursorPos + (newLen - oldLen));
+    calc();
+  });
+});
+['equitySplit','rate','amortization'].forEach(id => {
+  document.getElementById(id).addEventListener('input', calc);
+  document.getElementById(id).addEventListener('change', calc);
+});
+
+// Default insurer premium tiers (CMHC, Sagen, Canada Guaranty — broadly aligned)
+function insurancePremiumRate(ltv) {
+  if (ltv <= 0.65) return 0.006;
+  if (ltv <= 0.75) return 0.017;
+  if (ltv <= 0.80) return 0.024;
+  if (ltv <= 0.85) return 0.028;
+  if (ltv <= 0.90) return 0.031;
+  if (ltv <= 0.95) return 0.040;
+  return null; // not insurable
+}
+
+function monthlyPayment(principal, annualRate, years) {
+  if (principal <= 0) return 0;
+  const r = annualRate / 100 / 12;
+  const n = years * 12;
+  if (r === 0) return principal / n;
+  return principal * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+}
+
+function calc() {
+  const homeValue = parseNum(document.getElementById('homeValue').value);
+  const mortgageBalance = parseNum(document.getElementById('mortgageBalance').value);
+  const equitySplitPct = parseNum(document.getElementById('equitySplit').value) || 50;
+  const otherAdj = parseNum(document.getElementById('otherAdjustments').value);
+  const rate = parseNum(document.getElementById('rate').value) || 4.59;
+  const amort = parseNum(document.getElementById('amortization').value) || 25;
+
+  const resultsEl = document.getElementById('calcResults');
+  if (homeValue <= 0 || mortgageBalance < 0) {
+    resultsEl.innerHTML = '<div class="calc-empty">Enter your home value and mortgage balance on the left to see your numbers.</div>';
+    return;
+  }
+
+  const totalEquity = Math.max(0, homeValue - mortgageBalance);
+  const spouseShare = totalEquity * ((100 - equitySplitPct) / 100);
+  const buyoutAmount = Math.max(0, spouseShare + otherAdj);
+
+  // New mortgage = existing balance + buyout amount
+  const newMortgage = mortgageBalance + buyoutAmount;
+  const ltv = homeValue > 0 ? newMortgage / homeValue : 0;
+
+  let insRate = insurancePremiumRate(ltv);
+  let insurable = insRate !== null;
+  let insPremium = insurable ? newMortgage * insRate : 0;
+  let mortgageWithIns = newMortgage + insPremium;
+  let monthly = monthlyPayment(mortgageWithIns, rate, amort);
+
+  // LTV flag
+  let ltvFlag = '';
+  let ltvFlagText = '';
+  if (!insurable) {
+    ltvFlag = 'alert';
+    ltvFlagText = 'Above 95% — not insurable';
+  } else if (ltv <= 0.80) {
+    ltvFlag = 'ok';
+    ltvFlagText = 'Within standard refinance limits';
+  } else if (ltv <= 0.95) {
+    ltvFlag = 'warn';
+    ltvFlagText = 'Spousal buyout program required';
+  }
+
+  let html = '';
+
+  html += `<div class="calc-result-row">
+    <span class="calc-result-label">Total home equity</span>
+    <span class="calc-result-value">${fmt.format(totalEquity)}</span>
+  </div>`;
+
+  html += `<div class="calc-result-row highlight">
+    <span class="calc-result-label">Buyout owed to spouse</span>
+    <span class="calc-result-value">${fmt.format(buyoutAmount)}</span>
+  </div>`;
+
+  html += `<div class="calc-result-row">
+    <span class="calc-result-label">New mortgage required</span>
+    <span class="calc-result-value">${fmt.format(newMortgage)}</span>
+  </div>`;
+
+  html += `<div class="calc-result-row ${ltvFlag === 'alert' ? 'alert' : ''}">
+    <span class="calc-result-label">Loan-to-value ratio</span>
+    <span class="calc-result-value">${fmtPct(ltv)} <span class="calc-flag ${ltvFlag}">${ltvFlagText}</span></span>
+  </div>`;
+
+  if (insurable && ltv > 0.80) {
+    html += `<div class="calc-result-row">
+      <span class="calc-result-label">Default insurance premium${insRate ? ' (' + (insRate*100).toFixed(2) + '%)' : ''}</span>
+      <span class="calc-result-value">${fmt.format(insPremium)}</span>
+    </div>`;
+  }
+
+  if (insurable) {
+    html += `<div class="calc-result-row highlight">
+      <span class="calc-result-label">Estimated monthly payment<br><span style="font-size:0.78rem;color:#888;font-weight:400">@ ${rate}% over ${amort} yrs</span></span>
+      <span class="calc-result-value">${fmt.format(monthly)}/mo</span>
+    </div>`;
+  }
+
+  // Explainer
+  let explainerText = '';
+  if (!insurable) {
+    explainerText = `<p><strong>This buyout is too large for the spousal buyout program alone.</strong> The new mortgage exceeds 95% of the home's value, which is the federal cap for insured spousal buyouts. Options to make this work: bring outside funds to reduce the mortgage, negotiate a lower buyout, layer a private second mortgage, or sell the home and split the proceeds. We can model each scenario in a confidential consultation.</p>`;
+  } else if (ltv <= 0.80) {
+    explainerText = `<p><strong>Good news — this fits within standard refinance limits.</strong> Because the new mortgage is at or under 80% of the home's value, you may not need the spousal buyout program at all. A standard refinance can fund the buyout, which avoids the default insurance premium. The buyout program is for situations where the buyout pushes you above 80% LTV.</p>`;
+  } else if (ltv <= 0.95) {
+    explainerText = `<p><strong>This file fits the spousal buyout program.</strong> The new mortgage exceeds the 80% standard refinance limit but stays within the 95% spousal buyout ceiling. CMHC, Sagen, or Canada Guaranty can insure it as a buyout, which is why the higher LTV is allowed. The premium gets added to the mortgage — you don't pay it upfront.</p><p>Final approval depends on your income qualifying under the federal stress test, your credit, and the lender's specific debt service ratios.</p>`;
+  }
+
+  html += `<div class="calc-explainer">${explainerText}</div>`;
+
+  resultsEl.innerHTML = html;
+}
+
+// Run once on load with default rate
+calc();
+
+// ── COPY RESULTS ──
+function copyResults() {
+  const homeValue = parseNum(document.getElementById('homeValue').value);
+  const mortgageBalance = parseNum(document.getElementById('mortgageBalance').value);
+  const equitySplitPct = parseNum(document.getElementById('equitySplit').value) || 50;
+  const otherAdj = parseNum(document.getElementById('otherAdjustments').value);
+  const rate = parseNum(document.getElementById('rate').value) || 4.59;
+  const amort = parseNum(document.getElementById('amortization').value) || 25;
+
+  if (homeValue <= 0) { alert('Enter your home value first.'); return; }
+
+  const totalEquity = Math.max(0, homeValue - mortgageBalance);
+  const spouseShare = totalEquity * ((100 - equitySplitPct) / 100);
+  const buyoutAmount = Math.max(0, spouseShare + otherAdj);
+  const newMortgage = mortgageBalance + buyoutAmount;
+  const ltv = newMortgage / homeValue;
+  const insRate = insurancePremiumRate(ltv);
+  const insPremium = insRate ? newMortgage * insRate : 0;
+  const monthly = insRate ? monthlyPayment(newMortgage + insPremium, rate, amort) : 0;
+
+  const text =
+`SPOUSAL BUYOUT ESTIMATE
+Source: goldlionmortgages.com/spousal-buyout-calculator.html
+
+Inputs:
+  Home market value:       ${fmt.format(homeValue)}
+  Current mortgage:        ${fmt.format(mortgageBalance)}
+  Equity split (mine/ex):  ${equitySplitPct}% / ${100-equitySplitPct}%
+  Other adjustments:       ${fmt.format(otherAdj)}
+  Estimated rate:          ${rate}%
+  Amortization:            ${amort} years
+
+Results:
+  Total home equity:       ${fmt.format(totalEquity)}
+  Buyout owed to spouse:   ${fmt.format(buyoutAmount)}
+  New mortgage required:   ${fmt.format(newMortgage)}
+  Loan-to-value ratio:     ${fmtPct(ltv)}
+${insRate ? `  Default insurance:       ${fmt.format(insPremium)}\n  Estimated monthly:       ${fmt.format(monthly)}/mo` : '  STATUS: Above 95% LTV — not insurable as a single spousal buyout mortgage'}
+
+Notes:
+  Estimates only. Actual figures depend on appraisal, lender, default insurer rules, credit, income, and exact agreement terms.
+  CMHC / Sagen / Canada Guaranty allow up to 95% LTV under the spousal buyout program.
+
+Prepared by Gold Lion Mortgages Inc.
+(403) 404-0048 · Surinder@goldlionmortgages.com`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ Copied to clipboard';
+    setTimeout(() => { btn.innerHTML = orig; }, 2500);
+  }, () => {
+    alert('Copy failed — please select and copy the text manually.');
+  });
+}
+</script>
+
+<a href="tel:4034040048" class="floating-call" id="floatingCall" aria-label="Call Gold Lion Mortgages"><span class="floating-call-label" id="callLabel">Call Now</span><div class="floating-call-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div></a>
+<script>(function(){var l=document.getElementById("callLabel"),f=document.getElementById("floatingCall");if(!l||!f)return;setTimeout(function(){l.classList.add("hidden")},3000);var ft=document.querySelector("footer");if(!ft)return;window.addEventListener("scroll",function(){f.classList.toggle("at-footer",ft.getBoundingClientRect().top<window.innerHeight)})})();</script>
+<a href="https://wa.me/14034040048?text=Hi%20Surinderpal%2C%20I%27d%20like%20to%20discuss%20a%20spousal%20buyout%20mortgage%20confidentially." target="_blank" class="whatsapp-float" id="whatsappFloat" aria-label="Chat on WhatsApp"><span class="whatsapp-tooltip" id="whatsappTooltip">Chat on WhatsApp</span><div class="whatsapp-float-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div></a>
+<script src="whatsapp.js"></script>
+</body>
+</html>
