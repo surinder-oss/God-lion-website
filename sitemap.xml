@@ -282,6 +282,19 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- Spousal Buyout Cluster -->
+  <url>
+    <loc>https://www.goldlionmortgages.com/spousal-buyout-mortgage.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.goldlionmortgages.com/spousal-buyout-calculator.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- City Landing Pages -->
   <url>
     <loc>https://www.goldlionmortgages.com/mortgage-broker-airdrie.html</loc>
@@ -399,6 +412,18 @@
   </url>
   <url>
     <loc>https://www.goldlionmortgages.com/blog/investment-property-mortgage-calgary.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.goldlionmortgages.com/blog/poly-b-plumbing-mortgage-calgary.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.goldlionmortgages.com/blog/alternative-mortgage-lenders-calgary.html</loc>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
