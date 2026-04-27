@@ -295,6 +295,24 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://www.goldlionmortgages.com/blog/how-spousal-buyout-mortgage-works-alberta.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.goldlionmortgages.com/blog/cmhc-spousal-buyout-program.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.goldlionmortgages.com/blog/calculate-spouse-equity-buyout.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- City Landing Pages -->
   <url>
     <loc>https://www.goldlionmortgages.com/mortgage-broker-airdrie.html</loc>
