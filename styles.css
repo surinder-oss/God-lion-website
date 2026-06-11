@@ -4,7 +4,7 @@
     --purple:       #2B1B72;
     --purple-mid:   #3B2A8A;
     --purple-light: #EEE9FF;
-    --purple-line:  rgba(43,27,114,0.12)
+    --purple-line:  rgba(43,27,114,0.12);
     --gold:         #C9A84C;
     --gold-light:   #E8CB7A;
     --text:         #181524;
@@ -809,7 +809,7 @@
   .section-label {
     font-size: 11px; font-weight: 600;
     letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--gold);
+    color: #8A6D1F;
     margin-bottom: 10px;
   }
 
@@ -1083,17 +1083,17 @@
   .footer-brand .logo-name { font-size: 17px; }
 
   .footer-desc {
-    font-size: 13.5px; font-weight: 300;
+    font-size: 13.5px; font-weight: 400;
     line-height: 1.7;
     margin-top: 14px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.62);
     max-width: 260px;
   }
 
   .footer-col h4 {
     font-size: 10.5px; font-weight: 600;
     letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.65);
     margin-bottom: 14px;
   }
 
@@ -1131,7 +1131,7 @@
 
   .license-tag {
     display: flex; align-items: center; gap: 7px;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.65);
   }
 
   .license-dot {
