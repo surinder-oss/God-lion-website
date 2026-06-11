@@ -3277,3 +3277,12 @@
 .article-cta-box[style*="#f7f4ff"] h3,
 .article-cta-box[style*="#eef4fb"] h3,
 .article-cta-box[style*="#f5f4fb"] h3 { color: var(--text); }
+
+/* hero contact card heading (markup uses h2; was falling through to global dark h2) */
+.cc-top h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px; font-weight: 700;
+  color: #fff; line-height: 1.3;
+  margin-bottom: 6px; position: relative; z-index: 1;
+}
+.cc-top h2 em { color: var(--gold-light); font-style: italic; }
