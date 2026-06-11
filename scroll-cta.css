@@ -74,8 +74,8 @@
 }
 .scroll-cta-call:hover { background: var(--purple, #2B1B72); color: var(--white, #FFFFFF); }
 .scroll-cta-close {
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   border: none;
   background: var(--off-white, #F5F3F8);
   border-radius: 50%;
