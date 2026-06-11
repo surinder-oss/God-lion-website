@@ -1400,18 +1400,7 @@
   }
 
 /* ── ABOUT PAGE STYLES ── */
-  :root {
-    --white:        #FAFAF8;
-    --off-white:    #F4F3F0;
-    --purple:       #2B1B72;
-    --purple-mid:   #3B2A8A;
-    --purple-light: #EEE9FF;
-    --gold:         #C9A84C;
-    --gold-light:   #E8CB7A;
-    --text:         #181524;
-    --muted:        #6B6785;
-    --border:       rgba(43,27,114,0.1);
-  }
+  /* :root tokens defined at top of file */
   /* ─── NAV ─── */
   .nav-links a.active { color: var(--purple); font-weight: 500; }
   /* ─── PAGE HERO ─── */
@@ -1502,18 +1491,7 @@
   }
 
 /* ── SERVICES PAGE STYLES ── */
-  :root {
-    --white:        #FAFAF8;
-    --off-white:    #F4F3F0;
-    --purple:       #2B1B72;
-    --purple-mid:   #3B2A8A;
-    --purple-light: #EEE9FF;
-    --gold:         #C9A84C;
-    --gold-light:   #E8CB7A;
-    --text:         #181524;
-    --muted:        #6B6785;
-    --border:       rgba(43,27,114,0.1);
-  }
+  /* :root tokens defined at top of file */
   /* ─── NAV ─── */
   .nav-links a.active { color: var(--purple); font-weight: 500; }
   /* ─── PAGE HERO ─── */
@@ -1834,19 +1812,7 @@
   }
 
 /* ── CONTACT PAGE STYLES ── */
-  :root {
-    --white:        #FAFAF8;
-    --off-white:    #F4F3F0;
-    --purple:       #2B1B72;
-    --purple-mid:   #3B2A8A;
-    --purple-light: #EEE9FF;
-    --purple-line:  rgba(43,27,114,0.12);
-    --gold:         #C9A84C;
-    --gold-light:   #E8CB7A;
-    --text:         #181524;
-    --muted:        #6B6785;
-    --border:       rgba(43,27,114,0.1);
-  }
+  /* :root tokens defined at top of file */
   /* ─── NAV ─── */
   .nav-links a.active { color: var(--purple); font-weight: 600; }
   /* ─── HAMBURGER (hidden on desktop) ─── */
@@ -2081,19 +2047,7 @@
   /* ─── REVEAL ANIMATION ─── */
 
 /* ── BLOG PAGE STYLES ── */
-  :root {
-    --white:        #FAFAF8;
-    --off-white:    #F4F3F0;
-    --purple:       #2B1B72;
-    --purple-mid:   #3B2A8A;
-    --purple-light: #EEE9FF;
-    --purple-line:  rgba(43,27,114,0.12);
-    --gold:         #C9A84C;
-    --gold-light:   #E8CB7A;
-    --text:         #181524;
-    --muted:        #6B6785;
-    --border:       rgba(43,27,114,0.1);
-  }
+  /* :root tokens defined at top of file */
   /* ─── NAV ─── */
   .nav-links a.active { color: var(--purple); font-weight: 600; }
   /* ─── HAMBURGER ─── */
@@ -2415,19 +2369,7 @@
   }
 
 /* ── CALCULATOR PAGE STYLES ── */
-  :root {
-    --white:        #FAFAF8;
-    --off-white:    #F4F3F0;
-    --purple:       #2B1B72;
-    --purple-mid:   #3B2A8A;
-    --purple-light: #EEE9FF;
-    --purple-line:  rgba(43,27,114,0.12);
-    --gold:         #C9A84C;
-    --gold-light:   #E8CB7A;
-    --text:         #181524;
-    --muted:        #6B6785;
-    --border:       rgba(43,27,114,0.1);
-  }
+  /* :root tokens defined at top of file */
   /* ─── NAV ─── */
   .nav-links a.active { color: var(--purple); font-weight: 600; }
   /* ─── HAMBURGER ─── */
@@ -2585,19 +2527,7 @@
   }
 
 /* ── PARTNERS PAGE STYLES ── */
-  :root {
-    --white:        #FAFAF8;
-    --off-white:    #F4F3F0;
-    --purple:       #2B1B72;
-    --purple-mid:   #3B2A8A;
-    --purple-light: #EEE9FF;
-    --purple-line:  rgba(43,27,114,0.12);
-    --gold:         #C9A84C;
-    --gold-light:   #E8CB7A;
-    --text:         #181524;
-    --muted:        #6B6785;
-    --border:       rgba(43,27,114,0.1);
-  }
+  /* :root tokens defined at top of file */
   /* ─── NAV ─── */
   .nav-links a.active { color: var(--purple); font-weight: 600; }
   /* ─── HAMBURGER ─── */
@@ -2908,19 +2838,7 @@
   }
 
 /* ── BLOG ARTICLE STYLES ── */
-  :root {
-    --white:        #FAFAF8;
-    --off-white:    #F4F3F0;
-    --purple:       #2B1B72;
-    --purple-mid:   #3B2A8A;
-    --purple-light: #EEE9FF;
-    --purple-line:  rgba(43,27,114,0.12);
-    --gold:         #C9A84C;
-    --gold-light:   #E8CB7A;
-    --text:         #181524;
-    --muted:        #6B6785;
-    --border:       rgba(43,27,114,0.1);
-  }
+  /* :root tokens defined at top of file */
   /* ─── NAV ─── */
   .nav-links a.active { color: var(--purple); font-weight: 600; }
   /* ─── HAMBURGER ─── */
@@ -3348,3 +3266,14 @@
 @media (max-width: 960px) {
   .logo-powered { display: none; }
 }
+
+/* Light-background variants of .article-cta-box: dark text instead of white */
+.article-cta-box[style*="#f7f4ff"] p,
+.article-cta-box[style*="#eef4fb"] p,
+.article-cta-box[style*="#f5f4fb"] p { color: #444; }
+.article-cta-box[style*="#f7f4ff"] p:last-child a,
+.article-cta-box[style*="#eef4fb"] p:last-child a,
+.article-cta-box[style*="#f5f4fb"] p:last-child a { color: var(--purple); }
+.article-cta-box[style*="#f7f4ff"] h3,
+.article-cta-box[style*="#eef4fb"] h3,
+.article-cta-box[style*="#f5f4fb"] h3 { color: var(--text); }
