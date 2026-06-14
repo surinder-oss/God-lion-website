@@ -1,0 +1,503 @@
+/* ════════════════════════════════════════════════════════════════
+   GOLD LION MORTGAGES — LEAD-GEN LAYER
+   Reusable styles for: lead-magnet capture block, exit-intent modal,
+   and the pre-qualification quiz (quiz.html).
+   Brand tokens (--purple, --gold, --white, etc.) are defined in styles.css.
+   Fallback values are included so this file also works standalone.
+   No emojis. RECA-safe. Canadian English.
+   ════════════════════════════════════════════════════════════════ */
+
+:root {
+  --lg-purple:       var(--purple, #2B1B72);
+  --lg-purple-mid:   var(--purple-mid, #3B2A8A);
+  --lg-purple-light: var(--purple-light, #EEE9FF);
+  --lg-gold:         var(--gold, #C9A84C);
+  --lg-gold-light:   var(--gold-light, #E8CB7A);
+  --lg-white:        var(--white, #FAFAF8);
+  --lg-off-white:    var(--off-white, #F4F3F0);
+  --lg-text:         var(--text, #181524);
+  --lg-muted:        var(--muted, #6B6785);
+  --lg-border:       var(--border, rgba(43,27,114,0.1));
+}
+
+/* ─────────────────────────────────────────────
+   1. LEAD-MAGNET CTA SECTION (in-page block)
+   Drop-in section that pairs benefit copy with a
+   capture form. Used on index / service pages.
+   ───────────────────────────────────────────── */
+.lead-magnet {
+  background: linear-gradient(135deg, var(--lg-purple), #1a0f55);
+  padding: 64px 56px;
+  position: relative;
+  overflow: hidden;
+}
+.lead-magnet::before {
+  content: '';
+  position: absolute;
+  top: -140px; right: -100px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.12), transparent 70%);
+  pointer-events: none;
+}
+.lead-magnet-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 52px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.lead-magnet-copy .lead-magnet-label {
+  display: inline-block;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--lg-gold);
+  background: rgba(201,168,76,0.12);
+  border: 1px solid rgba(201,168,76,0.3);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.lead-magnet-copy h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3.2vw, 38px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.18;
+  margin-bottom: 16px;
+}
+.lead-magnet-copy h2 em { color: var(--lg-gold-light); font-style: italic; }
+.lead-magnet-copy > p {
+  font-size: 16px; font-weight: 300;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.7;
+  margin-bottom: 22px;
+  max-width: 460px;
+}
+.lead-magnet-points {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 11px;
+  margin: 0; padding: 0;
+}
+.lead-magnet-points li {
+  position: relative;
+  padding-left: 28px;
+  font-size: 14.5px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+}
+.lead-magnet-points li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 6px;
+  width: 9px; height: 9px;
+  border-radius: 2px;
+  background: var(--lg-gold);
+}
+
+/* ─────────────────────────────────────────────
+   2. LEAD CAPTURE FORM CARD (shared component)
+   Reused inside .lead-magnet, the exit modal,
+   and the quiz result screen.
+   ───────────────────────────────────────────── */
+.lead-form-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px 28px;
+  box-shadow:
+    0 2px 4px rgba(43,27,114,0.06),
+    0 24px 64px rgba(43,27,114,0.22);
+}
+.lead-form-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px; font-weight: 700;
+  color: var(--lg-text);
+  margin-bottom: 5px;
+  line-height: 1.25;
+}
+.lead-form-card .lead-form-sub {
+  font-size: 13px; color: var(--lg-muted);
+  margin-bottom: 22px; line-height: 1.5;
+}
+.lead-field { margin-bottom: 13px; }
+.lead-field label {
+  display: block;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--lg-muted);
+  margin-bottom: 6px;
+}
+.lead-field input,
+.lead-field select {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--lg-off-white);
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px; font-weight: 400;
+  color: var(--lg-text);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  appearance: none;
+}
+.lead-field input:focus,
+.lead-field select:focus {
+  border-color: var(--lg-purple);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(43,27,114,0.07);
+}
+.lead-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236B6785' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.lead-submit {
+  width: 100%;
+  padding: 15px;
+  background: var(--lg-purple);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px; font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  margin-top: 6px;
+}
+.lead-submit:hover {
+  background: var(--lg-purple-mid);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(43,27,114,0.2);
+}
+.lead-disclaimer {
+  text-align: center;
+  font-size: 11px; color: var(--lg-muted);
+  margin-top: 13px;
+  line-height: 1.5;
+}
+.lead-disclaimer a { color: var(--lg-purple); }
+
+/* Thank-you state (revealed after submit) */
+.lead-thanks {
+  display: none;
+  text-align: center;
+  padding: 8px 4px 4px;
+}
+.lead-thanks.active { display: block; }
+.lead-form-fields.hidden { display: none; }
+.lead-thanks-badge {
+  width: 56px; height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: var(--lg-purple-light);
+  display: flex; align-items: center; justify-content: center;
+}
+.lead-thanks-badge svg { width: 28px; height: 28px; fill: none; stroke: var(--lg-purple); stroke-width: 2.4; }
+.lead-thanks h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--lg-text);
+  margin-bottom: 8px;
+}
+.lead-thanks p {
+  font-size: 14px; color: var(--lg-muted);
+  line-height: 1.6; margin-bottom: 18px;
+}
+.lead-download-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 26px;
+  background: var(--lg-gold);
+  color: var(--lg-purple);
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px; font-weight: 600;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.lead-download-btn:hover {
+  background: var(--lg-purple);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.lead-secondary-cta {
+  display: block;
+  margin-top: 14px;
+  font-size: 13px; color: var(--lg-muted);
+  text-decoration: none;
+}
+.lead-secondary-cta:hover { color: var(--lg-purple); }
+
+/* ─────────────────────────────────────────────
+   3. EXIT-INTENT / SCROLL MODAL
+   ───────────────────────────────────────────── */
+.lg-modal-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 9998;
+  background: rgba(24,21,36,0.72);
+  backdrop-filter: blur(6px);
+  align-items: center; justify-content: center;
+  padding: 20px;
+}
+.lg-modal-overlay.active { display: flex; }
+.lg-modal {
+  background: #fff;
+  border-radius: 18px;
+  width: min(820px, 100%);
+  max-height: 92vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 32px 80px rgba(43,27,114,0.3);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  animation: lgRise 0.35s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes lgRise {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.lg-modal-visual {
+  background: linear-gradient(150deg, var(--lg-purple), #1a0f55);
+  padding: 40px 34px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.lg-modal-visual::before {
+  content: '';
+  position: absolute;
+  bottom: -120px; left: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.16), transparent 70%);
+  pointer-events: none;
+}
+.lg-modal-visual .lg-modal-label {
+  display: inline-block;
+  font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--lg-gold-light);
+  margin-bottom: 16px;
+  position: relative; z-index: 1;
+}
+.lg-modal-visual h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  position: relative; z-index: 1;
+}
+.lg-modal-visual h3 em { color: var(--lg-gold-light); font-style: italic; }
+.lg-modal-visual > p {
+  font-size: 14px; font-weight: 300;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.65;
+  position: relative; z-index: 1;
+}
+.lg-modal-visual ul {
+  list-style: none; margin: 20px 0 0; padding: 0;
+  position: relative; z-index: 1;
+}
+.lg-modal-visual ul li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.lg-modal-visual ul li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 6px;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  background: var(--lg-gold);
+}
+.lg-modal-form { padding: 36px 32px; }
+.lg-modal-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--lg-border);
+  cursor: pointer;
+  font-size: 17px; line-height: 1; color: var(--lg-muted);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  z-index: 3;
+}
+.lg-modal-close:hover { background: var(--lg-purple); color: #fff; border-color: var(--lg-purple); }
+
+/* ─────────────────────────────────────────────
+   4. PRE-QUALIFICATION QUIZ (quiz.html)
+   ───────────────────────────────────────────── */
+.quiz-shell {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 96px;
+}
+.quiz-card {
+  background: #fff;
+  border: 1px solid var(--lg-border);
+  border-radius: 20px;
+  padding: 40px 40px 36px;
+  box-shadow:
+    0 2px 4px rgba(43,27,114,0.04),
+    0 24px 64px rgba(43,27,114,0.1);
+}
+.quiz-progress-wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 26px;
+}
+.quiz-progress-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--lg-muted);
+}
+.quiz-progress-track {
+  flex: 1;
+  height: 6px;
+  background: var(--lg-off-white);
+  border-radius: 100px;
+  margin-left: 18px;
+  overflow: hidden;
+}
+.quiz-progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--lg-purple), var(--lg-gold));
+  border-radius: 100px;
+  transition: width 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.quiz-step { display: none; animation: lgRise 0.35s ease both; }
+.quiz-step.active { display: block; }
+.quiz-question {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px; font-weight: 700;
+  color: var(--lg-text);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.quiz-help {
+  font-size: 13.5px; color: var(--lg-muted);
+  margin-bottom: 24px; line-height: 1.55;
+}
+.quiz-options { display: flex; flex-direction: column; gap: 11px; }
+.quiz-option {
+  display: flex; align-items: center; gap: 14px;
+  width: 100%;
+  text-align: left;
+  padding: 17px 20px;
+  background: var(--lg-off-white);
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px; font-weight: 500;
+  color: var(--lg-text);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.quiz-option:hover {
+  border-color: var(--lg-purple);
+  background: var(--lg-purple-light);
+  transform: translateX(3px);
+}
+.quiz-option.selected {
+  border-color: var(--lg-purple);
+  background: var(--lg-purple-light);
+}
+.quiz-option-marker {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--lg-border);
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color 0.18s;
+}
+.quiz-option.selected .quiz-option-marker {
+  border-color: var(--lg-purple);
+}
+.quiz-option.selected .quiz-option-marker::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--lg-purple);
+}
+.quiz-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 28px;
+}
+.quiz-back {
+  background: none; border: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px; font-weight: 500;
+  color: var(--lg-muted);
+  cursor: pointer;
+  padding: 8px 4px;
+  transition: color 0.2s;
+}
+.quiz-back:hover { color: var(--lg-purple); }
+.quiz-back:disabled { opacity: 0; cursor: default; }
+.quiz-disclaimer {
+  text-align: center;
+  font-size: 11.5px; color: var(--lg-muted);
+  margin-top: 22px; line-height: 1.55;
+}
+
+/* Quiz result screen */
+.quiz-result { display: none; }
+.quiz-result.active { display: block; }
+.quiz-result-head {
+  text-align: center;
+  margin-bottom: 26px;
+}
+.quiz-result-badge {
+  width: 64px; height: 64px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--lg-purple-light);
+  display: flex; align-items: center; justify-content: center;
+}
+.quiz-result-badge svg { width: 32px; height: 32px; fill: none; stroke: var(--lg-purple); stroke-width: 2.2; }
+.quiz-result-head h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 700;
+  color: var(--lg-text);
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+.quiz-result-head h2 em { color: var(--lg-purple); font-style: italic; }
+.quiz-result-head p {
+  font-size: 15px; color: var(--lg-muted);
+  line-height: 1.65; max-width: 480px; margin: 0 auto;
+}
+.quiz-result-divider {
+  width: 48px; height: 2px;
+  background: var(--lg-gold);
+  margin: 26px auto;
+  border-radius: 1px;
+}
+
+/* ─────────────────────────────────────────────
+   5. RESPONSIVE
+   ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .lead-magnet { padding: 52px 24px; }
+  .lead-magnet-inner { grid-template-columns: 1fr; gap: 34px; max-width: 480px; }
+  .lg-modal { grid-template-columns: 1fr; max-width: 440px; }
+  .lg-modal-visual { display: none; }
+  .lg-modal-form { padding: 40px 28px 32px; }
+  .quiz-card { padding: 30px 24px 28px; }
+  .quiz-question { font-size: 22px; }
+}
+@media (max-width: 480px) {
+  .lead-form-card { padding: 26px 22px; }
+  .quiz-option { padding: 15px 16px; font-size: 14px; }
+  .quiz-result-head h2 { font-size: 24px; }
+}

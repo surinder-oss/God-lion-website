@@ -1,0 +1,151 @@
+/* ════════════════════════════════════════════════════════════════
+   GOLD LION MORTGAGES — LEAD-GEN LAYER (behaviour)
+   Powers: (a) lead-magnet capture forms, (b) exit-intent + scroll modal.
+   The quiz has its own inline script in quiz.html.
+
+   ── ACTIVATION (Surinderpal) ────────────────────────────────────
+   Every capture form posts to LEAD_FORM_ENDPOINT_TO_CONFIGURE.
+   Replace that string below with a real endpoint:
+     • Pipedrive Web Form  → use its embed/POST URL, OR
+     • Formspree           → https://formspree.io/f/XXXXXXXX
+   Until a real endpoint is set, forms run in DEMO MODE: they do NOT
+   send anywhere; they just show the thank-you state so the UX can be
+   previewed safely. See website-lead-gen-buildout.md for full steps.
+   ════════════════════════════════════════════════════════════════ */
+
+(function () {
+  'use strict';
+
+  // ▼▼▼ PASTE YOUR REAL ENDPOINT HERE (Pipedrive Web Form or Formspree) ▼▼▼
+  var LEAD_FORM_ENDPOINT = 'LEAD_FORM_ENDPOINT_TO_CONFIGURE';
+  // ▲▲▲ ─────────────────────────────────────────────────────────────── ▲▲▲
+
+  var ENDPOINT_IS_LIVE =
+    LEAD_FORM_ENDPOINT &&
+    LEAD_FORM_ENDPOINT.indexOf('LEAD_FORM_ENDPOINT_TO_CONFIGURE') === -1 &&
+    /^https?:\/\//.test(LEAD_FORM_ENDPOINT);
+
+  /* ── Submit a capture form ──────────────────────────────────────
+     Marked up as: <form class="lead-form" data-magnet="..."> with
+     a sibling .lead-thanks block inside the same .lead-form-card. */
+  function wireLeadForms() {
+    var forms = document.querySelectorAll('form.lead-form');
+    Array.prototype.forEach.call(forms, function (form) {
+      // Point the form at the configured endpoint when live.
+      if (ENDPOINT_IS_LIVE) { form.setAttribute('action', LEAD_FORM_ENDPOINT); }
+
+      form.addEventListener('submit', function (e) {
+        // Basic native validation first.
+        if (!form.checkValidity()) { return; }
+
+        var card    = form.closest('.lead-form-card') || form.parentNode;
+        var fields  = form.querySelector('.lead-form-fields') || form;
+        var thanks  = card.querySelector('.lead-thanks');
+
+        function showThanks() {
+          if (fields) { fields.classList.add('hidden'); }
+          if (thanks) { thanks.classList.add('active'); }
+        }
+
+        if (!ENDPOINT_IS_LIVE) {
+          // DEMO MODE — never navigate away, just preview the success UX.
+          e.preventDefault();
+          showThanks();
+          return;
+        }
+
+        // LIVE MODE — submit via fetch so the user stays on-page and
+        // sees the thank-you + download link. Falls back to a normal
+        // POST if fetch is unavailable or the request errors.
+        e.preventDefault();
+        var data = new FormData(form);
+        if (window.fetch) {
+          fetch(LEAD_FORM_ENDPOINT, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          })
+          .then(function () { showThanks(); })
+          .catch(function () { form.submit(); });
+        } else {
+          form.submit();
+        }
+      });
+    });
+  }
+
+  /* ── Exit-intent + scroll modal ─────────────────────────────────
+     Shows once per browser session. Triggers on:
+       • mouse leaving the top of the viewport (desktop exit-intent), or
+       • scrolling past ~55% of the page (mobile-friendly fallback).
+     Dismissed state is remembered for the session. */
+  function wireExitModal() {
+    var overlay = document.getElementById('leadModal');
+    if (!overlay) { return; }
+
+    var STORAGE_KEY = 'glmLeadModalSeen';
+    var alreadySeen = false;
+    try { alreadySeen = sessionStorage.getItem(STORAGE_KEY) === '1'; } catch (err) {}
+    if (alreadySeen) { return; }
+
+    var opened = false;
+
+    function openModal() {
+      if (opened) { return; }
+      opened = true;
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (err) {}
+      detach();
+    }
+
+    function closeModal() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function onMouseOut(e) {
+      // Fire only when the cursor genuinely exits via the top edge.
+      if (e.clientY <= 0 && (!e.relatedTarget && !e.toElement)) { openModal(); }
+    }
+    function onScroll() {
+      var scrolled = (window.scrollY + window.innerHeight) /
+                     document.documentElement.scrollHeight;
+      if (scrolled > 0.55) { openModal(); }
+    }
+    function onKey(e) { if (e.key === 'Escape') { closeModal(); } }
+
+    function detach() {
+      document.removeEventListener('mouseout', onMouseOut);
+      window.removeEventListener('scroll', onScroll);
+    }
+
+    // Don't pounce the instant the page loads — give a short grace period.
+    setTimeout(function () {
+      document.addEventListener('mouseout', onMouseOut);
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }, 4000);
+
+    document.addEventListener('keydown', onKey);
+
+    // Wire close controls (button + click-outside).
+    var closeBtns = overlay.querySelectorAll('[data-lead-close]');
+    Array.prototype.forEach.call(closeBtns, function (btn) {
+      btn.addEventListener('click', closeModal);
+    });
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) { closeModal(); }
+    });
+  }
+
+  function init() {
+    wireLeadForms();
+    wireExitModal();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
