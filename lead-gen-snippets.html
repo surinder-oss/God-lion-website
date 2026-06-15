@@ -1,0 +1,152 @@
+<!-- ════════════════════════════════════════════════════════════════
+     GOLD LION MORTGAGES — LEAD-GEN COMPONENT SNIPPETS (REFERENCE ONLY)
+     This file is NOT linked anywhere and is NOT a live page. It is the
+     copy-paste source for the reusable lead-gen components. To add the
+     lead layer to any page:
+
+       1. In <head>, after styles.css:
+            <link rel="stylesheet" href="lead-gen.css">
+       2. Before </body>, after the other scripts:
+            <script src="lead-gen.js" defer></script>
+       3. Paste SNIPPET A (in-page CTA) wherever you want the magnet block,
+          and/or SNIPPET B (exit-intent modal) once, just before </main>.
+
+     Every form posts to LEAD_FORM_ENDPOINT_TO_CONFIGURE (set the real
+     endpoint inside lead-gen.js). Magnet download links use the
+     data-magnet-file placeholder — point them at the hosted PDF later.
+     No emojis. RECA-safe copy. Canadian English.
+     ════════════════════════════════════════════════════════════════ -->
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  SNIPPET A — IN-PAGE LEAD-MAGNET CTA SECTION                  ║
+     ║  Change the eyebrow, headline, bullet points, the form's      ║
+     ║  data-magnet value, and the download link text/href to suit   ║
+     ║  each page's magnet.                                          ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<section class="lead-magnet" id="lead-magnet">
+  <div class="lead-magnet-inner">
+
+    <div class="lead-magnet-copy reveal">
+      <span class="lead-magnet-label">Free Guide</span>
+      <h2>The Calgary Buyer's<br><em>Mortgage Starter Kit</em></h2>
+      <p>A plain-English walk-through of how mortgages actually get approved in Alberta — what lenders look at, the documents to gather early, and the questions worth asking before you sign.</p>
+      <ul class="lead-magnet-points">
+        <li>The full document checklist, so nothing slows your file down</li>
+        <li>How pre-approvals work and what they really tell you</li>
+        <li>A simple budgeting worksheet for your monthly payment</li>
+      </ul>
+    </div>
+
+    <div class="lead-form-card reveal">
+      <!-- data-magnet = which magnet this form is for (sent with the lead) -->
+      <form class="lead-form"
+            action="LEAD_FORM_ENDPOINT_TO_CONFIGURE"
+            method="POST"
+            data-magnet="Calgary Buyer's Mortgage Starter Kit">
+        <div class="lead-form-fields">
+          <h3>Get the free guide</h3>
+          <p class="lead-form-sub">Enter your details and we'll send it straight over. No cost, no obligation.</p>
+
+          <input type="hidden" name="magnet" value="Calgary Buyer's Mortgage Starter Kit">
+          <input type="hidden" name="source" value="Website lead magnet">
+
+          <div class="lead-field">
+            <label for="lm-name">Full name</label>
+            <input type="text" id="lm-name" name="name" autocomplete="name" placeholder="Your name" required>
+          </div>
+          <div class="lead-field">
+            <label for="lm-email">Email</label>
+            <input type="email" id="lm-email" name="email" autocomplete="email" placeholder="you@email.com" required>
+          </div>
+          <div class="lead-field">
+            <label for="lm-phone">Phone</label>
+            <input type="tel" id="lm-phone" name="phone" autocomplete="tel" placeholder="(587) 000-0000" required>
+          </div>
+
+          <button type="submit" class="lead-submit">Send Me the Guide</button>
+          <p class="lead-disclaimer">By submitting, you agree to be contacted by Gold Lion Mortgages about your enquiry. We respect your privacy and never sell your information.</p>
+        </div>
+
+        <!-- Shown after a successful submit -->
+        <div class="lead-thanks">
+          <div class="lead-thanks-badge">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3>Thank you — it's on its way.</h3>
+          <p>We've received your details. You can download your copy below, and we'll be in touch shortly.</p>
+          <!-- TODO: replace href with the hosted PDF path, e.g. /guides/calgary-buyer-starter-kit.pdf -->
+          <a class="lead-download-btn" href="#LEAD_MAGNET_PDF_TO_CONFIGURE" data-magnet-file download>
+            Download the Guide
+          </a>
+          <a class="lead-secondary-cta" href="https://goldlionmortgagesinc.pipedrive.com/scheduler/Lzrkrzf4/call-appointment" target="_blank" rel="noopener">Prefer to talk it through? Book a free call &rarr;</a>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  SNIPPET B — EXIT-INTENT / SCROLL LEAD MODAL                  ║
+     ║  Paste ONCE per page, just before </main>. It auto-shows once ║
+     ║  per session on exit-intent (desktop) or ~55% scroll (mobile).║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<div class="lg-modal-overlay" id="leadModal" aria-hidden="true">
+  <div class="lg-modal" role="dialog" aria-modal="true" aria-label="Free mortgage guide">
+    <button class="lg-modal-close" data-lead-close aria-label="Close">&times;</button>
+
+    <div class="lg-modal-visual">
+      <span class="lg-modal-label">Before You Go</span>
+      <h3>One quick read that<br><em>saves you guesswork.</em></h3>
+      <p>Grab our free Alberta mortgage guide — the same plain-English rundown we share with new clients.</p>
+      <ul>
+        <li>What lenders actually check</li>
+        <li>The documents to gather first</li>
+        <li>How to compare an offer properly</li>
+      </ul>
+    </div>
+
+    <div class="lg-modal-form">
+      <form class="lead-form"
+            action="LEAD_FORM_ENDPOINT_TO_CONFIGURE"
+            method="POST"
+            data-magnet="Alberta Mortgage Guide (exit modal)">
+        <div class="lead-form-fields">
+          <h3>Send me the guide</h3>
+          <p class="lead-form-sub">Free, no obligation. We'll email your copy.</p>
+
+          <input type="hidden" name="magnet" value="Alberta Mortgage Guide">
+          <input type="hidden" name="source" value="Exit-intent modal">
+
+          <div class="lead-field">
+            <label for="em-name">Full name</label>
+            <input type="text" id="em-name" name="name" autocomplete="name" placeholder="Your name" required>
+          </div>
+          <div class="lead-field">
+            <label for="em-email">Email</label>
+            <input type="email" id="em-email" name="email" autocomplete="email" placeholder="you@email.com" required>
+          </div>
+          <div class="lead-field">
+            <label for="em-phone">Phone</label>
+            <input type="tel" id="em-phone" name="phone" autocomplete="tel" placeholder="(587) 000-0000" required>
+          </div>
+
+          <button type="submit" class="lead-submit">Email Me the Guide</button>
+          <p class="lead-disclaimer">By submitting, you agree to be contacted by Gold Lion Mortgages. We never sell your information.</p>
+        </div>
+
+        <div class="lead-thanks">
+          <div class="lead-thanks-badge">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3>Thank you.</h3>
+          <p>Your guide is ready below, and we'll follow up by email shortly.</p>
+          <a class="lead-download-btn" href="#LEAD_MAGNET_PDF_TO_CONFIGURE" data-magnet-file download>Download the Guide</a>
+          <a class="lead-secondary-cta" href="#" data-lead-close>No thanks, close this</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
