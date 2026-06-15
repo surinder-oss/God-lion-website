@@ -67,7 +67,7 @@
 <section class="page-hero">
   <div class="page-hero-label">Pre-Qualification Quiz</div>
   <h1>See Where You<br><em>Stand.</em></h1>
-  <p>Answer seven quick questions and we'll point you in the right direction. It takes about a minute, costs nothing, and there is no credit check — just a clearer picture of your options.</p>
+  <p>Answer a few quick questions and we'll point you in the right direction. It takes a minute or two, costs nothing, and there is no credit check — just a clearer picture of your options.</p>
 </section>
 
 <!-- ═══ QUIZ ═══ -->
@@ -76,7 +76,7 @@
 
     <!-- PROGRESS -->
     <div class="quiz-progress-wrap" id="quizProgressWrap">
-      <span class="quiz-progress-label" id="quizProgressLabel">Question 1 of 7</span>
+      <span class="quiz-progress-label" id="quizProgressLabel">Question 1 of 10</span>
       <div class="quiz-progress-track">
         <div class="quiz-progress-fill" id="quizProgressFill"></div>
       </div>
@@ -230,39 +230,86 @@
   var QUESTIONS = [
     {
       id: 'goal',
+      label: 'Goal',
       q: 'What brings you here today?',
       help: 'Pick the option that fits best — you can tell us more later.',
       options: [
         { label: 'Buying a home', value: 'Purchase' },
         { label: 'Refinancing or pulling out equity', value: 'Refinance' },
         { label: 'Renewing an existing mortgage', value: 'Renewal' },
+        { label: 'Consolidating debt', value: 'Debt consolidation' },
         { label: 'Just exploring my options', value: 'Exploring' }
       ]
     },
     {
+      id: 'stage',
+      label: 'Stage',
+      q: 'Where are you in the process right now?',
+      help: 'Be honest — it just helps us prioritise your file.',
+      options: [
+        { label: 'Just exploring', value: 'Just exploring' },
+        { label: 'I want to get pre-approved', value: 'Wants pre-approval' },
+        { label: 'Actively house-hunting', value: 'House-hunting' },
+        { label: 'I have an accepted offer (under contract)', value: 'UNDER CONTRACT' },
+        { label: 'Renewing / refinancing my current mortgage', value: 'Renew/refi' }
+      ]
+    },
+    {
       id: 'price',
-      q: "What's the approximate property price?",
+      label: 'Price / amount',
+      q: "What's the approximate property price or mortgage amount?",
       help: 'A ballpark is fine.',
       options: [
         { label: 'Under $300,000', value: 'Under $300k' },
         { label: '$300,000 – $500,000', value: '$300k–$500k' },
         { label: '$500,000 – $750,000', value: '$500k–$750k' },
-        { label: 'Over $750,000', value: 'Over $750k' }
+        { label: '$750,000 – $1,000,000', value: '$750k–$1M' },
+        { label: 'Over $1,000,000', value: 'Over $1M' }
       ]
     },
     {
       id: 'downpayment',
+      label: 'Down payment',
       q: 'How much do you have for a down payment?',
       help: 'For a refinance or renewal, think of this as your current home equity.',
       options: [
         { label: 'Less than 5%', value: '<5%' },
         { label: '5% – 9%', value: '5–9%' },
         { label: '10% – 19%', value: '10–19%' },
-        { label: '20% or more', value: '20%+' }
+        { label: '20% or more', value: '20%+' },
+        { label: 'Using existing home equity', value: 'Home equity' }
+      ]
+    },
+    {
+      id: 'income',
+      label: 'Income type',
+      q: 'How do you earn your income?',
+      help: 'Choose the closest match.',
+      options: [
+        { label: 'Employed (T4 / salary or hourly)', value: 'Employed' },
+        { label: 'Self-employed or business owner', value: 'Self-employed' },
+        { label: 'Commission or variable income', value: 'Commission' },
+        { label: 'New to Canada', value: 'New to Canada' },
+        { label: 'A mix of the above', value: 'Mixed' }
+      ]
+    },
+    {
+      id: 'income_level',
+      label: 'Household income',
+      q: "What's your approximate household income?",
+      help: 'A ballpark is fine, and it stays private.',
+      options: [
+        { label: 'Under $60,000', value: 'Under $60k' },
+        { label: '$60,000 – $100,000', value: '$60k–$100k' },
+        { label: '$100,000 – $150,000', value: '$100k–$150k' },
+        { label: '$150,000 – $250,000', value: '$150k–$250k' },
+        { label: 'Over $250,000', value: '$250k+' },
+        { label: 'Prefer not to say', value: 'Prefer not to say' }
       ]
     },
     {
       id: 'credit',
+      label: 'Credit',
       q: 'How would you describe your credit?',
       help: "An honest guess is perfectly fine — we work with every credit band.",
       options: [
@@ -273,29 +320,33 @@
       ]
     },
     {
-      id: 'income',
-      q: 'How do you earn your income?',
-      help: 'Choose the closest match.',
-      options: [
-        { label: 'Employed (T4 / salary or hourly)', value: 'Employed' },
-        { label: 'Self-employed or business owner', value: 'Self-employed' },
-        { label: 'New to Canada', value: 'New to Canada' },
-        { label: 'A mix of the above', value: 'Mixed' }
-      ]
-    },
-    {
       id: 'timeline',
+      label: 'Timeline',
       q: 'When are you hoping to move forward?',
       help: 'This helps us prioritise your file.',
       options: [
         { label: 'As soon as possible', value: 'ASAP' },
         { label: 'Within 1–3 months', value: '1–3 months' },
         { label: 'In 3–6 months', value: '3–6 months' },
+        { label: 'In 6–12 months', value: '6–12 months' },
         { label: 'Just researching for now', value: 'Researching' }
       ]
     },
     {
+      id: 'working_with',
+      label: 'Already working with',
+      q: 'Are you already working with a mortgage broker on this?',
+      help: "No wrong answer — we just want to know how best to help.",
+      options: [
+        { label: 'No, just starting out', value: 'No — just starting' },
+        { label: 'Only talked to my bank', value: 'Bank only' },
+        { label: 'Yes, working with another broker', value: 'Another broker' },
+        { label: 'Not sure', value: 'Unsure' }
+      ]
+    },
+    {
       id: 'location',
+      label: 'Location',
       q: 'Where is the property located?',
       help: 'We are licensed across Alberta.',
       options: [
@@ -398,6 +449,7 @@
     var needsCloserLook =
       answers.credit === 'Rebuilding' ||
       answers.income === 'Self-employed' ||
+      answers.income === 'Commission' ||
       answers.income === 'New to Canada' ||
       answers.income === 'Mixed' ||
       answers.downpayment === '<5%';
@@ -418,8 +470,8 @@
 
   function buildSummary() {
     return QUESTIONS.map(function (item) {
-      return item.q + ' ' + (answers[item.id] || '(skipped)');
-    }).join('  |  ');
+      return (item.label || item.id) + ': ' + (answers[item.id] || '—');
+    }).join('  ·  ');
   }
 
   function finish() {

@@ -16,8 +16,9 @@
 (function () {
   'use strict';
 
-  // ▼▼▼ PASTE YOUR REAL ENDPOINT HERE (Pipedrive Web Form or Formspree) ▼▼▼
-  var LEAD_FORM_ENDPOINT = 'LEAD_FORM_ENDPOINT_TO_CONFIGURE';
+  // Live endpoint — Google Apps Script web app: logs to a Sheet, emails
+  // Surinderpal instantly, and auto-replies to the lead. (See lead-capture.gs.)
+  var LEAD_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx-ajOzcdMqLjn-Y_3i766BPBE2cMx3hc2NsMgn_I9ERztB3YpTdHsZKz7SGukc4RhkAQ/exec';
   // ▲▲▲ ─────────────────────────────────────────────────────────────── ▲▲▲
 
   var ENDPOINT_IS_LIVE =
@@ -33,6 +34,15 @@
     Array.prototype.forEach.call(forms, function (form) {
       // Point the form at the configured endpoint when live.
       if (ENDPOINT_IS_LIVE) { form.setAttribute('action', LEAD_FORM_ENDPOINT); }
+
+      // Hidden honeypot — bots fill it, humans never see it; the server drops those.
+      if (!form.querySelector('input[name="_gotcha"]')) {
+        var hp = document.createElement('input');
+        hp.type = 'text'; hp.name = '_gotcha'; hp.tabIndex = -1;
+        hp.setAttribute('autocomplete', 'off'); hp.setAttribute('aria-hidden', 'true');
+        hp.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;';
+        form.appendChild(hp);
+      }
 
       form.addEventListener('submit', function (e) {
         // Basic native validation first.
@@ -54,21 +64,21 @@
           return;
         }
 
-        // LIVE MODE — submit via fetch so the user stays on-page and
-        // sees the thank-you + download link. Falls back to a normal
-        // POST if fetch is unavailable or the request errors.
+        // LIVE MODE — post to the Google Apps Script endpoint. It returns no
+        // CORS headers, so use mode:'no-cors' (fire-and-forget) and show the
+        // thank-you as soon as the request completes. URL-encoded body so
+        // Apps Script reads e.parameter cleanly; stamps the page it came from.
         e.preventDefault();
-        var data = new FormData(form);
+        var fd = new FormData(form);
+        fd.append('page', location.pathname + location.search);
+        var body = new URLSearchParams();
+        fd.forEach(function (v, k) { body.append(k, v); });
         if (window.fetch) {
-          fetch(LEAD_FORM_ENDPOINT, {
-            method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
-          })
-          .then(function () { showThanks(); })
-          .catch(function () { form.submit(); });
+          fetch(LEAD_FORM_ENDPOINT, { method: 'POST', mode: 'no-cors', body: body })
+            .then(showThanks)
+            .catch(showThanks);
         } else {
-          form.submit();
+          showThanks();
         }
       });
     });
