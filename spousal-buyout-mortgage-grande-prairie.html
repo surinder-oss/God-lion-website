@@ -9,6 +9,26 @@
     gtag('js', new Date());
     gtag('config', 'G-H5CN2GK1RQ');
   </script>
+  <!-- GA4 lead-event tracking (phone / whatsapp / apply / contact / form) -->
+  <script>
+    (function(){
+      function fire(name, params){ if (typeof gtag==='function'){ gtag('event', name, params||{}); } }
+      document.addEventListener('click', function(e){
+        var a = e.target && e.target.closest && e.target.closest('a');
+        if(!a) return;
+        var href = (a.getAttribute('href')||'').toLowerCase();
+        if(href.indexOf('tel:')===0){ fire('phone_click',{link_url:href}); }
+        else if(href.indexOf('wa.me')>-1 || href.indexOf('api.whatsapp')>-1){ fire('whatsapp_click',{link_url:href}); }
+        else if(href.indexOf('apply')>-1){ fire('apply_click',{link_url:href}); }
+        else if(href.indexOf('contact')>-1){ fire('contact_click',{link_url:href}); }
+      }, true);
+      document.addEventListener('submit', function(e){
+        var id = (e.target && e.target.id) || '';
+        fire('form_submit',{form_id:id});
+      }, true);
+    })();
+  </script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spousal Buyout Mortgage Grande Prairie AB | Gold Lion</title>
