@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="/img/gold-lion-logo.png">
+<link rel="apple-touch-icon" href="/img/gold-lion-logo.png">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H5CN2GK1RQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-H5CN2GK1RQ');
+  </script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share Your Experience | Gold Lion Mortgages</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Tell us about your experience with Gold Lion Mortgages — we'll help you turn it into a Google review in under two minutes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#2B1B72; --purple-mid:#3B2A8A; --purple-light:#EEE9FF;
+    --gold:#C9A84C; --gold-light:#E8CB7A;
+    --text:#181524; --muted:#6B6785; --white:#FAFAF8; --off-white:#F4F3F0;
+    --border:rgba(43,27,114,0.1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Outfit',sans-serif;background:var(--off-white);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 16px 48px}
+  .brand{display:flex;flex-direction:column;align-items:center;gap:2px;margin-bottom:20px;text-align:center}
+  .brand .name{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--purple)}
+  .brand .name span{color:var(--gold)}
+  .brand .tag{font-size:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+  .shell{width:100%;max-width:560px;background:var(--white);border:1px solid var(--border);border-radius:18px;padding:28px 22px;box-shadow:0 10px 40px rgba(43,27,114,0.08)}
+  @media(min-width:520px){.shell{padding:36px 34px}}
+
+  .progress-wrap{margin-bottom:26px}
+  .progress-label{display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);margin-bottom:6px}
+  .progress-track{height:6px;background:var(--purple-light);border-radius:99px;overflow:hidden}
+  .progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:99px;transition:width .35s ease}
+
+  .step{display:none;animation:fade .3s ease}
+  .step.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  h1{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--purple);line-height:1.25;margin-bottom:8px}
+  .sub{font-size:.95rem;color:var(--muted);line-height:1.5;margin-bottom:20px}
+  .q-label{font-weight:600;font-size:1.02rem;margin:18px 0 10px}
+  .hint{font-size:.8rem;color:var(--muted);margin:-6px 0 10px}
+
+  input[type=text], textarea{width:100%;padding:13px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Outfit',sans-serif;font-size:1rem;color:var(--text);background:#fff;outline:none;transition:border-color .2s}
+  input[type=text]:focus, textarea:focus{border-color:var(--gold)}
+
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{border:1.5px solid var(--border);background:#fff;border-radius:99px;padding:10px 15px;font-family:'Outfit',sans-serif;font-size:.92rem;color:var(--text);cursor:pointer;transition:all .15s;line-height:1.2}
+  .chip:hover{border-color:var(--gold)}
+  .chip.on{background:var(--purple);border-color:var(--purple);color:#fff}
+  .chip.on::before{content:"✓ ";color:var(--gold-light)}
+
+  .btn-row{display:flex;gap:10px;margin-top:26px}
+  .btn{flex:1;padding:14px 18px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;border:none;transition:all .15s;text-align:center;text-decoration:none;display:inline-block}
+  .btn-primary{background:var(--purple);color:#fff}
+  .btn-primary:hover{background:var(--purple-mid)}
+  .btn-primary:disabled{opacity:.45;cursor:not-allowed}
+  .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--purple);font-weight:600}
+  .btn-gold:hover{filter:brightness(1.05)}
+  .btn-ghost{background:none;border:1.5px solid var(--border);color:var(--muted);flex:0 0 auto}
+  .btn-ghost:hover{border-color:var(--purple);color:var(--purple)}
+
+  .review-box{width:100%;min-height:200px;resize:vertical;line-height:1.55;font-size:1rem;margin-top:4px}
+  .regen{background:none;border:none;color:var(--purple);font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer;padding:8px 0;text-decoration:underline;text-underline-offset:3px}
+  .regen:hover{color:var(--gold)}
+
+  .post-steps{margin-top:22px;border-top:1px dashed var(--border);padding-top:18px}
+  .post-step{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+  .post-num{flex:0 0 26px;height:26px;border-radius:50%;background:var(--purple-light);color:var(--purple);font-weight:600;font-size:.85rem;display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .post-num.done{background:var(--gold);color:var(--purple)}
+  .post-body{flex:1}
+  .post-body p{font-size:.92rem;color:var(--muted);margin:4px 0 10px;line-height:1.45}
+  .post-body .t{font-weight:600;font-size:.98rem;color:var(--text)}
+  .copied-note{display:none;font-size:.85rem;color:#1a7f4e;font-weight:500;margin-top:8px}
+  .stars{color:var(--gold);letter-spacing:3px;font-size:1.1rem}
+  .footer-note{margin-top:22px;text-align:center;font-size:.78rem;color:var(--muted);line-height:1.5}
+</style>
+</head>
+<body>
+
+<div class="brand">
+  <div class="name">Gold <span>Lion</span> Mortgages</div>
+  <div class="tag">Powered by MCC Elevo Mortgages</div>
+</div>
+
+<div class="shell">
+  <div class="progress-wrap">
+    <div class="progress-label"><span id="stepLabel">Step 1 of 5</span><span>~90 seconds</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <!-- STEP 1: Name / who / area -->
+  <div class="step active" id="step1">
+    <h1>Thanks for letting us help with your mortgage! 🎉</h1>
+    <p class="sub">Answer a few quick taps and we'll draft a Google review for you. You can change anything before you post it.</p>
+
+    <div class="q-label">What's your first name?</div>
+    <input type="text" id="clientName" placeholder="e.g. Raj" autocomplete="given-name">
+
+    <div class="q-label">Who was this mortgage for?</div>
+    <div class="chips" data-group="who" data-mode="single">
+      <button class="chip" data-val="single">Just me</button>
+      <button class="chip" data-val="couple">Me &amp; my partner</button>
+      <button class="chip" data-val="family">My family</button>
+    </div>
+
+    <div class="q-label">Which area are you in?</div>
+    <div class="chips" data-group="city" data-mode="single">
+      <button class="chip" data-val="Calgary">Calgary</button>
+      <button class="chip" data-val="Airdrie">Airdrie</button>
+      <button class="chip" data-val="Chestermere">Chestermere</button>
+      <button class="chip" data-val="Cochrane">Cochrane</button>
+      <button class="chip" data-val="Okotoks">Okotoks</button>
+      <button class="chip" data-val="Edmonton">Edmonton</button>
+      <button class="chip" data-val="other">Somewhere else in Alberta</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" id="next1">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Scenario -->
+  <div class="step" id="step2">
+    <h1 id="helloLine">What did we help you with?</h1>
+    <p class="hint">Tap all that apply.</p>
+    <div class="chips" data-group="scenario" data-mode="multi">
+      <button class="chip" data-val="first">Buying my first home</button>
+      <button class="chip" data-val="purchase">Buying a home</button>
+      <button class="chip" data-val="refi">Refinancing</button>
+      <button class="chip" data-val="renewal">Renewal / switching lenders</button>
+      <button class="chip" data-val="invest">Investment property</button>
+      <button class="chip" data-val="self">Self-employed mortgage</button>
+      <button class="chip" data-val="newcomer">New to Canada</button>
+      <button class="chip" data-val="credit">Tough situation / bank said no</button>
+      <button class="chip" data-val="construction">Construction / new build</button>
+      <button class="chip" data-val="spousal">Separation / spousal buyout</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" data-back="1">← Back</button>
+      <button class="btn btn-primary" id="next2">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Optional details -->
+  <div class="step" id="step3">
+    <h1>A few quick details</h1>
+    <p class="hint">All optional — but these are what make your review genuinely helpful to the next person.</p>
+
+    <div id="dpBlock">
+      <div class="q-label">How was your down payment situation?</div>
+      <div class="chips" data-group="dp" data-mode="multi">
+        <button class="chip" data-val="dp_small">Less than 20% down</button>
+        <button class="chip" data-val="dp_big">20% or more</button>
+        <button class="chip" data-val="dp_gift">A gift from family helped</button>
+        <button class="chip" data-val="dp_rrsp">Used FHSA / RRSP / first-time programs</button>
+      </div>
+    </div>
+
+    <div class="q-label">How was your credit at the time?</div>
+    <div class="chips" data-group="credit" data-mode="single">
+      <button class="chip" data-val="cr_top">Excellent</button>
+      <button class="chip" data-val="cr_good">Pretty good</button>
+      <button class="chip" data-val="cr_work">Needed some work</button>
+    </div>
+
+    <div class="q-label">How was the timeline?</div>
+    <div class="chips" data-group="timeline" data-mode="single">
+      <button class="chip" data-val="t_fast">Approved faster than expected</button>
+      <button class="chip" data-val="t_ontime">Right on schedule</button>
+      <button class="chip" data-val="t_tight">We had a tight deadline</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-ghost" data-back="2">← Back</button>
+      <button class="btn btn-primary" id="next3">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: Highlights -->
+  <div class="step" id="step4">
+    <h1>What stood out about working with Surinderpal?</h1>
+    <p class="hint">Tap 2–4 things — this shapes your review.</p>
+    <div class="chips" data-group="highlights" data-mode="multi">
+      <button class="chip" data-val="fast">Quick to respond</button>
+      <button class="chip" data-val="clear">Explained everything clearly</button>
+      <button class="chip" data-val="rate">Got me a great rate</button>
+      <button class="chip" data-val="options">Found options when banks couldn't</button>
+      <button class="chip" data-val="easy">Made it easy &amp; stress-free</button>
+      <button class="chip" data-val="updates">Kept me updated the whole way</button>
+      <button class="chip" data-val="honest">Honest, no pressure</button>
+      <button class="chip" data-val="evenings">Available evenings &amp; weekends</button>
+      <button class="chip" data-val="above">Went above &amp; beyond</button>
+    </div>
+
+    <div class="q-label">Anything you'd like to add in your own words? <span style="font-weight:400;color:var(--muted)">(optional)</span></div>
+    <input type="text" id="customLine" placeholder="e.g. He even helped us after hours on closing day">
+
+    <div class="btn-row">
+      <button class="btn btn-ghost" data-back="3">← Back</button>
+      <button class="btn btn-primary" id="next4">Create my review ✨</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: Result -->
+  <div class="step" id="step5">
+    <h1>Here's your review<span id="nameEcho"></span> <span class="stars">★★★★★</span></h1>
+    <p class="sub" style="margin-bottom:8px">It's your review — edit it however you like.</p>
+    <textarea class="review-box" id="reviewText"></textarea>
+    <button class="regen" id="regen">↻ Try another version</button>
+
+    <div class="post-steps">
+      <div class="post-step">
+        <div class="post-num" id="num1">1</div>
+        <div class="post-body">
+          <div class="t">Copy your review</div>
+          <button class="btn btn-gold" id="copyBtn" style="width:100%">📋 Copy review</button>
+          <div class="copied-note" id="copiedNote">✓ Copied! Now do step 2.</div>
+        </div>
+      </div>
+      <div class="post-step">
+        <div class="post-num">2</div>
+        <div class="post-body">
+          <div class="t">Open Google &amp; paste</div>
+          <p>Tap below, choose your stars, press &amp; hold the text box, then <strong>Paste</strong> and <strong>Post</strong>.</p>
+          <a class="btn btn-primary" id="googleBtn" style="width:100%" target="_blank" rel="noopener"
+             href="https://www.google.com/maps/place//data=!4m3!3m2!1s0x537165441a40cf3f:0x36cfb93370a3ccaf!12e1?source=g.page.m.ia._&amp;laa=nmx-review-solicitation-ia2">Open Google Reviews →</a>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row" style="margin-top:6px">
+      <button class="btn btn-ghost" data-back="4" style="width:100%">← Back</button>
+    </div>
+  </div>
+
+  <div class="footer-note">Thank you — your review means the world to a small local business. 💛<br>Gold Lion Mortgages · Calgary, Alberta · (587) 740-0048</div>
+</div>
+
+<script>
+(function(){
+  var state = { name:'', who:'single', city:'', scenario:[], dp:[], credit:'', timeline:'', highlights:[], custom:'' };
+  var steps = ['step1','step2','step3','step4','step5'];
+
+  function fire(name, params){ if (typeof gtag === 'function') gtag('event', name, params || {}); }
+
+  function show(i){
+    steps.forEach(function(id, idx){
+      document.getElementById(id).classList.toggle('active', idx === i);
+    });
+    document.getElementById('stepLabel').textContent = 'Step ' + (i+1) + ' of 5';
+    document.getElementById('progressFill').style.width = ((i+1)/5*100) + '%';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  // Chip groups — single groups can be toggled back off (details are optional)
+  document.querySelectorAll('.chips').forEach(function(group){
+    var mode = group.getAttribute('data-mode');
+    var key = group.getAttribute('data-group');
+    group.querySelectorAll('.chip').forEach(function(chip){
+      chip.addEventListener('click', function(){
+        if (mode === 'single'){
+          var wasOn = chip.classList.contains('on');
+          group.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('on'); });
+          if (wasOn){
+            state[key] = (key === 'who') ? 'single' : '';
+          } else {
+            chip.classList.add('on');
+            state[key] = chip.getAttribute('data-val');
+          }
+        } else {
+          chip.classList.toggle('on');
+          var vals = [];
+          group.querySelectorAll('.chip.on').forEach(function(c){ vals.push(c.getAttribute('data-val')); });
+          state[key] = vals;
+        }
+      });
+    });
+  });
+
+  document.getElementById('next1').addEventListener('click', function(){
+    state.name = document.getElementById('clientName').value.trim();
+    var hello = document.getElementById('helloLine');
+    hello.textContent = (state.name ? 'Thanks, ' + state.name + '! ' : '') + 'What did we help you with?';
+    show(1);
+  });
+  function hasPurchase(){
+    var buys = ['first','purchase','invest','construction'];
+    return state.scenario.some(function(s){ return buys.indexOf(s) > -1; });
+  }
+  document.getElementById('next2').addEventListener('click', function(){
+    if (!state.scenario.length){ alert('Tap at least one option 🙂'); return; }
+    // Down payment only makes sense when a purchase is involved
+    document.getElementById('dpBlock').style.display = hasPurchase() ? '' : 'none';
+    show(2);
+  });
+  document.getElementById('next3').addEventListener('click', function(){ show(3); });
+  document.getElementById('next4').addEventListener('click', function(){
+    if (!state.highlights.length){ alert('Tap at least one thing that stood out 🙂'); return; }
+    state.custom = document.getElementById('customLine').value.trim();
+    document.getElementById('nameEcho').textContent = state.name ? ', ' + state.name : '';
+    document.getElementById('reviewText').value = freshGenerate();
+    fire('review_generated', {scenario: state.scenario.join(',')});
+    show(4);
+  });
+  document.querySelectorAll('[data-back]').forEach(function(b){
+    b.addEventListener('click', function(){ show(parseInt(b.getAttribute('data-back'),10) - 1); });
+  });
+
+  document.getElementById('regen').addEventListener('click', function(){
+    document.getElementById('reviewText').value = freshGenerate();
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    var box = document.getElementById('reviewText');
+    var done = function(){
+      document.getElementById('copiedNote').style.display = 'block';
+      document.getElementById('num1').classList.add('done');
+      document.getElementById('num1').textContent = '✓';
+      fire('review_copied', {});
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(box.value).then(done, function(){ legacyCopy(box); done(); });
+    } else { legacyCopy(box); done(); }
+  });
+  function legacyCopy(box){ box.focus(); box.select(); try{ document.execCommand('copy'); }catch(e){} }
+
+  document.getElementById('googleBtn').addEventListener('click', function(){
+    fire('review_google_click', {});
+  });
+
+  // ---------- Review generator ----------
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i=a.length-1; i>0; i--){ var j = Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+    return a;
+  }
+  function chance(p){ return Math.random() < p; }
+
+  // Pronoun tokens: [I] [me] [my] [Im] [was] [ftb] [nc]
+  function pron(){
+    if (state.who !== 'couple' && state.who !== 'family')
+      return {I:'I', me:'me', my:'my', Im:"I'm", was:'was', ftb:'a first-time buyer', nc:'a newcomer'};
+    return {I:'we', me:'us', my:'our', Im:"we're", was:'were', ftb:'first-time buyers', nc:'newcomers'};
+  }
+  function fill(t){
+    var p = pron();
+    var map = {i:p.I, me:p.me, my:p.my, im:p.Im, was:p.was, ftb:p.ftb, nc:p.nc};
+    return t.replace(/\[([A-Za-z]+)\]/g, function(m, tok){
+              var lower = tok.toLowerCase();
+              var v = map[lower];
+              if (v === undefined) return m;
+              // "I"/"I'm" keep their natural case; position rules below fix sentence starts.
+              if (lower === 'i' || lower === 'im') return v;
+              return (tok.charAt(0) === tok.charAt(0).toUpperCase())
+                ? v.charAt(0).toUpperCase() + v.slice(1) : v;
+            })
+            .replace(/\{B\}/g, brokerMention)
+            .replace(/^([a-z])/, function(m){ return m.toUpperCase(); })
+            .replace(/([.!?]\s+)([a-z])/g, function(m,a,b){ return a + b.toUpperCase(); });
+  }
+
+  var brokerMention = '';
+  var BROKER = ['Surinderpal at Gold Lion Mortgages','Surinderpal from Gold Lion Mortgages','Surinderpal (Gold Lion Mortgages)','Surinderpal Singh at Gold Lion Mortgages'];
+
+  var OPENINGS = {
+    first: [
+      "[I] just bought [my] first home and {B} made the whole thing way less scary than [I] expected.",
+      "As [ftb] [I] had no clue where to start. {B} walked [me] through every step.",
+      "Buying [my] first home felt overwhelming until [I] found {B}.",
+      "First home, first mortgage — [I] had a million questions, and {B} answered every single one.",
+      "[I] couldn't have picked a better broker for [my] first home. {B} made it simple from day one."
+    ],
+    purchase: [
+      "{B} helped [me] with [my] home purchase and the whole thing went smoother than [I] expected.",
+      "[I] worked with {B} to buy [my] home and honestly couldn't have asked for a better experience.",
+      "[I] recently bought a home with the help of {B}.",
+      "From pre-approval to closing day, {B} had [my] home purchase handled.",
+      "House hunting is stressful enough — {B} made sure the mortgage part wasn't."
+    ],
+    refi: [
+      "{B} helped [me] refinance [my] mortgage and it was a great experience start to finish.",
+      "[I] refinanced with {B} and [Im] so glad [I] did.",
+      "[I] needed to refinance and {B} made it simple.",
+      "[I] wasn't sure refinancing was worth it until [I] sat down with {B}. Best money decision [I]'ve made in years.",
+      "{B} showed [me] exactly what refinancing could do for [my] monthly payments — and then made it happen."
+    ],
+    renewal: [
+      "[My] mortgage was up for renewal and {B} found [me] a much better deal than [my] bank offered.",
+      "Instead of just signing [my] bank's renewal letter, [I] called {B} — best decision.",
+      "{B} handled [my] renewal and saved [me] real money.",
+      "[My] renewal was coming up and [my] bank's offer felt off. {B} shopped it around and proved [my] gut right.",
+      "Renewal time used to mean just signing whatever the bank sent. Not anymore — {B} found [me] something way better."
+    ],
+    invest: [
+      "{B} helped [me] finance an investment property and knew exactly how to structure it.",
+      "[I] used {B} for [my] rental property purchase and the process was smooth.",
+      "Financing an investment property can get complicated, but {B} made it straightforward.",
+      "{B} knows the investment side inside out — rental income, structure, all of it.",
+      "Adding a rental property felt like a big leap. {B} made the numbers make sense."
+    ],
+    self: [
+      "[Im] self-employed and most banks make getting a mortgage a nightmare. {B} knew exactly which lenders would work with [my] income.",
+      "Getting a mortgage while self-employed usually means a fight — {B} made it painless.",
+      "Being self-employed, [I] thought [my] options were limited. {B} proved [me] wrong.",
+      "Self-employed income scares a lot of lenders. It didn't scare {B} — he knew exactly how to present [my] file.",
+      "After years of hearing 'come back with two more years of taxes,' {B} actually got [me] approved."
+    ],
+    newcomer: [
+      "[Im] new to Canada and had no idea how mortgages work here. {B} explained everything and got [me] approved.",
+      "As [nc], [I] thought buying would take years. {B} showed [me] it didn't have to.",
+      "{B} helped [me] get [my] first Canadian mortgage as [nc].",
+      "Moving to Canada is overwhelming enough without figuring out mortgages. {B} made that part easy.",
+      "New country, no Canadian credit history — {B} still found [me] a lender and a great rate."
+    ],
+    credit: [
+      "[My] bank said no, but {B} didn't give up and found a lender that said yes.",
+      "[I] [was] in a tough spot and thought a mortgage was out of reach. {B} found a way.",
+      "After getting turned down elsewhere, [I] called {B} — and [I] got approved.",
+      "Two banks turned [me] down before [I] found {B}. He got it done.",
+      "When everyone else saw problems, {B} saw a way through. [I] got approved when [I]'d almost given up."
+    ],
+    construction: [
+      "{B} arranged the financing for [my] new build and kept everything on track.",
+      "Construction financing is a different beast, and {B} handled it like a pro.",
+      "[I] built a new home and {B} took care of the mortgage side from start to finish.",
+      "Draw schedules, builder deadlines, progress advances — {B} handled all of it so [I] could focus on the build."
+    ],
+    spousal: [
+      "During a difficult time, {B} handled [my] spousal buyout with real care and zero judgment.",
+      "{B} helped [me] keep [my] home after [my] separation and made a stressful process manageable.",
+      "[I] needed a spousal buyout and {B} guided [me] through it step by step.",
+      "Keeping the house after a separation felt impossible. {B} laid out [my] options and made it happen."
+    ]
+  };
+
+  var SECOND = {
+    first:["He also helped [me] as [ftb].","On top of that, it was [my] first home, so he took extra time to explain everything."],
+    purchase:["He also helped [me] with [my] purchase.","He handled the purchase side for [me] too."],
+    refi:["He also sorted out [my] refinance.","He took care of [my] refinance at the same time."],
+    renewal:["He also took care of [my] renewal.","He sorted [my] renewal too — no bank runaround."],
+    invest:["He even helped [me] with an investment property.","He also set up the financing for [my] rental property."],
+    self:["He knew exactly how to handle [my] self-employed income too.","Being self-employed didn't slow anything down — he knew exactly what the lenders needed."],
+    newcomer:["He also made everything easy for [me] as [nc].","Being new to Canada, [I] had extra hurdles — he cleared every one."],
+    credit:["Even with [my] credit situation, he found a way.","Where other brokers saw a problem file, he saw a plan."],
+    construction:["He also arranged [my] construction financing.","He handled the new-build financing side too."],
+    spousal:["He also helped with [my] buyout.","He took care of the buyout details with zero judgment."]
+  };
+
+  var HIGHLIGHTS = {
+    fast: [
+      "He responds fast — usually within minutes, not days.",
+      "Every question [I] had got answered right away.",
+      "Quickest responses [I]'ve ever had from anyone in this industry.",
+      "Texts, calls, emails — he got back to [me] almost instantly, every time.",
+      "[I] never waited long for an answer, even on the small stuff."
+    ],
+    clear: [
+      "He explained everything in plain language so [I] actually understood what [I] [was] signing.",
+      "No jargon, no confusion — he broke everything down clearly.",
+      "[I] always knew exactly what was happening and why.",
+      "He took the time to explain [my] options instead of just pushing papers at [me].",
+      "For once [I] actually understood [my] own mortgage."
+    ],
+    rate: [
+      "He got [me] a better rate than [my] bank offered.",
+      "The rate he found beat everything else [I] [was] quoted.",
+      "He shopped around and found [me] a great rate.",
+      "He compared a whole list of lenders and came back with a rate [my] bank couldn't touch.",
+      "Better rate, better terms — he found [me] both."
+    ],
+    options: [
+      "When the banks couldn't help, he found lenders that could.",
+      "He had options [I] didn't even know existed.",
+      "Where others saw problems, he found solutions.",
+      "He works with so many lenders that there was always another door to knock on.",
+      "He didn't push one product — he laid out real choices and let [me] decide."
+    ],
+    easy: [
+      "He handled all the paperwork and made the whole thing stress-free.",
+      "Honestly the easiest part of [my] whole home process.",
+      "He took all the stress off [my] plate.",
+      "[I] basically just sent documents and he took care of the rest.",
+      "Smoothest financial process [I]'ve ever been through."
+    ],
+    updates: [
+      "[I] never had to chase him for updates — he kept [me] in the loop the entire time.",
+      "He updated [me] at every step so [I] [was] never left wondering.",
+      "Constant communication from start to finish.",
+      "[I] always knew where [my] file stood — no chasing, no guessing.",
+      "He checked in even when there was nothing new, just so [I] wasn't left wondering."
+    ],
+    honest: [
+      "No pressure, no upselling — just honest advice.",
+      "He told [me] the truth even when it wasn't what [I] wanted to hear, and [I] respect that.",
+      "Straight shooter. He laid out the real pros and cons.",
+      "He even told [me] when waiting was the smarter move — you don't get that kind of honesty often.",
+      "Zero sales pressure. It felt like advice from a friend who happens to know mortgages inside out."
+    ],
+    evenings: [
+      "He even took [my] calls in the evenings and on weekends.",
+      "He works around your schedule — evenings, weekends, whatever [I] needed.",
+      "Available whenever [I] needed him, not just 9 to 5.",
+      "[I] messaged him on a Sunday expecting a reply Monday — he answered within the hour."
+    ],
+    above: [
+      "He went above and beyond to get [my] deal done.",
+      "He genuinely cares — this wasn't just another file to him.",
+      "He fought for [my] file like it was his own.",
+      "You can tell he actually cares about the people behind the paperwork.",
+      "He treated [my] mortgage like it was his own money on the line."
+    ]
+  };
+
+  var DETAILS = {
+    dp_small: [
+      "[I] didn't have a massive down payment either — he showed [me] exactly what was possible with less than 20% down.",
+      "Even with a smaller down payment, he found [me] solid options and explained exactly how the insured side works.",
+      "[I] [was] worried [my] down payment wasn't enough. He ran the numbers and made it work."
+    ],
+    dp_gift: [
+      "Part of [my] down payment was a gift from family, and he knew exactly how to document it so nothing held up the approval.",
+      "He handled the gifted down payment paperwork without any drama."
+    ],
+    dp_rrsp: [
+      "He even walked [me] through using [my] FHSA and RRSP for the down payment.",
+      "He showed [me] first-time buyer programs [I] didn't even know existed to build up [my] down payment."
+    ],
+    dp_big: [
+      "[I] had [my] down payment ready, and he made sure every dollar of it was working in [my] favour.",
+      "He helped [me] figure out how much down payment actually made sense to put in, instead of just draining [my] savings."
+    ],
+    cr_top: [
+      "[My] credit was in good shape, and he still shopped every lender to squeeze out the best possible deal.",
+      "Even with strong credit, [I] [was] surprised how much better his options were than [my] bank's.",
+      "Good credit meant plenty of options — he made sure [I] got the best of them."
+    ],
+    cr_work: [
+      "[My] credit score needed some work, and it didn't matter — he knew exactly which lenders would still say yes.",
+      "[My] credit wasn't perfect. He didn't judge, just built a plan around it and got [me] approved.",
+      "He even gave [me] a plan to rebuild [my] credit score so [I] can get an even better rate at renewal."
+    ],
+    t_fast: [
+      "The approval came through faster than [I] expected.",
+      "[I] [was] approved within days, not weeks."
+    ],
+    t_tight: [
+      "[I] [was] on a tight deadline and he still got everything done before closing.",
+      "Tight timeline, zero panic — he just got it done."
+    ],
+    t_ontime: [
+      "Everything closed right on schedule.",
+      "No delays, no surprises — everything happened exactly when he said it would."
+    ]
+  };
+
+  var CLOSERS_SCENARIO_CITY = {
+    first: [
+      "If you're a first-time home buyer in {city}, call Surinderpal — you'll be in good hands.",
+      "Any first-time buyers in {city}: talk to Surinderpal before you talk to your bank."
+    ],
+    self: [
+      "If you're self-employed and need a mortgage in {city}, this is your guy.",
+      "Self-employed in {city}? Save yourself the bank runaround and call Surinderpal."
+    ],
+    newcomer: [
+      "If you're new to Canada and buying a home in {city}, talk to Surinderpal first.",
+      "To every newcomer trying to buy a home in {city}: he's the one to call."
+    ],
+    credit: [
+      "If your bank said no and you're in {city}, call Surinderpal before you give up.",
+      "Bruised credit, declined by the bank, whatever it is — if you're in {city}, he's worth the call."
+    ],
+    refi: [
+      "Thinking about refinancing in {city}? Give him a call first.",
+      "If you're weighing a refinance in {city}, get his opinion before you decide."
+    ],
+    renewal: [
+      "If your renewal is coming up in {city}, get a second opinion from Surinderpal before you sign anything.",
+      "Don't sign that renewal letter — anyone in {city} should have him check it first."
+    ],
+    invest: [
+      "If you're buying a rental property in {city}, you want him in your corner.",
+      "Investors in {city}: this is the broker you want on speed dial."
+    ]
+  };
+  var CLOSERS_CITY = [
+    "If you need a mortgage broker in {city}, call Surinderpal.",
+    "Highly recommend him to anyone in {city} looking for a mortgage.",
+    "If you're in {city} and need a mortgage, this is your guy.",
+    "Hands down the best mortgage broker in {city} [I]'ve dealt with.",
+    "Best mortgage broker in {city} as far as [Im] concerned.",
+    "Do yourself a favour: if you're in {city}, talk to Surinderpal before your bank."
+  ];
+  var CLOSERS_CITY_PURCHASE = [
+    "10/10 — anyone house hunting in {city} should give him a call.",
+    "If you're shopping for a home in {city}, get him on your team early."
+  ];
+  var CLOSERS = [
+    "Highly recommend!",
+    "Would give more than 5 stars if [I] could.",
+    "[I]'ll definitely be back at renewal time.",
+    "10/10 — [I]'ve already recommended him to friends and family.",
+    "Don't go straight to your bank — talk to Surinderpal first.",
+    "Five stars isn't enough.",
+    "Cannot recommend Gold Lion Mortgages enough.",
+    "Do yourself a favour and call him before your bank."
+  ];
+  var GRATITUDE = [
+    "Thanks again, Surinderpal!",
+    "Couldn't be happier.",
+    "So glad [I] found him.",
+    "Truly grateful for everything he did for [me].",
+    "Thank you for looking out for [me]."
+  ];
+  var CONNECTORS = ["On top of that, ","Honestly, ","And ","Plus, ","Best part — "];
+
+  function lowerFirst(s){
+    if (/^(I[ ']|I$|Surinderpal|Gold|FHSA|RRSP)/.test(s)) return s;
+    return s.charAt(0).toLowerCase() + s.slice(1);
+  }
+  function words(parts){
+    return parts.map(function(p){ return p.t; }).join(' ').split(/\s+/).length;
+  }
+
+  function generate(){
+    brokerMention = pick(BROKER);
+    var parts = [];
+
+    // Opening + optional second scenario
+    var scen = state.scenario.filter(function(s){ return OPENINGS[s]; });
+    if (!scen.length) scen = ['purchase'];
+    parts.push({t: fill(pick(OPENINGS[scen[0]])), k:'open'});
+    if (scen.length > 1 && SECOND[scen[1]] && chance(0.8))
+      parts.push({t: fill(pick(SECOND[scen[1]])), k:'second'});
+
+    // Details (down payment / credit / timeline)
+    var details = [];
+    var dpKeys = hasPurchase() ? (state.dp || []).filter(function(k){ return DETAILS[k]; }) : [];
+    if (dpKeys.length) details.push(pick(dpKeys));
+    if (DETAILS[state.credit]) details.push(state.credit);
+    if (DETAILS[state.timeline]) details.push(state.timeline);
+    var detailParts = details.map(function(k){ return {t: fill(pick(DETAILS[k])), k:'detail'}; });
+
+    // Highlights — fewer when details carry the story
+    var maxH = detailParts.length >= 2 ? 3 : 4;
+    var hlParts = shuffle(state.highlights).slice(0, maxH).map(function(h){
+      return HIGHLIGHTS[h] ? {t: fill(pick(HIGHLIGHTS[h])), k:'hl'} : null;
+    }).filter(Boolean);
+
+    // Middle block: highlights + details interleaved randomly
+    parts = parts.concat(shuffle(hlParts.concat(detailParts)));
+
+    // Client's own words
+    if (state.custom){
+      var c = state.custom.replace(/^([a-z])/, function(m){ return m.toUpperCase(); });
+      if (!/[.!?]$/.test(c)) c += '.';
+      parts.push({t: c, k:'custom'});
+    }
+
+    // Length control: trim extra highlights, then a detail, if it runs long
+    while (words(parts) > 170){
+      var idx = -1;
+      for (var i=parts.length-1; i>=0; i--){ if (parts[i].k === 'hl'){ idx = i; break; } }
+      if (idx >= 0 && parts.filter(function(p){ return p.k==='hl'; }).length > 2){ parts.splice(idx,1); continue; }
+      for (var j=parts.length-1; j>=0; j--){ if (parts[j].k === 'detail'){ idx = j; break; } }
+      if (idx >= 0 && parts.filter(function(p){ return p.k==='detail'; }).length > 1){ parts.splice(idx,1); continue; }
+      break;
+    }
+
+    // Connectors on 1-2 middle sentences
+    var mids = [];
+    parts.forEach(function(p, i){ if (i > 0 && (p.k === 'hl' || p.k === 'detail')) mids.push(i); });
+    shuffle(mids).slice(0, 2).forEach(function(i){
+      if (chance(0.35)) parts[i].t = pick(CONNECTORS) + lowerFirst(parts[i].t);
+    });
+
+    // Closer — city always used when we have one (local SEO)
+    var city = state.city === 'other' ? 'Alberta' : state.city;
+    var closer;
+    if (city){
+      var sc = CLOSERS_SCENARIO_CITY[scen[0]];
+      var pool = (sc && chance(0.55)) ? sc
+               : (hasPurchase() ? CLOSERS_CITY.concat(CLOSERS_CITY_PURCHASE) : CLOSERS_CITY);
+      closer = fill(pick(pool)).replace(/\{city\}/g, city);
+    } else {
+      closer = fill(pick(CLOSERS));
+    }
+    var closerText = closer + (chance(0.3) ? ' ' + fill(pick(GRATITUDE)) : '');
+
+    // Assemble — sometimes as two paragraphs
+    var body = parts.map(function(p){ return p.t; }).join(' ');
+    var sep = (parts.length >= 5 && chance(0.45)) ? '\n\n' : ' ';
+    return body + sep + closerText;
+  }
+
+  // Never hand the same text twice in a session; combination space is ~billions,
+  // so cross-user collisions are practically impossible too.
+  var served = new Set();
+  function freshGenerate(){
+    var t = '';
+    for (var i=0; i<8; i++){
+      t = generate();
+      if (!served.has(t)){ served.add(t); return t; }
+    }
+    return t;
+  }
+
+  window.__GL_TEST__ = { generate: generate };
+})();
+</script>
+</body>
+</html>
