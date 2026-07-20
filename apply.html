@@ -35,13 +35,716 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apply for a Mortgage | Gold Lion Mortgages</title>
-<meta name="robots" content="noindex">
-<meta name="description" content="Start your secure mortgage application with Gold Lion Mortgages. Takes about 10 minutes. Questions? Call (587) 740-0048.">
-<meta http-equiv="refresh" content="0; url=https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un">
-<script>window.location.replace("https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un");</script>
+<title>Start Your Mortgage Application | Gold Lion Mortgages</title>
+<link rel="canonical" href="https://www.goldlionmortgages.com/apply">
+<meta name="description" content="Start your mortgage application online in about 5 minutes — no credit check to begin. Purchase, refinance, renewal or debt consolidation. Reviewed personally by a licensed broker. Call (587) 740-0048.">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="styles.css?v=7">
+<link rel="stylesheet" href="lead-gen.css">
+
+<meta property="og:url" content="https://www.goldlionmortgages.com/apply">
+<meta property="og:site_name" content="Gold Lion Mortgages">
+<meta property="og:title" content="Start Your Mortgage Application | Gold Lion Mortgages">
+<meta property="og:description" content="A short online application — about 5 minutes, no credit check to begin. Reviewed personally by a licensed mortgage broker.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.goldlionmortgages.com/img/og-image.png">
+<link rel="stylesheet" href="whatsapp.css">
+
+<!-- Supplemental styles for the application wizard (input steps only; the rest reuse .quiz-* / .lead-* from styles.css + lead-gen.css) -->
+<style>
+  .apply-hero-actions { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; }
+  .apply-hero-note { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin-top: 18px; font-size: 14px; color: var(--muted, #6b6b78); }
+  .apply-hero-note span { display: inline-flex; align-items: center; gap: 7px; }
+  .apply-hero-note span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold, #c9a24b); flex: none; }
+  .apply-secondary-link {
+    font-size: 15px; font-weight: 500; color: #ecd9a6;
+    text-decoration: underline; text-underline-offset: 4px;
+    text-decoration-color: rgba(236, 217, 166, 0.45); transition: color .18s ease;
+  }
+  .apply-secondary-link:hover { color: #fff; text-decoration-color: rgba(255,255,255,0.7); }
+
+  /* Input-type steps */
+  .apply-input-fields { display: grid; gap: 4px; margin-top: 6px; }
+  .apply-input-fields .lead-field { margin-bottom: 10px; }
+  .apply-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 520px) { .apply-row { grid-template-columns: 1fr; } }
+  .apply-input-fields textarea {
+    width: 100%; box-sizing: border-box; min-height: 110px; resize: vertical;
+    padding: 13px 15px; border: 1.5px solid var(--border, #e5e2ea); border-radius: 12px;
+    font-family: inherit; font-size: 15px; color: inherit; background: #fff;
+  }
+  .apply-input-fields textarea:focus { outline: none; border-color: var(--lg-purple, #2b1b72); }
+  .apply-continue { margin-top: 6px; }
+  .apply-consent {
+    display: flex; align-items: flex-start; gap: 11px; margin: 4px 0 14px;
+    font-size: 13.5px; line-height: 1.5; color: var(--muted, #55555f);
+  }
+  .apply-consent input { margin-top: 3px; width: 18px; height: 18px; flex: none; accent-color: var(--lg-purple, #2b1b72); }
+  .apply-error { color: #c0392b; font-size: 13.5px; margin: 2px 0 10px; display: none; }
+  .apply-error.show { display: block; }
+  .apply-optional { font-weight: 400; color: var(--muted, #8a8a94); font-size: 13px; }
+</style>
 </head>
 <body>
-<p>Taking you to our secure mortgage application. If you are not redirected automatically, <a href="https://velocity.newton.ca/sso/public.php?sc=7ix0ehn6t6un">click here to apply</a> or call <a href="tel:5877400048">(587) 740-0048</a>.</p>
+
+<!-- ═══ NAV ═══ -->
+<nav id="main-nav">
+  <a href="/" class="logo">
+    <div>
+      <div class="logo-name">Gold <span>Lion</span><br>Mortgages Inc.</div>
+    </div>
+    <div class="logo-powered">
+      Powered by<br>
+      <strong>Mortgage Centre<br>Elevo Mortgages</strong>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="about">About</a></li>
+    <li><a href="services">Services</a></li>
+    <li><a href="partners">Partners</a></li>
+    <li><a href="calculator">Tools</a></li>
+    <li><a href="blog">Blog</a></li>
+    <li><a href="contact">Contact</a></li>
+    <li><a href="/quiz">Free Review</a></li>
+    <li><a href="/apply" class="nav-cta">Apply for a Mortgage</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/">Home</a>
+  <a href="about">About</a>
+  <a href="services">Services</a>
+  <a href="partners">Partners</a>
+  <a href="calculator">Tools</a>
+  <a href="blog">Blog</a>
+  <a href="contact">Contact</a>
+  <a href="/quiz">Free Review</a>
+  <a href="/apply" class="mobile-menu-cta">Apply for a Mortgage</a>
+</div>
+
+<!-- ═══ PAGE HERO ═══ -->
+<section class="page-hero">
+  <div class="page-hero-label">Start Your Application</div>
+  <h1>Let's Get You<br><em>Approved.</em></h1>
+  <p>Answer a few questions about what you need and Surinderpal will personally review your file and come back with the options that actually fit. It takes about five minutes, there's no credit check to begin, and there's no obligation.</p>
+  <div class="apply-hero-actions">
+    <a class="apply-secondary-link" href="https://goldlionmortgagesinc.pipedrive.com/scheduler/Lzrkrzf4/call-appointment" target="_blank" rel="noopener">Prefer to just book a call? Pick a time&nbsp;&rarr;</a>
+  </div>
+  <div class="apply-hero-note">
+    <span>About 5 minutes</span>
+    <span>No credit check to start</span>
+    <span>Access to 200+ lenders</span>
+  </div>
+</section>
+
+<!-- ═══ APPLICATION WIZARD ═══ -->
+<div class="quiz-shell">
+  <div class="quiz-card">
+
+    <!-- PROGRESS -->
+    <div class="quiz-progress-wrap" id="appProgressWrap">
+      <span class="quiz-progress-label" id="appProgressLabel">Step 1</span>
+      <div class="quiz-progress-track">
+        <div class="quiz-progress-fill" id="appProgressFill"></div>
+      </div>
+    </div>
+
+    <!-- STEPS (rendered by JS) -->
+    <div id="appSteps"></div>
+
+    <!-- NAV -->
+    <div class="quiz-nav" id="appNav">
+      <button type="button" class="quiz-back" id="appBack" disabled>&larr; Back</button>
+      <span class="quiz-progress-label" id="appStepCount"></span>
+    </div>
+
+    <p class="quiz-disclaimer">
+      Starting an application is not a mortgage approval or an offer of credit, and it does not run a credit check. The options available to you depend on a full review of your situation, your province, and each lender's criteria. Your information stays private and is never sold.
+    </p>
+
+    <!-- ═══ RESULT / CAPTURE SCREEN ═══ -->
+    <div class="quiz-result" id="appResult">
+      <div class="quiz-result-head">
+        <div class="quiz-result-badge">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h2 id="appResultTitle">You're almost there.</h2>
+        <p id="appResultBody">Add your contact details below and Surinderpal will review your application and reach out with your next step.</p>
+      </div>
+
+      <div class="quiz-result-divider"></div>
+
+      <div class="lead-form-card" style="box-shadow:none;border:1px solid var(--border);padding:28px 26px;">
+        <form class="lead-form" id="appForm" method="POST" novalidate>
+          <div class="lead-form-fields">
+            <h3>Where should we send your options?</h3>
+            <p class="lead-form-sub">One business day is our goal. If it's urgent, call or text (587)&nbsp;740-0048 any time.</p>
+
+            <div class="lead-field">
+              <label for="app-name">Full name</label>
+              <input type="text" id="app-name" name="name" autocomplete="name" placeholder="Your name" required>
+            </div>
+            <div class="apply-row">
+              <div class="lead-field">
+                <label for="app-email">Email</label>
+                <input type="email" id="app-email" name="email" autocomplete="email" placeholder="you@email.com" required>
+              </div>
+              <div class="lead-field">
+                <label for="app-phone">Phone</label>
+                <input type="tel" id="app-phone" name="phone" autocomplete="tel" placeholder="(587) 000-0000" required>
+              </div>
+            </div>
+            <p class="apply-error" id="appContactError">Please add your name, a valid email, and a phone number so we can reach you.</p>
+
+            <label class="apply-consent">
+              <input type="checkbox" id="app-consent" name="consent_given" value="Yes" required>
+              <span>I'd like Gold Lion Mortgages to contact me about my application by phone, text, or email. I understand this is not a mortgage approval. <span class="apply-optional">(Required)</span></span>
+            </label>
+            <p class="apply-error" id="appConsentError">Please check the box so we're allowed to contact you.</p>
+
+            <!-- Hidden fields populated from the wizard answers on submit -->
+            <input type="hidden" name="source" value="Website Application">
+            <input type="hidden" name="application_summary" id="appSummaryField" value="">
+
+            <button type="submit" class="lead-submit">Submit My Application</button>
+            <p class="lead-disclaimer">By submitting, you agree to be contacted by Gold Lion Mortgages about your enquiry. We never sell your information. Powered by Mortgage Centre Elevo Mortgages · Member of DLCG.</p>
+          </div>
+
+          <!-- Thank-you state -->
+          <div class="lead-thanks">
+            <div class="lead-thanks-badge">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h3>Got it — your application is in.</h3>
+            <p>Thanks for the detail. Surinderpal will review everything and be in touch, usually within one business day. Want to lock in a time now? Book a call below.</p>
+            <a class="lead-download-btn" href="https://goldlionmortgagesinc.pipedrive.com/scheduler/Lzrkrzf4/call-appointment" target="_blank" rel="noopener">Book a Free Call</a>
+            <a class="lead-secondary-cta" href="tel:5877400048">Or call (587) 740-0048</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+</main>
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="/" class="logo" style="align-items:flex-start">
+        <div>
+          <div class="logo-name" style="color:#fff; font-size:16px">Gold <span>Lion</span><br>Mortgages Inc.</div>
+          <div class="logo-powered" style="color:rgba(255,255,255,0.4); border-color:rgba(255,255,255,0.15); margin-top:4px">
+            Powered by<br>
+            <strong style="color:rgba(255,255,255,0.65)">Mortgage Centre<br>Elevo Mortgages</strong>
+          </div>
+        </div>
+      </a>
+      <p class="footer-desc">Turning bank rejections into approved mortgages. We help self-employed Canadians, first-time buyers, investors, and homeowners renewing — wherever you are in Canada.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/sp_maan_mortgages/" target="_blank" class="social-btn" title="Instagram">IG</a>
+        <a href="https://www.linkedin.com/in/surinderpal-singh-a49163187/" target="_blank" class="social-btn" title="LinkedIn">in</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Pages</h3>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="about">About</a></li>
+        <li><a href="services">Services</a></li>
+        <li><a href="partners">Partners</a></li>
+        <li><a href="calculator">Tools</a></li>
+        <li><a href="blog">Blog</a></li>
+        <li><a href="contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Quick Actions</h3>
+      <ul>
+        <li><a href="/apply">Apply for a Mortgage</a></li>
+        <li><a href="https://goldlionmortgagesinc.pipedrive.com/scheduler/Lzrkrzf4/call-appointment" target="_blank">Book a Consultation</a></li>
+        <li><a href="https://share.google/nZd4hpAHxDzkLB2hl" target="_blank">Google Reviews</a></li>
+        <li><a href="services">Our Services</a></li>
+        <li><a href="about">About Surinderpal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <ul>
+        <li><a href="tel:5877400048">(587) 740-0048</a></li>
+        <li><a href="mailto:Surinder@goldlionmortgages.com">Surinder@goldlionmortgages.com</a></li>
+        <li><a href="https://www.instagram.com/sp_maan_mortgages/" target="_blank">@sp_maan_mortgages</a></li>
+        <li><a href="https://www.linkedin.com/in/surinderpal-singh-a49163187/" target="_blank">LinkedIn</a></li>
+        <li><a href="#">Based in Calgary · Serving Canada</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Gold Lion Mortgages Inc. All rights reserved.</span>
+    <div class="license-tag">
+      <div class="license-dot"></div>
+      Powered by Mortgage Centre Elevo Mortgages &middot; Member of DLCG
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ APPLICATION ENGINE ═══ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ── Live capture endpoint ─────────────────────────────────────
+     Same Google Apps Script web app the rest of the site posts to:
+     logs to a Sheet, emails Surinderpal, and auto-replies to the
+     applicant. It reads e.parameter, so every field below is captured.
+     No CORS headers are returned, so we post no-cors (fire-and-forget). */
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbx-ajOzcdMqLjn-Y_3i766BPBE2cMx3hc2NsMgn_I9ERztB3YpTdHsZKz7SGukc4RhkAQ/exec';
+
+  /* ── The application ───────────────────────────────────────────
+     Two kinds of step:
+       type 'choice' — tap an option, it records and auto-advances.
+       type 'input'  — one or more typed fields + a Continue button.
+     Nothing here scores or approves anything. Answers only route the
+     file and give Surinderpal context before he reviews it. */
+  var PROVINCES = ['Alberta','British Columbia','Manitoba','New Brunswick','Newfoundland and Labrador','Northwest Territories','Nova Scotia','Nunavut','Ontario','Prince Edward Island','Quebec','Saskatchewan','Yukon'];
+
+  var STEPS = [
+    { id:'goal', label:'Goal', type:'choice',
+      q:'What can we help you with?',
+      help:'Pick the closest fit — you can add detail later.',
+      options:[
+        {label:'Buying a home', value:'Purchase'},
+        {label:'Refinancing or pulling out equity', value:'Refinance'},
+        {label:'Renewing my mortgage', value:'Renewal'},
+        {label:'A home equity line of credit (HELOC)', value:'HELOC'},
+        {label:'Consolidating debt', value:'Debt consolidation'},
+        {label:'An investment or rental property', value:'Investment property'},
+        {label:'Not sure yet', value:'Not sure'}
+      ]},
+    { id:'stage', label:'Stage', type:'choice',
+      q:'Where are you in the process?',
+      help:'This just helps us prioritise your file.',
+      options:[
+        {label:'Just exploring my options', value:'Exploring'},
+        {label:'I want to get pre-approved', value:'Wants pre-approval'},
+        {label:'Actively house-hunting', value:'House-hunting'},
+        {label:'I have an accepted offer (under contract)', value:'UNDER CONTRACT'},
+        {label:'Renewing or refinancing what I have', value:'Renew/refi'}
+      ]},
+    { id:'location', label:'Location', type:'input',
+      q:'Where is the property?',
+      help:"If you haven't picked one yet, choose the area you're looking in.",
+      fields:[
+        {name:'province', label:'Province or territory', type:'select', options:PROVINCES, required:true, placeholder:'Select…'},
+        {name:'city', label:'City or town', type:'text', required:true, placeholder:'e.g. Toronto'}
+      ]},
+    { id:'property_type', label:'Property type', type:'choice',
+      q:'What kind of property is it?',
+      options:[
+        {label:'Detached house', value:'Detached'},
+        {label:'Semi-detached or duplex', value:'Semi-detached'},
+        {label:'Townhouse', value:'Townhouse'},
+        {label:'Condo or apartment', value:'Condo'},
+        {label:'Multi-unit (2–4 units)', value:'Multi-unit'},
+        {label:'Not sure yet', value:'Undecided'}
+      ]},
+    { id:'property_use', label:'Use', type:'choice',
+      q:'How will the property be used?',
+      options:[
+        {label:'My primary home', value:'Primary residence'},
+        {label:'A rental / investment', value:'Rental'},
+        {label:'A second home or cottage', value:'Second home'},
+        {label:'Not sure', value:'Not sure'}
+      ]},
+    { id:'price', label:'Price / amount', type:'choice',
+      q:"What's the approximate property price or mortgage amount?",
+      help:'A ballpark is fine.',
+      options:[
+        {label:'Under $300,000', value:'Under $300k'},
+        {label:'$300,000 – $500,000', value:'$300k–$500k'},
+        {label:'$500,000 – $750,000', value:'$500k–$750k'},
+        {label:'$750,000 – $1,000,000', value:'$750k–$1M'},
+        {label:'Over $1,000,000', value:'Over $1M'}
+      ]},
+    { id:'downpayment', label:'Down payment / equity', type:'choice',
+      q:'How much do you have for a down payment?',
+      help:'For a refinance or renewal, think of this as your current home equity.',
+      options:[
+        {label:'Less than 5%', value:'<5%'},
+        {label:'5% – 9%', value:'5–9%'},
+        {label:'10% – 19%', value:'10–19%'},
+        {label:'20% or more', value:'20%+'},
+        {label:'Using existing home equity', value:'Home equity'}
+      ]},
+    { id:'income_type', label:'Income type', type:'choice',
+      q:'How do you earn your income?',
+      help:'Choose the closest match — a mix is common.',
+      options:[
+        {label:'Employed (T4 — salary or hourly)', value:'Employed'},
+        {label:'Self-employed or business owner', value:'Self-employed'},
+        {label:'Commission or variable income', value:'Commission'},
+        {label:'Contract or gig work', value:'Contract'},
+        {label:'Retired / pension', value:'Retired'},
+        {label:'A mix of the above', value:'Mixed'}
+      ]},
+    { id:'time_at_job', label:'Time earning', type:'choice',
+      q:'How long have you earned income this way?',
+      options:[
+        {label:'Less than a year', value:'<1 year'},
+        {label:'1 – 2 years', value:'1–2 years'},
+        {label:'2 – 5 years', value:'2–5 years'},
+        {label:'More than 5 years', value:'5+ years'}
+      ]},
+    { id:'income_level', label:'Household income', type:'choice',
+      q:"What's your approximate household income?",
+      help:'A ballpark is fine, and it stays private.',
+      options:[
+        {label:'Under $60,000', value:'Under $60k'},
+        {label:'$60,000 – $100,000', value:'$60k–$100k'},
+        {label:'$100,000 – $150,000', value:'$100k–$150k'},
+        {label:'$150,000 – $250,000', value:'$150k–$250k'},
+        {label:'Over $250,000', value:'$250k+'},
+        {label:'Prefer not to say', value:'Prefer not to say'}
+      ]},
+    { id:'coapplicant', label:'Applicants', type:'choice',
+      q:'Who is applying?',
+      options:[
+        {label:'Just me', value:'Just me'},
+        {label:'Me and my spouse or partner', value:'With co-applicant'},
+        {label:'Me and a co-signer', value:'With co-signer'}
+      ]},
+    { id:'credit', label:'Credit', type:'choice',
+      q:'How would you describe your credit?',
+      help:'An honest guess is perfectly fine — we work with every credit band.',
+      options:[
+        {label:'Strong (around 700+)', value:'Strong'},
+        {label:'Fair (around 600–699)', value:'Fair'},
+        {label:'Rebuilding (below 600)', value:'Rebuilding'},
+        {label:"I'm not sure", value:'Unsure'}
+      ]},
+    { id:'credit_events', label:'Credit history', type:'choice',
+      q:'Do any of these apply to you?',
+      help:'No judgment — knowing early just helps us pick the right lender.',
+      options:[
+        {label:'None of these', value:'None'},
+        {label:'A missed payment or two', value:'Missed payments'},
+        {label:'Collections or a judgment', value:'Collections'},
+        {label:'A past bankruptcy or consumer proposal', value:'Bankruptcy/proposal'},
+        {label:"I'm new to Canada", value:'New to Canada'}
+      ]},
+    { id:'monthly_debts', label:'Monthly debts', type:'choice',
+      q:'Roughly what do your monthly debt payments add up to?',
+      help:'Car loans, credit cards, lines of credit, student loans — not rent or your mortgage.',
+      options:[
+        {label:'None to speak of', value:'$0'},
+        {label:'Under $500', value:'Under $500'},
+        {label:'$500 – $1,000', value:'$500–$1,000'},
+        {label:'$1,000 – $2,000', value:'$1,000–$2,000'},
+        {label:'Over $2,000', value:'Over $2,000'}
+      ]},
+    { id:'timeline', label:'Timeline', type:'choice',
+      q:'When are you hoping to move forward?',
+      options:[
+        {label:'As soon as possible', value:'ASAP'},
+        {label:'Within 1 – 3 months', value:'1–3 months'},
+        {label:'In 3 – 6 months', value:'3–6 months'},
+        {label:'In 6 – 12 months', value:'6–12 months'},
+        {label:'Just researching for now', value:'Researching'}
+      ]},
+    { id:'working_with', label:'Already working with', type:'choice',
+      q:'Are you already working with a broker on this?',
+      help:'No wrong answer — we just want to know how best to help.',
+      options:[
+        {label:'No, just starting out', value:'No — just starting'},
+        {label:'Only talked to my bank', value:'Bank only'},
+        {label:'Yes, with another broker', value:'Another broker'},
+        {label:'Not sure', value:'Unsure'}
+      ]},
+    { id:'heard_about', label:'How you found us', type:'choice',
+      q:'How did you hear about us?',
+      options:[
+        {label:'Google search', value:'Google'},
+        {label:'A friend or family referral', value:'Referral'},
+        {label:'Social media', value:'Social media'},
+        {label:'My realtor', value:'Realtor'},
+        {label:"I'm a returning client", value:'Returning client'},
+        {label:'Other', value:'Other'}
+      ]},
+    { id:'notes', label:'Anything else', type:'input', optional:true,
+      q:'Anything else we should know?',
+      help:'Optional — but the more context, the better we can help. Leave it blank to skip.',
+      fields:[
+        {name:'notes', label:'Your notes', type:'textarea', required:false, placeholder:"e.g. self-employed for 3 years, closing date, a past credit issue you've sorted out…"}
+      ]}
+  ];
+
+  var answers = {};
+  var current = 0;
+  var TOTAL = STEPS.length + 1; // +1 for the contact/capture screen
+
+  var stepsEl   = document.getElementById('appSteps');
+  var progFill  = document.getElementById('appProgressFill');
+  var progLabel = document.getElementById('appProgressLabel');
+  var stepCount = document.getElementById('appStepCount');
+  var backBtn   = document.getElementById('appBack');
+  var navEl     = document.getElementById('appNav');
+  var progWrap  = document.getElementById('appProgressWrap');
+  var resultEl  = document.getElementById('appResult');
+  var disclaimer= document.querySelector('.quiz-disclaimer');
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  // Build every step up front, then toggle visibility.
+  STEPS.forEach(function (item, idx) {
+    var step = document.createElement('div');
+    step.className = 'quiz-step' + (idx === 0 ? ' active' : '');
+    step.setAttribute('data-step', idx);
+
+    var inner =
+      '<div class="quiz-question">' + item.q + '</div>' +
+      (item.help ? '<p class="quiz-help">' + item.help + '</p>' : '');
+
+    if (item.type === 'choice') {
+      inner += '<div class="quiz-options">' + item.options.map(function (opt) {
+        return '<button type="button" class="quiz-option" data-value="' + esc(opt.value) + '">' +
+               '<span class="quiz-option-marker"></span><span>' + opt.label + '</span></button>';
+      }).join('') + '</div>';
+    } else {
+      // input step
+      var fieldsHtml = item.fields.map(function (f) {
+        var id = 'f-' + f.name;
+        var control;
+        if (f.type === 'select') {
+          control = '<select id="' + id + '" name="' + f.name + '"' + (f.required ? ' required' : '') + '>' +
+                    '<option value="" disabled selected>' + esc(f.placeholder || 'Select…') + '</option>' +
+                    f.options.map(function (o) { return '<option value="' + esc(o) + '">' + esc(o) + '</option>'; }).join('') +
+                    '</select>';
+        } else if (f.type === 'textarea') {
+          control = '<textarea id="' + id + '" name="' + f.name + '" placeholder="' + esc(f.placeholder || '') + '"></textarea>';
+        } else {
+          control = '<input type="' + f.type + '" id="' + id + '" name="' + f.name + '" placeholder="' + esc(f.placeholder || '') + '"' + (f.required ? ' required' : '') + '>';
+        }
+        return '<div class="lead-field"><label for="' + id + '">' + f.label +
+               (f.required ? '' : ' <span class="apply-optional">(optional)</span>') + '</label>' + control + '</div>';
+      }).join('');
+
+      // Two side-by-side fields (province + city) get a row layout.
+      var wrapClass = (item.fields.length === 2) ? 'apply-input-fields apply-row' : 'apply-input-fields';
+      inner += '<div class="' + wrapClass + '">' + fieldsHtml + '</div>' +
+               '<p class="apply-error" data-step-error>Please fill this in so we can continue.</p>' +
+               '<button type="button" class="lead-submit apply-continue" data-continue>Continue &rarr;</button>';
+    }
+
+    step.innerHTML = inner;
+    stepsEl.appendChild(step);
+  });
+
+  var stepNodes = stepsEl.querySelectorAll('.quiz-step');
+
+  function updateProgress() {
+    var pct = (current / TOTAL) * 100;
+    progFill.style.width = pct + '%';
+    progLabel.textContent = 'Step ' + (current + 1) + ' of ' + TOTAL;
+    stepCount.textContent = (current + 1) + ' / ' + TOTAL;
+    backBtn.disabled = current === 0;
+  }
+
+  function showStep(idx) {
+    stepNodes.forEach(function (n, i) { n.classList.toggle('active', i === idx); });
+    current = idx;
+    updateProgress();
+    var active = stepNodes[idx];
+    if (active) {
+      var firstInput = active.querySelector('input, select, textarea');
+      if (firstInput) { try { firstInput.focus({ preventScroll: true }); } catch (e) {} }
+    }
+  }
+
+  // Choice steps — record + auto-advance.
+  stepsEl.addEventListener('click', function (e) {
+    var opt = e.target.closest('.quiz-option');
+    if (opt) {
+      var step = opt.closest('.quiz-step');
+      var idx = parseInt(step.getAttribute('data-step'), 10);
+      step.querySelectorAll('.quiz-option').forEach(function (o) { o.classList.remove('selected'); });
+      opt.classList.add('selected');
+      answers[STEPS[idx].id] = opt.getAttribute('data-value');
+      setTimeout(function () { advanceFrom(idx); }, 200);
+      return;
+    }
+    // Input steps — Continue button.
+    var cont = e.target.closest('[data-continue]');
+    if (cont) {
+      var s = cont.closest('.quiz-step');
+      var i = parseInt(s.getAttribute('data-step'), 10);
+      if (validateInputStep(STEPS[i], s)) { advanceFrom(i); }
+    }
+  });
+
+  // Enter key inside a text/select field acts as Continue.
+  stepsEl.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter') { return; }
+    var s = e.target.closest('.quiz-step');
+    if (!s || e.target.tagName === 'TEXTAREA') { return; }
+    var cont = s.querySelector('[data-continue]');
+    if (cont) { e.preventDefault(); cont.click(); }
+  });
+
+  function validateInputStep(item, stepEl) {
+    var err = stepEl.querySelector('[data-step-error]');
+    var ok = true;
+    item.fields.forEach(function (f) {
+      var el = stepEl.querySelector('[name="' + f.name + '"]');
+      var val = (el && el.value || '').trim();
+      answers[f.name] = val;
+      if (f.required && !val) { ok = false; }
+      if (f.required && f.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) { ok = false; }
+    });
+    if (err) { err.classList.toggle('show', !ok); }
+    return ok;
+  }
+
+  function advanceFrom(idx) {
+    if (idx < STEPS.length - 1) { showStep(idx + 1); }
+    else { finish(); }
+  }
+
+  backBtn.addEventListener('click', function () {
+    if (current > 0 && current < STEPS.length) { showStep(current - 1); }
+    else if (current === STEPS.length) {
+      // From the capture screen back into the last question.
+      resultEl.classList.remove('active');
+      progWrap.style.display = '';
+      navEl.style.display = '';
+      if (disclaimer) { disclaimer.style.display = ''; }
+      stepsEl.style.display = '';
+      showStep(STEPS.length - 1);
+    }
+  });
+
+  function buildSummary() {
+    return STEPS.map(function (item) {
+      if (item.type === 'input') {
+        return item.fields.map(function (f) {
+          return f.label + ': ' + (answers[f.name] || '—');
+        }).join(' | ');
+      }
+      return (item.label || item.id) + ': ' + (answers[item.id] || '—');
+    }).join('  ·  ');
+  }
+
+  function finish() {
+    progWrap.style.display = 'none';
+    navEl.style.display = 'none';
+    if (disclaimer) { disclaimer.style.display = 'none'; }
+    stepsEl.style.display = 'none';
+
+    current = STEPS.length;
+    document.getElementById('appSummaryField').value = buildSummary();
+    resultEl.classList.add('active');
+    resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  /* ── Submit the application ─────────────────────────────────────
+     Self-contained: validates the contact block, folds every wizard
+     answer into the POST, spam-checks the honeypot, then fires the
+     no-cors request and shows the thank-you. */
+  var form = document.getElementById('appForm');
+
+  // Honeypot — bots fill it, humans never see it.
+  var hp = document.createElement('input');
+  hp.type = 'text'; hp.name = '_gotcha'; hp.tabIndex = -1;
+  hp.setAttribute('autocomplete', 'off'); hp.setAttribute('aria-hidden', 'true');
+  hp.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;';
+  form.appendChild(hp);
+
+  function showThanks() {
+    form.querySelector('.lead-form-fields').classList.add('hidden');
+    form.querySelector('.lead-thanks').classList.add('active');
+    if (typeof gtag === 'function') { gtag('event', 'generate_lead', { form_id: 'appForm', source: 'Website Application' }); }
+    form.querySelector('.lead-thanks').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var name = form.querySelector('#app-name').value.trim();
+    var email = form.querySelector('#app-email').value.trim();
+    var phone = form.querySelector('#app-phone').value.trim();
+    var consent = form.querySelector('#app-consent').checked;
+    var contactErr = document.getElementById('appContactError');
+    var consentErr = document.getElementById('appConsentError');
+
+    var validContact = name && phone && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    contactErr.classList.toggle('show', !validContact);
+    consentErr.classList.toggle('show', !consent);
+    if (!validContact || !consent) {
+      (!validContact ? contactErr : consentErr).scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    if (hp.value) { showThanks(); return; } // silently drop bots
+
+    // Build the payload: every wizard answer + the contact block.
+    var body = new URLSearchParams();
+    Object.keys(answers).forEach(function (k) { body.append(k, answers[k]); });
+    body.append('name', name);
+    body.append('email', email);
+    body.append('phone', phone);
+    body.append('consent_given', 'Yes');
+    body.append('source', 'Website Application');
+    body.append('application_summary', document.getElementById('appSummaryField').value);
+    body.append('page', location.pathname + location.search);
+
+    if (window.fetch) {
+      fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: body }).then(showThanks).catch(showThanks);
+    } else {
+      showThanks();
+    }
+  });
+
+  updateProgress();
+})();
+</script>
+
+<!-- ═══ NAV SHADOW + HAMBURGER ═══ -->
+<script>
+window.addEventListener('scroll', function () {
+  document.getElementById('main-nav').style.boxShadow =
+    window.scrollY > 20 ? '0 2px 24px rgba(43,27,114,0.09)' : 'none';
+});
+(function () {
+  var btn  = document.getElementById('hamburger');
+  var menu = document.getElementById('mobile-menu');
+  if (!btn) { return; }
+  btn.addEventListener('click', function () {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+</script>
+
+<a href="tel:5877400048" class="floating-call" id="floatingCall" aria-label="Call Gold Lion Mortgages"><span class="floating-call-label" id="callLabel">Call Now</span><div class="floating-call-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div></a>
+<script>(function(){var l=document.getElementById("callLabel"),f=document.getElementById("floatingCall");if(!l||!f)return;setTimeout(function(){l.classList.add("hidden")},3000);var ft=document.querySelector("footer");if(!ft)return;window.addEventListener("scroll",function(){f.classList.toggle("at-footer",ft.getBoundingClientRect().top<window.innerHeight)})})();</script>
+<a href="https://wa.me/14034040048?text=Hi%20Surinderpal%2C%20I%20have%20a%20question%20about%20mortgages." target="_blank" class="whatsapp-float" id="whatsappFloat" aria-label="Chat on WhatsApp"><span class="whatsapp-tooltip" id="whatsappTooltip">Chat on WhatsApp</span><div class="whatsapp-float-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div></a>
+<script src="whatsapp.js" defer></script>
 </body>
 </html>
