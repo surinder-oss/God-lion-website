@@ -18,7 +18,7 @@
 
   // Live endpoint — Google Apps Script web app: logs to a Sheet, emails
   // Surinderpal instantly, and auto-replies to the lead. (See lead-capture.gs.)
-  var LEAD_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx-ajOzcdMqLjn-Y_3i766BPBE2cMx3hc2NsMgn_I9ERztB3YpTdHsZKz7SGukc4RhkAQ/exec';
+  var LEAD_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbywYEVPyUz76oLCYIfciyQThrRXfvaUjT3HGOZgcfsXoRRJvJjLovOQGU5XUxAO68meuw/exec';
   // ▲▲▲ ─────────────────────────────────────────────────────────────── ▲▲▲
 
   var ENDPOINT_IS_LIVE =
