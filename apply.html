@@ -35,9 +35,9 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Start Your Mortgage Application | Gold Lion Mortgages</title>
+<title>Get Started — Your Free Mortgage Review | Gold Lion Mortgages</title>
 <link rel="canonical" href="https://www.goldlionmortgages.com/apply">
-<meta name="description" content="Start your mortgage application online in about 5 minutes — no credit check to begin. Purchase, refinance, renewal or debt consolidation. Reviewed personally by a licensed broker. Call (587) 740-0048.">
+<meta name="description" content="Get started in about 5 minutes — a free mortgage review with no credit check to begin. Buying, refinancing, renewing or consolidating debt, reviewed personally by a licensed broker. Call (587) 740-0048.">
 <meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,8 +49,8 @@
 
 <meta property="og:url" content="https://www.goldlionmortgages.com/apply">
 <meta property="og:site_name" content="Gold Lion Mortgages">
-<meta property="og:title" content="Start Your Mortgage Application | Gold Lion Mortgages">
-<meta property="og:description" content="A short online application — about 5 minutes, no credit check to begin. Reviewed personally by a licensed mortgage broker.">
+<meta property="og:title" content="Get Started — Your Free Mortgage Review | Gold Lion Mortgages">
+<meta property="og:description" content="A free mortgage review — about 5 minutes, no credit check to begin. Reviewed personally by a licensed mortgage broker.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://www.goldlionmortgages.com/img/og-image.png">
 <link rel="stylesheet" href="whatsapp.css">
@@ -111,8 +111,7 @@
     <li><a href="calculator">Tools</a></li>
     <li><a href="blog">Blog</a></li>
     <li><a href="contact">Contact</a></li>
-    <li><a href="/quiz">Free Review</a></li>
-    <li><a href="/apply" class="nav-cta">Apply for a Mortgage</a></li>
+    <li><a href="/apply" class="nav-cta">Get Started</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -128,15 +127,14 @@
   <a href="calculator">Tools</a>
   <a href="blog">Blog</a>
   <a href="contact">Contact</a>
-  <a href="/quiz">Free Review</a>
-  <a href="/apply" class="mobile-menu-cta">Apply for a Mortgage</a>
+  <a href="/apply" class="mobile-menu-cta">Get Started</a>
 </div>
 
 <!-- ═══ PAGE HERO ═══ -->
 <section class="page-hero">
-  <div class="page-hero-label">Start Your Application</div>
-  <h1>Let's Get You<br><em>Approved.</em></h1>
-  <p>Answer a few questions about what you need and Surinderpal will personally review your file and come back with the options that actually fit. It takes about five minutes, there's no credit check to begin, and there's no obligation.</p>
+  <div class="page-hero-label">Get Started</div>
+  <h1>Let's Find Your<br><em>Options.</em></h1>
+  <p>Answer a few questions about what you need and Surinderpal will personally review your file and come back with the options that actually fit. It's free, it takes about five minutes, there's no credit check to begin, and there's no obligation.</p>
   <div class="apply-hero-actions">
     <a class="apply-secondary-link" href="https://goldlionmortgagesinc.pipedrive.com/scheduler/Lzrkrzf4/call-appointment" target="_blank" rel="noopener">Prefer to just book a call? Pick a time&nbsp;&rarr;</a>
   </div>
@@ -644,11 +642,44 @@
     }).join('  ·  ');
   }
 
+  /* ── Encouraging result message (never a guarantee) ────────────
+     Shown at the top of the capture screen so the one flow doubles as
+     a free mortgage review, not only an application. No scoring — the
+     "closer look" copy is framed as a strength, so no answer ever
+     reads as a rejection. */
+  function pickResult() {
+    var closerLook =
+      answers.credit === 'Rebuilding' ||
+      answers.income_type === 'Self-employed' ||
+      answers.income_type === 'Commission' ||
+      answers.income_type === 'Mixed' ||
+      answers.credit_events === 'New to Canada' ||
+      answers.credit_events === 'Collections' ||
+      answers.credit_events === 'Bankruptcy/proposal' ||
+      answers.downpayment === '<5%';
+    if (closerLook) {
+      return {
+        title: 'Your situation deserves a closer look —',
+        em: "and that's exactly our specialty.",
+        body: "Files like yours are where a broker earns their keep. With access to 200+ lenders — including ones built for self-employed, newcomer, and credit-rebuilding clients — there are usually more paths forward than a single bank will ever show you. Add your details below and let's map yours."
+      };
+    }
+    return {
+      title: 'This looks promising —',
+      em: "let's confirm your options.",
+      body: "Based on what you've shared, you're on solid footing. The next step is a quick review of the details so we can line up the lenders and terms that fit you best. Add your contact info below — no pressure, no obligation."
+    };
+  }
+
   function finish() {
     progWrap.style.display = 'none';
     navEl.style.display = 'none';
     if (disclaimer) { disclaimer.style.display = 'none'; }
     stepsEl.style.display = 'none';
+
+    var r = pickResult();
+    document.getElementById('appResultTitle').innerHTML = r.title + ' <em>' + r.em + '</em>';
+    document.getElementById('appResultBody').textContent = r.body;
 
     current = STEPS.length;
     document.getElementById('appSummaryField').value = buildSummary();
