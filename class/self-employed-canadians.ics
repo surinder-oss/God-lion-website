@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Gold Lion Mortgages//Self-Employed Class//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:se-class-2026-08-12@goldlionmortgages.com
+DTSTAMP:20260728T040000Z
+DTSTART:20260813T010000Z
+DTEND:20260813T020000Z
+SUMMARY:Free Self-Employed Mortgage Class — Gold Lion Mortgages
+DESCRIPTION:How self-employed Canadians get approved for a mortgage — even when your tax return shows low income.\n\nJoin here: https://meet.google.com/udi-ubqx-xsi\n\nHosted by Surinderpal Singh, Gold Lion Mortgages.
+LOCATION:https://meet.google.com/udi-ubqx-xsi
+URL:https://meet.google.com/udi-ubqx-xsi
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT60M
+ACTION:DISPLAY
+DESCRIPTION:Your Self-Employed Mortgage Class starts in 1 hour
+END:VALARM
+END:VEVENT
+END:VCALENDAR
