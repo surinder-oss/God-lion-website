@@ -14,6 +14,11 @@ LOCATION:https://meet.google.com/udi-ubqx-xsi
 URL:https://meet.google.com/udi-ubqx-xsi
 STATUS:CONFIRMED
 BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Your Self-Employed Mortgage Class is tomorrow at 7 PM Mountain
+END:VALARM
+BEGIN:VALARM
 TRIGGER:-PT60M
 ACTION:DISPLAY
 DESCRIPTION:Your Self-Employed Mortgage Class starts in 1 hour
