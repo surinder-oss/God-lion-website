@@ -43,11 +43,14 @@
 .lp .audience{margin:16px auto 0;font-size:16.5px;font-weight:500;color:var(--purple);max-width:660px;}
 html{scroll-behavior:smooth;}
 .lp .subhead strong{color:var(--purple);font-weight:600;}
-.lp .hero-video{max-width:760px;margin:30px auto 0;aspect-ratio:16/9;border-radius:18px;background:linear-gradient(150deg,var(--purple),var(--purple-mid));position:relative;display:flex;align-items:center;justify-content:center;box-shadow:0 30px 70px rgba(43,27,114,.22);overflow:hidden;cursor:pointer;}
-.lp .hero-video::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(201,168,76,.14),transparent 68%);}
-.lp .play{width:84px;height:84px;border-radius:50%;background:rgba(255,255,255,.96);display:flex;align-items:center;justify-content:center;position:relative;z-index:1;box-shadow:0 10px 30px rgba(0,0,0,.28);}
-.lp .play::after{content:'';margin-left:7px;border-left:26px solid var(--purple);border-top:15px solid transparent;border-bottom:15px solid transparent;}
-.lp .video-cap{position:absolute;bottom:16px;left:16px;right:16px;z-index:1;color:#EDE9FF;font-size:14px;font-weight:500;}
+.lp .proof{max-width:760px;margin:30px auto 0;border-radius:18px;background:linear-gradient(150deg,var(--purple),var(--purple-mid));position:relative;box-shadow:0 30px 70px rgba(43,27,114,.22);overflow:hidden;padding:30px 26px;}
+.lp .proof::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(201,168,76,.14),transparent 68%);}
+.lp .proof-row{position:relative;z-index:1;display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+.lp .proof-item{flex:1 1 150px;max-width:215px;text-align:center;}
+.lp .proof-n{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold-light);line-height:1.05;min-height:42px;display:flex;align-items:center;justify-content:center;}
+.lp .proof-n.st{font-size:25px;}
+.lp .proof-l{color:#EDE9FF;font-size:13px;font-weight:500;margin-top:6px;line-height:1.45;}
+.lp .proof-quote{position:relative;z-index:1;color:#EDE9FF;font-size:15px;line-height:1.65;text-align:center;margin:22px auto 0;max-width:570px;border-top:1px solid rgba(237,233,255,.22);padding-top:18px;}
 .lp section.block{padding:46px 0;}
 .lp .reviews{background:var(--off-white);text-align:center;}
 .lp .stars{color:var(--gold);font-size:24px;letter-spacing:4px;}
@@ -102,7 +105,7 @@ html{scroll-behavior:smooth;}
 .lp .bonus p{font-size:15.5px;color:#D9D4F2;max-width:560px;}
 .lp .bonus .tag{color:var(--gold-light);font-weight:600;}
 .lp .presenter{display:flex;gap:22px;align-items:center;flex-wrap:wrap;}
-.lp .avatar{width:78px;height:78px;border-radius:50%;background:linear-gradient(150deg,var(--purple),var(--purple-mid));color:var(--gold-light);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:26px;font-weight:700;flex-shrink:0;}
+.lp .avatar{width:96px;height:96px;border-radius:50%;object-fit:cover;flex-shrink:0;display:block;box-shadow:0 8px 22px rgba(43,27,114,.20);}
 .lp .p-name{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--purple);}
 .lp .p-role{font-size:13.5px;color:var(--muted);margin-bottom:6px;}
 .lp .p-quote{font-size:15.5px;color:var(--text);font-style:italic;max-width:640px;}
@@ -133,7 +136,14 @@ html{scroll-behavior:smooth;}
 <span class="eyebrow"><span class="dot"></span> Free live online class</span>
 <div class="datebar"><span class="pill">📅 Wed, Aug 26 · 7:00 PM MT</span><span class="pill">🖥️ Live online</span><span class="pill">⏱️ ~45 min + live Q&amp;A</span><span class="pill">🎟️ Free to attend</span></div>
 <h1>Self-employed and the bank said <em>no?</em></h1>
-<p class="audience">Self-employed, incorporated, sole proprietor, commission earner, Uber driver — if you work for yourself, this class is for you.</p><div class="hero-video"><div class="play"></div><div class="video-cap">▶ Watch: 90 seconds on what you'll learn</div></div>
+<p class="audience">Self-employed, incorporated, sole proprietor, commission earner, Uber driver — if you work for yourself, this class is for you.</p><div class="proof">
+<div class="proof-row">
+<div class="proof-item"><div class="proof-n">94</div><div class="proof-l">families funded</div></div>
+<div class="proof-item"><div class="proof-n st">Canada-wide</div><div class="proof-l">self-employed clients, coast to coast</div></div>
+<div class="proof-item"><div class="proof-n">3</div><div class="proof-l">doors to an approval, not just the bank's one</div></div>
+</div>
+<p class="proof-quote">Self-employed files are what we do all day. When your tax return doesn't tell the whole story, we know where else to look — and which doors are still open to you.</p>
+</div>
 </div></section>
 <section class="block reviews"><div class="wrap">
 <div class="stars">★★★★★</div>
@@ -174,7 +184,7 @@ html{scroll-behavior:smooth;}
 <div class="bonus"><div class="bonus-badge">🎁</div><div><h3>Everyone who attends gets the Self-Employed Mortgage Approval Kit</h3><p>The exact <span class="tag">document checklist</span> lenders want from self-employed applicants, plus a plain-English guide to what they actually look at. Yours free for showing up live.</p></div></div>
 </div></section>
 <section class="block"><div class="wrap presenter">
-<div class="avatar">SS</div>
+<picture><source srcset="/img/surinderpal-singh-square.webp" type="image/webp"><img class="avatar" src="/img/surinderpal-singh-square.jpg" width="96" height="96" loading="lazy" decoding="async" alt="Surinderpal Singh, Licensed Mortgage Broker at Gold Lion Mortgages"></picture>
 <div><div class="p-name">Surinderpal Singh</div><div class="p-role">Licensed Mortgage Broker · Gold Lion Mortgages</div><p class="p-quote">"When the bank says no, we find a way. I specialize in self-employed Canadians — the people who are great at business but get punished for it at the bank. This class is everything I wish every self-employed client knew before they applied."</p></div>
 </div></section>
 <section class="block whofor"><div class="wrap">
