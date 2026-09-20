@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Gold Lion Mortgages//Realtor Class//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:realtor-class-2026-10-07@goldlionmortgages.com
+DTSTAMP:20260920T040000Z
+DTSTART:20261007T190000Z
+DTEND:20261007T200000Z
+SUMMARY:Free Realtor Class — Help Your Buyers Qualify For More
+DESCRIPTION:A free live class for licensed real estate professionals on the lender programs that change what a buyer qualifies for.\n\nThe join link will be emailed to you before the class.\n\nHosted by Surinderpal Singh, Gold Lion Mortgages. Questions: 587-740-0048.
+URL:https://www.goldlionmortgages.com/class/help-your-buyers-qualify
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Your Gold Lion realtor class is tomorrow at 1 PM Mountain
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT60M
+ACTION:DISPLAY
+DESCRIPTION:Your Gold Lion realtor class starts in 1 hour
+END:VALARM
+END:VEVENT
+END:VCALENDAR
