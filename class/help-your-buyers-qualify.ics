@@ -9,8 +9,9 @@ DTSTAMP:20260920T040000Z
 DTSTART:20261007T190000Z
 DTEND:20261007T200000Z
 SUMMARY:Free Realtor Class — Help Your Buyers Qualify For More
-DESCRIPTION:A free live class for licensed real estate professionals on the lender programs that change what a buyer qualifies for.\n\nThe join link will be emailed to you before the class.\n\nHosted by Surinderpal Singh, Gold Lion Mortgages. Questions: 587-740-0048.
-URL:https://www.goldlionmortgages.com/class/help-your-buyers-qualify
+DESCRIPTION:A free live class for licensed real estate professionals on the lender programs that change what a buyer qualifies for.\n\nJoin here: https://meet.google.com/gmv-wihd-vct\n\nHosted by Surinderpal Singh, Gold Lion Mortgages. Questions: 587-740-0048.
+LOCATION:https://meet.google.com/gmv-wihd-vct
+URL:https://meet.google.com/gmv-wihd-vct
 STATUS:CONFIRMED
 BEGIN:VALARM
 TRIGGER:-P1D
