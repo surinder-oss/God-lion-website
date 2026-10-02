@@ -99,6 +99,11 @@ button:hover{border-color:#9C98A8}
 button:disabled{opacity:0.5;cursor:default}
 button.primary{background:var(--gl-purple);color:#fff;border-color:var(--gl-purple);font-weight:700;box-shadow:inset 0 -3px 0 var(--gl-gold)}
 button.primary:hover{background:#3A2890}
+.upload{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;margin-top:6px;padding:22px 14px;border:2px dashed #B9B2A0;border-radius:10px;background:#FAF8F3;color:var(--ui-muted);font-size:13px;font-weight:400;cursor:pointer}
+.upload strong{color:var(--gl-purple);font-size:16px;font-weight:700}
+.upload.over,.upload:hover{border-color:var(--gl-purple);background:var(--gl-gold-soft)}
+.howto{margin:12px 0 0;padding-left:20px;color:var(--ui-muted);font-size:12.5px;line-height:1.7}
+.howto b{color:var(--ui-ink);font-weight:600}
 .found{background:#EDEAF7;color:#2B1B72;border-radius:6px;padding:8px 10px;font-size:12.5px;line-height:1.45;margin-top:8px}
 .found:empty{display:none}
 .found.warn,.notice{background:var(--ui-warn-bg);color:var(--ui-warn)}
@@ -266,7 +271,7 @@ button.primary:hover{background:#3A2890}
 <aside class="panel" aria-label="Sheet details">
   <div class="brandhead">
     <h1 class="apptitle">Listing Feature Sheet Builder</h1>
-    <p class="sub"><b>Free for realtors.</b> Add a photo and the home details, and get a one-page feature sheet with real monthly mortgage numbers for up to four down payment options. Make one sheet per home, then download them all as one PDF. Everything stays on your computer.</p>
+    <p class="sub"><b>Free for realtors.</b> Upload a saved listing (or type the details) and get a one-page feature sheet with real monthly mortgage numbers for up to four down payment options. Make one sheet per home, then download them all as one PDF. Everything stays on your computer.</p>
   </div>
 
   <div class="tabs" id="tabs" role="tablist" aria-label="Sheets"></div>
@@ -278,9 +283,24 @@ button.primary:hover{background:#3A2890}
 
 
   <details open>
+    <summary>Listing <span class="scope">this sheet</span></summary>
+    <button type="button" class="upload" id="pageBtn">
+      <strong>Upload the saved listing</strong>
+      <span>Click to choose the file, or drag it here</span>
+    </button>
+    <input type="file" id="pageIn" accept=".mhtml,.mht,.html,.htm" class="visually-hidden">
+    <div class="found" id="found" role="status"></div>
+    <ol class="howto">
+      <li>Open the listing in Chrome (realtor.ca works best).</li>
+      <li>Press Cmd+S (Ctrl+S on Windows).</li>
+      <li>Choose <b>Webpage, Single File</b> and save.</li>
+      <li>Upload that file here. Or skip this and type the details below.</li>
+    </ol>
+  </details>
+
+  <details open>
     <summary>Photo <span class="scope">this sheet</span></summary>
     <p class="pickhead" id="pickHead"></p>
-    <div class="found" id="found" role="status"></div>
     <div class="thumbs" id="thumbs"></div>
     <label id="posWrap" hidden>Move the photo up or down
       <input id="heroPos" type="range" min="0" max="100" value="50">
@@ -292,12 +312,12 @@ button.primary:hover{background:#3A2890}
   <details open>
     <summary>Home <span class="scope">this sheet</span></summary>
     <div class="grid2">
-      <label>Model name or address<input id="title" data-sheet placeholder="e.g. 2069 Waterbury Road"></label>
+      <label>Model name or address<input id="title" data-sheet placeholder="Filled from the listing"></label>
       <label>MLS® number (optional)<input id="mls" data-sheet placeholder="e.g. A2343165"></label>
     </div>
     <label>Location line<input id="loc" data-sheet placeholder="Community · City, AB"></label>
     <div class="grid2">
-      <label>Purchase price<input id="price" data-sheet inputmode="numeric" placeholder="e.g. 649900"></label>
+      <label>Purchase price<input id="price" data-sheet inputmode="numeric" placeholder="Filled from the listing"></label>
       <label>Type
         <select id="ptype" data-sheet>
           <option>Condominium</option>
@@ -745,7 +765,7 @@ button.primary:hover{background:#3A2890}
       w.appendChild(b); w.appendChild(x); t.appendChild(w);
     });
     $('posWrap').hidden = !s.photo;
-    $('pickHead').innerHTML = g.length ? '<b>' + g.length + ' photo' + (g.length > 1 ? 's' : '') + ' for this sheet.</b> Click one to use it on top.' : 'Add a photo of the home for the top of the sheet. Drag one in from the listing, paste it, or choose a file.';
+    $('pickHead').innerHTML = g.length ? '<b>' + g.length + ' photo' + (g.length > 1 ? 's' : '') + ' for this sheet.</b> Click one to use it on top.' : 'Photos from the saved listing show up here. Or add your own: drag one in, paste it, or choose a file.';
     $('heroPos').value = s.pos;
   }
 
@@ -769,6 +789,164 @@ button.primary:hover{background:#3A2890}
   }
   function renderAll(){
     renderTabs(); renderThumbs(); renderLogo(); renderShots(); renderQrPreviews(); renderStage(); save();
+  }
+
+  // ---- Listing text reader (no AI, pattern based) ----
+  var PROV = {'british columbia':'BC','alberta':'AB','saskatchewan':'SK','manitoba':'MB','ontario':'ON','quebec':'QC','québec':'QC','new brunswick':'NB','nova scotia':'NS','prince edward island':'PE','newfoundland and labrador':'NL','newfoundland':'NL','yukon':'YT','northwest territories':'NT','nunavut':'NU'};
+  var STREET = '(?:Street|St|Avenue|Ave|Road|Rd|Drive|Dr|Boulevard|Blvd|Way|Crescent|Cres|Court|Ct|Place|Pl|Lane|Ln|Terrace|Terr|Trail|Tr|Highway|Hwy|Circle|Cir|Close|Gate|Parkway|Pkwy|Row|Mews|Square|Sq|Green|Grn|Heights|Hts|Landing|Point|Pt|Park|Grove|Hill|Bay|Common|Commons|Link|Manor|Walk|View|Vista|Ridge|Rise|Crossing|Line|Concession|Sideroad|Esplanade|Promenade|Quay|Wynd|Glen|Estates|Meadows)';
+  function toNum(t){ return parseFloat(String(t).replace(/[^0-9.]/g,'')) || 0; }
+  function after(text, labels, pat, ok){
+    for(var i = 0; i < labels.length; i++){
+      var re = new RegExp(labels[i] + '\\s*[:\\-]?\\s*(?:\\n\\s*)?' + pat, 'ig'), m;
+      while((m = re.exec(text))){ if(!ok || ok(m[1])) return m[1]; }
+    }
+    return '';
+  }
+  function smallCount(x){ var n = toNum(String(x).split('+')[0]); return n > 0 && n <= 15; }
+  function parseListing(raw){
+    var t = raw.replace(/\r/g,'').replace(/[ \t ]+/g,' ');
+    var out = {};
+
+    // MLS number
+    var m = /MLS\s*(?:®|\(R\)|&reg;)?\s*(?:Number|No\.?|#|Num)?\s*[:#]?\s*\n?\s*([A-Z]{0,3}\d{5,9})\b/i.exec(t);
+    if(m) out.mls = m[1].toUpperCase();
+
+    // Price: labelled first, then the first large dollar amount
+    var p = after(t, ['List(?:ing)? Price','Asking Price','Purchase Price','Sale Price','Price','Priced (?:at|from)','Listed at','Starting (?:at|from)'], '\\$\\s?([\\d,]{5,}(?:\\.\\d\\d)?)');
+    if(!p){ var all = t.match(/\$\s?[\d,]{6,}/g) || []; for(var i = 0; i < all.length; i++){ var n = toNum(all[i]); if(n >= 50000 && n <= 50000000){ p = all[i]; break; } } }
+    if(p && toNum(p) >= 50000) out.price = String(Math.round(toNum(p)));
+
+    // Bedrooms and bathrooms
+    var beds = '', baths = '';
+    m = /\b(?:Bedrooms?|Beds?|Bdrms?)\s*:\s*(\d+(?:\s*\+\s*\d+)?)\b/i.exec(t); if(m && smallCount(m[1])) beds = m[1];
+    m = /\b(?:Bathrooms?|Baths?|Bthrms?)\s*:\s*(\d+(?:\.\d)?)\b/i.exec(t); if(m && smallCount(m[1])) baths = m[1];
+    if(!beds){ m = /(\d+(?:\s*\+\s*\d+)?)\s*(?:bed(?:room)?s?|bd|br|bdrms?)\b/i.exec(t); if(m && smallCount(m[1])) beds = m[1]; }
+    if(!beds) beds = after(t, ['Bedrooms?(?: \\(?total\\)?)?','Beds?','Bdrms?'], '(\\d+(?:\\s*\\+\\s*\\d+)?)\\b', smallCount);
+    if(!baths){ m = /(\d+(?:\.\d)?)\s*(?:bath(?:room)?s?|ba)\b/i.exec(t); if(m && smallCount(m[1])) baths = m[1]; }
+    if(!baths) baths = after(t, ['Bathrooms?(?: \\(?total\\)?)?','Baths?','Bthrms?'], '(\\d+(?:\\.\\d)?(?:\\s*\\+\\s*\\d+)?)\\b', smallCount);
+    var den = /\+\s*den\b|\bden\b/i.test(t.slice(0, 4000)) && !/\bno den\b/i.test(t);
+    if(beds || baths){
+      var b = beds ? beds.replace(/\s+/g,' ') : '';
+      var parts = [];
+      if(b) parts.push(b + ' bed' + (den && !/\+/.test(b) ? ' + den' : ''));
+      if(baths) parts.push(baths + ' bath');
+      out.layout = parts.join(' / ');
+    }
+
+    // Size
+    var sz = after(t, ['Square Footage','Floor Area(?: \\(?total\\)?)?','Living Area','Interior Size','Size','Total Finished Area','Home Size'], '([\\d,]{3,6})\\s*(?:sq\\.?\\s*ft|sqft|ft2|ft²|square feet|sf)?');
+    if(!sz || toNum(sz) < 200){ m = /([\d,]{3,6})\s*(?:sq\.?\s*ft\.?|sqft|ft2|ft²|square feet|sf)\b/i.exec(t); sz = m ? m[1] : ''; }
+    if(sz && toNum(sz) >= 200 && toNum(sz) <= 30000) out.sqft = String(Math.round(toNum(sz)));
+
+    // Condo or strata fee
+    m = /(?:Maintenance|Strata|Condo(?:minium)?|HOA|Monthly)\s*(?:Fees?|Fee \(Monthly\)|Charges?)?[^$\d]{0,30}\$\s?([\d,]+(?:\.\d+)?)/i.exec(t);
+    if(m && toNum(m[1]) > 0 && toNum(m[1]) < 5000) out.fee = String(Math.round(toNum(m[1])));
+
+    // Type
+    var bt = after(t, ['Building Type','Property Type','Home Type','Style','Dwelling Type','Type'], '([A-Za-z /\\-]{3,40})');
+    var pick = function(x){
+      if(/apartment|condo|high ?rise|low ?rise|strata/i.test(x)) return 'Condominium';
+      if(/town ?house|town ?home|row ?house|row \/ townhouse/i.test(x)) return 'Townhome';
+      if(/duplex|half duplex|triplex|semi/i.test(x)) return 'Duplex';
+      if(/detached|house|bungalow|two storey|split level/i.test(x) && !/single family/i.test(x)) return 'Detached';
+      return '';
+    };
+    out.ptype = pick(bt) || pick(t.slice(0, 6000));
+    if(!out.ptype) delete out.ptype;
+
+    // Address, city, province, postal code
+    var lines = t.split('\n').map(function(l){ return l.trim(); }).filter(Boolean);
+    var addrRe = new RegExp('^(?:#?\\s?\\d+[A-Za-z]?\\s*[-–]\\s*)?#?\\d+[A-Za-z]?\\s+(?:[A-Za-z0-9.\'’]+\\s+){0,5}' + STREET + '\\.?\\b(?:\\s+(?:NE|NW|SE|SW|N|S|E|W)\\b)?', 'i');
+    var provTest = /\b(British Columbia|Alberta|Saskatchewan|Manitoba|Ontario|Qu[eé]bec|New Brunswick|Nova Scotia|Prince Edward Island|Newfoundland|Yukon|Northwest Territories|Nunavut|BC|AB|SK|MB|ON|QC|NB|NS|PE|NL)\b|\b[A-Z]\d[A-Z]\s?\d[A-Z]\d\b/;
+    var order = [], firstAddr = -1;
+    for(var q = 0; q < Math.min(lines.length, 600); q++){
+      if(addrRe.test(lines[q]) && lines[q].length < 140){
+        if(firstAddr < 0) firstAddr = q;
+        if(provTest.test(lines[q]) || provTest.test(lines[q+1] || '') || provTest.test(lines[q+2] || '')){ order.push(q); break; }
+      }
+    }
+    if(!order.length && firstAddr >= 0) order.push(firstAddr);
+    for(var oi = 0; oi < order.length; oi++){
+      var j = order[oi];
+      var am = addrRe.exec(lines[j]);
+      if(am){
+        var line = lines[j], next = lines[j+1] || '';
+        var street = am[0].replace(/\s+/g,' ').trim();
+        var tail = line.slice(am[0].length);
+        var rest = (provTest.test(tail) ? tail : (tail + ' ' + next + (provTest.test(next) ? '' : ' ' + (lines[j+2] || '')))).replace(/\s+,/g, ',').trim();
+        // unit written after the street, e.g. "1234 Main St #1203" or "Unit 5"
+        var unit = /^(?:#|Unit\s*#?\s*|Suite\s*#?\s*|Apt\.?\s*#?\s*)(\w+)/i.exec(rest.replace(/^[,\s]+/,''));
+        if(unit){ street = unit[1] + ' ' + street; rest = rest.replace(/^[,\s]*(?:#|Unit\s*#?\s*|Suite\s*#?\s*|Apt\.?\s*#?\s*)\w+/i,''); }
+        out.title = street.replace(/^(#?\s?\w+)\s*[-–]\s*(\d)/, '$1 $2').replace(/^#\s?/, '');
+        var pc = /\b([A-Z]\d[A-Z])\s?(\d[A-Z]\d)\b/.exec(rest);
+        var prov = '';
+        var pm = /\b(British Columbia|Alberta|Saskatchewan|Manitoba|Ontario|Qu[eé]bec|New Brunswick|Nova Scotia|Prince Edward Island|Newfoundland(?: and Labrador)?|Yukon|Northwest Territories|Nunavut|BC|AB|SK|MB|ON|QC|NB|NS|PE|PEI|NL|YT|NT|NU)\b/.exec(rest);
+        if(pm){ prov = PROV[pm[1].toLowerCase()] || pm[1].toUpperCase().replace('PEI','PE'); }
+        var city = '';
+        if(pm){ city = rest.slice(0, pm.index).replace(/[,\s]+$/,'').replace(/^[,\s]+/,'').split(',').pop().trim(); }
+        if(city && city.length > 40) city = '';
+        var comm = '';
+        var rc = /(?:^|\n)Community[ \t]*\n\s*([A-Za-z][A-Za-z .'’\-]{2,30})[ \t]*(?:\n|$)/.exec(t);
+        if(rc) comm = rc[1];
+        if(!comm) ['Neighbou?rhood Name','Neighbou?rhood\\s*:','Sub-?Area','Community Name','Subdivision'].some(function(lb){
+          var cm = new RegExp('(?:' + lb + ')\\s*[:\\-]?\\s*(?:\\n\\s*)?([A-Za-z][A-Za-z .\'’\\-]{2,30})[ \\t]*(?:\\n|$)', 'i').exec(t);
+          if(cm){ comm = cm[1]; return true; } return false;
+        });
+        if(!comm && firstAddr > 1 && lines[firstAddr-2] === '/' && lines[firstAddr-1].length < 30 && !/^\d/.test(lines[firstAddr-1])) comm = lines[firstAddr-1];   // breadcrumb: ... / Douglas / address
+        var place = [city, [prov, pc ? pc[1] + ' ' + pc[2] : ''].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+        var loc = [comm.trim(), place].filter(Boolean).join(' · ');
+        if(loc) out.loc = loc;
+        break;
+      }
+    }
+    return out;
+  }
+
+  var FIELD_NAMES = {title:'address', loc:'location', price:'price', mls:'MLS number', ptype:'type', layout:'layout', sqft:'size', fee:'condo fee'};
+  function applyParsed(o, photoCount){
+    var s = sheets[cur], got = [], miss = [];
+    ['title','loc','price','mls','ptype','layout','sqft','fee'].forEach(function(k){
+      if(o[k]){ s[k] = o[k]; got.push(FIELD_NAMES[k]); } else if(k !== 'fee') miss.push(FIELD_NAMES[k]);
+    });
+    loadSheet(); renderAll();
+    var msg = got.length ? 'Done. Filled in: ' + got.join(', ') + '.' : 'Couldn\'t find listing details in that file. Make sure it was saved from the listing page itself.';
+    if(got.length && miss.length) msg += ' Not found: ' + miss.join(', ') + '.';
+    if(photoCount) msg += ' Photos are ready below. Pick one.';
+    $('found').textContent = msg;
+    $('found').classList.toggle('warn', !got.length);
+  }
+
+  function photosFromHtml(html, done){
+    if(!html) return done(0);
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    var urls = [], keys = [];
+    doc.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]').forEach(function(m){
+      var u = m.getAttribute('content'); if(u && /^https?:\/\//i.test(u)){ var k = u.split('?')[0].replace(/\/(medres|highres)\//, '/'); if(keys.indexOf(k) < 0){ keys.push(k); urls.push(u.replace(/\?w=\d+&h=\d+.*$/, '')); } }
+    });
+    doc.querySelectorAll('img, source').forEach(function(el){
+      var cands = [el.getAttribute('src'), el.getAttribute('data-src'), el.getAttribute('data-lazy'), el.getAttribute('data-original')];
+      var ss = el.getAttribute('srcset') || el.getAttribute('data-srcset');
+      if(ss){ var last = ss.split(',').pop().trim().split(' ')[0]; cands.unshift(last); }
+      cands.forEach(function(u){
+        if(u && /^http:\/\//i.test(u)) u = 'https://' + u.slice(7);
+        if(!u || !/^https:\/\//i.test(u) || /\.(svg|gif)(\?|$)/i.test(u) || /logo|icon|avatar|sprite|agent|individuals|headshot|badge|flag|map|pixel|tracking|lowres/i.test(u)) return;
+        var key = u.split('?')[0].replace(/\/(medres|highres)\//, '/');
+        if(keys.indexOf(key) < 0){ keys.push(key); urls.push(u.replace(/\?w=\d+&h=\d+.*$/, '')); }
+      });
+    });
+    urls = urls.slice(0, 40);
+    if(!urls.length) return done(0);
+    var have = gal().slice(), added = 0, left = urls.length;
+    urls.forEach(function(u){
+      var im = new Image();
+      im.onload = function(){
+        var r = im.naturalWidth / im.naturalHeight;
+        if(im.naturalWidth >= 500 && r > 0.9 && r < 2.4 && added < 15){ if(have.indexOf(u) < 0){ gal().push(u); have.push(u); } added++; if(!sheets[cur].photo) sheets[cur].photo = u; }
+        if(--left === 0) done(added);
+      };
+      im.onerror = function(){ if(--left === 0) done(added); };
+      im.src = u;
+    });
   }
 
   function loadSheet(){ var s = sheets[cur]; SHEET_FIELDS.forEach(function(k){ $(k).value = s[k]; }); if(loadSheet.last !== cur){ loadSheet.last = cur; $('found').textContent = ''; $('found').classList.remove('warn'); } }
@@ -807,12 +985,16 @@ button.primary:hover{background:#3A2890}
   var drop = $('drop');
   drop.addEventListener('click', function(){ $('fileIn').click(); });
   $('fileIn').addEventListener('change', function(e){ Array.prototype.forEach.call(e.target.files, addFile); e.target.value = ''; });
-  document.addEventListener('dragover', function(e){ e.preventDefault(); drop.classList.add('over'); });
-  document.addEventListener('dragleave', function(e){ if(!e.relatedTarget) drop.classList.remove('over'); });
+  document.addEventListener('dragover', function(e){ e.preventDefault(); drop.classList.add('over'); $('pageBtn').classList.add('over'); });
+  document.addEventListener('dragleave', function(e){ if(!e.relatedTarget){ drop.classList.remove('over'); $('pageBtn').classList.remove('over'); } });
   document.addEventListener('drop', function(e){
-    e.preventDefault(); drop.classList.remove('over');
+    e.preventDefault(); drop.classList.remove('over'); $('pageBtn').classList.remove('over');
     var dt = e.dataTransfer;
-    if(dt.files && dt.files.length){ Array.prototype.forEach.call(dt.files, addFile); return; }
+    if(dt.files && dt.files.length){
+      var htmlFile = Array.prototype.filter.call(dt.files, isHtmlFile)[0];
+      if(htmlFile){ readPageFile(htmlFile); return; }
+      Array.prototype.forEach.call(dt.files, addFile); return;
+    }
     var src = fromHtml(dt.getData('text/html'));
     if(src && addUrl(src)) return;
     addUrl((dt.getData('text/uri-list') || dt.getData('text/plain') || '').split('\n')[0]);
@@ -960,6 +1142,146 @@ button.primary:hover{background:#3A2890}
   });
   window.addEventListener('scroll', jumpLabel, {passive:true});
 
+  function htmlToText(html){
+    return html
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<noscript[\s\S]*?<\/noscript>/gi, ' ')
+      .replace(/<(br|\/p|\/div|\/li|\/h\d|\/tr|\/td|\/th|\/span|\/a|\/section|\/dt|\/dd)[^>]*>/gi, '\n')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&reg;/g, '®').replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+      .replace(/[ \t]+/g, ' ')
+      .split('\n').map(function(l){ return l.trim(); }).filter(Boolean).join('\n');
+  }
+  function resetSheetForUpload(){
+    var fresh = blankSheet();
+    ['title','mls','loc','price','ptype','layout','sqft','fee','photo'].forEach(function(k){ sheets[cur][k] = fresh[k]; }); sheets[cur].gallery = [];
+  }
+  function readSavedPage(html){
+    resetSheetForUpload();
+    var parsed = parseListing(htmlToText(html));
+    var pics = listingPhotos(html, [], parsed.mls);
+    if(pics.length){ sheets[cur].gallery = pics; sheets[cur].photo = pics[0]; applyParsed(parsed, pics.length); return; }
+    applyParsed(parsed, 0);
+    $('found').textContent += ' Looking for photos…';
+    photosFromHtml(html, function(n){
+      applyParsed(parsed, n);
+      if(!n) $('found').textContent += ' No photos came through, so drag or paste them into the Photo section.';
+    });
+  }
+  // ---- Chrome "Webpage, Single File" (.mhtml): page plus its photos in one file ----
+  function qpDecode(str){
+    str = str.replace(/=\r?\n/g, '');
+    var bytes = [];
+    for(var i = 0; i < str.length; i++){
+      var c = str.charCodeAt(i);
+      if(str[i] === '=' && /^[0-9A-Fa-f]{2}$/.test(str.substr(i+1, 2))){ bytes.push(parseInt(str.substr(i+1, 2), 16)); i += 2; }
+      else if(c < 128) bytes.push(c);
+      else { var enc = new TextEncoder().encode(str[i]); for(var k = 0; k < enc.length; k++) bytes.push(enc[k]); }
+    }
+    return new TextDecoder('utf-8').decode(new Uint8Array(bytes));
+  }
+  function readMhtml(raw){
+    var bm = /boundary="?([^";\r\n]+)"?/i.exec(raw);
+    if(!bm) return null;
+    var chunks = raw.split('--' + bm[1]);
+    var snap = ((/Snapshot-Content-Location:\s*([^\r\n]+)/i.exec(raw.slice(0, 2000)) || [])[1] || '').trim();
+    var html = '', allHtml = '', imgs = [];
+    chunks.forEach(function(ch){
+      var cut = ch.search(/\r?\n\r?\n/);
+      if(cut < 0) return;
+      var head = ch.slice(0, cut), body = ch.slice(cut).replace(/^\s+/, '');
+      var ct = (/Content-Type:\s*([^;\r\n]+)/i.exec(head) || [])[1] || '';
+      var enc = ((/Content-Transfer-Encoding:\s*([^\r\n]+)/i.exec(head) || [])[1] || '').trim().toLowerCase();
+      var loc = ((/Content-Location:\s*([^\r\n]+)/i.exec(head) || [])[1] || '').trim();
+      ct = ct.trim().toLowerCase();
+      if(ct === 'text/html'){
+        var doc = enc === 'quoted-printable' ? qpDecode(body) : body;
+        allHtml += doc;
+        if(!html || (snap && loc === snap)) html = doc;
+      }
+      else if(/^image\/(jpe?g|png|webp|avif|gif)$/.test(ct) && enc === 'base64' && loc){
+        var b64 = body.replace(/[^A-Za-z0-9+\/=]/g, '');
+        imgs.push({loc:loc, size:b64.length, src:'data:' + ct.replace('jpg','jpeg') + ';base64,' + b64});
+      }
+    });
+    return html ? {html:html, allHtml:allHtml, embedded:imgs, site:snap} : null;
+  }
+  // All photos of this posting, in listing order. Uses photos saved inside the file when present,
+  // otherwise the listing's own photo address. Photos from other listings, agents, logos and ads are left out.
+  function photoKey(u){ return String(u).split('?')[0].replace(/\/(highres|medres|lowres)\//, '/'); }
+  function listingPhotos(html, embedded, mls, site){
+    embedded = embedded || [];
+    var byKey = {};
+    embedded.forEach(function(e){ var k = photoKey(e.loc); if(!byKey[k] || /\/highres\//.test(e.loc)) byKey[k] = e.src; });
+    var found = {}, re = /https?:\/\/cdn\.realtor\.ca\/listings\/[^"'\s)>]+?\/([A-Za-z0-9]+)_(\d+)\.(?:jpe?g|png|webp)/gi, m, count = {};
+    var text = html.replace(/&amp;/g, '&').replace(/\\\//g, '/');
+    while((m = re.exec(text))){
+      var id = m[1], n = +m[2];
+      count[id] = (count[id] || 0) + 1;
+      var url = m[0].replace(/\/(medres|lowres)\//, '/highres/');
+      (found[id] = found[id] || {})[n] = found[id][n] || url;
+    }
+    // REW.ca: https://assets-listings.rew.ca/listing/<feed>/<listing id>/<nn>_<hash>.jpeg
+    var rewRe = /https?:\/\/assets-listings\.rew\.ca\/listing\/[^\/"'\s]+\/(\d+)\/([A-Za-z0-9_\-]+)\.(jpe?g|png|webp|avif)/gi, rw, rew = {}, rewCount = {};
+    while((rw = rewRe.exec(text))){
+      var rid = rw[1];
+      rewCount[rid] = (rewCount[rid] || 0) + 1;
+      var list = rew[rid] = rew[rid] || [];
+      var base = rw[0];
+      if(!list.some(function(x){ return x.base === base; })) list.push({base:base});
+    }
+    var rewIds = Object.keys(rew);
+    if(rewIds.length){
+      var og = /<meta[^>]+property=["']og:image["'][^>]+content=["'][^"']*\/listing\/[^\/"']+\/(\d+)\//i.exec(text) || /content=["'][^"']*assets-listings\.rew\.ca\/listing\/[^\/"']+\/(\d+)\/[^"']*["'][^>]*property=["']og:image/i.exec(text);
+      var rmain = (og && rew[og[1]]) ? og[1] : rewIds.sort(function(a, b){ return rewCount[b] - rewCount[a]; })[0];
+      return rew[rmain].map(function(x){ return byKey[photoKey(x.base)] || (x.base + '?auto=format&fit=max&w=1600'); });
+    }
+
+    var ids = Object.keys(found);
+    if(ids.length){
+      var pid = (mls && found[mls]) ? mls : ids.sort(function(a, b){ return count[b] - count[a]; })[0];
+      return Object.keys(found[pid]).map(Number).sort(function(a, b){ return a - b; }).map(function(n){
+        var u = found[pid][n]; return byKey[photoKey(u)] || u.replace(/^http:\/\//i, 'https://');
+      });
+    }
+    // Not a realtor.ca page: use the large photos saved inside the file
+    var root = '';
+    try{ root = new URL(site).hostname.split('.').slice(-2).join('.'); }catch(e){}
+    return embedded.filter(function(e){
+      var host = ''; try{ host = new URL(e.loc).hostname; }catch(x){}
+      if(root && host.slice(-root.length) !== root) return false;                                 // other sites: ads, trackers
+      if(/doubleclick|googlesyndication|adsrvr|adnxs|facebook|pinterest|criteo|taboola|outbrain/i.test(host)) return false;
+      if(!/^data:image\/(jpe?g|webp|avif)/i.test(e.src)) return false;                         // photos, not screenshots or graphics (PNG)
+      if(/screenshot|snapshot|preview|thumb|placeholder|captcha|consent|cookie/i.test(e.loc)) return false;
+      return e.size > 40000 && !/logo|icon|avatar|agent|headshot|individuals|organizations|badge|banner|sprite|\bads?\b|promo/i.test(e.loc);
+    }).map(function(e){ return e.src; }).filter(function(src, i, all){ return all.indexOf(src) === i; }).slice(0, 40);
+  }
+
+  function readSavedMhtml(raw){
+    var m = readMhtml(raw);
+    if(!m){ $('found').textContent = 'Couldn\'t read that file. In Chrome, press Cmd+S and choose Webpage, Single File, then upload it here.'; $('found').classList.add('warn'); return; }
+    resetSheetForUpload();
+    var parsed = parseListing(htmlToText(m.html));
+    var pics = listingPhotos(m.allHtml || m.html, m.embedded, parsed.mls, m.site).filter(function(src, i, all){ return all.indexOf(src) === i; });
+    if(!(parsed.price || parsed.mls || parsed.title)) pics = [];
+    sheets[cur].gallery = pics;
+    sheets[cur].photo = pics[0] || '';
+    applyParsed(parsed, pics.length);
+  }
+  function readPageFile(f){
+    if(!f) return;
+    if(!isHtmlFile(f)){ $('found').textContent = 'That file isn\'t a saved web page. In Chrome, press Cmd+S and choose Webpage, Single File.'; $('found').classList.add('warn'); return; }
+    var fr = new FileReader();
+    fr.onload = function(){
+      var raw = String(fr.result || '');
+      if(/\.mht(ml)?$/i.test(f.name) || /^(From:|MIME-Version:|Snapshot-Content-Location:)/im.test(raw.slice(0, 600))) readSavedMhtml(raw);
+      else readSavedPage(raw);
+    };
+    fr.readAsText(f);
+  }
+  function isHtmlFile(f){ return f && (/\.(html?|mht(ml)?)$/i.test(f.name) || f.type === 'text/html' || f.type === 'multipart/related'); }
+  $('pageBtn').addEventListener('click', function(){ $('pageIn').click(); });
+  $('pageIn').addEventListener('change', function(e){ readPageFile(e.target.files[0]); e.target.value = ''; });
+
   load();
   loadSheet();
   renderAll();
@@ -967,7 +1289,7 @@ button.primary:hover{background:#3A2890}
   window.addEventListener('load', function(){ renderAll(); });
   // listing photos are too large to keep in the browser, so say so when saved sheets come back without them
   if(sheets.some(function(x){ return x.title || x.price; })){
-    $('found').textContent = 'Your sheets were saved, but photos aren\'t kept after the page closes. Add the photo again in the Photo section.';
+    $('found').textContent = 'Your sheets were saved, but photos aren\'t kept after the page closes. Upload the saved listing again, or add the photo again.';
     $('found').classList.add('warn');
   }
 })();
