@@ -195,7 +195,8 @@ button.primary:hover{background:#3A2890}
 .s-person .eb{color:var(--accent);font-size:9px;margin-bottom:5px}
 .s-person .n{font-size:21px;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;color:var(--ink);line-height:1.1;margin-bottom:3px}
 .s-person .role{font-size:10.5px;font-weight:600;color:var(--accent);margin-bottom:5px;letter-spacing:0.02em}
-.s-person .c{font-size:10.5px;line-height:1.5;color:#55516A;overflow-wrap:break-word}
+.s-person .c{font-size:10.5px;line-height:1.5;color:#55516A}
+.s-person .c .ln{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .s-person .bk{font-size:8.5px;line-height:1.35;color:#6E6A80;margin-top:5px;letter-spacing:0.02em}
 .s-person .pq{flex:none;width:70px;text-align:center;margin-left:auto}
 .s-person .pq svg{width:70px;height:70px;display:block}
@@ -658,7 +659,7 @@ button.primary:hover{background:#3A2890}
       return '<div class="s-person' + (q ? ' hasqr' : '') + '">' + pic + '<div class="tx">' + (label ? '<div class="eb">' + esc(label) + '</div>' : '') +
         (name ? '<div class="n" style="font-size:' + (name.length > 16 ? 16 : name.length > 12 ? 18 : name.length > 9 ? 19 : 21) + 'px">' + esc(name) + '</div>' : '') +
         (role ? '<div class="role">' + esc(role) + '</div>' : '') +
-        '<div class="c">' + lines.map(function(l){ return esc(l).replace(/@/g, '@<wbr>'); }).join('<br>') + '</div>' + (extra ? '<div class="bk">' + esc(extra) + '</div>' : '') + '</div>' + qr + '</div>';
+        '<div class="c">' + lines.map(function(l){ return '<div class="ln">' + esc(l) + '</div>'; }).join('') + '</div>' + (extra ? '<div class="bk">' + esc(extra) + '</div>' : '') + '</div>' + qr + '</div>';
     };
     var right = '';
     var pw = POWERED[$('brand').value] || '';
@@ -717,6 +718,8 @@ button.primary:hover{background:#3A2890}
       sc.appendChild(sh); clip.appendChild(sc); frame.appendChild(clip); stage.appendChild(frame);
       frame.addEventListener('click', function(){ if(cur !== i){ cur = i; loadSheet(); renderAll(); } });
       if(i === cur){ cs.forEach(function(x){ x.notes.forEach(function(n){ if(notices.indexOf(n) < 0) notices.push(n); }); }); if(c.price > 0 && cs.some(function(x){ return !(x.rate > 0); })) notices.unshift('Enter the insured and conventional rates to calculate the payments.'); renderMath(cs); }
+      // contact lines stay on one line: shrink the text a little when a long email doesn't fit
+      sh.querySelectorAll('.s-person .ln').forEach(function(el){ var f = 10.5; while(el.scrollWidth > el.clientWidth + 1 && f > 7){ f -= 0.5; el.style.fontSize = f + 'px'; } });
       // one page fit check
       var main = sh.querySelector('.s-main'), t = sh.querySelector('.s-title');
       var over = main.scrollHeight > main.clientHeight + 2 || t.scrollWidth > t.clientWidth + 2;
