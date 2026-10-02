@@ -150,6 +150,16 @@ button.primary:hover{background:#3A2890}
 .clip{overflow:hidden}
 .visually-hidden{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .jump{display:none}
+.scen{margin-top:10px;font-size:12px;color:var(--ui-muted)}
+.scen .opts{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:2px}
+.scen .check{margin-top:6px}
+.scen #dpCustom{width:64px;padding:5px 8px;font-size:13px}
+.mathcheck .mh{color:var(--gl-purple);font-weight:600;margin-top:6px}
+.mathcheck .mh:first-child{margin-top:0}
+.bmbox{margin-top:12px;padding:12px;border:1px solid var(--ui-line);border-radius:8px;background:#FAF8F3;font-size:12.5px;line-height:1.5;color:var(--ui-muted)}
+.bmbox b{color:var(--ui-ink)}
+.bm{display:inline-block;margin:8px 0 6px;padding:9px 14px;border-radius:6px;background:var(--gl-purple);color:#fff;font-weight:600;font-size:13px;text-decoration:none;cursor:grab;box-shadow:inset 0 -3px 0 var(--gl-gold)}
+.or{margin:14px 0 2px;font-size:12px;color:var(--ui-muted);text-transform:uppercase;letter-spacing:0.08em}
 
 /* ===== The sheet: 8.5 x 11 in at 96 px per inch ===== */
 .sheet{--foot-name:#FFFFFF;--foot-rule:rgba(255,255,255,0.18);--foot-text:#D5DDE0;--stripe:transparent;--ink:#23404A;--total:#23404A;--foot:#23404A;--accent:#C8956B;--accent-dark:#C8956B;--foot-accent:#C8956B;--paper:#F6F5F1;position:relative;width:816px;height:1056px;background:var(--paper);display:flex;flex-direction:column;overflow:hidden;color:var(--ink);font-family:'Outfit','Helvetica Neue',Helvetica,sans-serif;box-shadow:0 12px 36px rgba(31,26,61,0.22)}
@@ -195,6 +205,23 @@ button.primary:hover{background:#3A2890}
 .s-person .pq svg{width:70px;height:70px;display:block}
 .s-person.hasqr .ph,.s-person.hasqr .ini{width:104px;height:104px}
 .s-person.hasqr{gap:12px;padding:12px}
+.s-tbl{width:100%;border-collapse:collapse;table-layout:fixed;font-variant-numeric:tabular-nums}
+.s-tbl col.lc{width:34%}
+.s-tbl th{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--accent);text-align:right;padding:2px 0 10px 10px;vertical-align:top;white-space:nowrap}
+.s-tbl th .sub{font-size:8.5px;color:#6E6A80;font-weight:500;margin-top:3px}
+.s-tbl td{padding:8px 0 8px 10px;border-top:1px solid #E4E2E8;text-align:right;font-size:17px;font-weight:500;color:var(--ink);white-space:nowrap}
+.s-tbl td:first-child{text-align:left;padding-left:0;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#5E5A70}
+.s-tot td{border-top:0;padding:0 0 0 10px;color:#fff;font-size:24px}
+.s-tot td:first-child{color:#E4E0EE;font-size:10px}
+.s-main.multi{grid-template-columns:1fr;grid-template-rows:auto auto auto 1fr}
+.sheet:has(.s-main.multi) .s-hero{height:376px}
+.s-main.multi .s-card{padding:14px 26px 6px}
+.s-main.multi .s-total{display:block;padding:14px 26px}
+.s-main.multi .s-right{flex-direction:row}
+.s-main.multi .s-right .s-person{flex:1 1 0}
+.s-main.multi .s-person .ph,.s-main.multi .s-person .ini{width:88px;height:88px;font-size:28px}
+.s-main.multi .s-person .pq{width:62px}
+.s-main.multi .s-person .pq svg{width:62px;height:62px}
 .s-foot{background:var(--foot);padding:22px 48px 20px;flex:none;color:#fff;position:relative;display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:30px}
 .s-foot.light{border-top:1px solid #DAD7D1}
 .s-foot.stripe{border-top:6px solid var(--stripe);padding-top:14px;padding-bottom:14px}
@@ -203,6 +230,10 @@ button.primary:hover{background:#3A2890}
 .s-foot.stackf{grid-template-columns:1fr;row-gap:12px}
 .s-foot.stackf .s-flogo img{max-width:250px;max-height:82px;display:block}
 .s-flogo img{max-width:200px;max-height:58px;display:block}
+.s-pw{border-left:1px solid var(--foot-rule);padding-left:22px}
+.s-pw .eb{color:var(--foot-accent);font-size:7.5px;margin-bottom:6px;letter-spacing:0.18em}
+.s-pw img{height:38px;width:auto;display:block}
+.s-foot.haspw{grid-template-columns:auto auto 1fr;column-gap:24px}
 .s-disc{font-size:8.5px;line-height:1.55;letter-spacing:0.02em;color:var(--foot-text);border-left:1px solid var(--foot-rule);padding-left:24px}
 .s-foot.stackf .s-disc{border-left:0;padding-left:0;border-top:1px solid var(--foot-rule);padding-top:10px}
 
@@ -256,6 +287,13 @@ button.primary:hover{background:#3A2890}
 
   <details open>
     <summary>Listing <span class="scope">this sheet</span></summary>
+    <label>Paste a realtor.ca link<input id="listUrl" type="url" inputmode="url" placeholder="https://www.realtor.ca/real-estate/..."></label>
+    <div class="bmbox">
+      <b>Fill in everything from realtor.ca in one click.</b> Drag this button onto your bookmarks bar (show it with Cmd+Shift+B, or Ctrl+Shift+B on Windows):<br>
+      <a class="bm" id="bmLink" href="#">Send to Feature Sheet</a><br>
+      Then open any listing on realtor.ca and click it. The price, details and photos come here as a new sheet.
+    </div>
+    <div class="or">Or upload a saved listing</div>
     <button type="button" class="upload" id="pageBtn">
       <strong>Upload the saved listing</strong>
       <span>Click to choose the file, or drag it here</span>
@@ -316,14 +354,13 @@ button.primary:hover{background:#3A2890}
       </label>
     </div>
     <label class="check"><input type="checkbox" id="eligible" data-shared> First time buyer or new build (allows 30 years insured)</label>
-    <div class="grid2">
-      <label>Down payment
-        <select id="dpMode" data-shared>
-          <option value="min">Minimum</option>
-          <option value="custom">Set a %</option>
-        </select>
-      </label>
-      <label id="dpCustomWrap" hidden>Down payment %<input id="dpCustom" data-shared inputmode="decimal" placeholder="10"></label>
+    <div class="scen">Down payment scenarios (pick one or more)
+      <div class="opts">
+        <label class="check"><input type="checkbox" id="scMin" data-shared checked> Minimum</label>
+        <label class="check"><input type="checkbox" id="sc10" data-shared checked> 10%</label>
+        <label class="check"><input type="checkbox" id="sc20" data-shared checked> 20%</label>
+        <label class="check"><input type="checkbox" id="scCustom" data-shared> Custom <input id="dpCustom" data-shared inputmode="decimal" placeholder="15" aria-label="Custom down payment percent"> %</label>
+      </div>
     </div>
     <p class="hint">Not sure what rate to use? <a href="tel:5877400048">Call or text (587) 740-0048</a> for today's rate.</p>
     <div class="notice" id="notice" role="status"></div>
@@ -433,6 +470,7 @@ button.primary:hover{background:#3A2890}
 
   // ---- Brands. logo: a path or data URL of a logo that reads on the footer colour.
   var LOGOS = { goldlion: 'img/gold-lion-logo-feature-sheet.svg' };
+  var POWERED = { goldlion: 'img/mortgage-centre-elevo-logo-white.png' };
   var BRANDS = {
     goldlion: {name:'Gold Lion Mortgages', paper:'#F7F5F0', ink:'#1F1A3D', scrim:'#1B1147', total:'#2B1B72', foot:'#1E1352', accent:'#8C6B1F', accentDark:'#E3C77A', footAccent:'#E3C77A', footText:'#D9D3EC', footStyle:'stripe', stripe:'#C9A84C', logoLayout:'side', line:''}
   };
@@ -522,16 +560,32 @@ button.primary:hover{background:#3A2890}
   function pctText(p){ return (Math.round(p*100)/100) + '%'; }
 
   // ---- Canadian mortgage math ----
-  function calc(s){
+  function scenarios(){
+    var out = [];
+    if($('scMin').checked) out.push({kind:'min'});
+    if($('sc10').checked) out.push({kind:'pct', pct:10});
+    if($('sc20').checked) out.push({kind:'pct', pct:20});
+    var cp = num(v('dpCustom'));
+    if($('scCustom').checked && cp > 0 && cp < 100) out.push({kind:'pct', pct:cp});
+    return out.length ? out : [{kind:'min'}];
+  }
+  // one column per scenario; scenarios that land on the same down payment are shown once
+  function calcAll(s){
+    var seen = {}, cs = [];
+    scenarios().forEach(function(sc){ var c = calc(s, sc); if(!seen[c.down]){ seen[c.down] = 1; cs.push(c); } });
+    return cs;
+  }
+  function calc(s, sc){
+    sc = sc || {kind:'min'};
     var notes = [];
     var price = num(s.price), rate = num(v('rate')), am = parseInt($('am').value, 10);
-    var mode = $('dpMode').value, want = num(v('dpCustom'));
+    var mode = sc.kind === 'pct' ? 'custom' : 'min', want = sc.pct || 0;
     var overCap = price >= 1500000;                                                   // insured mortgages: price under $1.5M
     var tiered = 0.05*Math.min(price,500000) + 0.10*Math.max(0,price-500000);        // minimum down payment
     var down, kind = mode === 'custom' && want > 0 ? 'pct' : 'min', pct = want;
     down = kind === 'pct' ? price*want/100 : tiered;
-    if(overCap && down < price*0.20){ down = price*0.20; kind = 'pct'; pct = 20; if(price) notes.push('Homes of $1.5 million or more need 20% down, so this sheet uses 20% with no insurance premium.'); }
-    else if(!overCap && down < tiered - 0.5){ down = tiered; kind = 'min'; if(price) notes.push('That down payment is below the legal minimum for this price, so this sheet uses the minimum.'); }
+    if(overCap && down < price*0.20){ down = price*0.20; kind = 'pct'; pct = 20; if(price) notes.push('Homes of $1.5 million or more need 20% down, so smaller down payments are shown as 20%.'); }
+    else if(!overCap && down < tiered - 0.5){ down = tiered; kind = 'min'; if(price) notes.push(pctText(want) + ' down is below the legal minimum for this price, so that column uses the minimum.'); }
     down = Math.round(down);
     var base = price - down, ltv = price ? base/price : 0, pr = 0;
     if(!overCap){ if(ltv > 0.90) pr = 0.04; else if(ltv > 0.85) pr = 0.031; else if(ltv > 0.80) pr = 0.028; }
@@ -541,7 +595,9 @@ button.primary:hover{background:#3A2890}
     var r = Math.pow(1 + rate/200, 1/6) - 1, n = am*12;                              // semi-annual compounding
     var pay = (principal > 0 && r > 0) ? Math.ceil(principal*r/(1 - Math.pow(1+r,-n))) : 0;
     var fee = num(s.fee);
-    return {price:price, rate:rate, am:am, kind:kind, pct:pct, down:down, base:base, ltv:ltv, pr:pr, premium:premium, principal:principal, insured:insured, pay:pay, fee:fee, total:pay+fee, notes:notes};
+    var label = kind === 'min' ? 'Minimum down' : pctText(pct) + ' down';
+    var sub = kind === 'min' && price ? pctText(Math.round(down/price*1000)/10) : '';
+    return {label:label, sub:sub, price:price, rate:rate, am:am, kind:kind, pct:pct, down:down, base:base, ltv:ltv, pr:pr, premium:premium, principal:principal, insured:insured, pay:pay, fee:fee, total:pay+fee, notes:notes};
   }
 
   // ---- QR code ----
@@ -565,7 +621,8 @@ button.primary:hover{background:#3A2890}
     }catch(e){ return ''; }
   }
 
-  function sheetHTML(s, c){
+  function sheetHTML(s, cs){
+    var c = cs[0], multi = cs.length > 1;
     var T = brandTokens(), d = rgb(T.scrim);
     var phrase = c.kind === 'min' ? 'Minimum down' : pctText(c.pct) + ' down';
     var downLbl = c.kind === 'min' ? 'Down payment (minimum)' : 'Down payment (' + pctText(c.pct) + ')';
@@ -576,7 +633,9 @@ button.primary:hover{background:#3A2890}
     var hasP = c.price > 0, hasR = c.rate > 0;
     var rows = [[downLbl, hasP ? money(c.down) : ''], ['Assuming rate', hasR ? c.rate.toFixed(2) + '%' : ''], ['Amortization', c.am + ' years'], ['Mortgage payment', hasP && hasR ? money(c.pay) : '']];
     if(c.fee > 0) rows.push(['Condo fee', money(c.fee)]);
-    var disc = 'Based on ' + (c.kind === 'min' ? 'the minimum down payment' : 'a ' + pctText(c.pct) + ' down payment') + ', ' + c.am + ' year amortization' + (c.insured ? ', insured' : '') +
+    var sameAm = cs.every(function(x){ return x.am === c.am; });
+    var disc = (multi ? 'Based on the down payments shown, ' + (sameAm ? c.am + ' year amortization' : 'amortization as shown') + ', insured where the down payment is under 20%' :
+      'Based on ' + (c.kind === 'min' ? 'the minimum down payment' : 'a ' + pctText(c.pct) + ' down payment') + ', ' + c.am + ' year amortization' + (c.insured ? ', insured' : '')) +
       '. Payments exclude property tax and insurance. Rates and payments are estimates, subject to change and approval.' + (T.line ? ' ' + T.line : '');
     var scrim = 'linear-gradient(to top, rgba(' + d + ',0.88) 0%, rgba(' + d + ',0.55) 38%, rgba(' + d + ',0.12) 75%, rgba(' + d + ',0) 100%), linear-gradient(to right, rgba(' + d + ',0.35) 0%, rgba(' + d + ',0) 60%)';
     var title = s.title || '';
@@ -587,7 +646,7 @@ button.primary:hover{background:#3A2890}
     h += '<div class="s-scrim" style="background:' + scrim + '"></div><div class="s-over"><div class="s-over-l">';
     h += '<div class="eb s-loc">' + esc(s.loc || '') + '</div>';
     h += '<div class="s-title" style="font-size:' + tsize + 'px">' + esc(title) + '</div><div class="s-rule"></div></div>';
-    h += '<div class="s-over-r"><div class="eb s-pricelbl">Purchase price · ' + esc(phrase) + '</div><div class="s-price">' + (c.price ? money(c.price) : '') + '</div></div></div></div>';
+    h += '<div class="s-over-r"><div class="eb s-pricelbl">Purchase price' + (multi ? '' : ' · ' + esc(phrase)) + '</div><div class="s-price">' + (c.price ? money(c.price) : '') + '</div></div></div></div>';
     h += '<div class="s-specs">' + specs.map(function(x){ return '<div class="s-spec"><div class="eb">' + esc(x[0]) + '</div><div class="v">' + esc(x[1]) + '</div></div>'; }).join('') + '</div>';
     // right column: the people
     var initials = function(n){ return String(n || '').split(/\s+/).filter(Boolean).slice(0, 2).map(function(w){ return w.charAt(0).toUpperCase(); }).join(''); };
@@ -603,19 +662,40 @@ button.primary:hover{background:#3A2890}
         '<div class="c">' + lines.map(function(l){ return esc(l).replace(/@/g, '@<wbr>'); }).join('<br>') + '</div>' + (extra ? '<div class="bk">' + esc(extra) + '</div>' : '') + '</div>' + qr + '</div>';
     };
     var right = '';
-    right += person('Mortgage', v('myName'), v('myTitle'), [v('myPhone'), v('myEmail'), v('myWeb')], myShot, 'myQr', v('myLicence'));
+    var pw = POWERED[$('brand').value] || '';
+    var lic = (pw && v('myLicence') === $('myLicence').defaultValue) ? '' : v('myLicence');
+    right += person('Mortgage', v('myName'), v('myTitle'), [v('myPhone'), v('myEmail'), v('myWeb')], myShot, 'myQr', lic);
     right += person(v('coName') || 'Realtor', v('coPerson'), '', [v('coPhone'), v('coEmail'), v('coWeb')], coShot, 'coQr', '');
 
-    h += '<div class="s-main' + (right ? '' : ' solo') + '"><div class="eb s-numhead">Your numbers · assuming ' + esc(phrase.toLowerCase()) + '</div><div class="s-card">';
-    h += rows.map(function(x){ return '<div class="s-row"><span>' + esc(x[0]) + '</span><span class="v">' + esc(x[1]) + '</span></div>'; }).join('');
-    h += '</div>';
-    if(right) h += '<div class="s-right">' + right + '</div>';
-    h += '<div class="s-total"><span class="eb">Total monthly at ' + esc(phrase.toLowerCase()) + '</span><span class="v">' + (hasP && hasR ? money(c.total) : '') + '</span></div>';
-    h += '</div>';
+    if(multi){
+      var head = 'Your numbers · ' + cs.length + ' ways to buy' + (hasR ? ' · at ' + c.rate.toFixed(2) + '%' : '') + (sameAm ? (hasR ? ', ' : ' · ') + c.am + ' years' : '');
+      var cols = '<colgroup><col class="lc">' + cs.map(function(){ return '<col>'; }).join('') + '</colgroup>';
+      var cell = function(f){ return cs.map(function(x){ return '<td>' + (hasP ? f(x) : '') + '</td>'; }).join(''); };
+      var trs = [['Down payment', function(x){ return money(x.down); }],
+                 ['Mortgage amount', function(x){ return money(x.principal); }]];
+      if(!sameAm) trs.push(['Amortization', function(x){ return x.am + ' yrs'; }]);
+      trs.push(['Mortgage payment', function(x){ return hasR ? money(x.pay) : ''; }]);
+      if(c.fee > 0) trs.push(['Condo fee', function(x){ return money(x.fee); }]);
+      h += '<div class="s-main multi' + (right ? '' : ' solo') + '"><div class="eb s-numhead">' + esc(head) + '</div><div class="s-card"><table class="s-tbl">' + cols + '<thead><tr><th></th>' +
+        cs.map(function(x){ return '<th>' + esc(x.label) + (x.sub ? '<div class="sub">' + esc(x.sub) + '</div>' : '') + '</th>'; }).join('') + '</tr></thead><tbody>';
+      h += trs.map(function(r){ return '<tr><td>' + esc(r[0]) + '</td>' + cell(r[1]) + '</tr>'; }).join('');
+      h += '</tbody></table></div>';
+      h += '<div class="s-total"><table class="s-tbl s-tot">' + cols + '<tr><td class="eb">Total monthly</td>' + cell(function(x){ return hasR ? money(x.total) : ''; }) + '</tr></table></div>';
+      if(right) h += '<div class="s-right">' + right + '</div>';
+      h += '</div>';
+    } else {
+      h += '<div class="s-main' + (right ? '' : ' solo') + '"><div class="eb s-numhead">Your numbers · assuming ' + esc(phrase.toLowerCase()) + '</div><div class="s-card">';
+      h += rows.map(function(x){ return '<div class="s-row"><span>' + esc(x[0]) + '</span><span class="v">' + esc(x[1]) + '</span></div>'; }).join('');
+      h += '</div>';
+      if(right) h += '<div class="s-right">' + right + '</div>';
+      h += '<div class="s-total"><span class="eb">Total monthly at ' + esc(phrase.toLowerCase()) + '</span><span class="v">' + (hasP && hasR ? money(c.total) : '') + '</span></div>';
+      h += '</div>';
+    }
 
     // footer: the brand with the disclaimer beside it
     var lg = logoFor(), stack = !myLogo && T.logoLayout === 'stack';
-    h += '<div class="s-foot ' + T.footStyle + (stack ? ' stackf' : '') + '"><div class="s-flogo">' + (lg ? '<img src="' + esc(lg) + '" alt="' + esc(T.name) + ' logo">' : '') + '</div>';
+    h += '<div class="s-foot ' + T.footStyle + (stack ? ' stackf' : '') + (pw ? ' haspw' : '') + '"><div class="s-flogo">' + (lg ? '<img src="' + esc(lg) + '" alt="' + esc(T.name) + ' logo">' : '') + '</div>';
+    if(pw) h += '<div class="s-pw"><div class="eb">Powered by</div><img src="' + esc(pw) + '" alt="The Mortgage Centre Elevo Mortgages"></div>';
     h += '<div class="s-disc">' + esc(disc) + '</div></div>';
     return {html:h, T:T};
   }
@@ -624,7 +704,7 @@ button.primary:hover{background:#3A2890}
     var stage = $('stage'); stage.innerHTML = '';
     var notices = [];
     sheets.forEach(function(s, i){
-      var c = calc(s), out = sheetHTML(s, c);
+      var cs = calcAll(s), c = cs[0], out = sheetHTML(s, cs);
       var frame = document.createElement('div'); frame.className = 'frame' + (i === cur ? ' on' : '');
       frame.innerHTML = '<div class="lbl">Sheet ' + (i+1) + '</div>';
       var sc = document.createElement('div'); sc.className = 'scaler';
@@ -635,7 +715,7 @@ button.primary:hover{background:#3A2890}
       var clip = document.createElement('div'); clip.className = 'clip';
       sc.appendChild(sh); clip.appendChild(sc); frame.appendChild(clip); stage.appendChild(frame);
       frame.addEventListener('click', function(){ if(cur !== i){ cur = i; loadSheet(); renderAll(); } });
-      if(i === cur){ notices = c.notes.slice(); if(c.price > 0 && !(c.rate > 0)) notices.unshift('Enter the rate to calculate the payment.'); renderMath(c); }
+      if(i === cur){ cs.forEach(function(x){ x.notes.forEach(function(n){ if(notices.indexOf(n) < 0) notices.push(n); }); }); if(c.price > 0 && !(c.rate > 0)) notices.unshift('Enter the rate to calculate the payment.'); renderMath(cs); }
       // one page fit check
       var main = sh.querySelector('.s-main'), t = sh.querySelector('.s-title');
       var over = main.scrollHeight > main.clientHeight + 2 || t.scrollWidth > t.clientWidth + 2;
@@ -645,10 +725,13 @@ button.primary:hover{background:#3A2890}
     fit();
   }
 
-  function renderMath(c){
+  function renderMath(cs){
     var mc = $('mathcheck'); mc.innerHTML = '';
+    cs.forEach(function(c){
+    if(cs.length > 1){ var hd = document.createElement('div'); hd.className = 'mh'; hd.textContent = c.label; mc.appendChild(hd); }
     [['Down payment', money(c.down)],['Base mortgage', money(c.base)],['Loan to value', (c.ltv*100).toFixed(2)+'%'],['Insurance premium', c.insured ? (c.pr*100).toFixed(2)+'% = '+money(c.premium) : 'None'],['Mortgage incl. premium', money(c.principal)],['Monthly payment', money(c.pay)],['Total monthly', money(c.total)]].forEach(function(p){
       var d = document.createElement('div'); d.textContent = p[0]; var b = document.createElement('b'); b.textContent = p[1]; d.appendChild(b); mc.appendChild(d);
+    });
     });
   }
 
@@ -704,7 +787,6 @@ button.primary:hover{background:#3A2890}
     if(f) f.scrollIntoView({behavior:'smooth', block:'start'});
   }
   function renderAll(){
-    $('dpCustomWrap').hidden = $('dpMode').value !== 'custom';
     renderTabs(); renderThumbs(); renderLogo(); renderShots(); renderQrPreviews(); renderStage(); save();
   }
 
@@ -1027,7 +1109,7 @@ button.primary:hover{background:#3A2890}
         });
       }, Promise.resolve()).then(function(){ pdf.save(pdfName()); });
     }).catch(function(){
-      $('notice').textContent = 'The PDF couldn\'t be made directly (usually a listing photo that blocks downloads), so the print window opened. Choose Save as PDF, paper size Letter, margins None.';
+      $('notice').textContent = 'Listing photos from realtor.ca can only be saved through the print window. Choose Save as PDF as the printer, paper size Letter, margins None.';
       window.print();
     }).then(function(){
       if(holder && holder.parentNode) holder.parentNode.removeChild(holder);
@@ -1198,6 +1280,70 @@ button.primary:hover{background:#3A2890}
   function isHtmlFile(f){ return f && (/\.(html?|mht(ml)?)$/i.test(f.name) || f.type === 'text/html' || f.type === 'multipart/related'); }
   $('pageBtn').addEventListener('click', function(){ $('pageIn').click(); });
   $('pageIn').addEventListener('change', function(e){ readPageFile(e.target.files[0]); e.target.value = ''; });
+
+  // ---- realtor.ca: address from a pasted link, everything else through the bookmark button ----
+  var MULTI_CITY = ['red-deer','st-albert','fort-mcmurray','grande-prairie','medicine-hat','sherwood-park','spruce-grove','fort-saskatchewan','sylvan-lake','high-river','cold-lake','peace-river','rocky-view','north-vancouver','west-vancouver','new-westminster','port-coquitlam','port-moody','maple-ridge','white-rock','prince-george','fort-st-john','west-kelowna','salmon-arm','campbell-river','port-alberni','lake-country','prince-albert','moose-jaw','swift-current','thunder-bay','sault-ste-marie','st-catharines','niagara-falls','richmond-hill','north-bay','saint-john','st-johns','quebec-city'];
+  function fromListingLink(u){
+    var m = /realtor\.ca\/real-estate\/(\d+)\/([a-z0-9-]+)/i.exec(u || '');
+    if(!m) return null;
+    var words = m[2].toLowerCase().split('-'), streetRe = new RegExp('^' + STREET + '$', 'i'), cut = -1;
+    for(var i = 1; i < words.length; i++){ if(streetRe.test(words[i]) && !streetRe.test(words[i+1] || '')){ cut = i; break; } }
+    if(cut < 1) return null;
+    var cap = function(w){ return /^(ne|nw|se|sw)$/.test(w) || /^\d/.test(w) ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1); };
+    var addr = words.slice(0, cut + 1), k = cut + 1, unit = '';
+    if(/^(ne|nw|se|sw|n|s|e|w)$/.test(words[k] || '')){ addr.push(words[k]); k++; }
+    if(/^(unit|suite|apt)$/.test(words[k] || '') && words[k+1]){ unit = words[k+1].toUpperCase(); k += 2; }
+    var rest = words.slice(k), city = '', n = 0;
+    for(var len = 3; len >= 2 && !n; len--){ if(MULTI_CITY.indexOf(rest.slice(0, len).join('-')) >= 0) n = len; }
+    if(!n && rest.length) n = 1;
+    city = rest.slice(0, n).map(cap).join(' ');
+    var comm = rest.slice(n).map(cap).join(' ');
+    return {title: (unit ? unit + ' ' : '') + addr.map(cap).join(' '), loc: [comm, city].filter(Boolean).join(' · ')};
+  }
+  function startListingSheet(){ var s = sheets[cur]; if(s.title || s.price){ sheets.push(blankSheet()); cur = sheets.length - 1; } }
+  var lastLink = '';
+  function useListingLink(){
+    var u = v('listUrl');
+    if(!u || u === lastLink) return;
+    lastLink = u;
+    var o = fromListingLink(u);
+    if(!o){ $('found').textContent = 'That doesn\'t look like a realtor.ca listing link. It should start with https://www.realtor.ca/real-estate/'; $('found').classList.add('warn'); return; }
+    startListingSheet();
+    var s = sheets[cur]; s.title = o.title; if(o.loc) s.loc = o.loc;
+    loadSheet(); renderAll(); goToSheet(cur);
+    $('found').classList.remove('warn');
+    $('found').innerHTML = 'Address filled in from the link. realtor.ca doesn\'t let other websites read its listings, so for the price, details and photos, <a href="' + esc(u) + '" target="_blank" rel="noopener">open the listing</a> and click your <b>Send to Feature Sheet</b> button.';
+  }
+  $('listUrl').addEventListener('input', function(){ if(/realtor\.ca\/real-estate\/\d+\/[a-z0-9-]+/i.test(v('listUrl'))) useListingLink(); });
+  $('listUrl').addEventListener('change', useListingLink);
+
+  function bookmarklet(){
+    var o = location.origin, u = o + location.pathname + '#listing';
+    var code = "(function(){if(!/(^|\\.)realtor\\.ca$/.test(location.hostname)){alert('Open a listing on realtor.ca first, then click this button.');return;}" +
+      "var w=window.open('" + u + "','glsheet');if(!w){alert('Allow pop-ups for realtor.ca, then click again.');return;}" +
+      "var d={type:'gl-listing',url:location.href,html:document.documentElement.outerHTML},n=0,t=setInterval(function(){try{w.postMessage(d,'" + o + "')}catch(e){}if(++n>60)clearInterval(t)},500);" +
+      "window.addEventListener('message',function(e){if(e.origin==='" + o + "'&&e.data==='gl-got')clearInterval(t)})})();";
+    return 'javascript:' + encodeURIComponent(code);
+  }
+  $('bmLink').href = bookmarklet();
+  $('bmLink').addEventListener('click', function(e){ e.preventDefault(); $('found').textContent = 'Drag the Send to Feature Sheet button onto your bookmarks bar, then click it while you\'re on a realtor.ca listing.'; $('found').classList.remove('warn'); });
+
+  var lastListing = '';
+  window.addEventListener('message', function(e){
+    if(!/^https:\/\/([a-z0-9-]+\.)?realtor\.ca$/i.test(e.origin)) return;
+    var d = e.data;
+    if(!d || d.type !== 'gl-listing' || typeof d.html !== 'string') return;
+    try{ e.source.postMessage('gl-got', e.origin); }catch(x){}
+    var key = d.url + '|' + d.html.length;
+    if(key === lastListing) return;
+    lastListing = key;
+    startListingSheet();
+    readSavedPage(d.html);
+    var s = sheets[cur], o = fromListingLink(d.url);
+    if(o && !s.title){ s.title = o.title; if(!s.loc) s.loc = o.loc; loadSheet(); renderAll(); }
+    $('listUrl').value = lastLink = String(d.url).slice(0, 500);
+    goToSheet(cur);
+  });
 
   load();
   loadSheet();
