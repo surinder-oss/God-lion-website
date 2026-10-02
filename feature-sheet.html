@@ -17,7 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Free Listing Feature Sheet Builder for Realtors | Gold Lion Mortgages</title>
 <link rel="canonical" href="https://www.goldlionmortgages.com/feature-sheet">
-<meta name="description" content="Free tool for realtors: upload a saved listing and get a print-ready feature sheet with the photo, home details and real monthly mortgage numbers. Download as a PDF.">
+<meta name="description" content="Free tool for realtors: paste a realtor.ca link and get a print-ready feature sheet with the photo, home details and real monthly mortgage numbers. Download as a PDF.">
 <meta property="og:url" content="https://www.goldlionmortgages.com/feature-sheet">
 <meta property="og:site_name" content="Gold Lion Mortgages">
 <meta property="og:title" content="Free Listing Feature Sheet Builder | Gold Lion Mortgages">
@@ -99,11 +99,6 @@ button:hover{border-color:#9C98A8}
 button:disabled{opacity:0.5;cursor:default}
 button.primary{background:var(--gl-purple);color:#fff;border-color:var(--gl-purple);font-weight:700;box-shadow:inset 0 -3px 0 var(--gl-gold)}
 button.primary:hover{background:#3A2890}
-.upload{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;margin-top:6px;padding:22px 14px;border:2px dashed #B9B2A0;border-radius:10px;background:#FAF8F3;color:var(--ui-muted);font-size:13px;font-weight:400;cursor:pointer}
-.upload strong{color:var(--gl-purple);font-size:16px;font-weight:700}
-.upload.over,.upload:hover{border-color:var(--gl-purple);background:var(--gl-gold-soft)}
-.howto{margin:12px 0 0;padding-left:20px;color:var(--ui-muted);font-size:12.5px;line-height:1.7}
-.howto b{color:var(--ui-ink);font-weight:600}
 .found{background:#EDEAF7;color:#2B1B72;border-radius:6px;padding:8px 10px;font-size:12.5px;line-height:1.45;margin-top:8px}
 .found:empty{display:none}
 .found.warn,.notice{background:var(--ui-warn-bg);color:var(--ui-warn)}
@@ -156,10 +151,6 @@ button.primary:hover{background:#3A2890}
 .scen #dpCustom{width:64px;padding:5px 8px;font-size:13px}
 .mathcheck .mh{color:var(--gl-purple);font-weight:600;margin-top:6px}
 .mathcheck .mh:first-child{margin-top:0}
-.bmbox{margin-top:12px;padding:12px;border:1px solid var(--ui-line);border-radius:8px;background:#FAF8F3;font-size:12.5px;line-height:1.5;color:var(--ui-muted)}
-.bmbox b{color:var(--ui-ink)}
-.bm{display:inline-block;margin:8px 0 6px;padding:9px 14px;border-radius:6px;background:var(--gl-purple);color:#fff;font-weight:600;font-size:13px;text-decoration:none;cursor:grab;box-shadow:inset 0 -3px 0 var(--gl-gold)}
-.or{margin:14px 0 2px;font-size:12px;color:var(--ui-muted);text-transform:uppercase;letter-spacing:0.08em}
 
 /* ===== The sheet: 8.5 x 11 in at 96 px per inch ===== */
 .sheet{--foot-name:#FFFFFF;--foot-rule:rgba(255,255,255,0.18);--foot-text:#D5DDE0;--stripe:transparent;--ink:#23404A;--total:#23404A;--foot:#23404A;--accent:#C8956B;--accent-dark:#C8956B;--foot-accent:#C8956B;--paper:#F6F5F1;position:relative;width:816px;height:1056px;background:var(--paper);display:flex;flex-direction:column;overflow:hidden;color:var(--ink);font-family:'Outfit','Helvetica Neue',Helvetica,sans-serif;box-shadow:0 12px 36px rgba(31,26,61,0.22)}
@@ -275,7 +266,7 @@ button.primary:hover{background:#3A2890}
 <aside class="panel" aria-label="Sheet details">
   <div class="brandhead">
     <h1 class="apptitle">Listing Feature Sheet Builder</h1>
-    <p class="sub"><b>Free for realtors.</b> Upload a saved listing and get a one-page feature sheet with the photo, the home details and real monthly mortgage numbers. Make one sheet per home, then download them all as one PDF. Everything stays on your computer.</p>
+    <p class="sub"><b>Free for realtors.</b> Paste a realtor.ca link, add the photo and price, and get a one-page feature sheet with real monthly mortgage numbers for up to four down payment options. Make one sheet per home, then download them all as one PDF. Everything stays on your computer.</p>
   </div>
 
   <div class="tabs" id="tabs" role="tablist" aria-label="Sheets"></div>
@@ -287,47 +278,30 @@ button.primary:hover{background:#3A2890}
 
   <details open>
     <summary>Listing <span class="scope">this sheet</span></summary>
-    <label>Paste a realtor.ca link<input id="listUrl" type="url" inputmode="url" placeholder="https://www.realtor.ca/real-estate/..."></label>
-    <div class="bmbox">
-      <b>Fill in everything from realtor.ca in one click.</b> Drag this button onto your bookmarks bar (show it with Cmd+Shift+B, or Ctrl+Shift+B on Windows):<br>
-      <a class="bm" id="bmLink" href="#">Send to Feature Sheet</a><br>
-      Then open any listing on realtor.ca and click it. The price, details and photos come here as a new sheet.
-    </div>
-    <div class="or">Or upload a saved listing</div>
-    <button type="button" class="upload" id="pageBtn">
-      <strong>Upload the saved listing</strong>
-      <span>Click to choose the file, or drag it here</span>
-    </button>
-    <input type="file" id="pageIn" accept=".mhtml,.mht,.html,.htm" class="visually-hidden">
+    <label>Paste the realtor.ca link<input id="listUrl" type="url" inputmode="url" placeholder="https://www.realtor.ca/real-estate/..."></label>
     <div class="found" id="found" role="status"></div>
-    <ol class="howto">
-      <li>Open the listing in Chrome (realtor.ca works best).</li>
-      <li>Press Cmd+S (Ctrl+S on Windows).</li>
-      <li>Choose <b>Webpage, Single File</b> and save.</li>
-      <li>Upload that file here. Or skip this and type the details below.</li>
-    </ol>
   </details>
 
   <details open>
     <summary>Photo <span class="scope">this sheet</span></summary>
-    <p class="pickhead" id="pickHead">Photos from the saved listing will show up here.</p>
+    <p class="pickhead" id="pickHead"></p>
     <div class="thumbs" id="thumbs"></div>
     <label id="posWrap" hidden>Move the photo up or down
       <input id="heroPos" type="range" min="0" max="100" value="50">
     </label>
-    <button type="button" class="addphoto" id="drop">Add your own photo</button>
+    <button type="button" class="addphoto" id="drop">Add a photo</button>
     <input type="file" id="fileIn" accept="image/*" multiple class="visually-hidden">
   </details>
 
   <details open>
     <summary>Home <span class="scope">this sheet</span></summary>
     <div class="grid2">
-      <label>Model name or address<input id="title" data-sheet placeholder="Filled from the listing"></label>
-      <label>MLS® number (optional)<input id="mls" data-sheet placeholder="Filled from the listing"></label>
+      <label>Model name or address<input id="title" data-sheet placeholder="Filled from the link"></label>
+      <label>MLS® number (optional)<input id="mls" data-sheet placeholder="e.g. A2343165"></label>
     </div>
-    <label>Location line<input id="loc" data-sheet placeholder="Filled from the listing"></label>
+    <label>Location line<input id="loc" data-sheet placeholder="Community · City, AB"></label>
     <div class="grid2">
-      <label>Purchase price<input id="price" data-sheet inputmode="numeric" placeholder="Filled from the listing"></label>
+      <label>Purchase price<input id="price" data-sheet inputmode="numeric" placeholder="e.g. 649900"></label>
       <label>Type
         <select id="ptype" data-sheet>
           <option>Condominium</option>
@@ -348,10 +322,15 @@ button.primary:hover{background:#3A2890}
   <details open>
     <summary>Mortgage numbers <span class="scope">all sheets</span></summary>
     <div class="grid2">
-      <label>Rate (%)<input id="rate" data-shared inputmode="decimal" placeholder="e.g. 4.19"></label>
+      <label>Insured rate (%)<input id="rateIns" data-shared inputmode="decimal" placeholder="e.g. 3.99"></label>
+      <label>Conventional rate (%)<input id="rateConv" data-shared inputmode="decimal" placeholder="e.g. 4.29"></label>
+    </div>
+    <p class="hint" style="margin-top:6px">Insured rate applies under 20% down. Conventional rate applies at 20% down or more. Fill in one and it's used for both.</p>
+    <div class="grid2">
       <label>Amortization
         <select id="am" data-shared><option value="25">25 years</option><option value="30">30 years</option></select>
       </label>
+      <span></span>
     </div>
     <label class="check"><input type="checkbox" id="eligible" data-shared> First time buyer or new build (allows 30 years insured)</label>
     <div class="scen">Down payment scenarios (pick one or more)
@@ -538,6 +517,7 @@ button.primary:hover{background:#3A2890}
       if(!d) return;
       sharedEls().forEach(function(el){ if(d.shared && d.shared[el.id] != null){ if(el.type === 'checkbox') el.checked = !!d.shared[el.id]; else el.value = d.shared[el.id]; } });
       if(!$('brand').value) $('brand').value = 'goldlion';
+      if(d.shared && d.shared.rate && !d.shared.rateIns && !d.shared.rateConv){ $('rateIns').value = $('rateConv').value = d.shared.rate; }
       var img = function(x){ return typeof x === 'string' && /^data:image\/(png|jpe?g|webp|gif|avif|svg\+xml);base64,[A-Za-z0-9+\/=]+$/.test(x) ? x : ''; };
       myLogo = img(d.myLogo); coShot = img(d.coShot);
       if(d.myShot !== undefined) myShot = d.myShot === DEFAULT_SHOT ? DEFAULT_SHOT : img(d.myShot);
@@ -578,7 +558,7 @@ button.primary:hover{background:#3A2890}
   function calc(s, sc){
     sc = sc || {kind:'min'};
     var notes = [];
-    var price = num(s.price), rate = num(v('rate')), am = parseInt($('am').value, 10);
+    var price = num(s.price), am = parseInt($('am').value, 10);
     var mode = sc.kind === 'pct' ? 'custom' : 'min', want = sc.pct || 0;
     var overCap = price >= 1500000;                                                   // insured mortgages: price under $1.5M
     var tiered = 0.05*Math.min(price,500000) + 0.10*Math.max(0,price-500000);        // minimum down payment
@@ -592,6 +572,8 @@ button.primary:hover{background:#3A2890}
     var premium = Math.ceil(base*pr), principal = base + premium, insured = premium > 0;
     if(insured && am === 30 && $('eligible').checked){ pr += 0.002; premium = Math.ceil(base*pr); principal = base + premium; }   // CMHC adds 0.20% for amortizations over 25 years
     if(insured && am === 30 && !$('eligible').checked){ am = 25; notes.push('30 years on an insured mortgage needs a first time buyer or a new build. Tick the box to allow it. Using 25 years for now.'); }
+    var ri = num(v('rateIns')), rc = num(v('rateConv'));
+    var rate = insured ? (ri || rc) : (rc || ri);                                     // insured rate under 20% down, conventional at 20%+
     var r = Math.pow(1 + rate/200, 1/6) - 1, n = am*12;                              // semi-annual compounding
     var pay = (principal > 0 && r > 0) ? Math.ceil(principal*r/(1 - Math.pow(1+r,-n))) : 0;
     var fee = num(s.fee);
@@ -636,6 +618,7 @@ button.primary:hover{background:#3A2890}
     var sameAm = cs.every(function(x){ return x.am === c.am; });
     var disc = (multi ? 'Based on the down payments shown, ' + (sameAm ? c.am + ' year amortization' : 'amortization as shown') + ', insured where the down payment is under 20%' :
       'Based on ' + (c.kind === 'min' ? 'the minimum down payment' : 'a ' + pctText(c.pct) + ' down payment') + ', ' + c.am + ' year amortization' + (c.insured ? ', insured' : '')) +
+      (cs.some(function(x){ return x.rate !== c.rate; }) ? '. Insured scenarios use the insured rate and 20% down or more uses the conventional rate' : '') +
       '. Payments exclude property tax and insurance. Rates and payments are estimates, subject to change and approval.' + (T.line ? ' ' + T.line : '');
     var scrim = 'linear-gradient(to top, rgba(' + d + ',0.88) 0%, rgba(' + d + ',0.55) 38%, rgba(' + d + ',0.12) 75%, rgba(' + d + ',0) 100%), linear-gradient(to right, rgba(' + d + ',0.35) 0%, rgba(' + d + ',0) 60%)';
     var title = s.title || '';
@@ -668,19 +651,21 @@ button.primary:hover{background:#3A2890}
     right += person(v('coName') || 'Realtor', v('coPerson'), '', [v('coPhone'), v('coEmail'), v('coWeb')], coShot, 'coQr', '');
 
     if(multi){
-      var head = 'Your numbers · ' + cs.length + ' ways to buy' + (hasR ? ' · at ' + c.rate.toFixed(2) + '%' : '') + (sameAm ? (hasR ? ', ' : ' · ') + c.am + ' years' : '');
+      var sameRate = cs.every(function(x){ return x.rate === c.rate; });
+      var head = 'Your numbers · ' + cs.length + ' ways to buy' + (hasR && sameRate ? ' · at ' + c.rate.toFixed(2) + '%' : '') + (sameAm ? (hasR && sameRate ? ', ' : ' · ') + c.am + ' years' : '');
       var cols = '<colgroup><col class="lc">' + cs.map(function(){ return '<col>'; }).join('') + '</colgroup>';
       var cell = function(f){ return cs.map(function(x){ return '<td>' + (hasP ? f(x) : '') + '</td>'; }).join(''); };
       var trs = [['Down payment', function(x){ return money(x.down); }],
                  ['Mortgage amount', function(x){ return money(x.principal); }]];
+      if(!sameRate) trs.push(['Rate', function(x){ return x.rate > 0 ? x.rate.toFixed(2) + '%' : ''; }]);
       if(!sameAm) trs.push(['Amortization', function(x){ return x.am + ' yrs'; }]);
-      trs.push(['Mortgage payment', function(x){ return hasR ? money(x.pay) : ''; }]);
+      trs.push(['Mortgage payment', function(x){ return x.rate > 0 ? money(x.pay) : ''; }]);
       if(c.fee > 0) trs.push(['Condo fee', function(x){ return money(x.fee); }]);
       h += '<div class="s-main multi' + (right ? '' : ' solo') + '"><div class="eb s-numhead">' + esc(head) + '</div><div class="s-card"><table class="s-tbl">' + cols + '<thead><tr><th></th>' +
         cs.map(function(x){ return '<th>' + esc(x.label) + (x.sub ? '<div class="sub">' + esc(x.sub) + '</div>' : '') + '</th>'; }).join('') + '</tr></thead><tbody>';
       h += trs.map(function(r){ return '<tr><td>' + esc(r[0]) + '</td>' + cell(r[1]) + '</tr>'; }).join('');
       h += '</tbody></table></div>';
-      h += '<div class="s-total"><table class="s-tbl s-tot">' + cols + '<tr><td class="eb">Total monthly</td>' + cell(function(x){ return hasR ? money(x.total) : ''; }) + '</tr></table></div>';
+      h += '<div class="s-total"><table class="s-tbl s-tot">' + cols + '<tr><td class="eb">Total monthly</td>' + cell(function(x){ return x.rate > 0 ? money(x.total) : ''; }) + '</tr></table></div>';
       if(right) h += '<div class="s-right">' + right + '</div>';
       h += '</div>';
     } else {
@@ -715,7 +700,7 @@ button.primary:hover{background:#3A2890}
       var clip = document.createElement('div'); clip.className = 'clip';
       sc.appendChild(sh); clip.appendChild(sc); frame.appendChild(clip); stage.appendChild(frame);
       frame.addEventListener('click', function(){ if(cur !== i){ cur = i; loadSheet(); renderAll(); } });
-      if(i === cur){ cs.forEach(function(x){ x.notes.forEach(function(n){ if(notices.indexOf(n) < 0) notices.push(n); }); }); if(c.price > 0 && !(c.rate > 0)) notices.unshift('Enter the rate to calculate the payment.'); renderMath(cs); }
+      if(i === cur){ cs.forEach(function(x){ x.notes.forEach(function(n){ if(notices.indexOf(n) < 0) notices.push(n); }); }); if(c.price > 0 && cs.some(function(x){ return !(x.rate > 0); })) notices.unshift('Enter the insured and conventional rates to calculate the payments.'); renderMath(cs); }
       // one page fit check
       var main = sh.querySelector('.s-main'), t = sh.querySelector('.s-title');
       var over = main.scrollHeight > main.clientHeight + 2 || t.scrollWidth > t.clientWidth + 2;
@@ -729,7 +714,7 @@ button.primary:hover{background:#3A2890}
     var mc = $('mathcheck'); mc.innerHTML = '';
     cs.forEach(function(c){
     if(cs.length > 1){ var hd = document.createElement('div'); hd.className = 'mh'; hd.textContent = c.label; mc.appendChild(hd); }
-    [['Down payment', money(c.down)],['Base mortgage', money(c.base)],['Loan to value', (c.ltv*100).toFixed(2)+'%'],['Insurance premium', c.insured ? (c.pr*100).toFixed(2)+'% = '+money(c.premium) : 'None'],['Mortgage incl. premium', money(c.principal)],['Monthly payment', money(c.pay)],['Total monthly', money(c.total)]].forEach(function(p){
+    [['Down payment', money(c.down)],['Base mortgage', money(c.base)],['Loan to value', (c.ltv*100).toFixed(2)+'%'],['Rate used', c.rate > 0 ? c.rate.toFixed(2) + '% (' + (c.insured ? 'insured' : 'conventional') + ')' : '—'],['Insurance premium', c.insured ? (c.pr*100).toFixed(2)+'% = '+money(c.premium) : 'None'],['Mortgage incl. premium', money(c.principal)],['Monthly payment', money(c.pay)],['Total monthly', money(c.total)]].forEach(function(p){
       var d = document.createElement('div'); d.textContent = p[0]; var b = document.createElement('b'); b.textContent = p[1]; d.appendChild(b); mc.appendChild(d);
     });
     });
@@ -756,7 +741,7 @@ button.primary:hover{background:#3A2890}
       var b = document.createElement('button'); b.type = 'button'; b.className = 'thumb' + (s.photo === src ? ' on' : '');
       b.setAttribute('aria-label', 'Use photo ' + (i+1) + ' on this sheet');
       var im = document.createElement('img'); im.src = src; im.alt = ''; im.loading = 'lazy';
-      im.onerror = function(){ var k = g.indexOf(src); if(k >= 0){ g.splice(k,1); if(s.photo === src) s.photo = g[0] || ''; renderAll(); if(!g.length){ $('found').textContent = 'The listing site wouldn\'t let its photos load here. Drag a photo from the listing onto Add your own photo instead.'; $('found').classList.add('warn'); } } };
+      im.onerror = function(){ var k = g.indexOf(src); if(k >= 0){ g.splice(k,1); if(s.photo === src) s.photo = g[0] || ''; renderAll(); if(!g.length){ $('found').textContent = 'That photo wouldn\'t load here. Save it to your computer, then use Add a photo.'; $('found').classList.add('warn'); } } };
       b.appendChild(im);
       b.addEventListener('click', function(){ sheets[cur].photo = src; renderAll(); });
       var x = document.createElement('button'); x.type = 'button'; x.className = 'x'; x.textContent = '×'; x.setAttribute('aria-label','Remove photo ' + (i+1));
@@ -764,7 +749,7 @@ button.primary:hover{background:#3A2890}
       w.appendChild(b); w.appendChild(x); t.appendChild(w);
     });
     $('posWrap').hidden = !s.photo;
-    $('pickHead').innerHTML = g.length ? '<b>' + g.length + ' photo' + (g.length > 1 ? 's' : '') + ' for this sheet.</b> Click one to use it.' : 'Photos from the saved listing will show up here.';
+    $('pickHead').innerHTML = g.length ? '<b>' + g.length + ' photo' + (g.length > 1 ? 's' : '') + ' for this sheet.</b> Click one to use it on top.' : 'Add a photo of the home for the top of the sheet. Drag one in from the listing, paste it, or choose a file.';
     $('heroPos').value = s.pos;
   }
 
@@ -790,164 +775,7 @@ button.primary:hover{background:#3A2890}
     renderTabs(); renderThumbs(); renderLogo(); renderShots(); renderQrPreviews(); renderStage(); save();
   }
 
-  // ---- Listing text reader (no AI, pattern based) ----
-  var PROV = {'british columbia':'BC','alberta':'AB','saskatchewan':'SK','manitoba':'MB','ontario':'ON','quebec':'QC','québec':'QC','new brunswick':'NB','nova scotia':'NS','prince edward island':'PE','newfoundland and labrador':'NL','newfoundland':'NL','yukon':'YT','northwest territories':'NT','nunavut':'NU'};
   var STREET = '(?:Street|St|Avenue|Ave|Road|Rd|Drive|Dr|Boulevard|Blvd|Way|Crescent|Cres|Court|Ct|Place|Pl|Lane|Ln|Terrace|Terr|Trail|Tr|Highway|Hwy|Circle|Cir|Close|Gate|Parkway|Pkwy|Row|Mews|Square|Sq|Green|Grn|Heights|Hts|Landing|Point|Pt|Park|Grove|Hill|Bay|Common|Commons|Link|Manor|Walk|View|Vista|Ridge|Rise|Crossing|Line|Concession|Sideroad|Esplanade|Promenade|Quay|Wynd|Glen|Estates|Meadows)';
-  function toNum(t){ return parseFloat(String(t).replace(/[^0-9.]/g,'')) || 0; }
-  function after(text, labels, pat, ok){
-    for(var i = 0; i < labels.length; i++){
-      var re = new RegExp(labels[i] + '\\s*[:\\-]?\\s*(?:\\n\\s*)?' + pat, 'ig'), m;
-      while((m = re.exec(text))){ if(!ok || ok(m[1])) return m[1]; }
-    }
-    return '';
-  }
-  function smallCount(x){ var n = toNum(String(x).split('+')[0]); return n > 0 && n <= 15; }
-  function parseListing(raw){
-    var t = raw.replace(/\r/g,'').replace(/[ \t ]+/g,' ');
-    var out = {};
-
-    // MLS number
-    var m = /MLS\s*(?:®|\(R\)|&reg;)?\s*(?:Number|No\.?|#|Num)?\s*[:#]?\s*\n?\s*([A-Z]{0,3}\d{5,9})\b/i.exec(t);
-    if(m) out.mls = m[1].toUpperCase();
-
-    // Price: labelled first, then the first large dollar amount
-    var p = after(t, ['List(?:ing)? Price','Asking Price','Purchase Price','Sale Price','Price','Priced (?:at|from)','Listed at','Starting (?:at|from)'], '\\$\\s?([\\d,]{5,}(?:\\.\\d\\d)?)');
-    if(!p){ var all = t.match(/\$\s?[\d,]{6,}/g) || []; for(var i = 0; i < all.length; i++){ var n = toNum(all[i]); if(n >= 50000 && n <= 50000000){ p = all[i]; break; } } }
-    if(p && toNum(p) >= 50000) out.price = String(Math.round(toNum(p)));
-
-    // Bedrooms and bathrooms
-    var beds = '', baths = '';
-    m = /\b(?:Bedrooms?|Beds?|Bdrms?)\s*:\s*(\d+(?:\s*\+\s*\d+)?)\b/i.exec(t); if(m && smallCount(m[1])) beds = m[1];
-    m = /\b(?:Bathrooms?|Baths?|Bthrms?)\s*:\s*(\d+(?:\.\d)?)\b/i.exec(t); if(m && smallCount(m[1])) baths = m[1];
-    if(!beds){ m = /(\d+(?:\s*\+\s*\d+)?)\s*(?:bed(?:room)?s?|bd|br|bdrms?)\b/i.exec(t); if(m && smallCount(m[1])) beds = m[1]; }
-    if(!beds) beds = after(t, ['Bedrooms?(?: \\(?total\\)?)?','Beds?','Bdrms?'], '(\\d+(?:\\s*\\+\\s*\\d+)?)\\b', smallCount);
-    if(!baths){ m = /(\d+(?:\.\d)?)\s*(?:bath(?:room)?s?|ba)\b/i.exec(t); if(m && smallCount(m[1])) baths = m[1]; }
-    if(!baths) baths = after(t, ['Bathrooms?(?: \\(?total\\)?)?','Baths?','Bthrms?'], '(\\d+(?:\\.\\d)?(?:\\s*\\+\\s*\\d+)?)\\b', smallCount);
-    var den = /\+\s*den\b|\bden\b/i.test(t.slice(0, 4000)) && !/\bno den\b/i.test(t);
-    if(beds || baths){
-      var b = beds ? beds.replace(/\s+/g,' ') : '';
-      var parts = [];
-      if(b) parts.push(b + ' bed' + (den && !/\+/.test(b) ? ' + den' : ''));
-      if(baths) parts.push(baths + ' bath');
-      out.layout = parts.join(' / ');
-    }
-
-    // Size
-    var sz = after(t, ['Square Footage','Floor Area(?: \\(?total\\)?)?','Living Area','Interior Size','Size','Total Finished Area','Home Size'], '([\\d,]{3,6})\\s*(?:sq\\.?\\s*ft|sqft|ft2|ft²|square feet|sf)?');
-    if(!sz || toNum(sz) < 200){ m = /([\d,]{3,6})\s*(?:sq\.?\s*ft\.?|sqft|ft2|ft²|square feet|sf)\b/i.exec(t); sz = m ? m[1] : ''; }
-    if(sz && toNum(sz) >= 200 && toNum(sz) <= 30000) out.sqft = String(Math.round(toNum(sz)));
-
-    // Condo or strata fee
-    m = /(?:Maintenance|Strata|Condo(?:minium)?|HOA|Monthly)\s*(?:Fees?|Fee \(Monthly\)|Charges?)?[^$\d]{0,30}\$\s?([\d,]+(?:\.\d+)?)/i.exec(t);
-    if(m && toNum(m[1]) > 0 && toNum(m[1]) < 5000) out.fee = String(Math.round(toNum(m[1])));
-
-    // Type
-    var bt = after(t, ['Building Type','Property Type','Home Type','Style','Dwelling Type','Type'], '([A-Za-z /\\-]{3,40})');
-    var pick = function(x){
-      if(/apartment|condo|high ?rise|low ?rise|strata/i.test(x)) return 'Condominium';
-      if(/town ?house|town ?home|row ?house|row \/ townhouse/i.test(x)) return 'Townhome';
-      if(/duplex|half duplex|triplex|semi/i.test(x)) return 'Duplex';
-      if(/detached|house|bungalow|two storey|split level/i.test(x) && !/single family/i.test(x)) return 'Detached';
-      return '';
-    };
-    out.ptype = pick(bt) || pick(t.slice(0, 6000));
-    if(!out.ptype) delete out.ptype;
-
-    // Address, city, province, postal code
-    var lines = t.split('\n').map(function(l){ return l.trim(); }).filter(Boolean);
-    var addrRe = new RegExp('^(?:#?\\s?\\d+[A-Za-z]?\\s*[-–]\\s*)?#?\\d+[A-Za-z]?\\s+(?:[A-Za-z0-9.\'’]+\\s+){0,5}' + STREET + '\\.?\\b(?:\\s+(?:NE|NW|SE|SW|N|S|E|W)\\b)?', 'i');
-    var provTest = /\b(British Columbia|Alberta|Saskatchewan|Manitoba|Ontario|Qu[eé]bec|New Brunswick|Nova Scotia|Prince Edward Island|Newfoundland|Yukon|Northwest Territories|Nunavut|BC|AB|SK|MB|ON|QC|NB|NS|PE|NL)\b|\b[A-Z]\d[A-Z]\s?\d[A-Z]\d\b/;
-    var order = [], firstAddr = -1;
-    for(var q = 0; q < Math.min(lines.length, 600); q++){
-      if(addrRe.test(lines[q]) && lines[q].length < 140){
-        if(firstAddr < 0) firstAddr = q;
-        if(provTest.test(lines[q]) || provTest.test(lines[q+1] || '') || provTest.test(lines[q+2] || '')){ order.push(q); break; }
-      }
-    }
-    if(!order.length && firstAddr >= 0) order.push(firstAddr);
-    for(var oi = 0; oi < order.length; oi++){
-      var j = order[oi];
-      var am = addrRe.exec(lines[j]);
-      if(am){
-        var line = lines[j], next = lines[j+1] || '';
-        var street = am[0].replace(/\s+/g,' ').trim();
-        var tail = line.slice(am[0].length);
-        var rest = (provTest.test(tail) ? tail : (tail + ' ' + next + (provTest.test(next) ? '' : ' ' + (lines[j+2] || '')))).replace(/\s+,/g, ',').trim();
-        // unit written after the street, e.g. "1234 Main St #1203" or "Unit 5"
-        var unit = /^(?:#|Unit\s*#?\s*|Suite\s*#?\s*|Apt\.?\s*#?\s*)(\w+)/i.exec(rest.replace(/^[,\s]+/,''));
-        if(unit){ street = unit[1] + ' ' + street; rest = rest.replace(/^[,\s]*(?:#|Unit\s*#?\s*|Suite\s*#?\s*|Apt\.?\s*#?\s*)\w+/i,''); }
-        out.title = street.replace(/^(#?\s?\w+)\s*[-–]\s*(\d)/, '$1 $2').replace(/^#\s?/, '');
-        var pc = /\b([A-Z]\d[A-Z])\s?(\d[A-Z]\d)\b/.exec(rest);
-        var prov = '';
-        var pm = /\b(British Columbia|Alberta|Saskatchewan|Manitoba|Ontario|Qu[eé]bec|New Brunswick|Nova Scotia|Prince Edward Island|Newfoundland(?: and Labrador)?|Yukon|Northwest Territories|Nunavut|BC|AB|SK|MB|ON|QC|NB|NS|PE|PEI|NL|YT|NT|NU)\b/.exec(rest);
-        if(pm){ prov = PROV[pm[1].toLowerCase()] || pm[1].toUpperCase().replace('PEI','PE'); }
-        var city = '';
-        if(pm){ city = rest.slice(0, pm.index).replace(/[,\s]+$/,'').replace(/^[,\s]+/,'').split(',').pop().trim(); }
-        if(city && city.length > 40) city = '';
-        var comm = '';
-        var rc = /(?:^|\n)Community[ \t]*\n\s*([A-Za-z][A-Za-z .'’\-]{2,30})[ \t]*(?:\n|$)/.exec(t);
-        if(rc) comm = rc[1];
-        if(!comm) ['Neighbou?rhood Name','Neighbou?rhood\\s*:','Sub-?Area','Community Name','Subdivision'].some(function(lb){
-          var cm = new RegExp('(?:' + lb + ')\\s*[:\\-]?\\s*(?:\\n\\s*)?([A-Za-z][A-Za-z .\'’\\-]{2,30})[ \\t]*(?:\\n|$)', 'i').exec(t);
-          if(cm){ comm = cm[1]; return true; } return false;
-        });
-        if(!comm && firstAddr > 1 && lines[firstAddr-2] === '/' && lines[firstAddr-1].length < 30 && !/^\d/.test(lines[firstAddr-1])) comm = lines[firstAddr-1];   // breadcrumb: ... / Douglas / address
-        var place = [city, [prov, pc ? pc[1] + ' ' + pc[2] : ''].filter(Boolean).join(' ')].filter(Boolean).join(', ');
-        var loc = [comm.trim(), place].filter(Boolean).join(' · ');
-        if(loc) out.loc = loc;
-        break;
-      }
-    }
-    return out;
-  }
-
-  var FIELD_NAMES = {title:'address', loc:'location', price:'price', mls:'MLS number', ptype:'type', layout:'layout', sqft:'size', fee:'condo fee'};
-  function applyParsed(o, photoCount){
-    var s = sheets[cur], got = [], miss = [];
-    ['title','loc','price','mls','ptype','layout','sqft','fee'].forEach(function(k){
-      if(o[k]){ s[k] = o[k]; got.push(FIELD_NAMES[k]); } else if(k !== 'fee') miss.push(FIELD_NAMES[k]);
-    });
-    loadSheet(); renderAll();
-    var msg = got.length ? 'Done. Filled in: ' + got.join(', ') + '.' : 'Couldn\'t find listing details in that file. Make sure it was saved from the listing page itself.';
-    if(got.length && miss.length) msg += ' Not found: ' + miss.join(', ') + '.';
-    if(photoCount) msg += ' Photos are ready below. Pick one.';
-    $('found').textContent = msg;
-    $('found').classList.toggle('warn', !got.length);
-  }
-
-  function photosFromHtml(html, done){
-    if(!html) return done(0);
-    var doc = new DOMParser().parseFromString(html, 'text/html');
-    var urls = [], keys = [];
-    doc.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]').forEach(function(m){
-      var u = m.getAttribute('content'); if(u && /^https?:\/\//i.test(u)){ var k = u.split('?')[0].replace(/\/(medres|highres)\//, '/'); if(keys.indexOf(k) < 0){ keys.push(k); urls.push(u.replace(/\?w=\d+&h=\d+.*$/, '')); } }
-    });
-    doc.querySelectorAll('img, source').forEach(function(el){
-      var cands = [el.getAttribute('src'), el.getAttribute('data-src'), el.getAttribute('data-lazy'), el.getAttribute('data-original')];
-      var ss = el.getAttribute('srcset') || el.getAttribute('data-srcset');
-      if(ss){ var last = ss.split(',').pop().trim().split(' ')[0]; cands.unshift(last); }
-      cands.forEach(function(u){
-        if(u && /^http:\/\//i.test(u)) u = 'https://' + u.slice(7);
-        if(!u || !/^https:\/\//i.test(u) || /\.(svg|gif)(\?|$)/i.test(u) || /logo|icon|avatar|sprite|agent|individuals|headshot|badge|flag|map|pixel|tracking|lowres/i.test(u)) return;
-        var key = u.split('?')[0].replace(/\/(medres|highres)\//, '/');
-        if(keys.indexOf(key) < 0){ keys.push(key); urls.push(u.replace(/\?w=\d+&h=\d+.*$/, '')); }
-      });
-    });
-    urls = urls.slice(0, 40);
-    if(!urls.length) return done(0);
-    var have = gal().slice(), added = 0, left = urls.length;
-    urls.forEach(function(u){
-      var im = new Image();
-      im.onload = function(){
-        var r = im.naturalWidth / im.naturalHeight;
-        if(im.naturalWidth >= 500 && r > 0.9 && r < 2.4 && added < 15){ if(have.indexOf(u) < 0){ gal().push(u); have.push(u); } added++; if(!sheets[cur].photo) sheets[cur].photo = u; }
-        if(--left === 0) done(added);
-      };
-      im.onerror = function(){ if(--left === 0) done(added); };
-      im.src = u;
-    });
-  }
-
   function loadSheet(){ var s = sheets[cur]; SHEET_FIELDS.forEach(function(k){ $(k).value = s[k]; }); if(loadSheet.last !== cur){ loadSheet.last = cur; $('found').textContent = ''; $('found').classList.remove('warn'); } }
 
   // inputs
@@ -984,16 +812,12 @@ button.primary:hover{background:#3A2890}
   var drop = $('drop');
   drop.addEventListener('click', function(){ $('fileIn').click(); });
   $('fileIn').addEventListener('change', function(e){ Array.prototype.forEach.call(e.target.files, addFile); e.target.value = ''; });
-  document.addEventListener('dragover', function(e){ e.preventDefault(); drop.classList.add('over'); $('pageBtn').classList.add('over'); });
-  document.addEventListener('dragleave', function(e){ if(!e.relatedTarget){ drop.classList.remove('over'); $('pageBtn').classList.remove('over'); } });
+  document.addEventListener('dragover', function(e){ e.preventDefault(); drop.classList.add('over'); });
+  document.addEventListener('dragleave', function(e){ if(!e.relatedTarget) drop.classList.remove('over'); });
   document.addEventListener('drop', function(e){
-    e.preventDefault(); drop.classList.remove('over'); $('pageBtn').classList.remove('over');
+    e.preventDefault(); drop.classList.remove('over');
     var dt = e.dataTransfer;
-    if(dt.files && dt.files.length){
-      var htmlFile = Array.prototype.filter.call(dt.files, isHtmlFile)[0];
-      if(htmlFile){ readPageFile(htmlFile); return; }
-      Array.prototype.forEach.call(dt.files, addFile); return;
-    }
+    if(dt.files && dt.files.length){ Array.prototype.forEach.call(dt.files, addFile); return; }
     var src = fromHtml(dt.getData('text/html'));
     if(src && addUrl(src)) return;
     addUrl((dt.getData('text/uri-list') || dt.getData('text/plain') || '').split('\n')[0]);
@@ -1141,147 +965,7 @@ button.primary:hover{background:#3A2890}
   });
   window.addEventListener('scroll', jumpLabel, {passive:true});
 
-  function htmlToText(html){
-    return html
-      .replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<noscript[\s\S]*?<\/noscript>/gi, ' ')
-      .replace(/<(br|\/p|\/div|\/li|\/h\d|\/tr|\/td|\/th|\/span|\/a|\/section|\/dt|\/dd)[^>]*>/gi, '\n')
-      .replace(/<[^>]+>/g, ' ')
-      .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&reg;/g, '®').replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-      .replace(/[ \t]+/g, ' ')
-      .split('\n').map(function(l){ return l.trim(); }).filter(Boolean).join('\n');
-  }
-  function resetSheetForUpload(){
-    var fresh = blankSheet();
-    ['title','mls','loc','price','ptype','layout','sqft','fee','photo'].forEach(function(k){ sheets[cur][k] = fresh[k]; }); sheets[cur].gallery = [];
-  }
-  function readSavedPage(html){
-    resetSheetForUpload();
-    var parsed = parseListing(htmlToText(html));
-    var pics = listingPhotos(html, [], parsed.mls);
-    if(pics.length){ sheets[cur].gallery = pics; sheets[cur].photo = pics[0]; applyParsed(parsed, pics.length); return; }
-    applyParsed(parsed, 0);
-    $('found').textContent += ' Looking for photos…';
-    photosFromHtml(html, function(n){
-      applyParsed(parsed, n);
-      if(!n) $('found').textContent += ' No photos came through, so drag or paste them into the Photo section.';
-    });
-  }
-  // ---- Chrome "Webpage, Single File" (.mhtml): page plus its photos in one file ----
-  function qpDecode(str){
-    str = str.replace(/=\r?\n/g, '');
-    var bytes = [];
-    for(var i = 0; i < str.length; i++){
-      var c = str.charCodeAt(i);
-      if(str[i] === '=' && /^[0-9A-Fa-f]{2}$/.test(str.substr(i+1, 2))){ bytes.push(parseInt(str.substr(i+1, 2), 16)); i += 2; }
-      else if(c < 128) bytes.push(c);
-      else { var enc = new TextEncoder().encode(str[i]); for(var k = 0; k < enc.length; k++) bytes.push(enc[k]); }
-    }
-    return new TextDecoder('utf-8').decode(new Uint8Array(bytes));
-  }
-  function readMhtml(raw){
-    var bm = /boundary="?([^";\r\n]+)"?/i.exec(raw);
-    if(!bm) return null;
-    var chunks = raw.split('--' + bm[1]);
-    var snap = ((/Snapshot-Content-Location:\s*([^\r\n]+)/i.exec(raw.slice(0, 2000)) || [])[1] || '').trim();
-    var html = '', allHtml = '', imgs = [];
-    chunks.forEach(function(ch){
-      var cut = ch.search(/\r?\n\r?\n/);
-      if(cut < 0) return;
-      var head = ch.slice(0, cut), body = ch.slice(cut).replace(/^\s+/, '');
-      var ct = (/Content-Type:\s*([^;\r\n]+)/i.exec(head) || [])[1] || '';
-      var enc = ((/Content-Transfer-Encoding:\s*([^\r\n]+)/i.exec(head) || [])[1] || '').trim().toLowerCase();
-      var loc = ((/Content-Location:\s*([^\r\n]+)/i.exec(head) || [])[1] || '').trim();
-      ct = ct.trim().toLowerCase();
-      if(ct === 'text/html'){
-        var doc = enc === 'quoted-printable' ? qpDecode(body) : body;
-        allHtml += doc;
-        if(!html || (snap && loc === snap)) html = doc;
-      }
-      else if(/^image\/(jpe?g|png|webp|avif|gif)$/.test(ct) && enc === 'base64' && loc){
-        var b64 = body.replace(/[^A-Za-z0-9+\/=]/g, '');
-        imgs.push({loc:loc, size:b64.length, src:'data:' + ct.replace('jpg','jpeg') + ';base64,' + b64});
-      }
-    });
-    return html ? {html:html, allHtml:allHtml, embedded:imgs, site:snap} : null;
-  }
-  // All photos of this posting, in listing order. Uses photos saved inside the file when present,
-  // otherwise the listing's own photo address. Photos from other listings, agents, logos and ads are left out.
-  function photoKey(u){ return String(u).split('?')[0].replace(/\/(highres|medres|lowres)\//, '/'); }
-  function listingPhotos(html, embedded, mls, site){
-    embedded = embedded || [];
-    var byKey = {};
-    embedded.forEach(function(e){ var k = photoKey(e.loc); if(!byKey[k] || /\/highres\//.test(e.loc)) byKey[k] = e.src; });
-    var found = {}, re = /https?:\/\/cdn\.realtor\.ca\/listings\/[^"'\s)>]+?\/([A-Za-z0-9]+)_(\d+)\.(?:jpe?g|png|webp)/gi, m, count = {};
-    var text = html.replace(/&amp;/g, '&').replace(/\\\//g, '/');
-    while((m = re.exec(text))){
-      var id = m[1], n = +m[2];
-      count[id] = (count[id] || 0) + 1;
-      var url = m[0].replace(/\/(medres|lowres)\//, '/highres/');
-      (found[id] = found[id] || {})[n] = found[id][n] || url;
-    }
-    // REW.ca: https://assets-listings.rew.ca/listing/<feed>/<listing id>/<nn>_<hash>.jpeg
-    var rewRe = /https?:\/\/assets-listings\.rew\.ca\/listing\/[^\/"'\s]+\/(\d+)\/([A-Za-z0-9_\-]+)\.(jpe?g|png|webp|avif)/gi, rw, rew = {}, rewCount = {};
-    while((rw = rewRe.exec(text))){
-      var rid = rw[1];
-      rewCount[rid] = (rewCount[rid] || 0) + 1;
-      var list = rew[rid] = rew[rid] || [];
-      var base = rw[0];
-      if(!list.some(function(x){ return x.base === base; })) list.push({base:base});
-    }
-    var rewIds = Object.keys(rew);
-    if(rewIds.length){
-      var og = /<meta[^>]+property=["']og:image["'][^>]+content=["'][^"']*\/listing\/[^\/"']+\/(\d+)\//i.exec(text) || /content=["'][^"']*assets-listings\.rew\.ca\/listing\/[^\/"']+\/(\d+)\/[^"']*["'][^>]*property=["']og:image/i.exec(text);
-      var rmain = (og && rew[og[1]]) ? og[1] : rewIds.sort(function(a, b){ return rewCount[b] - rewCount[a]; })[0];
-      return rew[rmain].map(function(x){ return byKey[photoKey(x.base)] || (x.base + '?auto=format&fit=max&w=1600'); });
-    }
-
-    var ids = Object.keys(found);
-    if(ids.length){
-      var pid = (mls && found[mls]) ? mls : ids.sort(function(a, b){ return count[b] - count[a]; })[0];
-      return Object.keys(found[pid]).map(Number).sort(function(a, b){ return a - b; }).map(function(n){
-        var u = found[pid][n]; return byKey[photoKey(u)] || u.replace(/^http:\/\//i, 'https://');
-      });
-    }
-    // Not a realtor.ca page: use the large photos saved inside the file
-    var root = '';
-    try{ root = new URL(site).hostname.split('.').slice(-2).join('.'); }catch(e){}
-    return embedded.filter(function(e){
-      var host = ''; try{ host = new URL(e.loc).hostname; }catch(x){}
-      if(root && host.slice(-root.length) !== root) return false;                                 // other sites: ads, trackers
-      if(/doubleclick|googlesyndication|adsrvr|adnxs|facebook|pinterest|criteo|taboola|outbrain/i.test(host)) return false;
-      if(!/^data:image\/(jpe?g|webp|avif)/i.test(e.src)) return false;                         // photos, not screenshots or graphics (PNG)
-      if(/screenshot|snapshot|preview|thumb|placeholder|captcha|consent|cookie/i.test(e.loc)) return false;
-      return e.size > 40000 && !/logo|icon|avatar|agent|headshot|individuals|organizations|badge|banner|sprite|\bads?\b|promo/i.test(e.loc);
-    }).map(function(e){ return e.src; }).filter(function(src, i, all){ return all.indexOf(src) === i; }).slice(0, 40);
-  }
-
-  function readSavedMhtml(raw){
-    var m = readMhtml(raw);
-    if(!m){ $('found').textContent = 'Couldn\'t read that file. In Chrome, press Cmd+S and choose Webpage, Single File, then upload it here.'; $('found').classList.add('warn'); return; }
-    resetSheetForUpload();
-    var parsed = parseListing(htmlToText(m.html));
-    var pics = listingPhotos(m.allHtml || m.html, m.embedded, parsed.mls, m.site).filter(function(src, i, all){ return all.indexOf(src) === i; });
-    if(!(parsed.price || parsed.mls || parsed.title)) pics = [];
-    sheets[cur].gallery = pics;
-    sheets[cur].photo = pics[0] || '';
-    applyParsed(parsed, pics.length);
-  }
-  function readPageFile(f){
-    if(!f) return;
-    if(!isHtmlFile(f)){ $('found').textContent = 'That file isn\'t a saved web page. In Chrome, press Cmd+S and choose Webpage, Single File.'; $('found').classList.add('warn'); return; }
-    var fr = new FileReader();
-    fr.onload = function(){
-      var raw = String(fr.result || '');
-      if(/\.mht(ml)?$/i.test(f.name) || /^(From:|MIME-Version:|Snapshot-Content-Location:)/im.test(raw.slice(0, 600))) readSavedMhtml(raw);
-      else readSavedPage(raw);
-    };
-    fr.readAsText(f);
-  }
-  function isHtmlFile(f){ return f && (/\.(html?|mht(ml)?)$/i.test(f.name) || f.type === 'text/html' || f.type === 'multipart/related'); }
-  $('pageBtn').addEventListener('click', function(){ $('pageIn').click(); });
-  $('pageIn').addEventListener('change', function(e){ readPageFile(e.target.files[0]); e.target.value = ''; });
-
-  // ---- realtor.ca: address from a pasted link, everything else through the bookmark button ----
+  // ---- realtor.ca: the address comes from the link itself (realtor.ca blocks other sites from reading listings) ----
   var MULTI_CITY = ['red-deer','st-albert','fort-mcmurray','grande-prairie','medicine-hat','sherwood-park','spruce-grove','fort-saskatchewan','sylvan-lake','high-river','cold-lake','peace-river','rocky-view','north-vancouver','west-vancouver','new-westminster','port-coquitlam','port-moody','maple-ridge','white-rock','prince-george','fort-st-john','west-kelowna','salmon-arm','campbell-river','port-alberni','lake-country','prince-albert','moose-jaw','swift-current','thunder-bay','sault-ste-marie','st-catharines','niagara-falls','richmond-hill','north-bay','saint-john','st-johns','quebec-city'];
   function fromListingLink(u){
     var m = /realtor\.ca\/real-estate\/(\d+)\/([a-z0-9-]+)/i.exec(u || '');
@@ -1312,38 +996,11 @@ button.primary:hover{background:#3A2890}
     var s = sheets[cur]; s.title = o.title; if(o.loc) s.loc = o.loc;
     loadSheet(); renderAll(); goToSheet(cur);
     $('found').classList.remove('warn');
-    $('found').innerHTML = 'Address filled in from the link. realtor.ca doesn\'t let other websites read its listings, so for the price, details and photos, <a href="' + esc(u) + '" target="_blank" rel="noopener">open the listing</a> and click your <b>Send to Feature Sheet</b> button.';
+    $('found').innerHTML = 'Address filled in from the link. Add the price and details below. For the photo, <a href="' + esc(u) + '" target="_blank" rel="noopener">open the listing</a> and drag a photo onto this page.';
   }
   $('listUrl').addEventListener('input', function(){ if(/realtor\.ca\/real-estate\/\d+\/[a-z0-9-]+/i.test(v('listUrl'))) useListingLink(); });
   $('listUrl').addEventListener('change', useListingLink);
 
-  function bookmarklet(){
-    var o = location.origin, u = o + location.pathname + '#listing';
-    var code = "(function(){if(!/(^|\\.)realtor\\.ca$/.test(location.hostname)){alert('Open a listing on realtor.ca first, then click this button.');return;}" +
-      "var w=window.open('" + u + "','glsheet');if(!w){alert('Allow pop-ups for realtor.ca, then click again.');return;}" +
-      "var d={type:'gl-listing',url:location.href,html:document.documentElement.outerHTML},n=0,t=setInterval(function(){try{w.postMessage(d,'" + o + "')}catch(e){}if(++n>60)clearInterval(t)},500);" +
-      "window.addEventListener('message',function(e){if(e.origin==='" + o + "'&&e.data==='gl-got')clearInterval(t)})})();";
-    return 'javascript:' + encodeURIComponent(code);
-  }
-  $('bmLink').href = bookmarklet();
-  $('bmLink').addEventListener('click', function(e){ e.preventDefault(); $('found').textContent = 'Drag the Send to Feature Sheet button onto your bookmarks bar, then click it while you\'re on a realtor.ca listing.'; $('found').classList.remove('warn'); });
-
-  var lastListing = '';
-  window.addEventListener('message', function(e){
-    if(!/^https:\/\/([a-z0-9-]+\.)?realtor\.ca$/i.test(e.origin)) return;
-    var d = e.data;
-    if(!d || d.type !== 'gl-listing' || typeof d.html !== 'string') return;
-    try{ e.source.postMessage('gl-got', e.origin); }catch(x){}
-    var key = d.url + '|' + d.html.length;
-    if(key === lastListing) return;
-    lastListing = key;
-    startListingSheet();
-    readSavedPage(d.html);
-    var s = sheets[cur], o = fromListingLink(d.url);
-    if(o && !s.title){ s.title = o.title; if(!s.loc) s.loc = o.loc; loadSheet(); renderAll(); }
-    $('listUrl').value = lastLink = String(d.url).slice(0, 500);
-    goToSheet(cur);
-  });
 
   load();
   loadSheet();
@@ -1352,7 +1009,7 @@ button.primary:hover{background:#3A2890}
   window.addEventListener('load', function(){ renderAll(); });
   // listing photos are too large to keep in the browser, so say so when saved sheets come back without them
   if(sheets.some(function(x){ return x.title || x.price; })){
-    $('found').textContent = 'Your sheets were saved, but listing photos aren\'t kept after the page closes. Upload the saved listing again to bring its photos back.';
+    $('found').textContent = 'Your sheets were saved, but photos aren\'t kept after the page closes. Add the photo again in the Photo section.';
     $('found').classList.add('warn');
   }
 })();
