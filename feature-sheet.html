@@ -369,7 +369,7 @@ button.primary:hover{background:#3A2890}
     <input type="file" id="myShotIn" accept="image/*" class="visually-hidden">
     <div class="grid2">
       <label>Name<input id="myName" data-shared value="Surinderpal Singh"></label>
-      <label>Title<input id="myTitle" data-shared value="Mortgage Broker"></label>
+      <label>Label above your name<input id="myLabel" data-shared value="Mortgage Advisor"></label>
     </div>
     <div class="grid2">
       <label>Phone<input id="myPhone" data-shared value="(587) 740-0048"></label>
@@ -664,7 +664,7 @@ button.primary:hover{background:#3A2890}
     var right = '';
     var pw = POWERED[$('brand').value] || '';
     var lic = (pw && v('myLicence') === $('myLicence').defaultValue) ? '' : v('myLicence');
-    right += person('Mortgage', v('myName'), v('myTitle'), [v('myPhone'), v('myEmail'), v('myWeb')], myShot, 'myQr', lic);
+    right += person(v('myLabel'), v('myName'), '', [v('myPhone'), v('myEmail'), v('myWeb')], myShot, 'myQr', lic);
     right += person(v('coName') || 'Realtor', v('coPerson'), '', [v('coPhone'), v('coEmail'), v('coWeb')], coShot, 'coQr', '');
 
     if(multi){
