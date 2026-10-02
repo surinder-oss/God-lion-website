@@ -51,6 +51,7 @@
 }
 *,*::before,*::after{box-sizing:inherit}
 button,input,select,textarea{box-sizing:border-box}
+[hidden]{display:none !important}
 html,body{margin:0;height:100%}
 body{background:var(--ui-bg);color:var(--ui-ink);font-family:'Outfit','Helvetica Neue',Helvetica,sans-serif;font-size:14px;display:flex;flex-direction:column}
 
@@ -421,13 +422,14 @@ button.primary:hover{background:#3A2890}
 <script>
 (function(){
   var $ = function(id){ return document.getElementById(id); };
-  var STORE = 'glFeatureSheet.v1';
+  var STORE = 'glFeatureSheet.v2';
   var SHEET_FIELDS = ['title','mls','loc','price','ptype','layout','sqft','fee'];
   // each sheet keeps its own photos in sheet.gallery (not saved to the browser, too large)
   function gal(){ var s = sheets[cur]; if(!s.gallery) s.gallery = []; return s.gallery; }
   var sheets = [blankSheet()];
   var cur = 0;
-  var myLogo = '', myShot = '', coShot = '';
+  var DEFAULT_SHOT = 'img/surinderpal-headshot-feature-sheet.jpg';
+  var myLogo = '', myShot = DEFAULT_SHOT, coShot = '';
 
   // ---- Brands. logo: a path or data URL of a logo that reads on the footer colour.
   var LOGOS = { goldlion: 'img/gold-lion-logo-feature-sheet.svg' };
@@ -499,7 +501,8 @@ button.primary:hover{background:#3A2890}
       sharedEls().forEach(function(el){ if(d.shared && d.shared[el.id] != null){ if(el.type === 'checkbox') el.checked = !!d.shared[el.id]; else el.value = d.shared[el.id]; } });
       if(!$('brand').value) $('brand').value = 'goldlion';
       var img = function(x){ return typeof x === 'string' && /^data:image\/(png|jpe?g|webp|gif|avif|svg\+xml);base64,[A-Za-z0-9+\/=]+$/.test(x) ? x : ''; };
-      myLogo = img(d.myLogo); myShot = img(d.myShot); coShot = img(d.coShot);
+      myLogo = img(d.myLogo); coShot = img(d.coShot);
+      if(d.myShot !== undefined) myShot = d.myShot === DEFAULT_SHOT ? DEFAULT_SHOT : img(d.myShot);
       if(d.sheets && d.sheets.length){ sheets = d.sheets.map(function(s){ var b = blankSheet(); for(var k in b) if(s[k] != null && k !== 'photo' && (typeof s[k] === 'string' || typeof s[k] === 'number')) b[k] = String(s[k]).slice(0, 500); b.pos = Number(b.pos) || 50; return b; }); }
     }catch(e){}
   }
