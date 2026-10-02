@@ -1,0 +1,1212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="/img/gold-lion-logo.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H5CN2GK1RQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H5CN2GK1RQ');
+</script>
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free Listing Feature Sheet Builder for Realtors | Gold Lion Mortgages</title>
+<link rel="canonical" href="https://www.goldlionmortgages.com/feature-sheet">
+<meta name="description" content="Free tool for realtors: upload a saved listing and get a print-ready feature sheet with the photo, home details and real monthly mortgage numbers. Download as a PDF.">
+<meta property="og:url" content="https://www.goldlionmortgages.com/feature-sheet">
+<meta property="og:site_name" content="Gold Lion Mortgages">
+<meta property="og:title" content="Free Listing Feature Sheet Builder | Gold Lion Mortgages">
+<meta property="og:description" content="Turn any listing into a one-page feature sheet with real monthly mortgage numbers. Free for realtors. Download as a PDF.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.goldlionmortgages.com/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.goldlionmortgages.com/img/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Gold Lion Feature Sheet Builder",
+  "url": "https://www.goldlionmortgages.com/feature-sheet",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "description": "Free tool for realtors to make a one-page listing feature sheet with monthly mortgage numbers, ready to download as a PDF.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "CAD"},
+  "provider": {"@type": "Organization", "name": "Gold Lion Mortgages", "url": "https://www.goldlionmortgages.com/"}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&family=Source+Serif+4:ital,wght@0,400;1,400&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+:root{
+  --gl-purple:#2B1B72; --gl-purple-dk:#1E1352; --gl-gold:#C9A84C; --gl-gold-soft:#F4ECD6;
+  --ui-bg:#F3F1EC; --ui-panel:#F3F1EC; --ui-ink:#1F1A3D; --ui-muted:#5D5A6E; --ui-line:#DCD8CE; --ui-focus:#2B1B72; --ui-warn:#8A4B0F; --ui-warn-bg:#FBEBD6;
+  box-sizing:border-box;
+}
+*,*::before,*::after{box-sizing:inherit}
+button,input,select,textarea{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--ui-bg);color:var(--ui-ink);font-family:'Outfit','Helvetica Neue',Helvetica,sans-serif;font-size:14px;display:flex;flex-direction:column}
+
+/* ===== Site bar ===== */
+.topbar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 20px;background:var(--gl-purple);color:#fff;padding-top:calc(10px + env(safe-area-inset-top,0px))}
+.topbar a{color:#fff;text-decoration:none}
+.topbar .home img{height:34px;width:auto;display:block}
+.topbar nav{display:flex;align-items:center;gap:18px;font-size:13.5px;font-weight:500}
+.topbar nav a:hover{color:var(--gl-gold)}
+.topbar .call{background:var(--gl-gold);color:var(--gl-purple-dk);padding:8px 14px;border-radius:999px;font-weight:600}
+.topbar .call:hover{color:var(--gl-purple-dk);filter:brightness(1.05)}
+
+.app{display:grid;grid-template-columns:390px 1fr;flex:1;min-height:0}
+.panel{background:var(--ui-panel);border-right:1px solid var(--ui-line);overflow-y:auto;padding:20px 20px 0;color-scheme:light}
+.apptitle{font-family:'Playfair Display',Georgia,serif;font-size:25px;font-weight:700;color:var(--gl-purple);line-height:1.15}
+.apptitle::after{content:"";display:block;width:48px;height:3px;background:var(--gl-gold);margin-top:10px}
+.panel .sub{color:var(--ui-muted);margin:10px 0 14px;font-size:13px;line-height:1.5}
+.panel .sub b{color:var(--ui-ink);font-weight:600}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tab{min-height:34px;padding:6px 12px;font-size:13px;font-weight:500;border-radius:999px;background:#fff}
+.tab.on{background:var(--gl-purple);color:#fff;border-color:var(--gl-purple);box-shadow:inset 0 -3px 0 var(--gl-gold)}
+.tabtools{display:flex;gap:6px;margin-bottom:6px}
+.tabtools button{flex:1;font-size:13px;min-height:36px;padding:6px 10px}
+.scope{font-family:'Outfit',sans-serif;font-size:11px;color:var(--ui-muted);font-weight:500;margin-left:6px;text-transform:none;letter-spacing:0}
+details{border-top:1px solid var(--ui-line);padding:12px 0}
+details[open]{padding-bottom:16px}
+summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none;display:flex;align-items:center;color:var(--gl-purple)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";margin-left:auto;font-weight:400;color:var(--gl-purple);font-size:18px}
+details[open] summary::after{content:"\2212"}
+.hint{color:var(--ui-muted);font-size:12px;line-height:1.45;margin:6px 0 8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--ui-muted);margin-top:10px}
+input,select,textarea{font:inherit;font-size:14px;color:var(--ui-ink);border:1px solid #CFCBC0;border-radius:6px;padding:8px 10px;background:#fff;width:100%}
+input::placeholder{color:#9A97A6}
+input:focus,select:focus{border-color:var(--gl-purple);outline:none;box-shadow:0 0 0 3px rgba(201,168,76,0.45)}
+input[type=color]{padding:2px;height:38px}
+input[type=checkbox],input[type=range]{width:auto;accent-color:var(--gl-purple)}
+#posWrap input{width:100%;padding:0}
+.check{flex-direction:row;align-items:center;gap:8px;color:var(--ui-ink);font-size:13px}
+:focus-visible{outline:2px solid var(--ui-focus);outline-offset:2px}
+button{font:inherit;font-size:14px;font-weight:600;border-radius:6px;padding:9px 14px;cursor:pointer;border:1px solid #CFCBC0;background:#fff;color:var(--ui-ink);min-height:40px}
+button:hover{border-color:#9C98A8}
+button:disabled{opacity:0.5;cursor:default}
+button.primary{background:var(--gl-purple);color:#fff;border-color:var(--gl-purple);font-weight:700;box-shadow:inset 0 -3px 0 var(--gl-gold)}
+button.primary:hover{background:#3A2890}
+.upload{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;margin-top:6px;padding:22px 14px;border:2px dashed #B9B2A0;border-radius:10px;background:#FAF8F3;color:var(--ui-muted);font-size:13px;font-weight:400;cursor:pointer}
+.upload strong{color:var(--gl-purple);font-size:16px;font-weight:700}
+.upload.over,.upload:hover{border-color:var(--gl-purple);background:var(--gl-gold-soft)}
+.howto{margin:12px 0 0;padding-left:20px;color:var(--ui-muted);font-size:12.5px;line-height:1.7}
+.howto b{color:var(--ui-ink);font-weight:600}
+.found{background:#EDEAF7;color:#2B1B72;border-radius:6px;padding:8px 10px;font-size:12.5px;line-height:1.45;margin-top:8px}
+.found:empty{display:none}
+.found.warn,.notice{background:var(--ui-warn-bg);color:var(--ui-warn)}
+.notice{border-radius:6px;padding:8px 10px;font-size:12.5px;line-height:1.45;margin-top:10px}
+.notice:empty{display:none}
+.pickhead{margin:4px 0 0;font-size:13px;color:var(--ui-muted);line-height:1.45}
+.pickhead b{color:var(--ui-ink);font-weight:600}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.thumbs:empty{display:none}
+.tw{position:relative}
+.thumb{position:relative;display:block;width:100%;aspect-ratio:4/3;border-radius:6px;overflow:hidden;border:3px solid transparent;padding:0;background:#DDD9CF;min-height:0}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb.on{border-color:var(--gl-purple)}
+.thumb.on::after{content:"\2713";position:absolute;left:5px;bottom:5px;width:22px;height:22px;border-radius:50%;background:var(--gl-gold);color:var(--gl-purple-dk);font-size:13px;line-height:22px;text-align:center;font-weight:700}
+.thumb:not(.on):hover{border-color:#B7B0CF}
+.tw .x{position:absolute;top:3px;right:3px;width:24px;height:24px;min-height:0;padding:0;border-radius:50%;font-size:15px;line-height:1;background:rgba(0,0,0,0.65);color:#fff;border:0}
+.tw .x:hover{background:#000}
+.addphoto{margin-top:12px;width:100%;font-size:13px;min-height:38px;border-style:dashed;background:transparent}
+.addphoto:hover,.addphoto.over{border-color:var(--gl-purple);background:var(--gl-gold-soft)}
+.mathcheck{font-size:12.5px;line-height:1.7;color:var(--ui-muted);font-variant-numeric:tabular-nums;margin-top:10px;background:#FAF8F3;border-radius:6px;padding:8px 10px}
+.mathcheck b{color:var(--ui-ink);font-weight:600;float:right}
+.logoRow{display:flex;align-items:center;gap:10px;margin-top:10px}
+.logoRow .prev{height:48px;min-width:48px;max-width:170px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#C9C3DA;padding:4px 8px;background:var(--gl-purple-dk)}
+.logoRow .prev img{max-height:38px;max-width:140px}
+.qrbox{margin-top:14px;padding:10px 12px 12px;border:1px dashed #B9B2A0;border-radius:8px;background:#FAF8F3}
+.qrhead{font-size:13px;font-weight:600;color:var(--ui-ink)}
+.qrhint{margin:4px 0 8px;font-size:12px;line-height:1.45;color:var(--ui-muted)}
+.qrrow{display:flex;gap:10px;align-items:center}
+.qrrow input{flex:1}
+.qrprev{width:52px;height:52px;flex:none;border-radius:4px;background:#fff;border:1px solid #CFCBC0;display:flex;align-items:center;justify-content:center;font-size:9px;color:#9A97A6;text-align:center;line-height:1.1}
+.qrprev svg{width:46px;height:46px}
+.shotRow{display:flex;align-items:center;gap:12px;margin:6px 0 4px}
+.shotPrev{width:56px;height:56px;border-radius:50%;flex:none;background:#fff center/cover no-repeat;border:2px dashed #B9B2A0}
+.shotPrev.has{border:2px solid var(--gl-purple)}
+.linkbtn{background:none !important;border:0 !important;padding:0 4px;min-height:0;color:var(--ui-muted) !important;font-weight:500;text-decoration:underline}
+.actions{position:sticky;bottom:0;background:var(--ui-panel);border-top:1px solid var(--ui-line);padding:12px 0 16px;display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.actions .row{display:flex;gap:6px}
+.actions .row button{flex:1}
+.stage{overflow:auto;padding:28px;display:flex;flex-direction:column;align-items:center;gap:28px;background:radial-gradient(1000px 600px at 70% 0%, rgba(255,255,255,0.6), transparent 65%),#E9E6DF}
+.frame{position:relative;border-radius:2px;outline:3px solid transparent;outline-offset:4px;cursor:pointer;scroll-margin-top:34px}
+.frame.on{outline-color:var(--gl-purple)}
+.frame .lbl{position:absolute;top:-22px;left:0;font-size:12px;color:#4A4660;font-weight:600;letter-spacing:0.06em;text-transform:uppercase}
+.scaler{transform-origin:top left;width:816px;height:1056px}
+.clip{overflow:hidden}
+.visually-hidden{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.jump{display:none}
+
+/* ===== The sheet: 8.5 x 11 in at 96 px per inch ===== */
+.sheet{--foot-name:#FFFFFF;--foot-rule:rgba(255,255,255,0.18);--foot-text:#D5DDE0;--stripe:transparent;--ink:#23404A;--total:#23404A;--foot:#23404A;--accent:#C8956B;--accent-dark:#C8956B;--foot-accent:#C8956B;--paper:#F6F5F1;position:relative;width:816px;height:1056px;background:var(--paper);display:flex;flex-direction:column;overflow:hidden;color:var(--ink);font-family:'Outfit','Helvetica Neue',Helvetica,sans-serif;box-shadow:0 12px 36px rgba(31,26,61,0.22)}
+.eb{font-size:9px;letter-spacing:0.2em;font-weight:500;text-transform:uppercase}
+.s-hero{position:relative;height:412px;flex:none;background:#4B4470;overflow:hidden}
+.s-heroimg{position:absolute;inset:0;background-size:cover;background-repeat:no-repeat}
+.s-hero .empty{position:absolute;top:24px;left:48px;font-size:9px;letter-spacing:0.2em;color:#D6D1E6}
+.s-scrim{position:absolute;inset:0}
+.s-over{position:absolute;left:48px;right:48px;bottom:34px;display:flex;justify-content:space-between;align-items:flex-end;gap:28px}
+.s-over-l{display:flex;flex-direction:column;min-width:0}
+.s-loc{color:var(--accent-dark);margin-bottom:8px}
+.s-title{font-size:46px;line-height:1.05;color:#fff;font-weight:400;letter-spacing:0.07em;text-transform:uppercase}
+.s-rule{width:44px;height:2px;background:var(--accent-dark);margin-top:12px}
+.s-over-r{text-align:right;color:#fff;flex:none;margin-bottom:14px}
+.s-pricelbl{color:#E4E0EE;margin-bottom:8px}
+.s-price{font-size:38px;line-height:1;font-weight:500;letter-spacing:0.02em;font-variant-numeric:tabular-nums}
+.s-specs{display:flex;justify-content:space-between;gap:24px;padding:20px 48px 18px;border-bottom:1px solid #D2CEC4;flex:none}
+.s-spec .eb{color:var(--accent);margin-bottom:7px;font-size:8.5px}
+.s-spec .v{font-size:14.5px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase}
+.s-main{display:grid;grid-template-columns:318px 1fr;grid-template-rows:auto 1fr auto;column-gap:24px;row-gap:14px;padding:20px 48px 20px;flex:1;min-height:0}
+.s-main.solo{grid-template-columns:1fr}
+.s-main .s-numhead,.s-main .s-total{grid-column:1 / -1;margin:0}
+.s-numhead{color:#5E5A70}
+.s-card{display:flex;flex-direction:column;justify-content:space-around;background:#FDFDFC;border:1px solid #D3CFDD;border-radius:8px;padding:10px 22px}
+.s-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-top:1px solid #E4E2E8;font-size:9.5px;letter-spacing:0.16em;color:#5E5A70;text-transform:uppercase;font-weight:500}
+.s-row:first-child{border-top:0}
+.s-row .v{font-size:16px;letter-spacing:0.02em;color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+.s-total{background:var(--total);border-radius:6px;padding:18px 26px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.s-total .eb{color:#E4E0EE;font-size:10px;letter-spacing:0.16em;white-space:nowrap}
+.s-total .v{font-size:27px;color:#fff;font-weight:500;font-variant-numeric:tabular-nums}
+.s-right{min-width:0;display:flex;flex-direction:column;gap:12px}
+.s-right .s-person{flex:1}
+.s-person{display:flex;align-items:center;gap:14px;padding:12px 14px;background:#fff;border:1px solid #DEDBE4;border-radius:8px;min-width:0}
+.s-person .ph{width:112px;height:112px;border-radius:50%;flex:none;object-fit:cover;border:3px solid var(--accent);background:#EEEDF2}
+.s-person .ini{width:112px;height:112px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:var(--total);color:#fff;font-size:34px;font-weight:600;letter-spacing:0.04em;border:3px solid var(--accent)}
+.s-person .tx{min-width:0;flex:1}
+.s-person .eb{color:var(--accent);font-size:9px;margin-bottom:5px}
+.s-person .n{font-size:21px;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;color:var(--ink);line-height:1.1;margin-bottom:3px}
+.s-person .role{font-size:10.5px;font-weight:600;color:var(--accent);margin-bottom:5px;letter-spacing:0.02em}
+.s-person .c{font-size:10.5px;line-height:1.5;color:#55516A;overflow-wrap:break-word}
+.s-person .bk{font-size:8.5px;line-height:1.35;color:#6E6A80;margin-top:5px;letter-spacing:0.02em}
+.s-person .pq{flex:none;width:70px;text-align:center;margin-left:auto}
+.s-person .pq svg{width:70px;height:70px;display:block}
+.s-person.hasqr .ph,.s-person.hasqr .ini{width:104px;height:104px}
+.s-person.hasqr{gap:12px;padding:12px}
+.s-foot{background:var(--foot);padding:22px 48px 20px;flex:none;color:#fff;position:relative;display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:30px}
+.s-foot.light{border-top:1px solid #DAD7D1}
+.s-foot.stripe{border-top:6px solid var(--stripe);padding-top:14px;padding-bottom:14px}
+.s-foot.curve{border-top-left-radius:48px}
+.s-foot.swoosh{border-top-left-radius:200px 64px;padding-left:72px}
+.s-foot.stackf{grid-template-columns:1fr;row-gap:12px}
+.s-foot.stackf .s-flogo img{max-width:250px;max-height:82px;display:block}
+.s-flogo img{max-width:200px;max-height:58px;display:block}
+.s-disc{font-size:8.5px;line-height:1.55;letter-spacing:0.02em;color:var(--foot-text);border-left:1px solid var(--foot-rule);padding-left:24px}
+.s-foot.stackf .s-disc{border-left:0;padding-left:0;border-top:1px solid var(--foot-rule);padding-top:10px}
+
+@page{size:letter;margin:0}
+@media print{
+  html,body{height:auto;background:none;display:block}
+  .topbar,.panel,.jump{display:none !important}
+  .app{display:block;height:auto}
+  .stage{padding:0;gap:0;overflow:visible;display:block;background:none}
+  .frame{outline:0;height:1056px;overflow:hidden}
+  .frame + .frame{break-before:page;page-break-before:always}
+  .frame .lbl{display:none}
+  .scaler{transform:none !important;width:auto !important;height:auto !important}
+  .clip{width:auto !important;height:auto !important;overflow:visible !important}
+  .sheet{box-shadow:none;height:1056px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media screen and (max-width:900px){
+  body{display:block;height:auto}
+  .topbar nav .hide-sm{display:none}
+  .app{grid-template-columns:1fr;height:auto}
+  .panel{border-right:0;border-bottom:1px solid var(--ui-line);overflow:visible}
+  .actions{position:static}
+  .stage{padding:28px 12px}
+  .jump{display:block;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom, 0px));z-index:20;background:var(--gl-purple);color:#fff;border:0;border-radius:999px;padding:12px 18px;font-weight:700;box-shadow:0 6px 18px rgba(31,26,61,0.35), inset 0 -3px 0 var(--gl-gold)}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="home" href="/" aria-label="Gold Lion Mortgages home"><img src="img/gold-lion-logo-horizontal-white.svg" alt="Gold Lion Mortgages"></a>
+  <nav aria-label="Site">
+    <a class="hide-sm" href="/partners">For realtors</a>
+    <a class="hide-sm" href="/calculator">Tools</a>
+    <a class="call" href="tel:5877400048">Call (587) 740-0048</a>
+  </nav>
+</header>
+<div class="app">
+<aside class="panel" aria-label="Sheet details">
+  <div class="brandhead">
+    <h1 class="apptitle">Listing Feature Sheet Builder</h1>
+    <p class="sub"><b>Free for realtors.</b> Upload a saved listing and get a one-page feature sheet with the photo, the home details and real monthly mortgage numbers. Make one sheet per home, then download them all as one PDF. Everything stays on your computer.</p>
+  </div>
+
+  <div class="tabs" id="tabs" role="tablist" aria-label="Sheets"></div>
+  <div class="tabtools">
+    <button type="button" id="addBtn">Add a sheet</button>
+    <button type="button" id="dupBtn">Duplicate</button>
+    <button type="button" id="delBtn">Delete</button>
+  </div>
+
+  <details open>
+    <summary>Listing <span class="scope">this sheet</span></summary>
+    <button type="button" class="upload" id="pageBtn">
+      <strong>Upload the saved listing</strong>
+      <span>Click to choose the file, or drag it here</span>
+    </button>
+    <input type="file" id="pageIn" accept=".mhtml,.mht,.html,.htm" class="visually-hidden">
+    <div class="found" id="found" role="status"></div>
+    <ol class="howto">
+      <li>Open the listing in Chrome (realtor.ca works best).</li>
+      <li>Press Cmd+S (Ctrl+S on Windows).</li>
+      <li>Choose <b>Webpage, Single File</b> and save.</li>
+      <li>Upload that file here. Or skip this and type the details below.</li>
+    </ol>
+  </details>
+
+  <details open>
+    <summary>Photo <span class="scope">this sheet</span></summary>
+    <p class="pickhead" id="pickHead">Photos from the saved listing will show up here.</p>
+    <div class="thumbs" id="thumbs"></div>
+    <label id="posWrap" hidden>Move the photo up or down
+      <input id="heroPos" type="range" min="0" max="100" value="50">
+    </label>
+    <button type="button" class="addphoto" id="drop">Add your own photo</button>
+    <input type="file" id="fileIn" accept="image/*" multiple class="visually-hidden">
+  </details>
+
+  <details open>
+    <summary>Home <span class="scope">this sheet</span></summary>
+    <div class="grid2">
+      <label>Model name or address<input id="title" data-sheet placeholder="Filled from the listing"></label>
+      <label>MLS® number (optional)<input id="mls" data-sheet placeholder="Filled from the listing"></label>
+    </div>
+    <label>Location line<input id="loc" data-sheet placeholder="Filled from the listing"></label>
+    <div class="grid2">
+      <label>Purchase price<input id="price" data-sheet inputmode="numeric" placeholder="Filled from the listing"></label>
+      <label>Type
+        <select id="ptype" data-sheet>
+          <option>Condominium</option>
+          <option>Townhome</option>
+          <option>Duplex</option>
+          <option>Detached</option>
+        </select>
+      </label>
+    </div>
+    <div class="grid3">
+      <label>Layout<input id="layout" data-sheet placeholder="3 bed / 2 bath"></label>
+      <label>Sq ft<input id="sqft" data-sheet inputmode="numeric"></label>
+      <label>Condo fee<input id="fee" data-sheet inputmode="numeric"></label>
+    </div>
+    <p class="hint">Leave the condo fee empty for freehold homes and it drops off the sheet.</p>
+  </details>
+
+  <details open>
+    <summary>Mortgage numbers <span class="scope">all sheets</span></summary>
+    <div class="grid2">
+      <label>Rate (%)<input id="rate" data-shared inputmode="decimal" placeholder="e.g. 4.19"></label>
+      <label>Amortization
+        <select id="am" data-shared><option value="25">25 years</option><option value="30">30 years</option></select>
+      </label>
+    </div>
+    <label class="check"><input type="checkbox" id="eligible" data-shared> First time buyer or new build (allows 30 years insured)</label>
+    <div class="grid2">
+      <label>Down payment
+        <select id="dpMode" data-shared>
+          <option value="min">Minimum</option>
+          <option value="custom">Set a %</option>
+        </select>
+      </label>
+      <label id="dpCustomWrap" hidden>Down payment %<input id="dpCustom" data-shared inputmode="decimal" placeholder="10"></label>
+    </div>
+    <p class="hint">Not sure what rate to use? <a href="tel:5877400048">Call or text (587) 740-0048</a> for today's rate.</p>
+    <div class="notice" id="notice" role="status"></div>
+    <div class="mathcheck" id="mathcheck" aria-label="Calculation check for this sheet"></div>
+  </details>
+
+  <details>
+    <summary>Mortgage broker <span class="scope">card</span></summary>
+    <div class="shotRow"><div class="shotPrev" id="myShotPrev"></div><div><button type="button" id="myShotBtn">Add photo</button> <button type="button" class="linkbtn" id="myShotClr" hidden>Remove</button></div></div>
+    <input type="file" id="myShotIn" accept="image/*" class="visually-hidden">
+    <div class="grid2">
+      <label>Name<input id="myName" data-shared value="Surinderpal Singh"></label>
+      <label>Title<input id="myTitle" data-shared value="Mortgage Broker"></label>
+    </div>
+    <div class="grid2">
+      <label>Phone<input id="myPhone" data-shared value="(587) 740-0048"></label>
+      <label>Email<input id="myEmail" data-shared value="surinder@goldlionmortgages.com"></label>
+    </div>
+    <label>Website<input id="myWeb" data-shared value="goldlionmortgages.com"></label>
+    <label>Brokerage line (shows on the card)<input id="myLicence" data-shared value="Gold Lion Mortgages Inc. · Powered by MCC Elevo Mortgages, Member of DLCG"></label>
+    <div class="qrbox">
+      <div class="qrhead">QR code <span class="scope">optional</span></div>
+      <p class="qrhint">A link here turns into a QR code on the card.</p>
+      <div class="qrrow"><input id="myQr" data-shared inputmode="url" aria-label="Link for the broker QR code" value="goldlionmortgages.com/apply"><div class="qrprev" id="myQrPrev"></div></div>
+    </div>
+  </details>
+
+  <details open>
+    <summary>Realtor <span class="scope">card</span></summary>
+    <div class="shotRow"><div class="shotPrev" id="coShotPrev"></div><div><button type="button" id="coShotBtn">Add your photo</button> <button type="button" class="linkbtn" id="coShotClr" hidden>Remove</button></div></div>
+    <input type="file" id="coShotIn" accept="image/*" class="visually-hidden">
+    <label>Name<input id="coPerson" data-shared placeholder="Your name"></label>
+    <label>Brokerage<input id="coName" data-shared placeholder="Your brokerage"></label>
+    <div class="grid2">
+      <label>Phone<input id="coPhone" data-shared></label>
+      <label>Email<input id="coEmail" data-shared></label>
+    </div>
+    <label>Website<input id="coWeb" data-shared></label>
+    <div class="qrbox">
+      <div class="qrhead">QR code <span class="scope">optional</span></div>
+      <p class="qrhint">Your website or listing link turns into a QR code on your card.</p>
+      <div class="qrrow"><input id="coQr" data-shared inputmode="url" aria-label="Link for the realtor QR code" placeholder="yourwebsite.ca"><div class="qrprev" id="coQrPrev"></div></div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Brand <span class="scope">footer and colours</span></summary>
+    <label>Brand
+      <select id="brand" data-shared>
+        <option value="goldlion">Gold Lion Mortgages</option>
+        <option value="custom">My own brand</option>
+      </select>
+    </label>
+    <div class="logoRow"><div class="prev" id="myLogoPrev">No logo</div><button type="button" id="myLogoBtn">Upload logo</button><button type="button" id="myLogoClr" aria-label="Remove uploaded logo">Remove</button></div>
+    <input type="file" id="myLogoIn" accept="image/*" class="visually-hidden">
+    <p class="hint" id="brandHint"></p>
+    <div id="ownBrand" hidden>
+      <button type="button" id="pickColours" style="width:100%;margin-top:6px">Get colours from my logo</button>
+      <div class="grid2">
+        <label>Main colour<input type="color" id="cDark" data-shared value="#23404A"></label>
+        <label>Accent colour<input type="color" id="cAccent" data-shared value="#C8956B"></label>
+      </div>
+      <div class="grid2">
+        <label>Footer
+          <select id="footBg" data-shared>
+            <option value="brand">Main colour</option>
+            <option value="white">White</option>
+          </select>
+        </label>
+        <label>Footer shape
+          <select id="footShape" data-shared>
+            <option value="">Straight</option>
+            <option value="curve">Rounded corner</option>
+            <option value="swoosh">Curve</option>
+            <option value="stripe">Accent stripe</option>
+          </select>
+        </label>
+      </div>
+      <label>Footer line (optional)<input id="ownLine" data-shared placeholder="e.g. your brokerage statement"></label>
+      <p class="hint">Use a white footer if your logo is in colour on a white background. Colours are adjusted so text stays readable.</p>
+    </div>
+    <button type="button" class="linkbtn" id="clearAll" style="margin-top:12px">Clear everything saved on this computer</button>
+  </details>
+
+  <div class="actions">
+    <button type="button" class="primary" id="pdfBtn">Download PDF</button>
+    <div class="row"><button type="button" id="printBtn">Print</button></div>
+    <p class="hint" style="margin:0">Download PDF saves every sheet as one file. Printing yourself? Use paper size Letter and margins None.</p>
+  </div>
+</aside>
+
+<main class="stage" id="stage" aria-label="Sheet previews"></main>
+<button type="button" class="jump" id="jumpBtn">See the sheet</button>
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var STORE = 'glFeatureSheet.v1';
+  var SHEET_FIELDS = ['title','mls','loc','price','ptype','layout','sqft','fee'];
+  // each sheet keeps its own photos in sheet.gallery (not saved to the browser, too large)
+  function gal(){ var s = sheets[cur]; if(!s.gallery) s.gallery = []; return s.gallery; }
+  var sheets = [blankSheet()];
+  var cur = 0;
+  var myLogo = '', myShot = '', coShot = '';
+
+  // ---- Brands. logo: a path or data URL of a logo that reads on the footer colour.
+  var LOGOS = { goldlion: 'img/gold-lion-logo-feature-sheet.svg' };
+  var BRANDS = {
+    goldlion: {name:'Gold Lion Mortgages', paper:'#F7F5F0', ink:'#1F1A3D', scrim:'#1B1147', total:'#2B1B72', foot:'#1E1352', accent:'#8C6B1F', accentDark:'#E3C77A', footAccent:'#E3C77A', footText:'#D9D3EC', footStyle:'stripe', stripe:'#C9A84C', logoLayout:'side', line:''}
+  };
+  function brandTokens(){
+    var b = $('brand').value;
+    if(BRANDS[b]) return BRANDS[b];
+    return ownTokens($('cDark').value, $('cAccent').value, $('footBg').value === 'white', $('footShape').value, v('ownLine'));
+  }
+  // ---- colour helpers for "My own brand"
+  function hx(h){ h = h.replace('#',''); if(h.length === 3) h = h.replace(/./g,'$&$&'); return [0,2,4].map(function(i){ return parseInt(h.substr(i,2),16); }); }
+  function toHex(c){ return '#' + c.map(function(x){ return ('0' + Math.round(Math.max(0,Math.min(255,x))).toString(16)).slice(-2); }).join('').toUpperCase(); }
+  function mix(a, b, t){ var A = hx(a), B = hx(b); return toHex(A.map(function(x,i){ return x + (B[i]-x)*t; })); }
+  function lum(h){ return hx(h).map(function(x){ x /= 255; return x <= 0.03928 ? x/12.92 : Math.pow((x+0.055)/1.055, 2.4); }).reduce(function(s,x,i){ return s + x*[0.2126,0.7152,0.0722][i]; }, 0); }
+  function contrast(a, b){ var x = lum(a), y = lum(b); return (Math.max(x,y)+0.05)/(Math.min(x,y)+0.05); }
+  function fitTo(col, bg, target, toward){ var c = col, t = 0; while(contrast(c, bg) < target && t < 1){ t += 0.05; c = mix(col, toward, t); } return c; }
+  function ownTokens(main, acc, white, shape, line){
+    var paper = '#F6F5F2';
+    var foot = white ? '#FFFFFF' : fitTo(main, '#FFFFFF', 4, '#000000');
+    var total = fitTo(main, '#FFFFFF', 4, '#000000');
+    var ink = fitTo(mix(main, '#1B1F24', 0.35), paper, 9, '#000000');
+    var scrim = mix(main, '#0E1114', 0.45);
+    var accPaper = fitTo(acc, paper, 3.2, '#000000');
+    var accDark = fitTo(acc, scrim, 3.5, '#FFFFFF');
+    var footAccent = white ? accPaper : fitTo(acc, foot, 3.2, '#FFFFFF');
+    return {name:'Brand', paper:paper, ink:ink, scrim:scrim, total:total, foot:foot, accent:accPaper, accentDark:accDark, footAccent:footAccent,
+      footText: white ? '#4E565E' : mix(foot, '#FFFFFF', 0.85), footName: white ? ink : '#FFFFFF', footRule: white ? '#DAD7D1' : 'rgba(255,255,255,0.18)',
+      footStyle: (white ? 'light ' : '') + (shape || ''), stripe: acc, logoLayout:'side', line: line || ''};
+  }
+  function logoColours(src, done){
+    var im = new Image();
+    im.onload = function(){
+      try{
+        var w = 120, h = Math.max(1, Math.round(im.height * w / im.width));
+        var c = document.createElement('canvas'); c.width = w; c.height = h;
+        var x = c.getContext('2d'); x.drawImage(im, 0, 0, w, h);
+        var d = x.getImageData(0, 0, w, h).data, bins = {};
+        for(var i = 0; i < d.length; i += 4){
+          if(d[i+3] < 200) continue;
+          var r = d[i], g = d[i+1], b = d[i+2], mx = Math.max(r,g,b), mn = Math.min(r,g,b);
+          if(mx > 235 && mn > 225) continue;            // white
+          if(mx < 25) continue;                          // black
+          var k = (r>>4) + ',' + (g>>4) + ',' + (b>>4);
+          if(!bins[k]) bins[k] = {n:0, r:0, g:0, b:0, sat:(mx-mn)};
+          var bn = bins[k]; bn.n++; bn.r += r; bn.g += g; bn.b += b;
+        }
+        var list = Object.keys(bins).map(function(k){ var b = bins[k]; return {n:b.n, sat:b.sat, hex:toHex([b.r/b.n, b.g/b.n, b.b/b.n])}; });
+        list.sort(function(a,b){ return (b.n * (1 + b.sat/80)) - (a.n * (1 + a.sat/80)); });
+        if(!list.length) return done(null);
+        var main = list[0].hex, acc = null;
+        for(var j = 1; j < list.length; j++){ var A = hx(main), B = hx(list[j].hex); var dist = Math.abs(A[0]-B[0]) + Math.abs(A[1]-B[1]) + Math.abs(A[2]-B[2]); if(dist > 120 && list[j].n > 3){ acc = list[j].hex; break; } }
+        done({main:main, accent:acc || mix(main, '#FFFFFF', 0.45)});
+      }catch(e){ done(null); }
+    };
+    im.onerror = function(){ done(null); };
+    im.src = src;
+  }
+  function logoFor(){ return myLogo || LOGOS[$('brand').value] || ''; }
+
+  function blankSheet(){ return {title:'',mls:'',loc:'',price:'',ptype:'Condominium',layout:'',sqft:'',fee:'',photo:'',pos:50}; }
+  function sharedEls(){ return Array.prototype.slice.call(document.querySelectorAll('[data-shared]')); }
+
+  function load(){
+    try{
+      var d = JSON.parse(localStorage.getItem(STORE) || 'null');
+      if(!d) return;
+      sharedEls().forEach(function(el){ if(d.shared && d.shared[el.id] != null){ if(el.type === 'checkbox') el.checked = !!d.shared[el.id]; else el.value = d.shared[el.id]; } });
+      if(!$('brand').value) $('brand').value = 'goldlion';
+      var img = function(x){ return typeof x === 'string' && /^data:image\/(png|jpe?g|webp|gif|avif|svg\+xml);base64,[A-Za-z0-9+\/=]+$/.test(x) ? x : ''; };
+      myLogo = img(d.myLogo); myShot = img(d.myShot); coShot = img(d.coShot);
+      if(d.sheets && d.sheets.length){ sheets = d.sheets.map(function(s){ var b = blankSheet(); for(var k in b) if(s[k] != null && k !== 'photo' && (typeof s[k] === 'string' || typeof s[k] === 'number')) b[k] = String(s[k]).slice(0, 500); b.pos = Number(b.pos) || 50; return b; }); }
+    }catch(e){}
+  }
+  function save(){
+    var shared = {};
+    sharedEls().forEach(function(el){ shared[el.id] = el.type === 'checkbox' ? el.checked : el.value; });
+    var lite = sheets.map(function(s){ var c = {}; for(var k in s) if(k !== 'photo' && k !== 'gallery') c[k] = s[k]; return c; });
+    try{ localStorage.setItem(STORE, JSON.stringify({shared:shared, sheets:lite, myLogo:myLogo, myShot:myShot, coShot:coShot})); }
+    catch(e){ try{ localStorage.setItem(STORE, JSON.stringify({shared:shared, sheets:lite})); }catch(e2){} }
+  }
+
+  function num(x){ var n = parseFloat(String(x||'').replace(/[^0-9.]/g,'')); return isFinite(n) ? n : 0; }
+  function money(x){ return '$' + Math.round(x).toLocaleString('en-US'); }
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function v(id){ return $(id).value.trim(); }
+  function rgb(h){ h = h.replace('#',''); return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)].join(','); }
+  function pctText(p){ return (Math.round(p*100)/100) + '%'; }
+
+  // ---- Canadian mortgage math ----
+  function calc(s){
+    var notes = [];
+    var price = num(s.price), rate = num(v('rate')), am = parseInt($('am').value, 10);
+    var mode = $('dpMode').value, want = num(v('dpCustom'));
+    var overCap = price >= 1500000;                                                   // insured mortgages: price under $1.5M
+    var tiered = 0.05*Math.min(price,500000) + 0.10*Math.max(0,price-500000);        // minimum down payment
+    var down, kind = mode === 'custom' && want > 0 ? 'pct' : 'min', pct = want;
+    down = kind === 'pct' ? price*want/100 : tiered;
+    if(overCap && down < price*0.20){ down = price*0.20; kind = 'pct'; pct = 20; if(price) notes.push('Homes of $1.5 million or more need 20% down, so this sheet uses 20% with no insurance premium.'); }
+    else if(!overCap && down < tiered - 0.5){ down = tiered; kind = 'min'; if(price) notes.push('That down payment is below the legal minimum for this price, so this sheet uses the minimum.'); }
+    down = Math.round(down);
+    var base = price - down, ltv = price ? base/price : 0, pr = 0;
+    if(!overCap){ if(ltv > 0.90) pr = 0.04; else if(ltv > 0.85) pr = 0.031; else if(ltv > 0.80) pr = 0.028; }
+    var premium = Math.ceil(base*pr), principal = base + premium, insured = premium > 0;
+    if(insured && am === 30 && $('eligible').checked){ pr += 0.002; premium = Math.ceil(base*pr); principal = base + premium; }   // CMHC adds 0.20% for amortizations over 25 years
+    if(insured && am === 30 && !$('eligible').checked){ am = 25; notes.push('30 years on an insured mortgage needs a first time buyer or a new build. Tick the box to allow it. Using 25 years for now.'); }
+    var r = Math.pow(1 + rate/200, 1/6) - 1, n = am*12;                              // semi-annual compounding
+    var pay = (principal > 0 && r > 0) ? Math.ceil(principal*r/(1 - Math.pow(1+r,-n))) : 0;
+    var fee = num(s.fee);
+    return {price:price, rate:rate, am:am, kind:kind, pct:pct, down:down, base:base, ltv:ltv, pr:pr, premium:premium, principal:principal, insured:insured, pay:pay, fee:fee, total:pay+fee, notes:notes};
+  }
+
+  // ---- QR code ----
+  function qrLink(id){
+    var u = v(id);
+    if(!u) return '';
+    if(!/^[a-z][a-z0-9+.\-]*:/i.test(u)) u = 'https://' + u;
+    return /^(https?:\/\/[^\s]+|mailto:[^\s]+|tel:[+\d][\d\s().\-]*)$/i.test(u) ? u : '';
+  }
+  var qrCache = {};
+  function qrSvg(text, color){
+    var key = text + '|' + color;
+    if(qrCache[key]) return qrCache[key];
+    try{
+      qrcode.stringToBytes = qrcode.stringToBytesFuncs['UTF-8'];
+      var q = qrcode(0, 'M'); q.addData(text); q.make();
+      var n = q.getModuleCount(), m = 2, d = '';
+      for(var r = 0; r < n; r++) for(var c = 0; c < n; c++) if(q.isDark(r, c)) d += 'M' + (c + m) + ' ' + (r + m) + 'h1v1h-1z';
+      var t = n + m * 2;
+      return (qrCache[key] = '<svg viewBox="0 0 ' + t + ' ' + t + '" width="' + t + '" height="' + t + '" shape-rendering="crispEdges" role="img" aria-label="QR code"><rect width="' + t + '" height="' + t + '" fill="#fff"/><path d="' + d + '" fill="' + color + '"/></svg>');
+    }catch(e){ return ''; }
+  }
+
+  function sheetHTML(s, c){
+    var T = brandTokens(), d = rgb(T.scrim);
+    var phrase = c.kind === 'min' ? 'Minimum down' : pctText(c.pct) + ' down';
+    var downLbl = c.kind === 'min' ? 'Down payment (minimum)' : 'Down payment (' + pctText(c.pct) + ')';
+    var specs = [['Type', s.ptype], ['Layout', s.layout], ['Size', s.sqft ? Math.round(num(s.sqft)).toLocaleString('en-US') + ' sq.ft' : '']];
+    if(c.fee > 0) specs.push(['Condo fee', money(c.fee) + ' / month']);
+    if(s.mls) specs.push(['MLS®', s.mls]);
+    specs = specs.filter(function(x){ return x[1]; });
+    var hasP = c.price > 0, hasR = c.rate > 0;
+    var rows = [[downLbl, hasP ? money(c.down) : ''], ['Assuming rate', hasR ? c.rate.toFixed(2) + '%' : ''], ['Amortization', c.am + ' years'], ['Mortgage payment', hasP && hasR ? money(c.pay) : '']];
+    if(c.fee > 0) rows.push(['Condo fee', money(c.fee)]);
+    var disc = 'Based on ' + (c.kind === 'min' ? 'the minimum down payment' : 'a ' + pctText(c.pct) + ' down payment') + ', ' + c.am + ' year amortization' + (c.insured ? ', insured' : '') +
+      '. Payments exclude property tax and insurance. Rates and payments are estimates, subject to change and approval.' + (T.line ? ' ' + T.line : '');
+    var scrim = 'linear-gradient(to top, rgba(' + d + ',0.88) 0%, rgba(' + d + ',0.55) 38%, rgba(' + d + ',0.12) 75%, rgba(' + d + ',0) 100%), linear-gradient(to right, rgba(' + d + ',0.35) 0%, rgba(' + d + ',0) 60%)';
+    var title = s.title || '';
+    var tsize = title.length > 22 ? 32 : title.length > 14 ? 38 : 46;
+    var h = '';
+    h += '<div class="s-hero">';
+    h += s.photo ? '<div class="s-heroimg" data-src="' + esc(s.photo) + '" style="background-image:url(&#39;' + esc(s.photo) + '&#39;);background-position:50% ' + Math.max(0, Math.min(100, Number(s.pos) || 50)) + '%"></div>' : '<div class="empty">ADD A LISTING PHOTO</div>';
+    h += '<div class="s-scrim" style="background:' + scrim + '"></div><div class="s-over"><div class="s-over-l">';
+    h += '<div class="eb s-loc">' + esc(s.loc || '') + '</div>';
+    h += '<div class="s-title" style="font-size:' + tsize + 'px">' + esc(title) + '</div><div class="s-rule"></div></div>';
+    h += '<div class="s-over-r"><div class="eb s-pricelbl">Purchase price · ' + esc(phrase) + '</div><div class="s-price">' + (c.price ? money(c.price) : '') + '</div></div></div></div>';
+    h += '<div class="s-specs">' + specs.map(function(x){ return '<div class="s-spec"><div class="eb">' + esc(x[0]) + '</div><div class="v">' + esc(x[1]) + '</div></div>'; }).join('') + '</div>';
+    // right column: the people
+    var initials = function(n){ return String(n || '').split(/\s+/).filter(Boolean).slice(0, 2).map(function(w){ return w.charAt(0).toUpperCase(); }).join(''); };
+    var person = function(label, name, role, lines, shot, qrId, extra){
+      lines = lines.filter(Boolean);
+      var q = qrLink(qrId);
+      if(!name && !lines.length && !shot && !q) return '';
+      var pic = shot ? '<img class="ph" src="' + esc(shot) + '" alt="">' : (name ? '<div class="ini">' + esc(initials(name)) + '</div>' : '');
+      var qr = q ? '<div class="pq">' + qrSvg(q, T.ink) + '</div>' : '';
+      return '<div class="s-person' + (q ? ' hasqr' : '') + '">' + pic + '<div class="tx">' + (label ? '<div class="eb">' + esc(label) + '</div>' : '') +
+        (name ? '<div class="n" style="font-size:' + (name.length > 16 ? 16 : name.length > 12 ? 18 : name.length > 9 ? 19 : 21) + 'px">' + esc(name) + '</div>' : '') +
+        (role ? '<div class="role">' + esc(role) + '</div>' : '') +
+        '<div class="c">' + lines.map(function(l){ return esc(l).replace(/@/g, '@<wbr>'); }).join('<br>') + '</div>' + (extra ? '<div class="bk">' + esc(extra) + '</div>' : '') + '</div>' + qr + '</div>';
+    };
+    var right = '';
+    right += person('Mortgage', v('myName'), v('myTitle'), [v('myPhone'), v('myEmail'), v('myWeb')], myShot, 'myQr', v('myLicence'));
+    right += person(v('coName') || 'Realtor', v('coPerson'), '', [v('coPhone'), v('coEmail'), v('coWeb')], coShot, 'coQr', '');
+
+    h += '<div class="s-main' + (right ? '' : ' solo') + '"><div class="eb s-numhead">Your numbers · assuming ' + esc(phrase.toLowerCase()) + '</div><div class="s-card">';
+    h += rows.map(function(x){ return '<div class="s-row"><span>' + esc(x[0]) + '</span><span class="v">' + esc(x[1]) + '</span></div>'; }).join('');
+    h += '</div>';
+    if(right) h += '<div class="s-right">' + right + '</div>';
+    h += '<div class="s-total"><span class="eb">Total monthly at ' + esc(phrase.toLowerCase()) + '</span><span class="v">' + (hasP && hasR ? money(c.total) : '') + '</span></div>';
+    h += '</div>';
+
+    // footer: the brand with the disclaimer beside it
+    var lg = logoFor(), stack = !myLogo && T.logoLayout === 'stack';
+    h += '<div class="s-foot ' + T.footStyle + (stack ? ' stackf' : '') + '"><div class="s-flogo">' + (lg ? '<img src="' + esc(lg) + '" alt="' + esc(T.name) + ' logo">' : '') + '</div>';
+    h += '<div class="s-disc">' + esc(disc) + '</div></div>';
+    return {html:h, T:T};
+  }
+
+  function renderStage(){
+    var stage = $('stage'); stage.innerHTML = '';
+    var notices = [];
+    sheets.forEach(function(s, i){
+      var c = calc(s), out = sheetHTML(s, c);
+      var frame = document.createElement('div'); frame.className = 'frame' + (i === cur ? ' on' : '');
+      frame.innerHTML = '<div class="lbl">Sheet ' + (i+1) + '</div>';
+      var sc = document.createElement('div'); sc.className = 'scaler';
+      var sh = document.createElement('section'); sh.className = 'sheet'; sh.setAttribute('aria-label', 'Sheet ' + (i+1));
+      var T = out.T;
+      [['--paper',T.paper],['--ink',T.ink],['--total',T.total],['--foot',T.foot],['--accent',T.accent],['--accent-dark',T.accentDark],['--foot-accent',T.footAccent],['--foot-text',T.footText],['--stripe',T.stripe || 'transparent'],['--foot-name',T.footName || '#FFFFFF'],['--foot-rule',T.footRule || 'rgba(255,255,255,0.18)']].forEach(function(p){ sh.style.setProperty(p[0], p[1]); });
+      sh.innerHTML = out.html;
+      var clip = document.createElement('div'); clip.className = 'clip';
+      sc.appendChild(sh); clip.appendChild(sc); frame.appendChild(clip); stage.appendChild(frame);
+      frame.addEventListener('click', function(){ if(cur !== i){ cur = i; loadSheet(); renderAll(); } });
+      if(i === cur){ notices = c.notes.slice(); if(c.price > 0 && !(c.rate > 0)) notices.unshift('Enter the rate to calculate the payment.'); renderMath(c); }
+      // one page fit check
+      var main = sh.querySelector('.s-main'), t = sh.querySelector('.s-title');
+      var over = main.scrollHeight > main.clientHeight + 2 || t.scrollWidth > t.clientWidth + 2;
+      if(over && i === cur) notices.push('Something on this sheet is too long to fit the page. Shorten the model name or the card text.');
+    });
+    $('notice').textContent = notices.join(' ');
+    fit();
+  }
+
+  function renderMath(c){
+    var mc = $('mathcheck'); mc.innerHTML = '';
+    [['Down payment', money(c.down)],['Base mortgage', money(c.base)],['Loan to value', (c.ltv*100).toFixed(2)+'%'],['Insurance premium', c.insured ? (c.pr*100).toFixed(2)+'% = '+money(c.premium) : 'None'],['Mortgage incl. premium', money(c.principal)],['Monthly payment', money(c.pay)],['Total monthly', money(c.total)]].forEach(function(p){
+      var d = document.createElement('div'); d.textContent = p[0]; var b = document.createElement('b'); b.textContent = p[1]; d.appendChild(b); mc.appendChild(d);
+    });
+  }
+
+  function renderTabs(){
+    var t = $('tabs'); t.innerHTML = '';
+    sheets.forEach(function(s, i){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'tab' + (i === cur ? ' on' : '');
+      b.setAttribute('role','tab'); b.setAttribute('aria-selected', i === cur ? 'true' : 'false');
+      b.textContent = (i+1) + '. ' + (s.title || 'Untitled');
+      b.addEventListener('click', function(){ cur = i; loadSheet(); renderAll(); goToSheet(i); });
+      t.appendChild(b);
+    });
+    $('delBtn').disabled = sheets.length < 2;
+  }
+
+  function renderThumbs(){
+    var t = $('thumbs'); t.innerHTML = '';
+    var s = sheets[cur];
+    var g = gal();
+    g.forEach(function(src, i){
+      var w = document.createElement('div'); w.className = 'tw';
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'thumb' + (s.photo === src ? ' on' : '');
+      b.setAttribute('aria-label', 'Use photo ' + (i+1) + ' on this sheet');
+      var im = document.createElement('img'); im.src = src; im.alt = ''; im.loading = 'lazy';
+      im.onerror = function(){ var k = g.indexOf(src); if(k >= 0){ g.splice(k,1); if(s.photo === src) s.photo = g[0] || ''; renderAll(); if(!g.length){ $('found').textContent = 'The listing site wouldn\'t let its photos load here. Drag a photo from the listing onto Add your own photo instead.'; $('found').classList.add('warn'); } } };
+      b.appendChild(im);
+      b.addEventListener('click', function(){ sheets[cur].photo = src; renderAll(); });
+      var x = document.createElement('button'); x.type = 'button'; x.className = 'x'; x.textContent = '×'; x.setAttribute('aria-label','Remove photo ' + (i+1));
+      x.addEventListener('click', function(e){ e.stopPropagation(); var k = g.indexOf(src); if(k >= 0) g.splice(k,1); if(s.photo === src) s.photo = g[0] || ''; renderAll(); });
+      w.appendChild(b); w.appendChild(x); t.appendChild(w);
+    });
+    $('posWrap').hidden = !s.photo;
+    $('pickHead').innerHTML = g.length ? '<b>' + g.length + ' photo' + (g.length > 1 ? 's' : '') + ' for this sheet.</b> Click one to use it.' : 'Photos from the saved listing will show up here.';
+    $('heroPos').value = s.pos;
+  }
+
+  function renderLogo(){
+    var p = $('myLogoPrev'); p.innerHTML = '';
+    var T = brandTokens(); p.style.background = T.foot;
+    var lg = logoFor();
+    if(lg){ var im = document.createElement('img'); im.src = lg; im.alt = ''; p.appendChild(im); } else p.textContent = 'No logo';
+    $('myLogoClr').hidden = !myLogo;
+    var own = $('brand').value === 'custom';
+    $('ownBrand').hidden = !own;
+    $('myLogoBtn').textContent = myLogo ? 'Replace logo' : 'Upload logo';
+    $('brandHint').textContent = own
+      ? 'Upload your logo, then get colours from it or pick your own.'
+      : (myLogo ? 'Your uploaded logo is replacing the Gold Lion logo.' : 'Want your own logo and colours on the sheet? Choose My own brand.');
+  }
+
+  function goToSheet(i){
+    var f = document.querySelectorAll('#stage .frame')[i];
+    if(f) f.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  function renderAll(){
+    $('dpCustomWrap').hidden = $('dpMode').value !== 'custom';
+    renderTabs(); renderThumbs(); renderLogo(); renderShots(); renderQrPreviews(); renderStage(); save();
+  }
+
+  // ---- Listing text reader (no AI, pattern based) ----
+  var PROV = {'british columbia':'BC','alberta':'AB','saskatchewan':'SK','manitoba':'MB','ontario':'ON','quebec':'QC','québec':'QC','new brunswick':'NB','nova scotia':'NS','prince edward island':'PE','newfoundland and labrador':'NL','newfoundland':'NL','yukon':'YT','northwest territories':'NT','nunavut':'NU'};
+  var STREET = '(?:Street|St|Avenue|Ave|Road|Rd|Drive|Dr|Boulevard|Blvd|Way|Crescent|Cres|Court|Ct|Place|Pl|Lane|Ln|Terrace|Terr|Trail|Tr|Highway|Hwy|Circle|Cir|Close|Gate|Parkway|Pkwy|Row|Mews|Square|Sq|Green|Grn|Heights|Hts|Landing|Point|Pt|Park|Grove|Hill|Bay|Common|Commons|Link|Manor|Walk|View|Vista|Ridge|Rise|Crossing|Line|Concession|Sideroad|Esplanade|Promenade|Quay|Wynd|Glen|Estates|Meadows)';
+  function toNum(t){ return parseFloat(String(t).replace(/[^0-9.]/g,'')) || 0; }
+  function after(text, labels, pat, ok){
+    for(var i = 0; i < labels.length; i++){
+      var re = new RegExp(labels[i] + '\\s*[:\\-]?\\s*(?:\\n\\s*)?' + pat, 'ig'), m;
+      while((m = re.exec(text))){ if(!ok || ok(m[1])) return m[1]; }
+    }
+    return '';
+  }
+  function smallCount(x){ var n = toNum(String(x).split('+')[0]); return n > 0 && n <= 15; }
+  function parseListing(raw){
+    var t = raw.replace(/\r/g,'').replace(/[ \t ]+/g,' ');
+    var out = {};
+
+    // MLS number
+    var m = /MLS\s*(?:®|\(R\)|&reg;)?\s*(?:Number|No\.?|#|Num)?\s*[:#]?\s*\n?\s*([A-Z]{0,3}\d{5,9})\b/i.exec(t);
+    if(m) out.mls = m[1].toUpperCase();
+
+    // Price: labelled first, then the first large dollar amount
+    var p = after(t, ['List(?:ing)? Price','Asking Price','Purchase Price','Sale Price','Price','Priced (?:at|from)','Listed at','Starting (?:at|from)'], '\\$\\s?([\\d,]{5,}(?:\\.\\d\\d)?)');
+    if(!p){ var all = t.match(/\$\s?[\d,]{6,}/g) || []; for(var i = 0; i < all.length; i++){ var n = toNum(all[i]); if(n >= 50000 && n <= 50000000){ p = all[i]; break; } } }
+    if(p && toNum(p) >= 50000) out.price = String(Math.round(toNum(p)));
+
+    // Bedrooms and bathrooms
+    var beds = '', baths = '';
+    m = /\b(?:Bedrooms?|Beds?|Bdrms?)\s*:\s*(\d+(?:\s*\+\s*\d+)?)\b/i.exec(t); if(m && smallCount(m[1])) beds = m[1];
+    m = /\b(?:Bathrooms?|Baths?|Bthrms?)\s*:\s*(\d+(?:\.\d)?)\b/i.exec(t); if(m && smallCount(m[1])) baths = m[1];
+    if(!beds){ m = /(\d+(?:\s*\+\s*\d+)?)\s*(?:bed(?:room)?s?|bd|br|bdrms?)\b/i.exec(t); if(m && smallCount(m[1])) beds = m[1]; }
+    if(!beds) beds = after(t, ['Bedrooms?(?: \\(?total\\)?)?','Beds?','Bdrms?'], '(\\d+(?:\\s*\\+\\s*\\d+)?)\\b', smallCount);
+    if(!baths){ m = /(\d+(?:\.\d)?)\s*(?:bath(?:room)?s?|ba)\b/i.exec(t); if(m && smallCount(m[1])) baths = m[1]; }
+    if(!baths) baths = after(t, ['Bathrooms?(?: \\(?total\\)?)?','Baths?','Bthrms?'], '(\\d+(?:\\.\\d)?(?:\\s*\\+\\s*\\d+)?)\\b', smallCount);
+    var den = /\+\s*den\b|\bden\b/i.test(t.slice(0, 4000)) && !/\bno den\b/i.test(t);
+    if(beds || baths){
+      var b = beds ? beds.replace(/\s+/g,' ') : '';
+      var parts = [];
+      if(b) parts.push(b + ' bed' + (den && !/\+/.test(b) ? ' + den' : ''));
+      if(baths) parts.push(baths + ' bath');
+      out.layout = parts.join(' / ');
+    }
+
+    // Size
+    var sz = after(t, ['Square Footage','Floor Area(?: \\(?total\\)?)?','Living Area','Interior Size','Size','Total Finished Area','Home Size'], '([\\d,]{3,6})\\s*(?:sq\\.?\\s*ft|sqft|ft2|ft²|square feet|sf)?');
+    if(!sz || toNum(sz) < 200){ m = /([\d,]{3,6})\s*(?:sq\.?\s*ft\.?|sqft|ft2|ft²|square feet|sf)\b/i.exec(t); sz = m ? m[1] : ''; }
+    if(sz && toNum(sz) >= 200 && toNum(sz) <= 30000) out.sqft = String(Math.round(toNum(sz)));
+
+    // Condo or strata fee
+    m = /(?:Maintenance|Strata|Condo(?:minium)?|HOA|Monthly)\s*(?:Fees?|Fee \(Monthly\)|Charges?)?[^$\d]{0,30}\$\s?([\d,]+(?:\.\d+)?)/i.exec(t);
+    if(m && toNum(m[1]) > 0 && toNum(m[1]) < 5000) out.fee = String(Math.round(toNum(m[1])));
+
+    // Type
+    var bt = after(t, ['Building Type','Property Type','Home Type','Style','Dwelling Type','Type'], '([A-Za-z /\\-]{3,40})');
+    var pick = function(x){
+      if(/apartment|condo|high ?rise|low ?rise|strata/i.test(x)) return 'Condominium';
+      if(/town ?house|town ?home|row ?house|row \/ townhouse/i.test(x)) return 'Townhome';
+      if(/duplex|half duplex|triplex|semi/i.test(x)) return 'Duplex';
+      if(/detached|house|bungalow|two storey|split level/i.test(x) && !/single family/i.test(x)) return 'Detached';
+      return '';
+    };
+    out.ptype = pick(bt) || pick(t.slice(0, 6000));
+    if(!out.ptype) delete out.ptype;
+
+    // Address, city, province, postal code
+    var lines = t.split('\n').map(function(l){ return l.trim(); }).filter(Boolean);
+    var addrRe = new RegExp('^(?:#?\\s?\\d+[A-Za-z]?\\s*[-–]\\s*)?#?\\d+[A-Za-z]?\\s+(?:[A-Za-z0-9.\'’]+\\s+){0,5}' + STREET + '\\.?\\b(?:\\s+(?:NE|NW|SE|SW|N|S|E|W)\\b)?', 'i');
+    var provTest = /\b(British Columbia|Alberta|Saskatchewan|Manitoba|Ontario|Qu[eé]bec|New Brunswick|Nova Scotia|Prince Edward Island|Newfoundland|Yukon|Northwest Territories|Nunavut|BC|AB|SK|MB|ON|QC|NB|NS|PE|NL)\b|\b[A-Z]\d[A-Z]\s?\d[A-Z]\d\b/;
+    var order = [], firstAddr = -1;
+    for(var q = 0; q < Math.min(lines.length, 600); q++){
+      if(addrRe.test(lines[q]) && lines[q].length < 140){
+        if(firstAddr < 0) firstAddr = q;
+        if(provTest.test(lines[q]) || provTest.test(lines[q+1] || '') || provTest.test(lines[q+2] || '')){ order.push(q); break; }
+      }
+    }
+    if(!order.length && firstAddr >= 0) order.push(firstAddr);
+    for(var oi = 0; oi < order.length; oi++){
+      var j = order[oi];
+      var am = addrRe.exec(lines[j]);
+      if(am){
+        var line = lines[j], next = lines[j+1] || '';
+        var street = am[0].replace(/\s+/g,' ').trim();
+        var tail = line.slice(am[0].length);
+        var rest = (provTest.test(tail) ? tail : (tail + ' ' + next + (provTest.test(next) ? '' : ' ' + (lines[j+2] || '')))).replace(/\s+,/g, ',').trim();
+        // unit written after the street, e.g. "1234 Main St #1203" or "Unit 5"
+        var unit = /^(?:#|Unit\s*#?\s*|Suite\s*#?\s*|Apt\.?\s*#?\s*)(\w+)/i.exec(rest.replace(/^[,\s]+/,''));
+        if(unit){ street = unit[1] + ' ' + street; rest = rest.replace(/^[,\s]*(?:#|Unit\s*#?\s*|Suite\s*#?\s*|Apt\.?\s*#?\s*)\w+/i,''); }
+        out.title = street.replace(/^(#?\s?\w+)\s*[-–]\s*(\d)/, '$1 $2').replace(/^#\s?/, '');
+        var pc = /\b([A-Z]\d[A-Z])\s?(\d[A-Z]\d)\b/.exec(rest);
+        var prov = '';
+        var pm = /\b(British Columbia|Alberta|Saskatchewan|Manitoba|Ontario|Qu[eé]bec|New Brunswick|Nova Scotia|Prince Edward Island|Newfoundland(?: and Labrador)?|Yukon|Northwest Territories|Nunavut|BC|AB|SK|MB|ON|QC|NB|NS|PE|PEI|NL|YT|NT|NU)\b/.exec(rest);
+        if(pm){ prov = PROV[pm[1].toLowerCase()] || pm[1].toUpperCase().replace('PEI','PE'); }
+        var city = '';
+        if(pm){ city = rest.slice(0, pm.index).replace(/[,\s]+$/,'').replace(/^[,\s]+/,'').split(',').pop().trim(); }
+        if(city && city.length > 40) city = '';
+        var comm = '';
+        var rc = /(?:^|\n)Community[ \t]*\n\s*([A-Za-z][A-Za-z .'’\-]{2,30})[ \t]*(?:\n|$)/.exec(t);
+        if(rc) comm = rc[1];
+        if(!comm) ['Neighbou?rhood Name','Neighbou?rhood\\s*:','Sub-?Area','Community Name','Subdivision'].some(function(lb){
+          var cm = new RegExp('(?:' + lb + ')\\s*[:\\-]?\\s*(?:\\n\\s*)?([A-Za-z][A-Za-z .\'’\\-]{2,30})[ \\t]*(?:\\n|$)', 'i').exec(t);
+          if(cm){ comm = cm[1]; return true; } return false;
+        });
+        if(!comm && firstAddr > 1 && lines[firstAddr-2] === '/' && lines[firstAddr-1].length < 30 && !/^\d/.test(lines[firstAddr-1])) comm = lines[firstAddr-1];   // breadcrumb: ... / Douglas / address
+        var place = [city, [prov, pc ? pc[1] + ' ' + pc[2] : ''].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+        var loc = [comm.trim(), place].filter(Boolean).join(' · ');
+        if(loc) out.loc = loc;
+        break;
+      }
+    }
+    return out;
+  }
+
+  var FIELD_NAMES = {title:'address', loc:'location', price:'price', mls:'MLS number', ptype:'type', layout:'layout', sqft:'size', fee:'condo fee'};
+  function applyParsed(o, photoCount){
+    var s = sheets[cur], got = [], miss = [];
+    ['title','loc','price','mls','ptype','layout','sqft','fee'].forEach(function(k){
+      if(o[k]){ s[k] = o[k]; got.push(FIELD_NAMES[k]); } else if(k !== 'fee') miss.push(FIELD_NAMES[k]);
+    });
+    loadSheet(); renderAll();
+    var msg = got.length ? 'Done. Filled in: ' + got.join(', ') + '.' : 'Couldn\'t find listing details in that file. Make sure it was saved from the listing page itself.';
+    if(got.length && miss.length) msg += ' Not found: ' + miss.join(', ') + '.';
+    if(photoCount) msg += ' Photos are ready below. Pick one.';
+    $('found').textContent = msg;
+    $('found').classList.toggle('warn', !got.length);
+  }
+
+  function photosFromHtml(html, done){
+    if(!html) return done(0);
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    var urls = [], keys = [];
+    doc.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]').forEach(function(m){
+      var u = m.getAttribute('content'); if(u && /^https?:\/\//i.test(u)){ var k = u.split('?')[0].replace(/\/(medres|highres)\//, '/'); if(keys.indexOf(k) < 0){ keys.push(k); urls.push(u.replace(/\?w=\d+&h=\d+.*$/, '')); } }
+    });
+    doc.querySelectorAll('img, source').forEach(function(el){
+      var cands = [el.getAttribute('src'), el.getAttribute('data-src'), el.getAttribute('data-lazy'), el.getAttribute('data-original')];
+      var ss = el.getAttribute('srcset') || el.getAttribute('data-srcset');
+      if(ss){ var last = ss.split(',').pop().trim().split(' ')[0]; cands.unshift(last); }
+      cands.forEach(function(u){
+        if(u && /^http:\/\//i.test(u)) u = 'https://' + u.slice(7);
+        if(!u || !/^https:\/\//i.test(u) || /\.(svg|gif)(\?|$)/i.test(u) || /logo|icon|avatar|sprite|agent|individuals|headshot|badge|flag|map|pixel|tracking|lowres/i.test(u)) return;
+        var key = u.split('?')[0].replace(/\/(medres|highres)\//, '/');
+        if(keys.indexOf(key) < 0){ keys.push(key); urls.push(u.replace(/\?w=\d+&h=\d+.*$/, '')); }
+      });
+    });
+    urls = urls.slice(0, 40);
+    if(!urls.length) return done(0);
+    var have = gal().slice(), added = 0, left = urls.length;
+    urls.forEach(function(u){
+      var im = new Image();
+      im.onload = function(){
+        var r = im.naturalWidth / im.naturalHeight;
+        if(im.naturalWidth >= 500 && r > 0.9 && r < 2.4 && added < 15){ if(have.indexOf(u) < 0){ gal().push(u); have.push(u); } added++; if(!sheets[cur].photo) sheets[cur].photo = u; }
+        if(--left === 0) done(added);
+      };
+      im.onerror = function(){ if(--left === 0) done(added); };
+      im.src = u;
+    });
+  }
+
+  function loadSheet(){ var s = sheets[cur]; SHEET_FIELDS.forEach(function(k){ $(k).value = s[k]; }); if(loadSheet.last !== cur){ loadSheet.last = cur; $('found').textContent = ''; $('found').classList.remove('warn'); } }
+
+  // inputs
+  document.querySelector('.panel').addEventListener('input', function(e){
+    var el = e.target;
+    if(el.hasAttribute('data-sheet')) sheets[cur][el.id] = el.value;
+    if(el.id === 'heroPos') sheets[cur].pos = +el.value;
+    renderAll();
+  });
+  document.querySelector('.panel').addEventListener('change', function(e){
+    var el = e.target;
+    if(el.hasAttribute('data-sheet')) sheets[cur][el.id] = el.value;
+    renderAll();
+  });
+
+  // sheet management
+  $('addBtn').addEventListener('click', function(){ sheets.push(blankSheet()); cur = sheets.length - 1; loadSheet(); renderAll(); goToSheet(cur); });
+  $('dupBtn').addEventListener('click', function(){ var c = JSON.parse(JSON.stringify(sheets[cur])); sheets.splice(cur+1, 0, c); cur++; loadSheet(); renderAll(); goToSheet(cur); });
+  $('delBtn').addEventListener('click', function(){
+    if(sheets.length < 2) return;
+    if(!confirm('Delete sheet ' + (cur+1) + (sheets[cur].title ? ' (' + sheets[cur].title + ')' : '') + '?')) return;
+    sheets.splice(cur,1); cur = Math.max(0, cur-1); loadSheet(); renderAll();
+  });
+
+  // photos
+  function addSrc(src){ gal().push(src); sheets[cur].photo = src; renderAll(); }
+  function addFile(file){
+    if(!file || !/^image\//.test(file.type)) return;
+    var fr = new FileReader(); fr.onload = function(){ addSrc(fr.result); }; fr.readAsDataURL(file);
+  }
+  function addUrl(u){ u = (u || '').trim().replace(/^http:\/\//i, 'https://'); if(!/^https:\/\/[^\s"'<>]+$/i.test(u) && !/^data:image\/(png|jpe?g|webp|gif|avif);base64,[A-Za-z0-9+\/=]+$/i.test(u)) return false; addSrc(u); return true; }
+  function fromHtml(html){ var m = /<img[^>]+src=["']([^"']+)["']/i.exec(html || ''); return m ? m[1].replace(/&amp;/g,'&') : ''; }
+
+  var drop = $('drop');
+  drop.addEventListener('click', function(){ $('fileIn').click(); });
+  $('fileIn').addEventListener('change', function(e){ Array.prototype.forEach.call(e.target.files, addFile); e.target.value = ''; });
+  document.addEventListener('dragover', function(e){ e.preventDefault(); drop.classList.add('over'); $('pageBtn').classList.add('over'); });
+  document.addEventListener('dragleave', function(e){ if(!e.relatedTarget){ drop.classList.remove('over'); $('pageBtn').classList.remove('over'); } });
+  document.addEventListener('drop', function(e){
+    e.preventDefault(); drop.classList.remove('over'); $('pageBtn').classList.remove('over');
+    var dt = e.dataTransfer;
+    if(dt.files && dt.files.length){
+      var htmlFile = Array.prototype.filter.call(dt.files, isHtmlFile)[0];
+      if(htmlFile){ readPageFile(htmlFile); return; }
+      Array.prototype.forEach.call(dt.files, addFile); return;
+    }
+    var src = fromHtml(dt.getData('text/html'));
+    if(src && addUrl(src)) return;
+    addUrl((dt.getData('text/uri-list') || dt.getData('text/plain') || '').split('\n')[0]);
+  });
+  document.addEventListener('paste', function(e){
+    var items = (e.clipboardData && e.clipboardData.items) || [], got = false;
+    Array.prototype.forEach.call(items, function(it){ if(it.kind === 'file' && /^image\//.test(it.type)){ addFile(it.getAsFile()); got = true; } });
+    if(got){ e.preventDefault(); return; }
+    var tag = (document.activeElement && document.activeElement.tagName) || '';
+    if(tag === 'INPUT' || tag === 'TEXTAREA') return;
+    if(addUrl(fromHtml(e.clipboardData.getData('text/html')) || e.clipboardData.getData('text/plain'))) e.preventDefault();
+  });
+
+  // headshots: square crop, resized small so they save in the browser
+  function shrinkPhoto(file, done){
+    var fr = new FileReader();
+    fr.onload = function(){
+      var im = new Image();
+      im.onload = function(){
+        var side = Math.min(im.naturalWidth, im.naturalHeight), sx = (im.naturalWidth - side) / 2, sy = Math.max(0, (im.naturalHeight - side) / 2 - side * 0.08);
+        var c = document.createElement('canvas'); c.width = c.height = 280;
+        c.getContext('2d').drawImage(im, sx, sy, side, side, 0, 0, 280, 280);
+        done(c.toDataURL('image/jpeg', 0.86));
+      };
+      im.onerror = function(){ done(''); };
+      im.src = fr.result;
+    };
+    fr.readAsDataURL(file);
+  }
+  function shotPicker(key){
+    $(key + 'Btn').addEventListener('click', function(){ $(key + 'In').click(); });
+    $(key + 'In').addEventListener('change', function(e){
+      var f = e.target.files[0]; e.target.value = ''; if(!f) return;
+      shrinkPhoto(f, function(url){ if(key === 'myShot') myShot = url; else coShot = url; renderAll(); });
+    });
+    $(key + 'Clr').addEventListener('click', function(){ if(key === 'myShot') myShot = ''; else coShot = ''; renderAll(); });
+  }
+  shotPicker('myShot'); shotPicker('coShot');
+  function renderQrPreviews(){
+    [['myQr','myQrPrev'],['coQr','coQrPrev']].forEach(function(x){
+      var u = qrLink(x[0]), box = $(x[1]);
+      if(u){ box.innerHTML = qrSvg(u, '#1F1A3D'); box.title = 'QR code for ' + u; }
+      else { box.textContent = v(x[0]) ? 'Check link' : 'QR'; box.title = ''; }
+    });
+  }
+  function renderShots(){
+    [['myShot', myShot], ['coShot', coShot]].forEach(function(x){
+      var pv = $(x[0] + 'Prev');
+      pv.style.backgroundImage = x[1] ? 'url("' + x[1] + '")' : '';
+      pv.classList.toggle('has', !!x[1]);
+      $(x[0] + 'Btn').textContent = x[1] ? 'Change photo' : (x[0] === 'myShot' ? 'Add photo' : 'Add your photo');
+      $(x[0] + 'Clr').hidden = !x[1];
+    });
+  }
+
+  // logo
+  $('myLogoBtn').addEventListener('click', function(){ $('myLogoIn').click(); });
+  $('myLogoIn').addEventListener('change', function(e){ var f = e.target.files[0]; if(!f) return; var fr = new FileReader(); fr.onload = function(){ myLogo = fr.result; renderAll(); if($('brand').value === 'custom') $('pickColours').click(); }; fr.readAsDataURL(f); e.target.value = ''; });
+  $('myLogoClr').addEventListener('click', function(){ myLogo = ''; renderAll(); });
+  $('pickColours').addEventListener('click', function(){
+    if(!myLogo){ $('brandHint').textContent = 'Upload your logo first, then get colours from it.'; return; }
+    logoColours(myLogo, function(res){
+      if(!res){ $('footBg').value = 'brand'; renderAll(); $('brandHint').textContent = 'Your logo looks white or single colour, so it sits on a coloured footer. Pick your colours below.'; return; }
+      $('cDark').value = res.main.toLowerCase(); $('cAccent').value = res.accent.toLowerCase();
+      $('footBg').value = 'white';
+      renderAll();
+      $('brandHint').textContent = 'Colours taken from your logo, with a white footer so the logo shows clearly. Adjust anything below.';
+    });
+  });
+
+  // ---- Print and PDF download ----
+  $('printBtn').addEventListener('click', function(){ window.print(); });
+  function loadScript(src){
+    return new Promise(function(res, rej){
+      if(document.querySelector('script[src="' + src + '"]')) return res();
+      var s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s);
+    });
+  }
+  function toDataUrl(url){
+    return fetch(url, {mode:'cors'}).then(function(r){ if(!r.ok) throw new Error('photo'); return r.blob(); }).then(function(b){
+      return new Promise(function(res){ var fr = new FileReader(); fr.onload = function(){ res(fr.result); }; fr.readAsDataURL(b); });
+    });
+  }
+  function pdfName(){
+    var t = (sheets[0].title || 'feature-sheet').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    return (sheets.length > 1 ? 'feature-sheets-' : 'feature-sheet-') + (t || 'listing') + '.pdf';
+  }
+  $('pdfBtn').addEventListener('click', function(){
+    var btn = $('pdfBtn'), label = btn.textContent, holder = null;
+    btn.disabled = true; btn.textContent = 'Making your PDF…';
+    if(typeof gtag === 'function') gtag('event', 'feature_sheet_download', {sheets: sheets.length});
+    Promise.all([
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'),
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js')
+    ]).then(function(){ return document.fonts ? document.fonts.ready : null; }).then(function(){
+      holder = document.createElement('div');
+      holder.style.cssText = 'position:fixed;left:-10000px;top:0;width:816px;';
+      document.body.appendChild(holder);
+      var pdf = new window.jspdf.jsPDF({unit:'pt', format:'letter', compress:true});
+      var els = Array.prototype.slice.call(document.querySelectorAll('#stage .sheet'));
+      return els.reduce(function(chain, el, i){
+        return chain.then(function(){
+          var clone = el.cloneNode(true); clone.style.boxShadow = 'none';
+          holder.innerHTML = ''; holder.appendChild(clone);
+          var hero = clone.querySelector('.s-heroimg'), src = hero ? hero.getAttribute('data-src') : '';
+          var ready = (src && /^https?:/i.test(src)) ? toDataUrl(src).then(function(d){ hero.style.backgroundImage = 'url("' + d + '")'; }) : Promise.resolve();
+          return ready.then(function(){
+            return window.html2canvas(clone, {scale:3, useCORS:true, backgroundColor:null, width:816, height:1056, windowWidth:1280, logging:false});
+          }).then(function(canvas){
+            if(i) pdf.addPage('letter');
+            pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, 612, 792);
+          });
+        });
+      }, Promise.resolve()).then(function(){ pdf.save(pdfName()); });
+    }).catch(function(){
+      $('notice').textContent = 'The PDF couldn\'t be made directly (usually a listing photo that blocks downloads), so the print window opened. Choose Save as PDF, paper size Letter, margins None.';
+      window.print();
+    }).then(function(){
+      if(holder && holder.parentNode) holder.parentNode.removeChild(holder);
+      btn.disabled = false; btn.textContent = label;
+    });
+  });
+
+  $('clearAll').addEventListener('click', function(){
+    if(!confirm('Remove your details, photos, logo, and sheets saved in this browser?')) return;
+    try{ Object.keys(localStorage).forEach(function(k){ if(/^glFeatureSheet\./.test(k)) localStorage.removeItem(k); }); }catch(e){}
+    location.reload();
+  });
+
+  function fit(){
+    var stage = $('stage');
+    var avail = stage.clientWidth - (window.innerWidth <= 900 ? 24 : 56);
+    var s = Math.min(1, avail/816);
+    Array.prototype.forEach.call(document.querySelectorAll('.clip'), function(cl){
+      cl.style.width = (816*s) + 'px'; cl.style.height = (1056*s) + 'px';
+      cl.firstChild.style.transform = 'scale(' + s + ')';
+    });
+  }
+  window.addEventListener('resize', fit);
+  // small screens: the sheet sits below the form, so offer a quick jump between them
+  function jumpLabel(){ var st = $('stage').getBoundingClientRect().top; $('jumpBtn').textContent = st < window.innerHeight * 0.5 ? 'Back to editing' : 'See the sheet'; }
+  $('jumpBtn').addEventListener('click', function(){
+    if($('jumpBtn').textContent === 'See the sheet') $('stage').scrollIntoView({behavior:'smooth'});
+    else window.scrollTo({top:0, behavior:'smooth'});
+  });
+  window.addEventListener('scroll', jumpLabel, {passive:true});
+
+  function htmlToText(html){
+    return html
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<noscript[\s\S]*?<\/noscript>/gi, ' ')
+      .replace(/<(br|\/p|\/div|\/li|\/h\d|\/tr|\/td|\/th|\/span|\/a|\/section|\/dt|\/dd)[^>]*>/gi, '\n')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&reg;/g, '®').replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+      .replace(/[ \t]+/g, ' ')
+      .split('\n').map(function(l){ return l.trim(); }).filter(Boolean).join('\n');
+  }
+  function resetSheetForUpload(){
+    var fresh = blankSheet();
+    ['title','mls','loc','price','ptype','layout','sqft','fee','photo'].forEach(function(k){ sheets[cur][k] = fresh[k]; }); sheets[cur].gallery = [];
+  }
+  function readSavedPage(html){
+    resetSheetForUpload();
+    var parsed = parseListing(htmlToText(html));
+    var pics = listingPhotos(html, [], parsed.mls);
+    if(pics.length){ sheets[cur].gallery = pics; sheets[cur].photo = pics[0]; applyParsed(parsed, pics.length); return; }
+    applyParsed(parsed, 0);
+    $('found').textContent += ' Looking for photos…';
+    photosFromHtml(html, function(n){
+      applyParsed(parsed, n);
+      if(!n) $('found').textContent += ' No photos came through, so drag or paste them into the Photo section.';
+    });
+  }
+  // ---- Chrome "Webpage, Single File" (.mhtml): page plus its photos in one file ----
+  function qpDecode(str){
+    str = str.replace(/=\r?\n/g, '');
+    var bytes = [];
+    for(var i = 0; i < str.length; i++){
+      var c = str.charCodeAt(i);
+      if(str[i] === '=' && /^[0-9A-Fa-f]{2}$/.test(str.substr(i+1, 2))){ bytes.push(parseInt(str.substr(i+1, 2), 16)); i += 2; }
+      else if(c < 128) bytes.push(c);
+      else { var enc = new TextEncoder().encode(str[i]); for(var k = 0; k < enc.length; k++) bytes.push(enc[k]); }
+    }
+    return new TextDecoder('utf-8').decode(new Uint8Array(bytes));
+  }
+  function readMhtml(raw){
+    var bm = /boundary="?([^";\r\n]+)"?/i.exec(raw);
+    if(!bm) return null;
+    var chunks = raw.split('--' + bm[1]);
+    var snap = ((/Snapshot-Content-Location:\s*([^\r\n]+)/i.exec(raw.slice(0, 2000)) || [])[1] || '').trim();
+    var html = '', allHtml = '', imgs = [];
+    chunks.forEach(function(ch){
+      var cut = ch.search(/\r?\n\r?\n/);
+      if(cut < 0) return;
+      var head = ch.slice(0, cut), body = ch.slice(cut).replace(/^\s+/, '');
+      var ct = (/Content-Type:\s*([^;\r\n]+)/i.exec(head) || [])[1] || '';
+      var enc = ((/Content-Transfer-Encoding:\s*([^\r\n]+)/i.exec(head) || [])[1] || '').trim().toLowerCase();
+      var loc = ((/Content-Location:\s*([^\r\n]+)/i.exec(head) || [])[1] || '').trim();
+      ct = ct.trim().toLowerCase();
+      if(ct === 'text/html'){
+        var doc = enc === 'quoted-printable' ? qpDecode(body) : body;
+        allHtml += doc;
+        if(!html || (snap && loc === snap)) html = doc;
+      }
+      else if(/^image\/(jpe?g|png|webp|avif|gif)$/.test(ct) && enc === 'base64' && loc){
+        var b64 = body.replace(/[^A-Za-z0-9+\/=]/g, '');
+        imgs.push({loc:loc, size:b64.length, src:'data:' + ct.replace('jpg','jpeg') + ';base64,' + b64});
+      }
+    });
+    return html ? {html:html, allHtml:allHtml, embedded:imgs, site:snap} : null;
+  }
+  // All photos of this posting, in listing order. Uses photos saved inside the file when present,
+  // otherwise the listing's own photo address. Photos from other listings, agents, logos and ads are left out.
+  function photoKey(u){ return String(u).split('?')[0].replace(/\/(highres|medres|lowres)\//, '/'); }
+  function listingPhotos(html, embedded, mls, site){
+    embedded = embedded || [];
+    var byKey = {};
+    embedded.forEach(function(e){ var k = photoKey(e.loc); if(!byKey[k] || /\/highres\//.test(e.loc)) byKey[k] = e.src; });
+    var found = {}, re = /https?:\/\/cdn\.realtor\.ca\/listings\/[^"'\s)>]+?\/([A-Za-z0-9]+)_(\d+)\.(?:jpe?g|png|webp)/gi, m, count = {};
+    var text = html.replace(/&amp;/g, '&').replace(/\\\//g, '/');
+    while((m = re.exec(text))){
+      var id = m[1], n = +m[2];
+      count[id] = (count[id] || 0) + 1;
+      var url = m[0].replace(/\/(medres|lowres)\//, '/highres/');
+      (found[id] = found[id] || {})[n] = found[id][n] || url;
+    }
+    // REW.ca: https://assets-listings.rew.ca/listing/<feed>/<listing id>/<nn>_<hash>.jpeg
+    var rewRe = /https?:\/\/assets-listings\.rew\.ca\/listing\/[^\/"'\s]+\/(\d+)\/([A-Za-z0-9_\-]+)\.(jpe?g|png|webp|avif)/gi, rw, rew = {}, rewCount = {};
+    while((rw = rewRe.exec(text))){
+      var rid = rw[1];
+      rewCount[rid] = (rewCount[rid] || 0) + 1;
+      var list = rew[rid] = rew[rid] || [];
+      var base = rw[0];
+      if(!list.some(function(x){ return x.base === base; })) list.push({base:base});
+    }
+    var rewIds = Object.keys(rew);
+    if(rewIds.length){
+      var og = /<meta[^>]+property=["']og:image["'][^>]+content=["'][^"']*\/listing\/[^\/"']+\/(\d+)\//i.exec(text) || /content=["'][^"']*assets-listings\.rew\.ca\/listing\/[^\/"']+\/(\d+)\/[^"']*["'][^>]*property=["']og:image/i.exec(text);
+      var rmain = (og && rew[og[1]]) ? og[1] : rewIds.sort(function(a, b){ return rewCount[b] - rewCount[a]; })[0];
+      return rew[rmain].map(function(x){ return byKey[photoKey(x.base)] || (x.base + '?auto=format&fit=max&w=1600'); });
+    }
+
+    var ids = Object.keys(found);
+    if(ids.length){
+      var pid = (mls && found[mls]) ? mls : ids.sort(function(a, b){ return count[b] - count[a]; })[0];
+      return Object.keys(found[pid]).map(Number).sort(function(a, b){ return a - b; }).map(function(n){
+        var u = found[pid][n]; return byKey[photoKey(u)] || u.replace(/^http:\/\//i, 'https://');
+      });
+    }
+    // Not a realtor.ca page: use the large photos saved inside the file
+    var root = '';
+    try{ root = new URL(site).hostname.split('.').slice(-2).join('.'); }catch(e){}
+    return embedded.filter(function(e){
+      var host = ''; try{ host = new URL(e.loc).hostname; }catch(x){}
+      if(root && host.slice(-root.length) !== root) return false;                                 // other sites: ads, trackers
+      if(/doubleclick|googlesyndication|adsrvr|adnxs|facebook|pinterest|criteo|taboola|outbrain/i.test(host)) return false;
+      if(!/^data:image\/(jpe?g|webp|avif)/i.test(e.src)) return false;                         // photos, not screenshots or graphics (PNG)
+      if(/screenshot|snapshot|preview|thumb|placeholder|captcha|consent|cookie/i.test(e.loc)) return false;
+      return e.size > 40000 && !/logo|icon|avatar|agent|headshot|individuals|organizations|badge|banner|sprite|\bads?\b|promo/i.test(e.loc);
+    }).map(function(e){ return e.src; }).filter(function(src, i, all){ return all.indexOf(src) === i; }).slice(0, 40);
+  }
+
+  function readSavedMhtml(raw){
+    var m = readMhtml(raw);
+    if(!m){ $('found').textContent = 'Couldn\'t read that file. In Chrome, press Cmd+S and choose Webpage, Single File, then upload it here.'; $('found').classList.add('warn'); return; }
+    resetSheetForUpload();
+    var parsed = parseListing(htmlToText(m.html));
+    var pics = listingPhotos(m.allHtml || m.html, m.embedded, parsed.mls, m.site).filter(function(src, i, all){ return all.indexOf(src) === i; });
+    if(!(parsed.price || parsed.mls || parsed.title)) pics = [];
+    sheets[cur].gallery = pics;
+    sheets[cur].photo = pics[0] || '';
+    applyParsed(parsed, pics.length);
+  }
+  function readPageFile(f){
+    if(!f) return;
+    if(!isHtmlFile(f)){ $('found').textContent = 'That file isn\'t a saved web page. In Chrome, press Cmd+S and choose Webpage, Single File.'; $('found').classList.add('warn'); return; }
+    var fr = new FileReader();
+    fr.onload = function(){
+      var raw = String(fr.result || '');
+      if(/\.mht(ml)?$/i.test(f.name) || /^(From:|MIME-Version:|Snapshot-Content-Location:)/im.test(raw.slice(0, 600))) readSavedMhtml(raw);
+      else readSavedPage(raw);
+    };
+    fr.readAsText(f);
+  }
+  function isHtmlFile(f){ return f && (/\.(html?|mht(ml)?)$/i.test(f.name) || f.type === 'text/html' || f.type === 'multipart/related'); }
+  $('pageBtn').addEventListener('click', function(){ $('pageIn').click(); });
+  $('pageIn').addEventListener('change', function(e){ readPageFile(e.target.files[0]); e.target.value = ''; });
+
+  load();
+  loadSheet();
+  renderAll();
+  // the logo and QR library load async; redraw once they're in
+  window.addEventListener('load', function(){ renderAll(); });
+  // listing photos are too large to keep in the browser, so say so when saved sheets come back without them
+  if(sheets.some(function(x){ return x.title || x.price; })){
+    $('found').textContent = 'Your sheets were saved, but listing photos aren\'t kept after the page closes. Upload the saved listing again to bring its photos back.';
+    $('found').classList.add('warn');
+  }
+})();
+</script>
+</body>
+</html>
