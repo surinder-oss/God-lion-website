@@ -2900,6 +2900,7 @@
   /* ─── ARTICLE BODY ─── */
   .article-body {
     max-width: 720px;
+    min-width: 0;
   }
   .article-body h2 {
     font-family: 'Playfair Display', serif;
