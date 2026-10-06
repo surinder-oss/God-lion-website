@@ -589,58 +589,118 @@
   <meta name="twitter:title" content="Gold Lion Mortgages | When the Bank Says No, We Find a Way">
   <meta name="twitter:description" content="Gold Lion Mortgages is a mortgage brokerage helping self-employed, first-time buyers, newcomers to Canada, and those with bruised credit get approved — wherever you are in Canada.">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "name": "Gold Lion Mortgages",
-        "url": "https://www.goldlionmortgages.com",
-        "logo": "https://www.goldlionmortgages.com/img/gold-lion-logo.png",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+1-587-740-0048",
-          "contactType": "customer service",
-          "areaServed": "CA",
-          "availableLanguage": ["English","Punjabi","Hindi"]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "MortgageBroker",
+        "Organization"
+      ],
+      "@id": "https://www.goldlionmortgages.com/#business",
+      "name": "Gold Lion Mortgages",
+      "alternateName": "Gold Lion Mortgages Inc.",
+      "url": "https://www.goldlionmortgages.com/",
+      "logo": "https://www.goldlionmortgages.com/img/gold-lion-logo.png",
+      "image": "https://www.goldlionmortgages.com/img/gold-lion-logo.png",
+      "description": "Gold Lion Mortgages is a Calgary-based mortgage brokerage business led by mortgage broker Surinderpal Singh. It helps buyers, homeowners and investors across Canada compare bank, alternative (B) and private lender options, including for self-employed borrowers, newcomers, bruised credit, renewals, refinances and investment properties. Powered by MCC Elevo Mortgages, Member of DLCG.",
+      "telephone": "+1-587-740-0048",
+      "email": "Surinder@goldlionmortgages.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Calgary",
+        "addressRegion": "AB",
+        "addressCountry": "CA"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Calgary"
         },
-        "sameAs": [
-          "https://www.instagram.com/gold_lion_mortgages_inc/",
-          "https://www.instagram.com/iam_sp_maan/",
-          "https://www.linkedin.com/company/gold-lion-mortgages"
+        {
+          "@type": "AdministrativeArea",
+          "name": "Alberta"
+        },
+        {
+          "@type": "Country",
+          "name": "Canada"
+        }
+      ],
+      "foundingDate": "2023",
+      "founder": {
+        "@id": "https://www.goldlionmortgages.com/#surinderpal"
+      },
+      "hasMap": "https://www.google.com/maps?cid=3949579028811467951",
+      "knowsLanguage": [
+        "English",
+        "Punjabi",
+        "Hindi"
+      ],
+      "knowsAbout": [
+        "Self-employed mortgages",
+        "Newcomer mortgages",
+        "Bad credit mortgages",
+        "Mortgage renewals",
+        "Refinancing",
+        "Investment property mortgages",
+        "Spousal buyout mortgages",
+        "Mortgage pre-approval",
+        "First-time home buyer mortgages"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-587-740-0048",
+        "contactType": "customer service",
+        "areaServed": "CA",
+        "availableLanguage": [
+          "English",
+          "Punjabi",
+          "Hindi"
         ]
       },
-      {
-        "@type": "MortgageBroker",
-        "name": "Gold Lion Mortgages",
-        "image": "https://www.goldlionmortgages.com/img/gold-lion-logo.png",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Calgary",
-          "addressRegion": "AB",
-          "addressCountry": "CA"
-        },
-        "telephone": "+1-587-740-0048",
-        "email": "Surinder@goldlionmortgages.com",
-        "areaServed": {"@type": "Country", "name": "Canada"},
-        "url": "https://www.goldlionmortgages.com",
-        "priceRange": "$"
+      "priceRange": "$",
+      "sameAs": [
+        "https://www.google.com/maps?cid=3949579028811467951",
+        "https://www.facebook.com/spmann00/",
+        "https://www.instagram.com/iam_sp_maan/",
+        "https://www.instagram.com/gold_lion_mortgages_inc/"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.goldlionmortgages.com/#surinderpal",
+      "name": "Surinderpal Singh",
+      "image": "https://www.goldlionmortgages.com/img/surinderpal-singh.jpg",
+      "jobTitle": "Mortgage Broker",
+      "url": "https://www.goldlionmortgages.com/about",
+      "worksFor": {
+        "@id": "https://www.goldlionmortgages.com/#business"
       },
-      {
-        "@type": "Person",
-        "name": "Surinderpal Singh",
-        "image": "https://www.goldlionmortgages.com/img/surinderpal-singh.jpg",
-        "jobTitle": "Licensed Mortgage Broker",
-        "worksFor": {"@type": "Organization", "name": "Gold Lion Mortgages"},
-        "url": "https://www.goldlionmortgages.com/about"
+      "affiliation": {
+        "@type": "Organization",
+        "name": "MCC Elevo Mortgages"
       },
-      {
-        "@type": "WebSite",
-        "name": "Gold Lion Mortgages",
-        "url": "https://www.goldlionmortgages.com"
+      "knowsLanguage": [
+        "English",
+        "Punjabi",
+        "Hindi"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/surinderpal-singh-a49163187/",
+        "https://www.instagram.com/iam_sp_maan/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.goldlionmortgages.com/#website",
+      "name": "Gold Lion Mortgages",
+      "url": "https://www.goldlionmortgages.com/",
+      "publisher": {
+        "@id": "https://www.goldlionmortgages.com/#business"
       }
-    ]
-  }
+    }
+  ]
+}
   </script>
 <link rel="stylesheet" href="whatsapp.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="whatsapp.css"></noscript>
