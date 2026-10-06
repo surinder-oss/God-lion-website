@@ -697,7 +697,7 @@ button.primary:hover{background:#3A2890}
     // footer: the brand with the disclaimer beside it
     var lg = logoFor(), stack = !myLogo && T.logoLayout === 'stack';
     h += '<div class="s-foot ' + T.footStyle + (stack ? ' stackf' : '') + (pw ? ' haspw' : '') + '"><div class="s-flogo">' + (lg ? '<img src="' + esc(lg) + '" alt="' + esc(T.name) + ' logo">' : '') + '</div>';
-    if(pw) h += '<div class="s-pw"><div class="eb">Powered by</div><img src="' + esc(pw) + '" alt="The Mortgage Centre Elevo Mortgages"></div>';
+    if(pw) h += '<div class="s-pw"><div class="eb">Powered by</div><img src="' + esc(pw) + '" alt="The MCC Elevo Mortgages"></div>';
     h += '<div class="s-disc">' + esc(disc) + '</div></div>';
     return {html:h, T:T};
   }
