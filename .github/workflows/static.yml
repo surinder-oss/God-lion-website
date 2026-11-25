@@ -22,11 +22,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  # Build and deploy run as separate jobs so the Pages artifact is fully
+  # registered before deploy-pages looks it up. In a single job, deploy-pages
+  # intermittently reported 'No artifacts named "github-pages" were found'
+  # right after a successful upload (Nov 23 and Nov 25, 2026).
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -38,6 +38,23 @@ jobs:
         with:
           # Upload entire repository
           path: '.'
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy_retry.outputs.page_url || steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+      # If the first attempt fails (e.g. the artifact lookup glitch), wait and try once more.
+      - name: Wait before retry
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+      - name: Deploy to GitHub Pages (retry)
+        id: deploy_retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
